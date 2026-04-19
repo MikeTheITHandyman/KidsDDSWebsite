@@ -1,0 +1,7 @@
+node_modules
+.next
+.env.local
+*.log
+git_temp_*.txt
+build-output.txt
+build.log

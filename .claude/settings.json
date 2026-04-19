@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/miken/MyApps/kids_dds_schein_webapp/**)"
+    ]
+  }
+}

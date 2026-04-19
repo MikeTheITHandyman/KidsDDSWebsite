@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pediatric Dentist - Grayslake, IL</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .top-bar {
+            background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+            color: white;
+            padding: 10px 0;
+            font-size: 14px;
+        }
+
+        .top-bar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .top-bar span {
+            color: white;
+            margin: 0 10px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .top-bar span:hover {
+            opacity: 0.8;
+        }
+
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FF6B6B;
+            cursor: pointer;
+        }
+
+        .logo span {
+            color: #4ECDC4;
+        }
+
+        .header-info {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .header-info span {
+            color: #333;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            display: inline-block;
+            transition: transform 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+        }
+
+        nav {
+            background: #f8f9fa;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-content span {
+            color: #333;
+            padding: 15px 5px;
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-content span:hover {
+            color: #FF6B6B;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero h2 {
+            font-size: 24px;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: #333;
+        }
+
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .reason-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .reason-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .reason-card h3 {
+            color: #FF6B6B;
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .philosophy {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .philosophy-content {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .team-section {
+            background: #f8f9fa;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .team-member {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .team-member-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+        }
+
+        .team-member h3 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-img {
+            height: 200px;
+            background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
+            color: white;
+        }
+
+        .service-content {
+            padding: 25px;
+        }
+
+        .service-content h3 {
+            color: #FF6B6B;
+            margin-bottom: 10px;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            text-align: right;
+            margin-top: 15px;
+            font-weight: 600;
+            color: #667eea;
+            font-style: normal;
+        }
+
+        .insurance-section {
+            background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .community {
+            background: #f8f9fa;
+        }
+
+        .community-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .community-img {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            padding: 40px 20px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-section h3 {
+            color: #4ECDC4;
+            margin-bottom: 15px;
+        }
+
+        .footer-section p, .footer-section span {
+            color: #ccc;
+            display: block;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 30px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid #555;
+            text-align: center;
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .reasons-grid,
+            .team-grid,
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div>
+                <span onclick="scrollToSection('request')">📅 Request an Appointment</span>
+                <span onclick="scrollToSection('patients')">📋 Complete Our Forms</span>
+                <span>👍 Like Us on Facebook</span>
+            </div>
+            <div>
+                <span>📞 Call</span>
+                <span onclick="scrollToSection('contact')">📍 Map</span>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="header-content">
+            <div class="logo" onclick="scrollToSection('home')">
+                Kids <span>Dentist</span>
+                <div style="font-size: 12px; color: #666;">Practice Limited to Pediatric Dentistry</div>
+            </div>
+            <div class="header-info">
+                <span>📞 (847) 223-1400</span>
+                <span onclick="scrollToSection('contact')">📍 160 Commerce Dr #100, Grayslake, IL 60030</span>
+                <button class="btn-primary" onclick="scrollToSection('request')">Request an Appointment</button>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-content">
+            <span onclick="scrollToSection('home')">Home</span>
+            <span onclick="scrollToSection('about')">About</span>
+            <span onclick="scrollToSection('services')">Services</span>
+            <span onclick="scrollToSection('patients')">For Patients</span>
+            <span onclick="scrollToSection('insurance')">Insurance Info</span>
+            <span onclick="scrollToSection('reviews')">Reviews</span>
+            <span onclick="scrollToSection('faq')">FAQ</span>
+            <span onclick="scrollToSection('contact')">Contact</span>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <h1>Pediatric Dentist - Grayslake, IL</h1>
+        <h2>Dedicated care for Growing Smiles</h2>
+        <button class="btn-primary" onclick="scrollToSection('about')">Learn More</button>
+    </section>
+
+    <section class="section" id="about">
+        <h2>Welcome to Kids Dentist</h2>
+        <p style="text-align: center; font-size: 18px; margin-bottom: 50px;">
+            Finding the right pediatric dental practice for your child's growing smile can be a challenge. 
+            At Kids Dentist, we want to earn your family's trust and exceed your expectations!
+        </p>
+
+        <div class="reasons-grid">
+            <div class="reason-card">
+                <h3>26+ Years of Experience</h3>
+                <p>We've been serving the Grayslake and Lake County communities for a very long time, building countless long-term relationships and helping children grow up smiling.</p>
+            </div>
+            <div class="reason-card">
+                <h3>Kids & Parents Love Us</h3>
+                <p>We're 100% focused on making each appointment enjoyable for kids and parents alike. Visiting the dentist doesn't have to be a dreaded experience!</p>
+            </div>
+            <div class="reason-card">
+                <h3>A Heart for Special Needs</h3>
+                <p>As pediatric dentists, we have experience with special needs children who need extra attention, patience, and care. They are always welcome!</p>
+            </div>
+            <div class="reason-card">
+                <h3>Focused on Your Child's Comfort</h3>
+                <p>Calming sedation options like nitrous oxide and sleep dentistry are available to help make even complex treatments very safe for young patients.</p>
+            </div>
+            <div class="reason-card">
+                <h3>Dental Insurance Welcome</h3>
+                <p>Kids Dentist is proudly in-network with many major PPO dental insurances and will always help families maximize their well-deserved benefits.</p>
+            </div>
+            <div class="reason-card">
+                <h3>Dental Care That Grows With Your Child</h3>
+                <p>We can take care of all your child's dental needs. From their first dental visit to orthodontic treatments, we can help keep your child's teeth healthy.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="philosophy">
+        <div class="philosophy-content">
+            <h2 style="color: white;">Our Pediatric Dental Philosophy</h2>
+            <p>Our main goal and mission is to provide excellence in pediatric dentistry to all our patients, in a professional and welcoming environment. We believe strongly in prevention, and thus aim to educate our patients and parents in the best ways to care for their oral health.</p>
+        </div>
+    </section>
+
+    <section class="section team-section" id="team">
+        <h2>Get to Know Grayslake's Pediatric Dentists</h2>
+        <p style="text-align: center; font-size: 18px; margin-bottom: 50px;">
+            Five heads are definitely better than one! With a whole group of talented, highly trained pediatric dentists right here in one convenient location, our special patients have all the support they could ever need.
+        </p>
+        
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="team-member-img">👩‍⚕️</div>
+                <h3>Sonia Gutierrez, DDS</h3>
+                <p>Pediatric Dentist</p>
+            </div>
+            <div class="team-member">
+                <div class="team-member-img">👨‍⚕️</div>
+                <h3>Dave Rutcosky, DDS</h3>
+                <p>Pediatric Dentist</p>
+            </div>
+            <div class="team-member">
+                <div class="team-member-img">👩‍⚕️</div>
+                <h3>Sahar Alrayyes, DDS</h3>
+                <p>Pediatric Dentist</p>
+            </div>
+            <div class="team-member">
+                <div class="team-member-img">👩‍⚕️</div>
+                <h3>Ashley Compton, DDS</h3>
+                <p>Pediatric Dentist</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="services">
+        <h2>Featured Pediatric Dental Services</h2>
+        <p style="text-align: center; font-size: 18px; margin-bottom: 50px;">
+            Smiles for Infants, Toddlers, Children & Teens
+        </p>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-img">👶</div>
+                <div class="service-content">
+                    <h3>Infant Dental Care</h3>
+                    <p>Starting your baby's dental journey with preventive care and parent education for healthy smiles from the start.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-img">🦷</div>
+                <div class="service-content">
+                    <h3>Sealants & Fluoride Treatments</h3>
+                    <p>Protective treatments to strengthen teeth and prevent cavities in your growing child.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-img">💙</div>
+                <div class="service-content">
+                    <h3>Special Needs Dental Care</h3>
+                    <p>Compassionate, specialized care for children with special needs in a comfortable environment.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-img">😌</div>
+                <div class="service-content">
+                    <h3>Nitrous Oxide Sedation</h3>
+                    <p>Safe, gentle sedation to help anxious children feel relaxed during dental procedures.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-img">🚨</div>
+                <div class="service-content">
+                    <h3>Pediatric Dental Emergencies</h3>
+                    <p>Quick, compassionate care when your child needs urgent dental treatment.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-img">😁</div>
+                <div class="service-content">
+                    <h3>Orthodontics</h3>
+                    <p>Comprehensive orthodontic care to create beautiful, healthy smiles that last a lifetime.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="reviews">
+        <h2>What Parents Say About Us</h2>
+        
+        <div class="testimonial">
+            <p>"My kids love this place. Yes, they actually love going to the dentist. Which wasn't the case until we found this place. Fast, clean, compassionate, and fun to visit. Everything you'd want for your kids. Thank you for creating such a wonderful place to make taking care of teeth a pleasant experience for my kiddos."</p>
+            <div class="testimonial-author">- Dana B., Grayslake, IL</div>
+        </div>
+
+        <div class="testimonial">
+            <p>"I would highly recommend this dentist to anyone with kids, especially those kids that have anxiety when it comes to going to the dentist. They are so kind and really know how to make my kids experience a not so scary one!!"</p>
+            <div class="testimonial-author">- Katherine W., Third Lake, IL</div>
+        </div>
+
+        <div class="testimonial">
+            <p>"My daughter visited Dr. Sonia and her team for the first time today. We were nervous switching to a new dentist after taking her somewhere else for 2 years. We were immediately put at ease by the staff. Just a wonderful experience and really catered to the children. I'm so happy we found them."</p>
+            <div class="testimonial-author">- Krystle B., Round Lake Heights, IL</div>
+        </div>
+    </section>
+
+    <section class="insurance-section" id="insurance">
+        <div class="section">
+            <h2 style="color: white;">Dental Insurance & Financing</h2>
+            <p style="font-size: 18px; margin-bottom: 30px;">
+                We want to help make every part of your child's dental care simple, including when it's time to pay. That's why our children's dental office is in-network with most major PPO dental plans! No dental insurance? Flexible, low-interest financing can be arranged as well.
+            </p>
+            <button class="btn-primary">Find Your Dental Plan</button>
+        </div>
+    </section>
+
+    <section class="section" id="patients">
+        <h2>For Patients</h2>
+        <p style="text-align: center; font-size: 18px; margin-bottom: 30px;">
+            We make it easy to get started with our practice. Complete your forms online, learn about your first visit, and explore flexible payment options.
+        </p>
+        <div style="text-align: center;">
+            <button class="btn-primary" style="margin: 10px;">Download Patient Forms</button>
+            <button class="btn-primary" style="margin: 10px;">Learn About Financing</button>
+        </div>
+    </section>
+
+    <section class="section" id="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="reason-card" style="margin-bottom: 20px;">
+            <h3>When should my child have their first dental visit?</h3>
+            <p>We recommend scheduling your child's first dental visit around their first birthday or within six months of their first tooth erupting.</p>
+        </div>
+        <div class="reason-card" style="margin-bottom: 20px;">
+            <h3>Do you accept dental insurance?</h3>
+            <p>Yes! We're in-network with most major PPO dental insurance plans and will help you maximize your benefits.</p>
+        </div>
+        <div class="reason-card" style="margin-bottom: 20px;">
+            <h3>What should I expect at my child's first visit?</h3>
+            <p>The first visit is usually short and focused on getting your child comfortable with the dental office. We'll do a gentle examination and discuss proper oral care.</p>
+        </div>
+    </section>
+
+    <section class="section" id="request">
+        <h2>Request an Appointment</h2>
+        <div style="background: #f8f9fa; padding: 40px; border-radius: 15px; text-align: center;">
+            <p style="font-size: 18px; margin-bottom: 20px;">Ready to schedule your child's visit? Call us or fill out our online form.</p>
+            <p style="font-size: 24px; font-weight: bold; color: #667eea; margin-bottom: 20px;">📞 (847) 223-1400</p>
+            <button class="btn-primary">Request Appointment Online</button>
+        </div>
+    </section>
+
+    <section class="section community" id="community">
+        <h2>Always Doing Something in Our Community</h2>
+        <p style="text-align: center; font-size: 18px; margin-bottom: 50px;">
+            We've been part of Grayslake for decades now and couldn't ask for a better neighborhood to serve families in! That's why our team enjoys supporting Pucks for Autism, SEDOL, The Grayslake Park District, and other worthwhile local causes.
+        </p>
+        
+        <div class="community-grid">
+            <div class="community-img"></div>
+            <div class="community-img"></div>
+            <div class="community-img"></div>
+            <div class="community-img"></div>
+            <div class="community-img"></div>
+            <div class="community-img"></div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>📞 (847) 223-1400</p>
+                <p>📍 160 Commerce Dr #100<br>Grayslake, IL 60030</p>
+            </div>
+            <div class="footer-section">
+                <h3>Office Hours</h3>
+                <p><strong>Monday:</strong> 9:00 am - 5:00 pm</p>
+                <p><strong>Tuesday:</strong> 9:00 am - 5:00 pm</p>
+                <p><strong>Wednesday:</strong> 8:30 am - 5:00 pm</p>
+                <p><strong>Thursday:</strong> 9:00 am - 5:00 pm</p>
+                <p><strong>Friday:</strong> 8:00 am - 2:00 pm</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <span onclick="scrollToSection('about')">About Us</span>
+                <span onclick="scrollToSection('services')">Our Services</span>
+                <span onclick="scrollToSection('insurance')">Insurance Info</span>
+                <span onclick="scrollToSection('contact')">Contact Us</span>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>©2021 Kids Dentist | Practice Limited to Pediatric Dentistry</p>
+            <p>Sitemap | Privacy Policy</p>
+        </div>
+    </footer>
+
+    <script>
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    </script>
+</body>
+</html>
