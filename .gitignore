@@ -5,3 +5,17 @@ node_modules
 git_temp_*.txt
 build-output.txt
 build.log
+
+# Large media — host on CDN for production
+*.mp4
+*.HEIC
+/brand_assets/
+
+# Generated / local-only
+tsconfig.tsbuildinfo
+repomix-output.xml
+.git-temp-*
+kids-dds-prototype-netlify.zip
+kids-dds-deploy.zip
+.claude/settings.local.json
+scripts/

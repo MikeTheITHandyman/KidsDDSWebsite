@@ -1,0 +1,10 @@
+[build]
+  command = "npm install && npm run build"
+  publish = ".next"
+
+[build.environment]
+  NEXT_PUBLIC_SANITY_PROJECT_ID = "c7522jcx"
+  NEXT_PUBLIC_SANITY_DATASET    = "production"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
