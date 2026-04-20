@@ -11,7 +11,8 @@ build.log
 *.HEIC
 /brand_assets/
 
-# Generated / local-only
+# Generated / local-only — Next.js regenerates these on every build
+next-env.d.ts
 tsconfig.tsbuildinfo
 repomix-output.xml
 .git-temp-*
