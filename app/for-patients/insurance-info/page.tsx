@@ -1,45 +1,122 @@
-﻿'use client'
+'use client'
 
-import React from 'react'
 import { motion } from 'framer-motion'
+import SubPageLayout from '@/components/SubPageLayout'
 
-export default function PlaceholderPage() {
-  const displayTitle = "Under Construction"
+const insurers = [
+  { name: 'BlueCross BlueShield', color: '#1D4ED8' },
+  { name: 'Cigna', color: '#0E7490' },
+  { name: 'Aetna', color: '#7E22CE' },
+  { name: 'UnitedHealthcare', color: '#065F46' },
+  { name: 'Delta Dental', color: '#B91C1C' },
+  { name: 'Humana', color: '#047857' },
+  { name: 'MetLife', color: '#1E3A8A' },
+  { name: 'Guardian', color: '#6D28D9' },
+  { name: 'Medicaid / CHIP', color: '#0369A1' },
+  { name: 'And Many More…', color: '#9CA3AF' },
+]
 
+const sections = [
+  {
+    title: 'Understanding Your Benefits',
+    desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tincidunt lorem at fermentum convallis. Libero nisi gravida sapien, ac tincidunt nisi turpis in odio. Donec quis arcu vel felis semper faucibus et odio.',
+    gradient: 'from-[#DBEAFE] to-[#BAE6FD]',
+    flip: false,
+  },
+  {
+    title: 'Flexible Payment Options',
+    desc: 'Pellentesque habitant morbi tristique senectus et netus. Nulla facilisi. Aliquam erat volutpat. Quisque vehicula, nisl ac viverra semper, nisi velit condimentum nisl, vel placerat massa.',
+    gradient: 'from-[#D1FAE5] to-[#A7F3D0]',
+    flip: true,
+  },
+]
+
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.06 } },
+}
+
+const chipVariants = {
+  hidden: { opacity: 0, scale: 0.85 },
+  visible: { opacity: 1, scale: 1, transition: { type: 'spring', stiffness: 300, damping: 20 } },
+}
+
+export default function InsuranceInfoPage() {
   return (
-    <div className="min-h-screen bg-[#FAFAFA] text-slate-800 pt-32 pb-20 px-6 flex flex-col items-center justify-center">
-      <motion.div 
-        className="max-w-3xl w-full bg-white rounded-[2rem] shadow-sm border border-slate-100 p-12 text-center"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+    <SubPageLayout
+      title="Insurance & Financing"
+      subtitle="We work with most major insurers so your child's smile is always within reach."
+      gradient="green"
+    >
+      {/* Insurance grid */}
+      <motion.div
+        className="mx-auto mb-20 max-w-4xl px-4"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
       >
-        {/* Soft Organic Decorative Element */}
-        <div className="w-24 h-24 mx-auto mb-8 bg-blue-50 text-blue-400 rounded-full flex items-center justify-center">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-            </svg>
-        </div>
-
-        <h1 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900 capitalize">
-          {displayTitle}
-        </h1>
-        
-        <p className="text-lg text-slate-500 mb-10 max-w-xl mx-auto">
-          We're currently designing this space using our new 2026 organic visual identity. 
-          Check back soon for playful graphics and parent-centric content.
-        </p>
-
-        <motion.a 
-          href="/"
-          className="inline-flex items-center justify-center px-8 py-4 bg-yellow-400 text-yellow-950 font-semibold rounded-2xl shadow-sm hover:shadow-md transition-shadow"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+        <h2
+          className="mb-8 text-center text-2xl font-black text-[#4A90A4]"
+          style={{ fontFamily: 'Nunito, sans-serif' }}
         >
-          Return Home
-        </motion.a>
+          Accepted Insurance Plans
+        </h2>
+        <div className="flex flex-wrap justify-center gap-3">
+          {insurers.map((ins) => (
+            <motion.div
+              key={ins.name}
+              variants={chipVariants}
+              whileHover={{ scale: 1.06, y: -3 }}
+              className="flex items-center gap-2.5 rounded-2xl border border-slate-100 bg-white px-5 py-3 shadow-sm"
+            >
+              <span
+                className="h-2.5 w-2.5 shrink-0 rounded-full"
+                style={{ background: ins.color }}
+              />
+              <span className="text-sm font-700 text-slate-700" style={{ fontWeight: 700 }}>
+                {ins.name}
+              </span>
+            </motion.div>
+          ))}
+        </div>
       </motion.div>
-    </div>
+
+      {/* Alternating sections */}
+      <div className="mx-auto max-w-5xl space-y-20 px-4">
+        {sections.map((s, i) => (
+          <div
+            key={s.title}
+            className={`grid items-center gap-10 md:grid-cols-2 ${s.flip ? 'md:[direction:rtl]' : ''}`}
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+              className={`[direction:ltr] aspect-[4/3] rounded-3xl bg-gradient-to-br ${s.gradient} flex items-center justify-center shadow-lg`}
+            >
+              <span className="text-xs font-700 uppercase tracking-widest text-slate-400 opacity-60" style={{ fontWeight: 700 }}>
+                Photo / Illustration
+              </span>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.65, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+              className="[direction:ltr]"
+            >
+              <span className="mb-2 inline-block text-xs font-800 uppercase tracking-widest text-[#6BA899]" style={{ fontWeight: 800 }}>
+                Section 0{i + 1}
+              </span>
+              <h2 className="mb-4 text-3xl font-black text-[#4A90A4]" style={{ fontFamily: 'Nunito, sans-serif' }}>
+                {s.title}
+              </h2>
+              <p className="text-base leading-relaxed text-slate-500">{s.desc}</p>
+            </motion.div>
+          </div>
+        ))}
+      </div>
+    </SubPageLayout>
   )
 }
