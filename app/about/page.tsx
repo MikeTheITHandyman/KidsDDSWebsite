@@ -57,7 +57,7 @@ export default function AboutPage() {
               initial={{ opacity: 0, x: s.flip ? 40 : -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
               className={`[direction:ltr] aspect-[4/3] rounded-3xl bg-gradient-to-br ${s.gradient} flex items-center justify-center shadow-lg`}
             >
               <div className="flex flex-col items-center gap-3 opacity-60">
@@ -73,7 +73,7 @@ export default function AboutPage() {
               initial={{ opacity: 0, x: s.flip ? -40 : 40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.65, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.65, delay: 0.12, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
               className="[direction:ltr]"
             >
               <span className="mb-2 inline-block text-xs font-800 uppercase tracking-widest text-[#E8934F]" style={{ fontWeight: 800 }}>

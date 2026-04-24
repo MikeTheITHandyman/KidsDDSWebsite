@@ -51,7 +51,7 @@ export default function ChildFirstVisitPage() {
               initial={{ opacity: 0, x: s.flip ? 50 : -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
               className={`[direction:ltr] relative aspect-[4/3] rounded-3xl bg-gradient-to-br ${s.gradient} flex items-center justify-center shadow-lg overflow-hidden`}
             >
               <div
@@ -73,7 +73,7 @@ export default function ChildFirstVisitPage() {
               initial={{ opacity: 0, x: s.flip ? -50 : 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.14, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.7, delay: 0.14, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
               className="[direction:ltr]"
             >
               <span className="mb-2 inline-block rounded-full bg-[#4A90A4]/10 px-3 py-1 text-xs font-800 text-[#4A90A4]" style={{ fontWeight: 800 }}>

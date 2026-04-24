@@ -92,7 +92,7 @@ export default function InsuranceInfoPage() {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
               className={`[direction:ltr] aspect-[4/3] rounded-3xl bg-gradient-to-br ${s.gradient} flex items-center justify-center shadow-lg`}
             >
               <span className="text-xs font-700 uppercase tracking-widest text-slate-400 opacity-60" style={{ fontWeight: 700 }}>
@@ -103,7 +103,7 @@ export default function InsuranceInfoPage() {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.65, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.65, delay: 0.15, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
               className="[direction:ltr]"
             >
               <span className="mb-2 inline-block text-xs font-800 uppercase tracking-widest text-[#6BA899]" style={{ fontWeight: 800 }}>

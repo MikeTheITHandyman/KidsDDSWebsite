@@ -66,7 +66,7 @@ export default function SubPageLayout({
           <motion.div
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
             className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#4A90A4]/20 bg-white/60 px-4 py-1.5 text-xs font-800 uppercase tracking-widest text-[#4A90A4] backdrop-blur-sm"
             style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800 }}
           >
@@ -77,7 +77,7 @@ export default function SubPageLayout({
           <motion.h1
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.65, delay: 0.1, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
             className="mb-4 text-5xl font-black leading-tight tracking-tight text-[#4A90A4] md:text-6xl"
             style={{ fontFamily: 'Nunito, sans-serif' }}
           >
@@ -88,7 +88,7 @@ export default function SubPageLayout({
             <motion.p
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.6, delay: 0.22, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
               className="mx-auto max-w-xl text-lg font-medium leading-relaxed text-slate-500"
               style={{ fontFamily: 'Nunito, sans-serif' }}
             >

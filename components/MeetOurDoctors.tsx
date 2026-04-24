@@ -88,7 +88,7 @@ export default function MeetOurDoctors() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
           style={{ textAlign: 'center', marginBottom: '3.5rem' }}
         >
           <span className="section-kicker">Get to Know Us</span>
@@ -126,7 +126,7 @@ export default function MeetOurDoctors() {
               initial={{ opacity: 0, y: 36 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.6, delay: doc.delay, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.6, delay: doc.delay, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
               whileHover={{ y: -8, transition: { type: 'spring', stiffness: 300, damping: 20 } }}
               style={{
                 background: 'white',

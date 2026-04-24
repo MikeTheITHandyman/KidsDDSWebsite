@@ -47,7 +47,7 @@ function FaqCard({ faq, index }: { faq: { q: string; a: string }; index: number 
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.5, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
       className="overflow-hidden rounded-2xl border border-[#4A90A4]/10 bg-white shadow-sm transition-shadow hover:shadow-md"
     >
       <button
@@ -74,7 +74,7 @@ function FaqCard({ faq, index }: { faq: { q: string; a: string }; index: number 
       <motion.div
         initial={false}
         animate={{ height: open ? 'auto' : 0, opacity: open ? 1 : 0 }}
-        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
         className="overflow-hidden"
       >
         <div className="border-t border-[#4A90A4]/08 px-6 pb-5 pt-4">
