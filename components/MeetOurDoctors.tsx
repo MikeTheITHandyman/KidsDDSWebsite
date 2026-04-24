@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 
 const doctors = [
@@ -9,8 +10,7 @@ const doctors = [
     blobRadius: '60% 40% 30% 70% / 60% 30% 70% 40%',
     gradientFrom: '#DBEAFE',
     gradientTo: '#BAE6FD',
-    avatarBg: 'linear-gradient(135deg, #4A90A4, #6BA899)',
-    initial: 'SG',
+    photo: '/brand_assets/index-dr-sonia.jpg',
     delay: 0,
   },
   {
@@ -19,8 +19,7 @@ const doctors = [
     blobRadius: '40% 60% 70% 30% / 40% 70% 30% 60%',
     gradientFrom: '#D1FAE5',
     gradientTo: '#A7F3D0',
-    avatarBg: 'linear-gradient(135deg, #6BA899, #8BA596)',
-    initial: 'DR',
+    photo: '/brand_assets/index-dr-dave.jpg',
     delay: 0.1,
   },
   {
@@ -29,8 +28,7 @@ const doctors = [
     blobRadius: '50% 50% 30% 70% / 60% 40% 70% 30%',
     gradientFrom: '#FEF3C7',
     gradientTo: '#FDE68A',
-    avatarBg: 'linear-gradient(135deg, #E8934F, #E97D63)',
-    initial: 'SA',
+    photo: '/brand_assets/index-dr-alrayyes.jpg',
     delay: 0.2,
   },
   {
@@ -39,8 +37,7 @@ const doctors = [
     blobRadius: '70% 30% 50% 50% / 40% 60% 40% 60%',
     gradientFrom: '#EDE9FE',
     gradientTo: '#DDD6FE',
-    avatarBg: 'linear-gradient(135deg, #7C3AED, #4A90A4)',
-    initial: 'AC',
+    photo: '/brand_assets/index-dr-ashley.jpg',
     delay: 0.3,
   },
 ]
@@ -153,57 +150,17 @@ export default function MeetOurDoctors() {
                   margin: '0 auto 1.25rem',
                   borderRadius: doc.blobRadius,
                   background: `linear-gradient(135deg, ${doc.gradientFrom}, ${doc.gradientTo})`,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
                   position: 'relative',
                   overflow: 'hidden',
+                  flexShrink: 0,
                 }}
-                aria-label={`Headshot placeholder for ${doc.name}`}
               >
-                {/* Inner shimmer */}
-                <div
-                  style={{
-                    position: 'absolute',
-                    inset: 0,
-                    background: 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.45) 0%, transparent 60%)',
-                  }}
-                  aria-hidden="true"
-                />
-                {/* Avatar initials */}
-                <div
-                  style={{
-                    position: 'relative',
-                    zIndex: 1,
-                    width: '64px',
-                    height: '64px',
-                    borderRadius: '50%',
-                    background: doc.avatarBg,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontFamily: 'Nunito, sans-serif',
-                    fontSize: '1.1rem',
-                    fontWeight: 900,
-                    color: 'white',
-                    boxShadow: '0 4px 14px rgba(0,0,0,0.15)',
-                  }}
-                >
-                  {doc.initial}
-                </div>
-                {/* Decorative dot */}
-                <div
-                  style={{
-                    position: 'absolute',
-                    bottom: '12px',
-                    right: '12px',
-                    width: '12px',
-                    height: '12px',
-                    borderRadius: '50%',
-                    background: 'rgba(255,255,255,0.65)',
-                    boxShadow: '0 2px 6px rgba(0,0,0,0.10)',
-                  }}
-                  aria-hidden="true"
+                <Image
+                  src={doc.photo}
+                  alt={`Headshot of ${doc.name}`}
+                  fill
+                  sizes="140px"
+                  style={{ objectFit: 'cover', objectPosition: 'top center' }}
                 />
               </div>
 

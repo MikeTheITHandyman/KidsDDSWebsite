@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import FloatingWidget from '../components/FloatingWidget'
 import '../styles/global.css'
 
 export const metadata = {
@@ -15,6 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main className="container main-content">{children}</main>
         <Footer />
+        <FloatingWidget />
       </body>
     </html>
   )

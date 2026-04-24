@@ -38,66 +38,113 @@ const NAV = [
   { label: 'Contact', href: '/contact' },
 ]
 
-const dropdownVariants = {
-  hidden: { opacity: 0, y: -6, scale: 0.97 },
-  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.18, ease: [0.22, 1, 0.36, 1] } },
-  exit: { opacity: 0, y: -4, scale: 0.97, transition: { duration: 0.12 } },
+const linkStyle: React.CSSProperties = {
+  color: 'var(--muted-700)',
+  fontWeight: 600,
+  textDecoration: 'none',
+  whiteSpace: 'nowrap',
+  transition: 'color 0.3s',
+  fontFamily: 'Nunito, sans-serif',
 }
 
-function NavItem({ item }: { item: typeof NAV[0] }) {
+function NavItem({ item }: { item: (typeof NAV)[0] }) {
   const [open, setOpen] = useState(false)
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const onEnter = () => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current)
+    if (timer.current) clearTimeout(timer.current)
     setOpen(true)
   }
   const onLeave = () => {
-    timeoutRef.current = setTimeout(() => setOpen(false), 120)
+    timer.current = setTimeout(() => setOpen(false), 130)
   }
 
   if (!('children' in item) || !item.children) {
     return (
-      <a href={item.href} className="site-nav-link">
+      <a href={item.href} style={linkStyle} className="nav-link-hover">
         {item.label}
       </a>
     )
   }
 
   return (
-    <div className="relative" onMouseEnter={onEnter} onMouseLeave={onLeave}>
+    // Key fix: display:flex + alignItems:center so this div behaves identically
+    // to the plain <a> siblings inside the site-nav flexbox row.
+    <div
+      style={{ position: 'relative', display: 'flex', alignItems: 'center' }}
+      onMouseEnter={onEnter}
+      onMouseLeave={onLeave}
+    >
       <a
         href={item.href}
-        className="site-nav-link flex items-center gap-1"
+        style={{ ...linkStyle, display: 'flex', alignItems: 'center', gap: '3px' }}
+        className="nav-link-hover"
         aria-haspopup="true"
         aria-expanded={open}
       >
         {item.label}
-        <motion.svg
-          width="12" height="12" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" strokeWidth="2.5"
-          animate={{ rotate: open ? 180 : 0 }}
-          transition={{ duration: 0.2 }}
+        {/* Plain SVG — no motion here so it can't affect parent layout */}
+        <svg
+          width="11"
+          height="11"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          style={{
+            transition: 'transform 0.2s ease',
+            transform: open ? 'rotate(180deg)' : 'rotate(0deg)',
+            flexShrink: 0,
+          }}
         >
           <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-        </motion.svg>
+        </svg>
       </a>
 
       <AnimatePresence>
         {open && (
           <motion.div
-            variants={dropdownVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            className="absolute left-0 top-full z-50 mt-2 min-w-[200px] overflow-hidden rounded-2xl border border-[#4A90A4]/10 bg-white shadow-[0_8px_32px_rgba(74,144,164,0.14)]"
+            // No scale — only opacity + y so the element never temporarily
+            // occupies a different footprint that could shift surrounding elements.
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.16, ease: [0.22, 1, 0.36, 1] }}
+            // Inline style for position so Tailwind cascade can't override it.
+            style={{
+              position: 'absolute',
+              top: '100%',
+              left: 0,
+              marginTop: '10px',
+              zIndex: 1001,
+              minWidth: '210px',
+              transformOrigin: 'top left',
+            }}
+            className="overflow-hidden rounded-2xl border border-[#4A90A4]/10 bg-white shadow-[0_8px_32px_rgba(74,144,164,0.16)]"
           >
-            {item.children.map((child, i) => (
+            {item.children.map((child) => (
               <a
                 key={child.href}
                 href={child.href}
-                className="block px-4 py-3 text-sm font-600 text-slate-600 transition-colors hover:bg-[#4A90A4]/06 hover:text-[#4A90A4] first:pt-3.5 last:pb-3.5"
-                style={{ fontWeight: 600 }}
+                style={{
+                  display: 'block',
+                  padding: '11px 18px',
+                  fontSize: '0.875rem',
+                  fontWeight: 600,
+                  color: '#4b5563',
+                  textDecoration: 'none',
+                  fontFamily: 'Nunito, sans-serif',
+                  transition: 'background 0.15s, color 0.15s',
+                  whiteSpace: 'nowrap',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'rgba(74,144,164,0.06)'
+                  e.currentTarget.style.color = '#4A90A4'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = ''
+                  e.currentTarget.style.color = '#4b5563'
+                }}
               >
                 {child.label}
               </a>
@@ -112,7 +159,6 @@ function NavItem({ item }: { item: typeof NAV[0] }) {
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const { scrollY } = useScroll()
-
   useMotionValueEvent(scrollY, 'change', (v) => setScrolled(v > 50))
 
   return (
@@ -171,14 +217,7 @@ export default function Header() {
       </div>
 
       <style>{`
-        .site-nav-link {
-          color: var(--muted-700);
-          font-weight: 600;
-          text-decoration: none;
-          transition: color 0.3s;
-          white-space: nowrap;
-        }
-        .site-nav-link:hover { color: var(--brand-600); }
+        .nav-link-hover:hover { color: var(--brand-600) !important; }
       `}</style>
     </motion.header>
   )

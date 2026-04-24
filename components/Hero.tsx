@@ -44,8 +44,6 @@ export default function Hero() {
               }}
               aria-label="We speak Spanish"
             >
-              {/* Flag-inspired dot */}
-              <span style={{ fontSize: '0.85rem' }} aria-hidden="true">🇲🇽</span>
               Hablamos Español
             </motion.div>
           </div>
