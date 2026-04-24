@@ -13,13 +13,41 @@ export default function Hero() {
         {/* ── Left: Text Content ── */}
         <div className="hero-content">
 
-          {/* Location badge */}
-          <div className="hero-badge">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/>
-              <circle cx="12" cy="10" r="3"/>
-            </svg>
-            Pediatric Dentistry · Grayslake, IL
+          {/* Badges row: location + Hablamos Español */}
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1.4rem' }}>
+            <div className="hero-badge" style={{ margin: 0 }}>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+              Pediatric Dentistry · Grayslake, IL
+            </div>
+
+            {/* Hablamos Español bubble */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.85 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ type: 'spring', stiffness: 320, damping: 20, delay: 0.35 }}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.35rem',
+                background: 'linear-gradient(135deg, #E8934F, #E97D63)',
+                color: '#fff',
+                borderRadius: '100px',
+                padding: '0.38rem 1rem',
+                fontSize: '0.82rem',
+                fontWeight: 800,
+                fontFamily: 'Nunito, sans-serif',
+                letterSpacing: '0.02em',
+                boxShadow: '0 4px 14px rgba(232,147,79,0.35)',
+              }}
+              aria-label="We speak Spanish"
+            >
+              {/* Flag-inspired dot */}
+              <span style={{ fontSize: '0.85rem' }} aria-hidden="true">🇲🇽</span>
+              Hablamos Español
+            </motion.div>
           </div>
 
           {/* Headline */}
@@ -29,11 +57,42 @@ export default function Hero() {
             {' '}in Grayslake.
           </h1>
 
-          {/* Subheadline */}
-          <p className="hero-sub">
-            Step into our world, where we turn dental visits into big adventures.
-            We specialize in exceptional, high-quality pediatric care.
-          </p>
+          {/* Tagline — below the headline */}
+          <motion.p
+            className="hero-sub"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.2 }}
+          >
+            High-quality pediatric care that kids actually look forward to.
+          </motion.p>
+
+          {/* Trusted 30 years — prominent inline banner */}
+          <motion.div
+            initial={{ opacity: 0, x: -16 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.32 }}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.6rem',
+              background: 'rgba(74,144,164,0.08)',
+              border: '1.5px solid rgba(74,144,164,0.22)',
+              borderRadius: '16px',
+              padding: '0.6rem 1.1rem',
+              marginBottom: '1.5rem',
+              fontFamily: 'Nunito, sans-serif',
+            }}
+          >
+            {/* Medal icon */}
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A90A4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <circle cx="12" cy="8" r="6"/>
+              <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
+            </svg>
+            <span style={{ fontSize: '0.92rem', fontWeight: 800, color: 'var(--brand-600)' }}>
+              Trusted by Families for Over 30 Years
+            </span>
+          </motion.div>
 
           {/* CTAs */}
           <div className="hero-ctas">
@@ -67,7 +126,7 @@ export default function Hero() {
             </motion.a>
           </div>
 
-          {/* Trust signals */}
+          {/* Trust signals — Delta Dental stays prominent */}
           <div className="hero-trust">
             <div className="trust-item">
               <div className="trust-dot" aria-hidden="true"/>
@@ -77,7 +136,7 @@ export default function Hero() {
               <div className="trust-dot" aria-hidden="true"/>
               Same-Day Available
             </div>
-            <div className="trust-item">
+            <div className="trust-item" style={{ fontWeight: 800 }}>
               <div className="trust-dot" aria-hidden="true"/>
               Delta Dental In-Network
             </div>

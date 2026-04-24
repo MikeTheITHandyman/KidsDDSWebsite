@@ -71,8 +71,8 @@ export default function ValueProps() {
           <span className="section-kicker">Why Families Choose Us</span>
           <h2 id="vp-heading">A Practice Built Around Your Child</h2>
           <p>
-            We designed every part of our practice — from our schedule to our
-            bedside manner — with young patients and their parents in mind.
+            We designed every part of our practice, from our schedule to our
+            bedside manner with young patients and their parents in mind.
           </p>
         </div>
 

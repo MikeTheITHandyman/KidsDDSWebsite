@@ -1,99 +1,276 @@
 'use client'
 
-import React from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { motion } from 'framer-motion'
 
-const containerVariants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.12 } },
-} as any
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 24 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { type: 'spring', stiffness: 60, damping: 14 },
-  },
-} as any
-
-interface ServiceCardProps {
-  title: string
-  description: string
-  icon: string
-  href: string
-}
-
-const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, icon, href }) => {
-  return (
-    <motion.div
-      className="service-card"
-      variants={cardVariants}
-      whileHover={{ y: -5, scale: 1.02, transition: { type: 'spring', stiffness: 300, damping: 18 } }}
-      whileTap={{ scale: 0.97 }}
-    >
-      <div className="service-icon">{icon}</div>
-      <h3>{title}</h3>
-      <p>{description}</p>
-      <a href={href} className="service-link">
-        Learn More
-        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-        </svg>
-      </a>
-    </motion.div>
-  )
-}
+const VISIBLE = 3
+const INTERVAL_MS = 4000
 
 const services = [
   {
     title: 'Preventive Dentistry',
-    description: "Regular check-ups, cleanings, and fluoride treatments to keep your child's smile healthy and prevent dental problems before they start.",
-    icon: '🦷',
-    href: '/services/checkups-and-cleanings',
+    description: "Regular check-ups, cleanings, and fluoride treatments to keep your child's smile healthy and stop problems before they start.",
+    href: '/services/preventive-dentistry',
+    cardClass: 'card-teal',
+    iconColor: '#4A90A4',
+    iconBg: 'linear-gradient(135deg, #dcf0ee, #b8e0da)',
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4A90A4" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+      </svg>
+    ),
   },
   {
     title: 'Restorative Dentistry',
-    description: 'Expert treatment for cavities, broken teeth, and other dental issues using gentle, child-friendly techniques.',
-    icon: '🔧',
+    description: 'Expert, gentle treatment for cavities and broken teeth — restoring healthy smiles using child-friendly techniques.',
     href: '/services/restorative-dentistry',
-  },
-  {
-    title: 'Sedation Dentistry',
-    description: 'Safe, comfortable sedation options for anxious children or complex procedures, ensuring a stress-free experience.',
-    icon: '😴',
-    href: '/services/sedation-dentistry',
+    cardClass: 'card-orange',
+    iconColor: '#E8934F',
+    iconBg: 'linear-gradient(135deg, #fef0dc, #faddaa)',
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#E8934F" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+        <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+        <line x1="9" y1="9" x2="9.01" y2="9"/>
+        <line x1="15" y1="9" x2="15.01" y2="9"/>
+      </svg>
+    ),
   },
   {
     title: 'Special Needs Dentistry',
-    description: 'Compassionate, specialized care for children with special needs, creating a comfortable environment for all patients.',
-    icon: '🤝',
-    href: '/services/special-needs-dentistry',
+    description: 'Compassionate, specialized care for children with diverse needs — creating comfort and safety for every patient.',
+    href: '/services',
+    cardClass: 'card-sage',
+    iconColor: '#6BA899',
+    iconBg: 'linear-gradient(135deg, #d2ebe5, #aed8cf)',
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6BA899" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+        <circle cx="9" cy="7" r="4"/>
+        <path d="M23 21v-2a4 4 0 00-3-3.87"/>
+        <path d="M16 3.13a4 4 0 010 7.75"/>
+      </svg>
+    ),
+  },
+  {
+    title: 'Sedation Dentistry',
+    description: 'Safe, comfortable sedation options — from nitrous oxide to general anesthesia — for anxious children or complex procedures.',
+    href: '/services/sedation-dentistry',
+    cardClass: 'card-teal',
+    iconColor: '#4A90A4',
+    iconBg: 'linear-gradient(135deg, #dcf0ee, #b8e0da)',
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4A90A4" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M18 8h1a4 4 0 010 8h-1"/>
+        <path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/>
+        <line x1="6" y1="1" x2="6" y2="4"/>
+        <line x1="10" y1="1" x2="10" y2="4"/>
+        <line x1="14" y1="1" x2="14" y2="4"/>
+      </svg>
+    ),
+  },
+  {
+    title: 'Emergency Pediatric Dentist',
+    description: 'Same-day urgent care for toothaches, knocked-out teeth, and dental injuries — when your child needs us most.',
+    href: '/services',
+    cardClass: 'card-orange',
+    iconColor: '#E97D63',
+    iconBg: 'linear-gradient(135deg, #fde8e0, #f9c4b4)',
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#E97D63" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+      </svg>
+    ),
   },
 ]
 
+const MAX_INDEX = services.length - VISIBLE // 2
+
 export default function ServicesGrid() {
+  const [index, setIndex] = useState(0)
+  const [paused, setPaused] = useState(false)
+
+  const advance = useCallback(() => {
+    setIndex((i) => (i >= MAX_INDEX ? 0 : i + 1))
+  }, [])
+
+  const retreat = () => setIndex((i) => (i <= 0 ? MAX_INDEX : i - 1))
+
+  useEffect(() => {
+    if (paused) return
+    const id = setInterval(advance, INTERVAL_MS)
+    return () => clearInterval(id)
+  }, [paused, advance])
+
+  // x% is relative to the track itself.
+  // Track = (services.length / VISIBLE) * 100% of container = 166.67%
+  // One card = (1 / services.length) * 100% of track = 20% of track = 33.33% of container
+  const xPercent = -(index * (100 / services.length))
+
   return (
-    <section className="services-section">
+    <section className="services-section" aria-labelledby="services-heading">
       <div className="services-header">
-        <h2>Our Pediatric Dental Services</h2>
+        <h2 id="services-heading">Our Services</h2>
         <p>
-          Comprehensive, compassionate dental care designed specifically for children,
-          from routine check-ups to specialized treatments in a welcoming environment.
+          Comprehensive, compassionate dental care designed specifically for children —
+          from routine check-ups to specialized treatments.
         </p>
       </div>
 
-      <motion.div
-        className="services-grid"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, margin: '-60px' }}
+      <div
+        style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
       >
-        {services.map((service) => (
-          <ServiceCard key={service.title} {...service} />
-        ))}
-      </motion.div>
+        {/* Track wrapper — clips overflow */}
+        <div style={{ overflow: 'hidden' }}>
+          <motion.div
+            style={{
+              display: 'flex',
+              width: `${(services.length / VISIBLE) * 100}%`,
+            }}
+            animate={{ x: `${xPercent}%` }}
+            transition={{ type: 'spring', stiffness: 280, damping: 32, mass: 0.9 }}
+          >
+            {services.map((svc) => (
+              <div
+                key={svc.title}
+                style={{
+                  width: `${100 / services.length}%`,
+                  flexShrink: 0,
+                  padding: '0 0.875rem',
+                }}
+              >
+                <motion.div
+                  className={`service-card`}
+                  whileHover={{
+                    y: -5,
+                    scale: 1.02,
+                    transition: { type: 'spring', stiffness: 300, damping: 18 },
+                  }}
+                  whileTap={{ scale: 0.97 }}
+                  style={{ height: '100%' }}
+                >
+                  <div
+                    className="service-icon"
+                    style={{ background: svc.iconBg }}
+                  >
+                    {svc.icon}
+                  </div>
+                  <h3>{svc.title}</h3>
+                  <p>{svc.description}</p>
+                  <a href={svc.href} className="service-link">
+                    Learn More
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </a>
+                </motion.div>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Controls: prev · dots · next */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '1rem',
+            marginTop: '2rem',
+          }}
+        >
+          {/* Prev */}
+          <button
+            onClick={retreat}
+            aria-label="Previous services"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '40px',
+              height: '40px',
+              borderRadius: '50%',
+              border: '1.5px solid rgba(74,144,164,0.3)',
+              background: 'white',
+              color: 'var(--brand-600)',
+              cursor: 'pointer',
+              transition: 'all 0.2s',
+              flexShrink: 0,
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'var(--brand-600)'
+              e.currentTarget.style.color = 'white'
+              e.currentTarget.style.borderColor = 'var(--brand-600)'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'white'
+              e.currentTarget.style.color = 'var(--brand-600)'
+              e.currentTarget.style.borderColor = 'rgba(74,144,164,0.3)'
+            }}
+          >
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+
+          {/* Dots */}
+          <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+            {Array.from({ length: MAX_INDEX + 1 }).map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setIndex(i)}
+                aria-label={`Go to position ${i + 1}`}
+                style={{
+                  width: i === index ? '24px' : '8px',
+                  height: '8px',
+                  borderRadius: '100px',
+                  border: 'none',
+                  background: i === index ? 'var(--brand-600)' : 'rgba(74,144,164,0.25)',
+                  cursor: 'pointer',
+                  padding: 0,
+                  transition: 'all 0.3s ease',
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Next */}
+          <button
+            onClick={advance}
+            aria-label="Next services"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '40px',
+              height: '40px',
+              borderRadius: '50%',
+              border: '1.5px solid rgba(74,144,164,0.3)',
+              background: 'white',
+              color: 'var(--brand-600)',
+              cursor: 'pointer',
+              transition: 'all 0.2s',
+              flexShrink: 0,
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'var(--brand-600)'
+              e.currentTarget.style.color = 'white'
+              e.currentTarget.style.borderColor = 'var(--brand-600)'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'white'
+              e.currentTarget.style.color = 'var(--brand-600)'
+              e.currentTarget.style.borderColor = 'rgba(74,144,164,0.3)'
+            }}
+          >
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </div>
     </section>
   )
 }
