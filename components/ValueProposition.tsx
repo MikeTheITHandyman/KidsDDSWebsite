@@ -1,21 +1,21 @@
 'use client'
 
 import React from 'react'
-import { motion } from 'framer-motion'
+import { motion, type Variants } from 'framer-motion'
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: {},
   show: { transition: { staggerChildren: 0.14 } },
-} as any
+}
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { opacity: 0, y: 24 },
   show: {
     opacity: 1,
     y: 0,
     transition: { type: 'spring', stiffness: 60, damping: 14 },
   },
-} as any
+}
 
 const features = [
   {

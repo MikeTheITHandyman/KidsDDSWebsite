@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { motion, type Variants } from 'framer-motion'
 import { urlFor } from '../../sanity/lib/image'
 
 interface SanityPost {
@@ -24,14 +24,14 @@ const CATEGORY_COLORS: Record<string, string> = {
   'Behind the Scenes': '#E97D63',
 }
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: {},
   show: { transition: { staggerChildren: 0.10 } },
-} as any
-const cardVariants = {
+}
+const cardVariants: Variants = {
   hidden: { opacity: 0, y: 28 },
   show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 55, damping: 14 } },
-} as any
+}
 
 function formatDate(iso?: string) {
   if (!iso) return ''

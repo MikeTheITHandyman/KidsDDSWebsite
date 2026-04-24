@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, type Variants } from 'framer-motion'
 
 const INTERVAL_MS = 5000
 const GOOGLE_REVIEWS_URL = 'https://www.google.com/maps/place/Kids+Dentist/@42.3467,-88.0041,17z'
@@ -63,7 +63,7 @@ const reviews = [
   },
 ]
 
-const slideVariants = {
+const slideVariants: Variants = {
   enter: (dir: number) => ({
     x: dir > 0 ? 80 : -80,
     opacity: 0,
