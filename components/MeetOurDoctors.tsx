@@ -6,6 +6,8 @@ import { motion } from 'framer-motion'
 const doctors = [
   {
     name: 'Dr. Sonia Gutierrez',
+    firstName: 'Sonia',
+    bioHref: '/about/meet-the-dentists/dr-sonia-gutierrez',
     role: 'Pediatric Dentist, DDS',
     blobRadius: '60% 40% 30% 70% / 60% 30% 70% 40%',
     gradientFrom: '#DBEAFE',
@@ -15,6 +17,8 @@ const doctors = [
   },
   {
     name: 'Dr. Dave Rutcosky',
+    firstName: 'Dave',
+    bioHref: '/about/meet-the-dentists/dr-dave-rutcosky',
     role: 'Pediatric Dentist, DDS',
     blobRadius: '40% 60% 70% 30% / 40% 70% 30% 60%',
     gradientFrom: '#D1FAE5',
@@ -24,6 +28,8 @@ const doctors = [
   },
   {
     name: 'Dr. Sahar Alrayyes',
+    firstName: 'Sahar',
+    bioHref: '/about/meet-the-dentists/dr-sahar-alrayyes',
     role: 'Pediatric Dentist, DDS',
     blobRadius: '50% 50% 30% 70% / 60% 40% 70% 30%',
     gradientFrom: '#FEF3C7',
@@ -33,6 +39,8 @@ const doctors = [
   },
   {
     name: 'Dr. Anne-Ashley Compton',
+    firstName: 'Anne-Ashley',
+    bioHref: '/about/meet-the-dentists/dr-anne-ashley-compton',
     role: 'Pediatric Dentist, DDS',
     blobRadius: '70% 30% 50% 50% / 40% 60% 40% 60%',
     gradientFrom: '#EDE9FE',
@@ -145,9 +153,9 @@ export default function MeetOurDoctors() {
               {/* Blob photo container */}
               <div
                 style={{
-                  width: '140px',
-                  height: '140px',
-                  margin: '0 auto 1.25rem',
+                  width: '200px',
+                  height: '200px',
+                  margin: '0 auto 1.4rem',
                   borderRadius: doc.blobRadius,
                   background: `linear-gradient(135deg, ${doc.gradientFrom}, ${doc.gradientTo})`,
                   position: 'relative',
@@ -159,7 +167,7 @@ export default function MeetOurDoctors() {
                   src={doc.photo}
                   alt={`Headshot of ${doc.name}`}
                   fill
-                  sizes="140px"
+                  sizes="200px"
                   style={{ objectFit: 'cover', objectPosition: 'top center' }}
                 />
               </div>
@@ -188,6 +196,24 @@ export default function MeetOurDoctors() {
               >
                 {doc.role}
               </p>
+              <a
+                href={doc.bioHref}
+                className="doctor-bio-link"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.15rem',
+                  marginTop: '0.9rem',
+                  color: 'var(--brand-600)',
+                  fontSize: '0.85rem',
+                  fontFamily: 'Nunito, sans-serif',
+                  fontWeight: 800,
+                  textDecoration: 'none',
+                  transition: 'color 0.2s, gap 0.2s',
+                }}
+              >
+                Meet Dr. {doc.firstName} &rsaquo;
+              </a>
             </motion.div>
           ))}
         </div>
@@ -230,6 +256,10 @@ export default function MeetOurDoctors() {
 
       {/* Responsive grid override */}
       <style>{`
+        .doctor-bio-link:hover {
+          color: var(--accent-500) !important;
+          gap: 0.35rem !important;
+        }
         @media (max-width: 900px) {
           .doctors-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }

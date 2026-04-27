@@ -162,7 +162,41 @@ export default function Header() {
   useMotionValueEvent(scrollY, 'change', (v) => setScrolled(v > 50))
 
   return (
-    <motion.header
+    <>
+      {/* Top announcement banner */}
+      <div
+        style={{
+          background: 'linear-gradient(90deg, #E8853A 0%, #F5A623 100%)',
+          color: 'white',
+          textAlign: 'center',
+          padding: '0.48rem 1rem',
+          fontSize: '0.8rem',
+          fontFamily: 'Nunito, sans-serif',
+          fontWeight: 700,
+          letterSpacing: '0.015em',
+          zIndex: 1100,
+          position: 'relative',
+        }}
+      >
+        <a
+          href="/blog"
+          style={{
+            color: 'white',
+            textDecoration: 'none',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.4rem',
+            opacity: 0.97,
+          }}
+        >
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style={{ flexShrink: 0 }}>
+            <path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm1 14.93V15a1 1 0 00-2 0v1.93A8.001 8.001 0 014.07 11H5a1 1 0 000-2h-.93A8.001 8.001 0 0111 4.07V5a1 1 0 002 0v-.93A8.001 8.001 0 0119.93 9H19a1 1 0 000 2h.93A8.001 8.001 0 0113 16.93z"/>
+          </svg>
+          Check out our latest blog post &nbsp;&rsaquo;
+        </a>
+      </div>
+
+      <motion.header
       className="site-header"
       animate={{
         backgroundColor: scrolled ? 'rgba(250,250,248,1)' : 'rgba(250,250,248,0.95)',
@@ -220,5 +254,6 @@ export default function Header() {
         .nav-link-hover:hover { color: var(--brand-600) !important; }
       `}</style>
     </motion.header>
+    </>
   )
 }

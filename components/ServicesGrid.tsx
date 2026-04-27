@@ -10,6 +10,7 @@ const services = [
   {
     title: 'Preventive Dentistry',
     description: "Regular check-ups, cleanings, and fluoride treatments to keep your child's smile healthy and stop problems before they start.",
+    buttonText: 'Preventative Care',
     href: '/services/preventive-dentistry',
     cardClass: 'card-teal',
     iconColor: '#4A90A4',
@@ -22,7 +23,8 @@ const services = [
   },
   {
     title: 'Restorative Dentistry',
-    description: 'Expert, gentle treatment for cavities and broken teeth — restoring healthy smiles using child-friendly techniques.',
+    description: 'Expert, gentle treatment for cavities and broken teeth to restore healthy smiles using child-friendly techniques.',
+    buttonText: 'Restorative Care',
     href: '/services/restorative-dentistry',
     cardClass: 'card-orange',
     iconColor: '#E8934F',
@@ -38,7 +40,8 @@ const services = [
   },
   {
     title: 'Special Needs Dentistry',
-    description: 'Compassionate, specialized care for children with diverse needs — creating comfort and safety for every patient.',
+    description: 'Compassionate, specialized care for children with diverse needs.',
+    buttonText: 'Special Needs Care',
     href: '/services',
     cardClass: 'card-sage',
     iconColor: '#6BA899',
@@ -54,7 +57,8 @@ const services = [
   },
   {
     title: 'Sedation Dentistry',
-    description: 'Safe, comfortable sedation options — from nitrous oxide to general anesthesia — for anxious children or complex procedures.',
+    description: 'Gentle sedation options for nervous kids and more complex procedures, including nitrous oxide and general anesthesia.',
+    buttonText: 'Sedation Options',
     href: '/services/sedation-dentistry',
     cardClass: 'card-teal',
     iconColor: '#4A90A4',
@@ -71,7 +75,8 @@ const services = [
   },
   {
     title: 'Emergency Pediatric Dentist',
-    description: 'Same-day urgent care for toothaches, knocked-out teeth, and dental injuries — when your child needs us most.',
+    description: "When your child has a toothache, knocked-out tooth, or dental injury, we'll get them in as soon as possible.",
+    buttonText: 'Emergency Dental Care',
     href: '/services',
     cardClass: 'card-orange',
     iconColor: '#E97D63',
@@ -112,8 +117,7 @@ export default function ServicesGrid() {
       <div className="services-header">
         <h2 id="services-heading">Our Services</h2>
         <p>
-          Comprehensive, compassionate dental care designed specifically for children —
-          from routine check-ups to specialized treatments.
+          From routine check-ups to specialized treatments, we provide comprehensive, compassionate dental care designed specifically for children.
         </p>
       </div>
 
@@ -149,7 +153,7 @@ export default function ServicesGrid() {
                     transition: { type: 'spring', stiffness: 300, damping: 18 },
                   }}
                   whileTap={{ scale: 0.97 }}
-                  style={{ height: '100%' }}
+                  style={{ height: '100%', background: '#a6a8d2' }}
                 >
                   <div
                     className="service-icon"
@@ -160,7 +164,7 @@ export default function ServicesGrid() {
                   <h3>{svc.title}</h3>
                   <p>{svc.description}</p>
                   <a href={svc.href} className="service-link">
-                    Learn More
+                    {svc.buttonText}
                     <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
