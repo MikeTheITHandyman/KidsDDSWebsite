@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import AppointmentForm from './AppointmentForm'
 import type { Metadata } from 'next'
 
@@ -17,5 +18,9 @@ export const metadata: Metadata = {
 }
 
 export default function RequestAppointmentPage() {
-  return <AppointmentForm />
+  return (
+    <Suspense fallback={<div style={{ minHeight: '100vh', background: '#FAFAF8' }} />}>
+      <AppointmentForm />
+    </Suspense>
+  )
 }

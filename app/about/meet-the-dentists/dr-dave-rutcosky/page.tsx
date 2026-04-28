@@ -55,7 +55,7 @@ export default function DrDavePage() {
 
           {/* Photo column */}
           <AnimatedSection direction="left">
-            <div style={{ position: 'sticky', top: '6rem' }}>
+            <div style={{ position: 'sticky', top: '6rem', maxWidth: '380px', margin: '0 auto' }}>
               {/* Strict 1:1 portrait box */}
               <div
                 style={{
@@ -89,7 +89,7 @@ export default function DrDavePage() {
                 }}
               >
                 <Link
-                  href="/request-appointment"
+                  href="/request-appointment?dentist=dr-dave-rutcosky"
                   style={{
                     display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.45rem',
                     background: 'linear-gradient(135deg, #E8934F, #E97D63)', color: '#fff',

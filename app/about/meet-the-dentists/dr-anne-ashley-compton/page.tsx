@@ -55,7 +55,7 @@ export default function DrAnneAshleyPage() {
 
           {/* Photo column */}
           <AnimatedSection direction="left">
-            <div style={{ position: 'sticky', top: '6rem' }}>
+            <div style={{ position: 'sticky', top: '6rem', maxWidth: '380px', margin: '0 auto' }}>
               {/* Strict 1:1 portrait box */}
               <div
                 style={{
@@ -82,7 +82,7 @@ export default function DrAnneAshleyPage() {
                 style={{ marginTop: '1.25rem', background: '#fff', border: '1.5px solid rgba(74,144,164,0.12)', borderRadius: '1.5rem', padding: '1.25rem 1.5rem', boxShadow: '0 2px 16px rgba(74,144,164,0.07)' }}
               >
                 <Link
-                  href="/request-appointment"
+                  href="/request-appointment?dentist=dr-anne-ashley-compton"
                   style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.45rem', background: 'linear-gradient(135deg, #E8934F, #E97D63)', color: '#fff', fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '0.9rem', padding: '0.8rem 1.5rem', borderRadius: '100px', textDecoration: 'none', boxShadow: '0 4px 16px rgba(232,147,79,0.35)', marginBottom: '0.75rem' }}
                 >
                   Book with Dr. Anne-Ashley

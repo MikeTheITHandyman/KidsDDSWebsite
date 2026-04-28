@@ -12,11 +12,11 @@ const QUICK_LINKS = [
 ]
 
 const HOURS = [
-  { day: 'Monday', time: '8:00am – 5:00pm' },
-  { day: 'Tuesday', time: '8:00am – 5:00pm' },
-  { day: 'Wednesday', time: '8:00am – 5:00pm' },
-  { day: 'Thursday', time: '8:00am – 5:00pm' },
-  { day: 'Friday', time: '8:00am – 5:00pm' },
+  { day: 'Monday', time: '9:00 am – 5:00 pm' },
+  { day: 'Tuesday', time: '9:00 am – 5:00 pm' },
+  { day: 'Wednesday', time: '8:30 am – 5:00 pm' },
+  { day: 'Thursday', time: '9:00 am – 5:00 pm' },
+  { day: 'Friday', time: '8:00 am – 2:00 pm' },
 ]
 
 export default function Footer() {

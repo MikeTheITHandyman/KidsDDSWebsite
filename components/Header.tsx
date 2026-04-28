@@ -242,13 +242,15 @@ export default function Header() {
             Call (847) 223-1400
           </motion.a>
           <motion.a
-            href="/request-appointment"
+            href="https://www.google.com/maps/dir/?api=1&destination=160+Commerce+Drive,+Grayslake,+IL+60030"
+            target="_blank"
+            rel="noopener noreferrer"
             className="btn btn-primary"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             transition={{ type: 'spring', stiffness: 400, damping: 20 }}
           >
-            Request Appointment
+            Directions
           </motion.a>
         </div>
       </div>

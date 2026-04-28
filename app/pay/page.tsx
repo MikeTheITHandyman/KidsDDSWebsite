@@ -91,8 +91,8 @@ export default function PayPage() {
               We are currently upgrading our online payment portal to serve you better.
               In the meantime, please call our front desk at{' '}
               <strong style={{ color: '#4A90A4' }}>(847) 223-1400</strong> to securely
-              pay your balance over the phone. Our team is available Monday through
-              Friday, 8:00 am – 5:00 pm.
+              pay your balance over the phone. Our team is available Monday–Thursday
+              9:00 am – 5:00 pm and Friday 8:00 am – 2:00 pm.
             </p>
 
             {/* CTA button */}
@@ -141,7 +141,7 @@ export default function PayPage() {
                 fontWeight: 500,
               }}
             >
-              Mon – Fri · 8:00 am – 5:00 pm
+              Mon–Thu 9 am–5 pm · Fri 8 am–2 pm
             </p>
           </div>
         </AnimatedSection>

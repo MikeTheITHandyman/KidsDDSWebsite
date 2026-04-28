@@ -5,7 +5,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Contact Our Office | Kids Dentist Grayslake, IL',
   description:
-    'Contact Kids Dentist Grayslake at (847) 223-1400. Located at 160 Commerce Dr #100, Grayslake, IL. Office hours Monday–Friday 8am–5pm.',
+    'Contact Kids Dentist Grayslake at (847) 223-1400. Located at 160 Commerce Dr #100, Grayslake, IL. Office hours Mon–Thu 9 am–5 pm, Wed 8:30 am–5 pm, Fri 8 am–2 pm.',
   openGraph: {
     title: 'Contact Our Office | Kids Dentist Grayslake, IL',
     description:

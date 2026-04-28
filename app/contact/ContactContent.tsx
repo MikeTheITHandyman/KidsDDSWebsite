@@ -6,11 +6,11 @@ import AnimatedSection from '@/components/AnimatedSection'
 import Link from 'next/link'
 
 const HOURS = [
-  { day: 'Monday', time: '8:00 am – 5:00 pm', open: true },
-  { day: 'Tuesday', time: '8:00 am – 5:00 pm', open: true },
-  { day: 'Wednesday', time: '8:00 am – 5:00 pm', open: true },
-  { day: 'Thursday', time: '8:00 am – 5:00 pm', open: true },
-  { day: 'Friday', time: '8:00 am – 5:00 pm', open: true },
+  { day: 'Monday', time: '9:00 am – 5:00 pm', open: true },
+  { day: 'Tuesday', time: '9:00 am – 5:00 pm', open: true },
+  { day: 'Wednesday', time: '8:30 am – 5:00 pm', open: true },
+  { day: 'Thursday', time: '9:00 am – 5:00 pm', open: true },
+  { day: 'Friday', time: '8:00 am – 2:00 pm', open: true },
   { day: 'Saturday', time: 'Closed', open: false },
   { day: 'Sunday', time: 'Closed', open: false },
 ]

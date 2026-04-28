@@ -55,7 +55,7 @@ export default function DrSoniaPage() {
 
           {/* Photo column */}
           <AnimatedSection direction="left">
-            <div style={{ position: 'sticky', top: '6rem' }}>
+            <div style={{ position: 'sticky', top: '6rem', maxWidth: '380px', margin: '0 auto' }}>
               {/* Strict 1:1 portrait box */}
               <div
                 style={{
@@ -90,7 +90,7 @@ export default function DrSoniaPage() {
                 }}
               >
                 <Link
-                  href="/request-appointment"
+                  href="/request-appointment?dentist=dr-sonia-gutierrez"
                   style={{
                     display: 'flex',
                     alignItems: 'center',

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 
@@ -11,6 +12,14 @@ const TRUST_SIGNALS = [
   { icon: '🚨', label: 'Emergency Visits', detail: 'Accepted for patients in pain' },
   { icon: '🦷', label: 'Board-Certified Only', detail: 'All four doctors are pediatric specialists' },
   { icon: '💜', label: 'Hablamos Español', detail: 'Spanish-speaking staff available' },
+]
+
+const DENTIST_OPTIONS = [
+  { value: '', label: 'No Preference' },
+  { value: 'dr-sonia-gutierrez', label: 'Dr. Sonia Gutierrez, DDS' },
+  { value: 'dr-dave-rutcosky', label: 'Dr. Dave Rutcosky, DDS' },
+  { value: 'dr-sahar-alrayyes', label: 'Dr. Sahar Alrayyes, DDS' },
+  { value: 'dr-anne-ashley-compton', label: 'Dr. Anne-Ashley Compton, DDS' },
 ]
 
 const VISIT_REASONS = [
@@ -55,6 +64,7 @@ const labelStyle: React.CSSProperties = {
 }
 
 export default function AppointmentForm() {
+  const searchParams = useSearchParams()
   const [focused, setFocused] = useState<string | null>(null)
   const [submitted, setSubmitted] = useState(false)
   const [form, setForm] = useState({
@@ -64,6 +74,7 @@ export default function AppointmentForm() {
     childName: '',
     childAge: '',
     reason: '',
+    preferredDentist: searchParams.get('dentist') ?? '',
     preferredDay: '',
     preferredTime: '',
     notes: '',
@@ -358,6 +369,32 @@ export default function AppointmentForm() {
                         <option value="" disabled>Select a reason…</option>
                         {VISIT_REASONS.map((r) => (
                           <option key={r} value={r}>{r}</option>
+                        ))}
+                      </select>
+                    </div>
+                    <div style={{ marginBottom: '1rem' }}>
+                      <label htmlFor="preferredDentist" style={labelStyle}>
+                        Preferred Dentist
+                      </label>
+                      <select
+                        id="preferredDentist"
+                        name="preferredDentist"
+                        value={form.preferredDentist}
+                        onChange={change}
+                        onFocus={() => setFocused('preferredDentist')}
+                        onBlur={() => setFocused(null)}
+                        style={{
+                          ...getStyle('preferredDentist'),
+                          appearance: 'none',
+                          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%234A90A4' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E")`,
+                          backgroundRepeat: 'no-repeat',
+                          backgroundPosition: 'right 1rem center',
+                          paddingRight: '2.5rem',
+                          color: form.preferredDentist ? '#3D3D3D' : '#9ca3af',
+                        }}
+                      >
+                        {DENTIST_OPTIONS.map((opt) => (
+                          <option key={opt.value} value={opt.value}>{opt.label}</option>
                         ))}
                       </select>
                     </div>
@@ -686,7 +723,7 @@ export default function AppointmentForm() {
                   fontWeight: 500,
                 }}
               >
-                Mon–Fri · 8:00 am – 5:00 pm
+                Mon–Thu 9 am–5 pm · Fri 8 am–2 pm
               </p>
             </div>
           </div>
