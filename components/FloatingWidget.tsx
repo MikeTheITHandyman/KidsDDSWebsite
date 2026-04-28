@@ -1,9 +1,11 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 
 export default function FloatingWidget() {
+  const pathname = usePathname()
   const [mounted, setMounted] = useState(false)
   const [expanded, setExpanded] = useState(false)
 
@@ -11,6 +13,8 @@ export default function FloatingWidget() {
     const timer = setTimeout(() => setMounted(true), 800)
     return () => clearTimeout(timer)
   }, [])
+
+  if (pathname?.startsWith('/studio')) return null
 
   return (
     <AnimatePresence>
