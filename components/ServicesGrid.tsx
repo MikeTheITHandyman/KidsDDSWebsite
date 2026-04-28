@@ -153,11 +153,11 @@ export default function ServicesGrid() {
                     transition: { type: 'spring', stiffness: 300, damping: 18 },
                   }}
                   whileTap={{ scale: 0.97 }}
-                  style={{ height: '100%', background: '#a6a8d2' }}
+                  style={{ height: '100%' }}
                 >
                   <div
                     className="service-icon"
-                    style={{ background: svc.iconBg }}
+                    style={{ background: '#a6a8d2' }}
                   >
                     {svc.icon}
                   </div>

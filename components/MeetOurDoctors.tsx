@@ -39,7 +39,7 @@ const doctors = [
   },
   {
     name: 'Dr. Anne-Ashley Compton',
-    firstName: 'Anne-Ashley',
+    firstName: 'Ashley',
     bioHref: '/about/meet-the-dentists/dr-anne-ashley-compton',
     role: 'Pediatric Dentist, DDS',
     blobRadius: '70% 30% 50% 50% / 40% 60% 40% 60%',
@@ -114,8 +114,8 @@ export default function MeetOurDoctors() {
           >
             Meet Our Doctors
           </h2>
-          <p style={{ color: '#6b7280', fontSize: '1.05rem', fontWeight: 500, maxWidth: '480px', margin: '0 auto', lineHeight: 1.7 }}>
-            Four board-certified specialists. One shared passion — making every child feel safe, seen, and smiled at.
+          <p style={{ color: '#6b7280', fontSize: '1.05rem', fontWeight: 500, maxWidth: '540px', margin: '0 auto', lineHeight: 1.7 }}>
+            Four pediatric specialists who genuinely love what they do. Get to know the team your family will see at every visit.
           </p>
         </motion.div>
 
@@ -153,8 +153,8 @@ export default function MeetOurDoctors() {
               {/* Blob photo container */}
               <div
                 style={{
-                  width: '200px',
-                  height: '200px',
+                  width: '256px',
+                  height: '256px',
                   margin: '0 auto 1.4rem',
                   borderRadius: doc.blobRadius,
                   background: `linear-gradient(135deg, ${doc.gradientFrom}, ${doc.gradientTo})`,
@@ -167,7 +167,7 @@ export default function MeetOurDoctors() {
                   src={doc.photo}
                   alt={`Headshot of ${doc.name}`}
                   fill
-                  sizes="200px"
+                  sizes="256px"
                   style={{ objectFit: 'cover', objectPosition: 'top center' }}
                 />
               </div>
@@ -218,13 +218,13 @@ export default function MeetOurDoctors() {
           ))}
         </div>
 
-        {/* Meet The Team CTA */}
+        {/* CTA row */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          style={{ textAlign: 'center', marginTop: '2.75rem' }}
+          style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap', marginTop: '2.75rem' }}
         >
           <motion.a
             href="/about/meet-the-dentists"
@@ -246,7 +246,33 @@ export default function MeetOurDoctors() {
               boxShadow: '0 6px 22px rgba(232,147,79,0.38)',
             }}
           >
-            Meet The Team
+            Meet the Dentists
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </motion.a>
+
+          <motion.a
+            href="/about/meet-the-team"
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ type: 'spring', stiffness: 380, damping: 22 }}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              background: 'transparent',
+              color: 'var(--brand-600)',
+              fontFamily: 'Nunito, sans-serif',
+              fontWeight: 800,
+              fontSize: '1rem',
+              padding: '0.85rem 2rem',
+              borderRadius: '100px',
+              textDecoration: 'none',
+              border: '2px solid rgba(74,144,164,0.35)',
+            }}
+          >
+            Meet the Team
             <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
             </svg>
