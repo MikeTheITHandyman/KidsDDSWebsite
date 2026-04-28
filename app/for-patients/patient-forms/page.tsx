@@ -240,10 +240,8 @@ export default function PatientFormsPage() {
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
                 {PDF_FORMS.map((form) => (
-                  <a
+                  <div
                     key={form.title}
-                    href="#"
-                    onClick={(e) => e.preventDefault()}
                     style={{
                       display: 'flex',
                       alignItems: 'center',
@@ -252,7 +250,6 @@ export default function PatientFormsPage() {
                       border: '1.5px solid rgba(74,144,164,0.10)',
                       borderRadius: '1.1rem',
                       padding: '1rem 1.1rem',
-                      textDecoration: 'none',
                       transition: 'background 0.18s, border-color 0.18s',
                     }}
                     className="pdf-row"
@@ -301,7 +298,7 @@ export default function PatientFormsPage() {
                         {form.size}
                       </span>
                     </div>
-                  </a>
+                  </div>
                 ))}
               </div>
               <p
