@@ -112,17 +112,22 @@ function NavItem({ item }: { item: (typeof NAV)[0] }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.16, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
-            // Inline style for position so Tailwind cascade can't override it.
             style={{
               position: 'absolute',
               top: '100%',
               left: 0,
               marginTop: '10px',
-              zIndex: 1001,
+              zIndex: 1050,
               minWidth: '210px',
               transformOrigin: 'top left',
+              background: 'rgba(250,250,248,0.97)',
+              backdropFilter: 'blur(14px)',
+              WebkitBackdropFilter: 'blur(14px)',
+              border: '1px solid rgba(74,144,164,0.14)',
+              borderRadius: '1rem',
+              boxShadow: '0 8px 32px rgba(74,144,164,0.18), 0 2px 8px rgba(0,0,0,0.08)',
             }}
-            className="overflow-hidden rounded-2xl border border-[#4A90A4]/10 bg-white shadow-[0_8px_32px_rgba(74,144,164,0.16)]"
+            className="overflow-hidden"
           >
             {item.children.map((child) => (
               <a
