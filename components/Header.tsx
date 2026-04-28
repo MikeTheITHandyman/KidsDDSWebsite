@@ -3,6 +3,7 @@
 import React, { useState, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion'
 
 const NAV = [
@@ -157,14 +158,16 @@ function NavItem({ item }: { item: (typeof NAV)[0] }) {
 }
 
 export default function Header() {
+  const pathname = usePathname()
+  const isStudio = pathname?.startsWith('/studio')
   const [scrolled, setScrolled] = useState(false)
   const { scrollY } = useScroll()
   useMotionValueEvent(scrollY, 'change', (v) => setScrolled(v > 50))
 
   return (
     <>
-      {/* Top announcement banner */}
-      <div
+      {/* Top announcement banner — hidden inside Studio so it doesn't block the Publish button */}
+      {!isStudio && <div
         style={{
           background: 'linear-gradient(90deg, #E8853A 0%, #F5A623 100%)',
           color: 'white',
@@ -194,7 +197,7 @@ export default function Header() {
           </svg>
           Check out our latest blog post &nbsp;&rsaquo;
         </a>
-      </div>
+      </div>}
 
       <motion.header
       className="site-header"
