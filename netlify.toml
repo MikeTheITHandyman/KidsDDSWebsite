@@ -3,8 +3,9 @@
   publish = ".next"
 
 [build.environment]
-  NEXT_PUBLIC_SANITY_PROJECT_ID = "c7522jcx"
-  NEXT_PUBLIC_SANITY_DATASET    = "production"
+  NEXT_PUBLIC_SANITY_PROJECT_ID  = "c7522jcx"
+  NEXT_PUBLIC_SANITY_DATASET     = "production"
+  NEXT_PUBLIC_HERO_VIDEO_URL     = "https://res.cloudinary.com/dkrbvqzlw/video/upload/v1777343603/hero-video_oznoe1.mp4"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
