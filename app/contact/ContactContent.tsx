@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import AnimatedSection from '@/components/AnimatedSection'
-import Link from 'next/link'
+
 
 const HOURS = [
   { day: 'Monday', time: '9:00 am – 5:00 pm', open: true },
@@ -430,81 +430,26 @@ export default function ContactContent() {
               </div>
             </div>
 
-            {/* Map placeholder — 16:9 */}
+            {/* Google Maps embed */}
             <div
               style={{
-                position: 'relative',
-                width: '100%',
-                aspectRatio: '16 / 9',
                 borderRadius: '1.75rem',
                 overflow: 'hidden',
-                background: 'linear-gradient(135deg, #DBEAFE, #BAE6FD 50%, #D1FAE5)',
                 boxShadow: '0 8px 28px rgba(74,144,164,0.12)',
+                lineHeight: 0,
               }}
             >
-              <div
-                style={{
-                  position: 'absolute',
-                  inset: 0,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '0.75rem',
-                }}
-              >
-                <span style={{ fontSize: '2rem' }} aria-hidden="true">🗺️</span>
-                <div style={{ textAlign: 'center' }}>
-                  <p
-                    style={{
-                      fontFamily: 'Nunito, sans-serif',
-                      fontWeight: 900,
-                      fontSize: '0.9rem',
-                      color: '#4A90A4',
-                      margin: '0 0 0.25rem',
-                    }}
-                  >
-                    160 Commerce Dr #100, Grayslake, IL
-                  </p>
-                  <a
-                    href="https://maps.google.com/?q=160+Commerce+Dr+%23100+Grayslake+IL+60030"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      fontFamily: 'Nunito, sans-serif',
-                      fontWeight: 700,
-                      fontSize: '0.8rem',
-                      color: '#6BA899',
-                      textDecoration: 'none',
-                    }}
-                  >
-                    Open in Google Maps →
-                  </a>
-                </div>
-              </div>
+              <iframe
+                width="100%"
+                height="100%"
+                style={{ minHeight: '400px', border: 0, borderRadius: '0.75rem' }}
+                loading="lazy"
+                allowFullScreen
+                src="https://maps.google.com/maps?q=160+Commerce+Dr+%23100,+Grayslake,+IL+60030&output=embed"
+                title="Kids Dentist Grayslake location map"
+              />
             </div>
 
-            {/* Quick CTA */}
-            <Link
-              href="/request-appointment"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '0.5rem',
-                background: 'linear-gradient(135deg, #E8934F, #E97D63)',
-                color: '#fff',
-                fontFamily: 'Nunito, sans-serif',
-                fontWeight: 800,
-                fontSize: '0.95rem',
-                padding: '0.9rem 1.5rem',
-                borderRadius: '100px',
-                textDecoration: 'none',
-                boxShadow: '0 6px 22px rgba(232,147,79,0.32)',
-              }}
-            >
-              Request an Appointment
-            </Link>
           </div>
         </AnimatedSection>
       </div>
