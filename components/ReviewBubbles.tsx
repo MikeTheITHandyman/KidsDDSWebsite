@@ -235,9 +235,9 @@ export default function ReviewBubbles({ sanityReviews }: ReviewBubblesProps) {
                   </svg>
                 ))}
               </span>
-              <span>4.9 Rating</span>
+              <span>4.8 Rating</span>
               <span style={{ opacity: 0.5 }}>·</span>
-              <span>500+ Reviews</span>
+              <span>650+ Reviews</span>
             </div>
           </div>
 

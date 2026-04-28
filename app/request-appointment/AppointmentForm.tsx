@@ -7,7 +7,7 @@ import Link from 'next/link'
 
 const TRUST_SIGNALS = [
   { icon: '🏆', label: '30+ Years', detail: 'Serving Grayslake families since 1994' },
-  { icon: '⭐', label: '4.9 Stars', detail: '500+ verified Google reviews' },
+  { icon: '⭐', label: '4.8 Stars', detail: '650+ verified Google reviews' },
   { icon: '📅', label: 'Same-Day Available', detail: 'Call for urgent appointment needs' },
   { icon: '🚨', label: 'Emergency Visits', detail: 'Accepted for patients in pain' },
   { icon: '🦷', label: 'Board-Certified Only', detail: 'All four doctors are pediatric specialists' },

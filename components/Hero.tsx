@@ -128,7 +128,7 @@ export default function Hero() {
           <div className="hero-trust">
             <div className="trust-item">
               <div className="trust-dot" aria-hidden="true"/>
-              4.9★ Google Rating
+              4.8★ Google Rating
             </div>
             <div className="trust-item">
               <div className="trust-dot" aria-hidden="true"/>

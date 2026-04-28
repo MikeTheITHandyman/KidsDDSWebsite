@@ -14,6 +14,7 @@ const NAV = [
     children: [
       { label: 'About Us', href: '/about' },
       { label: 'Meet the Dentists', href: '/about/meet-the-dentists' },
+      { label: 'Meet the Team', href: '/about/meet-the-team' },
       { label: 'Tour Our Office', href: '/about/tour-our-office' },
     ],
   },
