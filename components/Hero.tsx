@@ -152,7 +152,13 @@ export default function Hero() {
               className="hero-video"
               aria-hidden="true"
             >
-              <source src="/brand_assets/hero-video.mp4" type="video/mp4" />
+              <source
+                src={
+                  process.env.NEXT_PUBLIC_HERO_VIDEO_URL ||
+                  'https://res.cloudinary.com/dkrbvqzlw/video/upload/q_auto:low,w_1280/v1777343603/hero-video_oznoe1.mp4'
+                }
+                type="video/mp4"
+              />
             </video>
           </div>
           <div className="hero-deco-1"/>
