@@ -13,7 +13,7 @@ export default async function HomePage() {
   const reviews = await client.fetch<SanityReview[]>(
     featuredReviewsQuery,
     {},
-    { next: { revalidate: 300 } },
+    { next: { revalidate: 60 } },
   )
 
   return (
