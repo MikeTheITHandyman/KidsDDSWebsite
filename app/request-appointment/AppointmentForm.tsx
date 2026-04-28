@@ -67,6 +67,8 @@ export default function AppointmentForm() {
   const searchParams = useSearchParams()
   const [focused, setFocused] = useState<string | null>(null)
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(false)
   const [form, setForm] = useState({
     parentName: '',
     email: '',
@@ -88,9 +90,23 @@ export default function AppointmentForm() {
     return focused === field ? focusedStyle : inputStyle
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    setSubmitted(true)
+    setLoading(true)
+    setError(false)
+    try {
+      const res = await fetch('/api/appointment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      if (!res.ok) throw new Error()
+      setSubmitted(true)
+    } catch {
+      setError(true)
+    } finally {
+      setLoading(false)
+    }
   }
 
   const sectionHead = (num: string, title: string, subtitle: string) => (
@@ -483,8 +499,9 @@ export default function AppointmentForm() {
                     <div style={{ marginTop: '2rem' }}>
                       <motion.button
                         type="submit"
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.97 }}
+                        disabled={loading}
+                        whileHover={{ scale: loading ? 1 : 1.02 }}
+                        whileTap={{ scale: loading ? 1 : 0.97 }}
                         transition={{ type: 'spring', stiffness: 340, damping: 18 }}
                         style={{
                           width: '100%',
@@ -496,12 +513,19 @@ export default function AppointmentForm() {
                           padding: '1rem 2rem',
                           borderRadius: '100px',
                           border: 'none',
-                          cursor: 'pointer',
+                          cursor: loading ? 'not-allowed' : 'pointer',
+                          opacity: loading ? 0.75 : 1,
                           boxShadow: '0 8px 26px rgba(232,147,79,0.38)',
                         }}
                       >
-                        Submit Appointment Request
+                        {loading ? 'Submitting…' : 'Submit Appointment Request'}
                       </motion.button>
+                      {error && (
+                        <p style={{ textAlign: 'center', fontSize: '0.85rem', color: '#E97D63', margin: '0.75rem 0 0', fontWeight: 600 }}>
+                          Something went wrong — please call us at{' '}
+                          <a href="tel:+18472231400" style={{ color: '#E97D63' }}>(847) 223-1400</a>.
+                        </p>
+                      )}
                       <p
                         style={{
                           textAlign: 'center',

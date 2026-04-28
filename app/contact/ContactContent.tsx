@@ -33,15 +33,31 @@ const inputBase: React.CSSProperties = {
 export default function ContactContent() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(false)
   const [focused, setFocused] = useState<string | null>(null)
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    setSubmitted(true)
+    setLoading(true)
+    setError(false)
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      if (!res.ok) throw new Error()
+      setSubmitted(true)
+    } catch {
+      setError(true)
+    } finally {
+      setLoading(false)
+    }
   }
 
   const focusStyle = (field: string): React.CSSProperties =>
@@ -199,8 +215,9 @@ export default function ContactContent() {
 
                   <motion.button
                     type="submit"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.97 }}
+                    disabled={loading}
+                    whileHover={{ scale: loading ? 1 : 1.02 }}
+                    whileTap={{ scale: loading ? 1 : 0.97 }}
                     transition={{ type: 'spring', stiffness: 340, damping: 18 }}
                     style={{
                       background: 'linear-gradient(135deg, #E8934F, #E97D63)',
@@ -211,13 +228,20 @@ export default function ContactContent() {
                       padding: '0.95rem 2rem',
                       borderRadius: '100px',
                       border: 'none',
-                      cursor: 'pointer',
+                      cursor: loading ? 'not-allowed' : 'pointer',
+                      opacity: loading ? 0.75 : 1,
                       boxShadow: '0 6px 22px rgba(232,147,79,0.35)',
                       marginTop: '0.25rem',
                     }}
                   >
-                    Send Message
+                    {loading ? 'Sending…' : 'Send Message'}
                   </motion.button>
+                  {error && (
+                    <p style={{ fontSize: '0.85rem', color: '#E97D63', margin: '0.75rem 0 0', fontWeight: 600, textAlign: 'center' }}>
+                      Something went wrong — please call us at{' '}
+                      <a href="tel:+18472231400" style={{ color: '#E97D63' }}>(847) 223-1400</a>.
+                    </p>
+                  )}
                 </form>
               </motion.div>
             ) : (
