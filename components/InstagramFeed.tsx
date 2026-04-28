@@ -5,49 +5,55 @@ import { motion } from 'framer-motion'
 const POSTS = [
   {
     id: 1,
+    href: 'https://www.instagram.com/stories/highlights/17921848187970850/',
     gradient: 'linear-gradient(135deg, #80d2f5 0%, #4A90A4 100%)',
-    emoji: '😁',
-    caption: 'Another smile for the day!',
+    emoji: '🎉',
+    caption: '30 Years',
     likes: 47,
     delay: 0,
   },
   {
     id: 2,
+    href: 'https://www.instagram.com/stories/highlights/17944704293205150/',
     gradient: 'linear-gradient(135deg, #fde68a 0%, #E8934F 100%)',
     emoji: '🦷',
-    caption: 'Keeping those teeth sparkling clean.',
+    caption: 'Patients',
     likes: 62,
     delay: 0.05,
   },
   {
     id: 3,
+    href: 'https://www.instagram.com/stories/highlights/17955813938005134/',
     gradient: 'linear-gradient(135deg, #c4b5fd 0%, #78509b 100%)',
     emoji: '⭐',
-    caption: 'Gold-star patients this week!',
+    caption: 'Reviews',
     likes: 88,
     delay: 0.10,
   },
   {
     id: 4,
+    href: 'https://www.instagram.com/stories/highlights/17922452591442880/',
     gradient: 'linear-gradient(135deg, #6BA899 0%, #4A90A4 100%)',
-    emoji: '🎉',
-    caption: 'Celebrating a cavity-free year!',
+    emoji: '🏥',
+    caption: 'Office',
     likes: 54,
     delay: 0.15,
   },
   {
     id: 5,
+    href: 'https://www.instagram.com/stories/highlights/17939421410484510/',
     gradient: 'linear-gradient(135deg, #fda4af 0%, #E97D63 100%)',
-    emoji: '🪥',
-    caption: 'Two minutes, twice a day — you got this!',
+    emoji: '👨‍👩‍👧‍👦',
+    caption: 'The Team',
     likes: 39,
     delay: 0.20,
   },
   {
     id: 6,
+    href: 'https://www.instagram.com/stories/highlights/17956960870875491/',
     gradient: 'linear-gradient(135deg, #80d2f5 0%, #78509b 100%)',
     emoji: '💜',
-    caption: 'Our team loves what they do.',
+    caption: 'Community',
     likes: 73,
     delay: 0.25,
   },
@@ -244,7 +250,7 @@ export default function InstagramFeed() {
           {POSTS.map((post) => (
             <motion.a
               key={post.id}
-              href="https://www.instagram.com/kidsddsgrayslake/"
+              href={post.href}
               target="_blank"
               rel="noopener noreferrer"
               initial={{ opacity: 0, scale: 0.94 }}
@@ -254,9 +260,9 @@ export default function InstagramFeed() {
               whileHover={{ scale: 1.03, transition: { type: 'spring', stiffness: 320, damping: 22 } }}
               style={{
                 display: 'block',
-                borderRadius: '18px',
+                borderRadius: '28px',
                 overflow: 'hidden',
-                aspectRatio: '1 / 1',
+                minHeight: '260px',
                 background: post.gradient,
                 textDecoration: 'none',
                 position: 'relative',

@@ -6,7 +6,55 @@ import { motion, AnimatePresence, type Variants } from 'framer-motion'
 const INTERVAL_MS = 5000
 const GOOGLE_REVIEWS_URL = 'https://www.google.com/maps/place/Kids+Dentist/@42.3467,-88.0041,17z'
 
-const reviews = [
+const AVATAR_GRADIENTS = [
+  'linear-gradient(135deg, #E8934F, #E97D63)',
+  'linear-gradient(135deg, #4A90A4, #6BA899)',
+  'linear-gradient(135deg, #6BA899, #8BA596)',
+  'linear-gradient(135deg, #78509b, #4A90A4)',
+  'linear-gradient(135deg, #E8934F, #F4C77F)',
+  'linear-gradient(135deg, #7C3AED, #4A90A4)',
+]
+
+export interface SanityReview {
+  _id: string
+  parentName: string
+  rating: number
+  reviewText: string
+  role: string
+  date?: string
+}
+
+interface ReviewItem {
+  stars: number
+  text: string
+  author: string
+  role: string
+  initial: string
+  avatarBg: string
+  date: string
+}
+
+function formatShortDate(iso?: string) {
+  if (!iso) return ''
+  return new Date(iso + 'T00:00:00').toLocaleDateString('en-US', {
+    month: 'short',
+    year: 'numeric',
+  })
+}
+
+function mapSanityReviews(data: SanityReview[]): ReviewItem[] {
+  return data.map((r, i) => ({
+    stars: Math.min(5, Math.max(1, r.rating)),
+    text: r.reviewText,
+    author: r.parentName,
+    role: r.role ?? 'Parent',
+    initial: r.parentName.charAt(0).toUpperCase(),
+    avatarBg: AVATAR_GRADIENTS[i % AVATAR_GRADIENTS.length],
+    date: formatShortDate(r.date),
+  }))
+}
+
+const STATIC_REVIEWS: ReviewItem[] = [
   {
     stars: 5,
     text: "My daughter used to cry at every dentist visit. Now she actually asks to go back! The whole team here is truly incredible with kids.",
@@ -99,7 +147,16 @@ function Stars({ count }: { count: number }) {
   )
 }
 
-export default function ReviewBubbles() {
+interface ReviewBubblesProps {
+  sanityReviews?: SanityReview[]
+}
+
+export default function ReviewBubbles({ sanityReviews }: ReviewBubblesProps) {
+  const reviews: ReviewItem[] =
+    sanityReviews && sanityReviews.length > 0
+      ? mapSanityReviews(sanityReviews)
+      : STATIC_REVIEWS
+
   const [[index, direction], setPage] = useState([0, 0])
   const [paused, setPaused] = useState(false)
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
@@ -141,7 +198,6 @@ export default function ReviewBubbles() {
           width: '360px', height: '360px', borderRadius: '50%',
           border: '1px solid rgba(255,255,255,0.06)',
         }} />
-        {/* Dot grid texture */}
         <div style={{
           position: 'absolute', inset: 0, opacity: 0.04,
           backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)',
@@ -159,7 +215,6 @@ export default function ReviewBubbles() {
           transition={{ duration: 0.55 }}
           style={{ textAlign: 'center', marginBottom: '2.75rem' }}
         >
-          {/* Review counter badge */}
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1.25rem' }}>
             <div style={{
               display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
@@ -173,7 +228,6 @@ export default function ReviewBubbles() {
               fontWeight: 800,
               fontFamily: 'Nunito, sans-serif',
             }}>
-              {/* Stars inline */}
               <span style={{ display: 'flex', gap: '1px' }}>
                 {Array.from({ length: 5 }).map((_, i) => (
                   <svg key={i} width="13" height="13" viewBox="0 0 24 24" fill="#F4C77F" stroke="none" aria-hidden="true">
@@ -219,7 +273,6 @@ export default function ReviewBubbles() {
           onMouseLeave={() => setPaused(false)}
           style={{ position: 'relative' }}
         >
-          {/* Card area — fixed height to prevent layout shift */}
           <div style={{ position: 'relative', minHeight: '260px', overflow: 'hidden' }}>
             <AnimatePresence mode="wait" custom={direction}>
               <motion.div
@@ -274,7 +327,7 @@ export default function ReviewBubbles() {
                         {review.author}
                       </div>
                       <div style={{ fontSize: '0.8rem', color: '#9ca3af', fontWeight: 500 }}>
-                        {review.role} · {review.date}
+                        {review.role}{review.date ? ` · ${review.date}` : ''}
                       </div>
                     </div>
                     {/* Google G mark */}
@@ -294,10 +347,8 @@ export default function ReviewBubbles() {
 
           {/* Controls */}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', marginTop: '1.75rem' }}>
-            {/* Prev */}
             <NavButton onClick={() => paginate(-1)} label="Previous review" direction="left" />
 
-            {/* Dots */}
             <div style={{ display: 'flex', gap: '0.45rem', alignItems: 'center' }}>
               {reviews.map((_, i) => (
                 <button
@@ -318,7 +369,6 @@ export default function ReviewBubbles() {
               ))}
             </div>
 
-            {/* Next */}
             <NavButton onClick={() => paginate(1)} label="Next review" direction="right" />
           </div>
         </div>

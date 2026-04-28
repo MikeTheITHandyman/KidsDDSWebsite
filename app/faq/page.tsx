@@ -1,133 +1,209 @@
-'use client'
-
-import { motion } from 'framer-motion'
-import { useState } from 'react'
 import SubPageLayout from '@/components/SubPageLayout'
+import AnimatedSection from '@/components/AnimatedSection'
+import FaqAccordion, { type FaqItem } from '@/components/FaqAccordion'
+import Link from 'next/link'
+import type { Metadata } from 'next'
 
-const faqs = [
+export const metadata: Metadata = {
+  title: 'Frequently Asked Questions | Kids Dentist Grayslake, IL',
+  description:
+    'Answers to the questions parents ask most about pediatric dental care at Kids Dentist Grayslake — first visits, X-ray safety, emergencies, and more.',
+  openGraph: {
+    title: 'Frequently Asked Questions | Kids Dentist Grayslake, IL',
+    description:
+      'Everything parents ask about pediatric dentistry — answered clearly and honestly by the Kids Dentist Grayslake team.',
+    url: 'https://kidsdds.com/faq',
+    siteName: 'Kids Dentist',
+    locale: 'en_US',
+    type: 'website',
+  },
+}
+
+const GROUPS: { label: string; icon: string; accentColor: string; items: FaqItem[] }[] = [
   {
-    q: 'At what age should my child first see a dentist?',
-    a: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tincidunt lorem at fermentum convallis. Libero nisi gravida sapien, ac tincidunt nisi turpis in odio. The American Academy of Pediatric Dentistry recommends a first visit by age one.',
+    label: 'General Practice & First Visit',
+    icon: '👋',
+    accentColor: '#4A90A4',
+    items: [
+      {
+        question: 'When should my child have their first dental visit?',
+        answer:
+          'The American Academy of Pediatric Dentistry recommends that a child go to the dentist by age 1, or within six months after their first tooth erupts. Starting early helps build trust and sets the foundation for a lifetime of healthy smiles.',
+      },
+      {
+        question: 'Can I stay with my child during their appointment?',
+        answer:
+          'Absolutely! We have an open-door policy. You are always welcome to accompany your child into the treatment area to help them feel secure and comfortable. We believe a relaxed parent makes for a relaxed child.',
+      },
+    ],
   },
   {
-    q: 'How often should my child have a dental check-up?',
-    a: 'Pellentesque habitant morbi tristique senectus et netus et malesuada. Nulla facilisi. Aliquam erat volutpat. Quisque vehicula, nisl ac viverra semper, nisi velit condimentum nisl, vel placerat massa.',
+    label: 'Safety & Treatments',
+    icon: '🛡️',
+    accentColor: '#6BA899',
+    items: [
+      {
+        question: 'Are dental X-rays safe for children?',
+        answer:
+          'Yes. We use state-of-the-art digital X-rays that reduce radiation exposure by up to 90% compared to traditional film X-rays. X-rays are an essential diagnostic tool for finding hidden cavities and monitoring the development of permanent teeth — and we only take them when clinically necessary.',
+      },
+      {
+        question: "Why fix a cavity in a baby tooth if it's going to fall out anyway?",
+        answer:
+          'Baby teeth are crucial for proper chewing, speech development, and saving space for permanent teeth. Untreated cavities can cause severe pain, lead to dangerous infections, and permanently damage the adult teeth growing underneath. "It will fall out anyway" is one of the most common misconceptions we address — and one of the most important to correct.',
+      },
+    ],
   },
   {
-    q: 'What should I expect during the first visit?',
-    a: 'Curabitur sit amet velit libero. Sed commodo feugiat ipsum, nec sagittis nibh sagittis ac. Integer venenatis velit at nulla gravida, at placerat metus congue. Pellentesque habitant morbi tristique senectus.',
-  },
-  {
-    q: 'Do you accept my insurance plan?',
-    a: 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae. Fusce sed lorem in urna convallis elementum. Integer venenatis velit at nulla gravida fames turpis.',
-  },
-  {
-    q: 'Is sedation dentistry safe for children?',
-    a: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Our board-certified anesthesiologists and pediatric dentists work as a team. Quisque tincidunt lorem at fermentum convallis libero nisi gravida sapien.',
-  },
-  {
-    q: 'How do I handle a dental emergency?',
-    a: 'Pellentesque habitant morbi tristique. Nulla facilisi. Aliquam erat volutpat. Call us immediately at (847) 223-1400. Quisque vehicula, nisl ac viverra semper, nisi velit condimentum nisl.',
-  },
-  {
-    q: 'What payment options do you offer?',
-    a: 'Curabitur sit amet velit libero. Sed commodo feugiat ipsum, nec sagittis nibh sagittis ac. Integer venenatis velit at nulla gravida, at placerat metus congue. Pellentesque habitant morbi tristique.',
-  },
-  {
-    q: 'Do you treat children with special needs?',
-    a: 'Vestibulum ante ipsum primis in faucibus orci luctus. Fusce sed lorem in urna convallis elementum. Absolutely — Dr. Rutcosky specializes in providing exceptional care for children with diverse needs and abilities.',
+    label: 'Dental Emergencies',
+    icon: '🚨',
+    accentColor: '#E97D63',
+    items: [
+      {
+        question: 'What should I do if my child knocks out a permanent tooth?',
+        answer:
+          'Find the tooth and hold it by the crown — the top part, not the root. Gently rinse it with cold water. If possible, carefully reinsert it into the socket and have your child hold it in place. If you cannot reinsert it, place the tooth in a cup of cold milk and call us immediately. Time is critical — the sooner we see your child, the better the chance of saving the tooth.',
+      },
+    ],
   },
 ]
-
-function FaqCard({ faq, index }: { faq: { q: string; a: string }; index: number }) {
-  const [open, setOpen] = useState(false)
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
-      className="overflow-hidden rounded-2xl border border-[#4A90A4]/10 bg-white shadow-sm transition-shadow hover:shadow-md"
-    >
-      <button
-        onClick={() => setOpen(!open)}
-        className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
-      >
-        <span
-          className="text-base font-800 text-[#4A90A4]"
-          style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800 }}
-        >
-          {faq.q}
-        </span>
-        <motion.span
-          animate={{ rotate: open ? 45 : 0 }}
-          transition={{ duration: 0.25 }}
-          className="shrink-0 flex h-8 w-8 items-center justify-center rounded-full bg-[#4A90A4]/10 text-[#4A90A4]"
-        >
-          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
-          </svg>
-        </motion.span>
-      </button>
-
-      <motion.div
-        initial={false}
-        animate={{ height: open ? 'auto' : 0, opacity: open ? 1 : 0 }}
-        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
-        className="overflow-hidden"
-      >
-        <div className="border-t border-[#4A90A4]/08 px-6 pb-5 pt-4">
-          <p className="text-sm leading-relaxed text-slate-500">{faq.a}</p>
-        </div>
-      </motion.div>
-    </motion.div>
-  )
-}
 
 export default function FaqPage() {
   return (
     <SubPageLayout
+      kicker="Got Questions?"
       title="Frequently Asked Questions"
       subtitle="Everything parents ask — answered clearly and honestly."
       gradient="blue"
     >
-      <div className="mx-auto max-w-3xl space-y-3 px-4">
-        {faqs.map((faq, i) => (
-          <FaqCard key={faq.q} faq={faq} index={i} />
-        ))}
-      </div>
+      <div className="mx-auto max-w-3xl px-4">
 
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="mx-auto mt-16 max-w-xl rounded-[2rem] border border-[#4A90A4]/15 bg-gradient-to-br from-[#F0F9FF] to-[#E0F2FE] p-8 text-center shadow-sm"
-      >
-        <p className="text-lg font-black text-[#4A90A4]" style={{ fontFamily: 'Nunito, sans-serif' }}>
-          Still have questions?
-        </p>
-        <p className="mt-2 text-sm text-slate-500">
-          Our friendly team is happy to chat. Give us a call or send a message.
-        </p>
-        <div className="mt-5 flex flex-wrap justify-center gap-3">
-          <a
-            href="tel:+18472231400"
-            className="inline-flex items-center gap-2 rounded-full bg-[#4A90A4] px-6 py-2.5 text-sm font-800 text-white shadow transition-all hover:scale-105"
-            style={{ fontWeight: 800 }}
+        {GROUPS.map((group, gi) => (
+          <AnimatedSection key={group.label} delay={gi * 0.08}>
+            <div style={{ marginBottom: '3rem' }}>
+              {/* Group header */}
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.75rem',
+                  marginBottom: '1.25rem',
+                }}
+              >
+                <span
+                  style={{
+                    width: '36px',
+                    height: '36px',
+                    borderRadius: '0.75rem',
+                    background: `${group.accentColor}18`,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '1.1rem',
+                    flexShrink: 0,
+                  }}
+                  aria-hidden="true"
+                >
+                  {group.icon}
+                </span>
+                <h2
+                  style={{
+                    fontFamily: 'Nunito, sans-serif',
+                    fontWeight: 900,
+                    fontSize: '0.78rem',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.10em',
+                    color: group.accentColor,
+                    margin: 0,
+                  }}
+                >
+                  {group.label}
+                </h2>
+              </div>
+
+              <FaqAccordion items={group.items} accentColor={group.accentColor} />
+            </div>
+          </AnimatedSection>
+        ))}
+
+        {/* Still have questions CTA */}
+        <AnimatedSection delay={0.24}>
+          <div
+            style={{
+              background: 'linear-gradient(135deg, #EFF6FF, #E0F2FE)',
+              border: '1.5px solid rgba(74,144,164,0.15)',
+              borderRadius: '2rem',
+              padding: '2.5rem',
+              textAlign: 'center',
+              marginBottom: '2rem',
+            }}
           >
-            Call (847) 223-1400
-          </a>
-          <a
-            href="/contact"
-            className="inline-flex items-center gap-2 rounded-full border border-[#4A90A4]/30 bg-white px-6 py-2.5 text-sm font-800 text-[#4A90A4] shadow transition-all hover:scale-105"
-            style={{ fontWeight: 800 }}
-          >
-            Send a Message →
-          </a>
-        </div>
-      </motion.div>
+            <p
+              style={{
+                fontFamily: 'Nunito, sans-serif',
+                fontWeight: 900,
+                fontSize: '1.15rem',
+                color: '#4A90A4',
+                margin: '0 0 0.5rem',
+              }}
+            >
+              Still have questions?
+            </p>
+            <p
+              style={{
+                fontSize: '0.9rem',
+                color: '#6b7280',
+                fontWeight: 500,
+                margin: '0 0 1.5rem',
+                lineHeight: 1.65,
+              }}
+            >
+              Our friendly team is happy to chat. Give us a call or send us a message.
+            </p>
+            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0.75rem' }}>
+              <Link
+                href="tel:+18472231400"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.45rem',
+                  background: 'linear-gradient(135deg, #E8934F, #E97D63)',
+                  color: '#fff',
+                  fontFamily: 'Nunito, sans-serif',
+                  fontWeight: 800,
+                  fontSize: '0.9rem',
+                  padding: '0.8rem 1.75rem',
+                  borderRadius: '100px',
+                  textDecoration: 'none',
+                  boxShadow: '0 6px 20px rgba(232,147,79,0.32)',
+                }}
+              >
+                Call (847) 223-1400
+              </Link>
+              <Link
+                href="/contact"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.45rem',
+                  color: '#4A90A4',
+                  fontFamily: 'Nunito, sans-serif',
+                  fontWeight: 800,
+                  fontSize: '0.9rem',
+                  padding: '0.8rem 1.75rem',
+                  borderRadius: '100px',
+                  textDecoration: 'none',
+                  border: '1.5px solid rgba(74,144,164,0.28)',
+                  background: '#fff',
+                }}
+              >
+                Send a Message →
+              </Link>
+            </div>
+          </div>
+        </AnimatedSection>
+
+      </div>
     </SubPageLayout>
   )
 }

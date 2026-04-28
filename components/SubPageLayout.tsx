@@ -6,6 +6,7 @@ import React from 'react'
 interface SubPageLayoutProps {
   title: string
   subtitle?: string
+  kicker?: string
   children: React.ReactNode
   gradient?: 'blue' | 'green' | 'amber'
 }
@@ -25,6 +26,7 @@ const blobColors = {
 export default function SubPageLayout({
   title,
   subtitle,
+  kicker,
   children,
   gradient = 'blue',
 }: SubPageLayoutProps) {
@@ -71,7 +73,7 @@ export default function SubPageLayout({
             style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800 }}
           >
             <span className="h-1.5 w-1.5 rounded-full bg-[#E8934F]" />
-            Kids Dentist · Grayslake, IL
+            {kicker ?? 'Kids Dentist · Grayslake, IL'}
           </motion.div>
 
           <motion.h1

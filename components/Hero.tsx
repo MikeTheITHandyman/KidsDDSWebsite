@@ -136,7 +136,7 @@ export default function Hero() {
             </div>
             <div className="trust-item" style={{ fontWeight: 800 }}>
               <div className="trust-dot" aria-hidden="true"/>
-              Delta Dental In-Network
+              Emergency Visits
             </div>
           </div>
         </div>

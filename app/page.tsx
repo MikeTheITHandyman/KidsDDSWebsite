@@ -5,14 +5,23 @@ import ReviewBubbles from '../components/ReviewBubbles'
 import ValueProps from '../components/ValueProps'
 import InstagramFeed from '../components/InstagramFeed'
 import InsuranceBanner from '../components/InsuranceBanner'
+import { client } from '../sanity/lib/client'
+import { featuredReviewsQuery } from '../sanity/lib/queries'
+import type { SanityReview } from '../components/ReviewBubbles'
 
-export default function HomePage() {
+export default async function HomePage() {
+  const reviews = await client.fetch<SanityReview[]>(
+    featuredReviewsQuery,
+    {},
+    { next: { revalidate: 300 } },
+  )
+
   return (
     <>
       <Hero />
       <ServicesGrid />
       <MeetOurDoctors />
-      <ReviewBubbles />
+      <ReviewBubbles sanityReviews={reviews} />
       <ValueProps />
       <InstagramFeed />
       <InsuranceBanner />

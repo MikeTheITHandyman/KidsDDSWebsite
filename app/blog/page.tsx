@@ -1,16 +1,21 @@
 import type { Metadata } from 'next'
+import SubPageLayout from '@/components/SubPageLayout'
 import { client } from '../../sanity/lib/client'
 import { allPostsQuery } from '../../sanity/lib/queries'
 import BlogGrid from './BlogGrid'
 
 export const metadata: Metadata = {
-  title: 'Blog | Kids Dentist Grayslake',
+  title: 'Pediatric Dental Blog | Kids Dentist Grayslake, IL',
   description:
-    'Expert pediatric dental tips, practice news, and child health guides from the doctors at Kids Dentist in Grayslake, IL.',
+    'Expert pediatric dental tips, practice news, and child health guides from the board-certified doctors at Kids Dentist in Grayslake, IL.',
   openGraph: {
-    title: 'From Our Dentists — Kids Dentist Blog',
+    title: 'Pediatric Dental Blog | Kids Dentist Grayslake, IL',
     description:
       "Real advice on children's oral health from the board-certified pediatric dentists at Kids Dentist, Grayslake IL.",
+    url: 'https://kidsdds.com/blog',
+    siteName: 'Kids Dentist',
+    locale: 'en_US',
+    type: 'website',
   },
 }
 
@@ -18,19 +23,13 @@ export default async function BlogPage() {
   const posts = await client.fetch(allPostsQuery, {}, { next: { revalidate: 60 } })
 
   return (
-    <>
-      <header className="blog-hero">
-        <div className="blog-hero-inner">
-          <span className="section-kicker">Expert Tips for Grayslake Families</span>
-          <h1 className="blog-hero-title">From Our Dentists</h1>
-          <p className="blog-hero-sub">
-            Real advice on children&apos;s oral health, what to expect at visits,
-            and how to build a lifetime of happy smiles.
-          </p>
-        </div>
-      </header>
-
+    <SubPageLayout
+      kicker="Practice News & Advice"
+      title="Pediatric Dental Blog"
+      subtitle="Real advice on children's oral health from our board-certified pediatric dentists."
+      gradient="green"
+    >
       <BlogGrid posts={posts} />
-    </>
+    </SubPageLayout>
   )
 }

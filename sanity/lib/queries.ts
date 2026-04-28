@@ -4,7 +4,7 @@ export const allPostsQuery = groq`
   *[_type == "post"] | order(publishedAt desc) {
     _id,
     title,
-    slug,
+    "slug": slug.current,
     author,
     category,
     mainImage,

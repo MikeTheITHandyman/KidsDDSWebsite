@@ -23,13 +23,44 @@ interface Props {
   params: Promise<{ slug: string[] }>
 }
 
+export async function generateStaticParams() {
+  const posts = await client.fetch<{ slug: string }[]>(
+    `*[_type == "post"]{ "slug": slug.current }`
+  )
+  return posts
+    .filter((p) => Boolean(p.slug))
+    .map(({ slug }) => ({ slug: [slug] }))
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const post: Post | null = await client.fetch(postBySlugQuery, { slug: slug[0] })
   if (!post) return { title: 'Post Not Found' }
+
+  const ogImage = post.mainImage
+    ? urlFor(post.mainImage).width(1200).height(630).url()
+    : undefined
+
   return {
     title: `${post.title} | Kids Dentist Blog`,
     description: post.excerpt,
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      url: `https://kidsdds.com/blog/${slug[0]}`,
+      siteName: 'Kids Dentist',
+      locale: 'en_US',
+      type: 'article',
+      publishedTime: post.publishedAt,
+      authors: post.author ? [post.author] : undefined,
+      ...(ogImage && { images: [{ url: ogImage, width: 1200, height: 630 }] }),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt,
+      ...(ogImage && { images: [ogImage] }),
+    },
   }
 }
 
@@ -146,7 +177,10 @@ export default async function BlogPost({ params }: Props) {
         {post.body && post.body.length > 0 ? (
           <PortableText value={post.body as any} components={portableTextComponents} />
         ) : (
-          <p className="blog-post-coming-soon">No body content yet — add it in the Studio.</p>
+          <p className="blog-post-coming-soon">
+            No body content yet —{' '}
+            <a href="/studio" className="blog-empty-link">add it in the Studio</a>.
+          </p>
         )}
       </div>
 

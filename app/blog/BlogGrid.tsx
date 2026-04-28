@@ -8,7 +8,7 @@ import { urlFor } from '../../sanity/lib/image'
 interface SanityPost {
   _id: string
   title: string
-  slug: { current: string }
+  slug: string
   author: string
   category?: string
   mainImage?: { asset: { _ref: string }; alt?: string }
@@ -93,7 +93,7 @@ export default function BlogGrid({ posts }: BlogGridProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ type: 'spring', stiffness: 55, damping: 14 }}
         >
-          <Link href={`/blog/${featured.slug.current}`} className="blog-featured-card">
+          <Link href={`/blog/${featured.slug}`} className="blog-featured-card">
             <div className="blog-featured-image-wrap">
               {featured.mainImage ? (
                 <Image
@@ -138,7 +138,7 @@ export default function BlogGrid({ posts }: BlogGridProps) {
           >
             {rest.map((post) => (
               <motion.article key={post._id} className="blog-card" variants={cardVariants}>
-                <Link href={`/blog/${post.slug.current}`} className="blog-card-link">
+                <Link href={`/blog/${post.slug}`} className="blog-card-link">
                   <div className="blog-card-image-wrap">
                     {post.mainImage ? (
                       <Image

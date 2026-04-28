@@ -1,88 +1,82 @@
-'use client'
-
-import { motion, type Variants } from 'framer-motion'
 import SubPageLayout from '@/components/SubPageLayout'
+import AnimatedSection from '@/components/AnimatedSection'
+import Image from 'next/image'
+import Link from 'next/link'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Meet Our Dentists | Kids Dentist Grayslake, IL',
+  description:
+    'Meet Dr. Sonia Gutierrez, Dr. Dave Rutcosky, Dr. Sahar Alrayyes, and Dr. Anne-Ashley Compton — four board-certified pediatric dentists serving Grayslake, IL.',
+  openGraph: {
+    title: 'Meet Our Dentists | Kids Dentist Grayslake, IL',
+    description:
+      'Four board-certified pediatric specialists dedicated exclusively to children\'s dental health in Grayslake, IL.',
+    url: 'https://kidsdds.com/about/meet-the-dentists',
+    siteName: 'Kids Dentist',
+    locale: 'en_US',
+    type: 'website',
+  },
+}
 
 const doctors = [
   {
     name: 'Dr. Sonia Gutierrez',
+    firstName: 'Sonia',
     credentials: 'DDS',
     tagline: 'Gentle Care Specialist',
-    highlights: [
-      'Board-Certified Pediatric Dentist',
-      'Fluent in Spanish & English',
-      'Sedation Dentistry Expert',
-      '15+ years with young patients',
-    ],
-    blobRadius: '60% 40% 30% 70% / 60% 30% 70% 40%',
-    gradientFrom: '#DBEAFE',
-    gradientTo: '#BAE6FD',
-    accentColor: '#4A90A4',
-    avatarBg: 'from-[#4A90A4] to-[#6BA899]',
-    initial: 'SG',
+    photo: '/brand_assets/index-dr-sonia.jpg',
+    href: '/about/meet-the-dentists/dr-sonia-gutierrez',
+    accentFrom: '#DBEAFE',
+    accentTo: '#BAE6FD',
+    accentText: '#4A90A4',
+    bio: 'With a gift for making anxious children feel instantly at ease, Dr. Sonia brings warmth, expertise, and fluent Spanish to every appointment. She specializes in sedation dentistry and has dedicated 15+ years to treating little smiles in Grayslake.',
+    highlights: ['Board-Certified Pediatric Dentist', 'Fluent in English & Spanish', 'Sedation Dentistry Expert'],
+    delay: 0,
   },
   {
     name: 'Dr. Dave Rutcosky',
+    firstName: 'Dave',
     credentials: 'DDS',
     tagline: 'Special Needs Champion',
-    highlights: [
-      'Special Needs Dentistry Focus',
-      'General Anesthesiology Certified',
-      'Child Anxiety Reduction Expert',
-      '20+ years of pediatric practice',
-    ],
-    blobRadius: '40% 60% 70% 30% / 40% 70% 30% 60%',
-    gradientFrom: '#D1FAE5',
-    gradientTo: '#A7F3D0',
-    accentColor: '#6BA899',
-    avatarBg: 'from-[#6BA899] to-[#8BA596]',
-    initial: 'DR',
+    photo: '/brand_assets/index-dr-dave.jpg',
+    href: '/about/meet-the-dentists/dr-dave-rutcosky',
+    accentFrom: '#D1FAE5',
+    accentTo: '#A7F3D0',
+    accentText: '#6BA899',
+    bio: "Dr. Dave is the practice's specialist in treating children with diverse needs — including those with physical, developmental, and sensory challenges. A certified general anesthesiologist with 20+ years of experience.",
+    highlights: ['Special Needs Dentistry Focus', 'General Anesthesiology Certified', '20+ Years Pediatric Experience'],
+    delay: 0.1,
   },
   {
     name: 'Dr. Sahar Alrayyes',
+    firstName: 'Sahar',
     credentials: 'DDS',
     tagline: 'Preventive Care Leader',
-    highlights: [
-      'Preventive Dentistry Advocate',
-      'Orthodontic Screening Specialist',
-      'Infant Oral Health Expert',
-      'Research & Education Background',
-    ],
-    blobRadius: '50% 50% 30% 70% / 60% 40% 70% 30%',
-    gradientFrom: '#FEF3C7',
-    gradientTo: '#FDE68A',
-    accentColor: '#D97706',
-    avatarBg: 'from-[#E8934F] to-[#E97D63]',
-    initial: 'SA',
+    photo: '/brand_assets/index-dr-alrayyes.jpg',
+    href: '/about/meet-the-dentists/dr-sahar-alrayyes',
+    accentFrom: '#FEF3C7',
+    accentTo: '#FDE68A',
+    accentText: '#D97706',
+    bio: 'Dr. Sahar is passionate about prevention — the idea that the right habits early can mean a lifetime of healthy smiles. She brings a research-informed approach to infant oral health, orthodontic screening, and family education.',
+    highlights: ['Preventive Dentistry Advocate', 'Infant Oral Health Expert', 'Orthodontic Screening Specialist'],
+    delay: 0.2,
   },
   {
     name: 'Dr. Anne-Ashley Compton',
+    firstName: 'Anne-Ashley',
     credentials: 'DDS',
     tagline: 'Restorative Arts Expert',
-    highlights: [
-      'Restorative Dentistry Specialist',
-      'Child-First Communication Style',
-      'Nitrous Oxide Sedation Certified',
-      'Award-Winning Patient Experience',
-    ],
-    blobRadius: '70% 30% 50% 50% / 40% 60% 40% 60%',
-    gradientFrom: '#EDE9FE',
-    gradientTo: '#DDD6FE',
-    accentColor: '#7C3AED',
-    avatarBg: 'from-[#7C3AED] to-[#4A90A4]',
-    initial: 'AC',
+    photo: '/brand_assets/index-dr-ashley.jpg',
+    href: '/about/meet-the-dentists/dr-anne-ashley-compton',
+    accentFrom: '#EDE9FE',
+    accentTo: '#DDD6FE',
+    accentText: '#7C3AED',
+    bio: 'Dr. Anne-Ashley blends technical precision with an exceptional bedside manner, helping even the most hesitant children feel heard and cared for. Her expertise spans restorative dentistry and comprehensive pediatric treatment planning.',
+    highlights: ['Restorative Dentistry Specialist', 'Child-First Communication Style', 'Nitrous Oxide Sedation Certified'],
+    delay: 0.3,
   },
 ]
-
-const containerVariants: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.18 } },
-}
-
-const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 48 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } },
-}
 
 export default function MeetTheDentistsPage() {
   return (
@@ -90,128 +84,179 @@ export default function MeetTheDentistsPage() {
       title="Meet Our Dentists"
       subtitle="Four passionate specialists united by one mission — giving every child a smile they love."
     >
-      <motion.div
-        className="mx-auto grid max-w-6xl gap-8 px-4 sm:grid-cols-2 lg:grid-cols-4"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        {doctors.map((doc) => (
-          <motion.div
-            key={doc.name}
-            variants={cardVariants}
-            whileHover={{ scale: 1.04, y: -6 }}
-            transition={{ type: 'spring', stiffness: 340, damping: 22 }}
-            className="group flex flex-col rounded-[2rem] bg-white p-6 shadow-[0_4px_24px_rgba(74,144,164,0.10)] ring-1 ring-[#4A90A4]/10 hover:shadow-[0_16px_48px_rgba(74,144,164,0.18)]"
-          >
-            {/* Blob Photo Container */}
-            <div className="mx-auto mb-6 flex items-center justify-center">
+      <div className="mx-auto max-w-6xl px-4">
+
+        {/* Doctor grid */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(4, 1fr)',
+            gap: '1.75rem',
+            marginBottom: '4rem',
+          }}
+          className="dentist-grid"
+        >
+          {doctors.map((doc) => (
+            <AnimatedSection key={doc.name} delay={doc.delay}>
               <div
-                className="relative flex h-40 w-40 items-center justify-center overflow-hidden"
                 style={{
-                  borderRadius: doc.blobRadius,
-                  background: `linear-gradient(135deg, ${doc.gradientFrom}, ${doc.gradientTo})`,
+                  background: '#fff',
+                  borderRadius: '2rem',
+                  overflow: 'hidden',
+                  boxShadow: '0 4px 24px rgba(74,144,164,0.09)',
+                  border: '1.5px solid rgba(74,144,164,0.10)',
+                  transition: 'box-shadow 0.3s, transform 0.3s',
+                  height: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
                 }}
+                className="dentist-card"
               >
-                {/* Animated inner blob shimmer */}
+                {/* Strict 1:1 headshot box */}
                 <div
-                  className="absolute inset-0 opacity-40"
                   style={{
-                    background: `radial-gradient(circle at 30% 30%, white 0%, transparent 60%)`,
+                    position: 'relative',
+                    width: '100%',
+                    aspectRatio: '1 / 1',
+                    overflow: 'hidden',
+                    background: `linear-gradient(135deg, ${doc.accentFrom}, ${doc.accentTo})`,
                   }}
-                />
-                {/* Avatar initials */}
-                <div
-                  className={`relative z-10 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br ${doc.avatarBg} text-xl font-black text-white shadow-lg`}
-                  style={{ fontFamily: 'Nunito, sans-serif' }}
                 >
-                  {doc.initial}
-                </div>
-                {/* Decorative dot */}
-                <div
-                  className="absolute bottom-4 right-4 h-4 w-4 rounded-full bg-white/60 shadow"
-                />
-              </div>
-            </div>
-
-            {/* Name & Title */}
-            <div className="mb-4 text-center">
-              <h2
-                className="text-lg font-black leading-tight text-[#4A90A4]"
-                style={{ fontFamily: 'Nunito, sans-serif' }}
-              >
-                {doc.name}, {doc.credentials}
-              </h2>
-              <span
-                className="mt-1 inline-block rounded-full px-3 py-0.5 text-xs font-700 uppercase tracking-wide"
-                style={{
-                  background: `${doc.gradientFrom}`,
-                  color: doc.accentColor,
-                  fontWeight: 700,
-                }}
-              >
-                {doc.tagline}
-              </span>
-            </div>
-
-            {/* Highlights */}
-            <ul className="mt-auto space-y-2">
-              {doc.highlights.map((item) => (
-                <li key={item} className="flex items-start gap-2 text-sm text-slate-500">
-                  <span
-                    className="mt-1 h-2 w-2 shrink-0 rounded-full"
-                    style={{ background: doc.accentColor }}
+                  <Image
+                    src={doc.photo}
+                    alt={`Headshot of ${doc.name}, pediatric dentist at Kids Dentist Grayslake IL`}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    style={{ objectFit: 'cover', objectPosition: 'top center' }}
                   />
-                  {item}
-                </li>
-              ))}
-            </ul>
+                  {/* Credential badge */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      bottom: '12px',
+                      left: '12px',
+                      background: 'rgba(255,255,255,0.92)',
+                      backdropFilter: 'blur(6px)',
+                      borderRadius: '100px',
+                      padding: '0.3rem 0.85rem',
+                      fontFamily: 'Nunito, sans-serif',
+                      fontSize: '0.72rem',
+                      fontWeight: 800,
+                      color: doc.accentText,
+                      letterSpacing: '0.04em',
+                    }}
+                  >
+                    {doc.tagline}
+                  </div>
+                </div>
 
-            {/* Hover CTA */}
-            <motion.div
-              className="mt-5 overflow-hidden"
-              initial={{ height: 0, opacity: 0 }}
-              whileHover={{ height: 'auto', opacity: 1 }}
+                {/* Card body */}
+                <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
+                  <h2
+                    style={{
+                      fontFamily: 'Nunito, sans-serif',
+                      fontWeight: 900,
+                      fontSize: '1.05rem',
+                      color: '#4A90A4',
+                      margin: '0 0 0.25rem',
+                      lineHeight: 1.3,
+                    }}
+                  >
+                    {doc.name}, {doc.credentials}
+                  </h2>
+
+                  <p style={{ fontSize: '0.875rem', color: '#6b7280', lineHeight: 1.65, margin: '0 0 1.1rem', flex: 1 }}>
+                    {doc.bio}
+                  </p>
+
+                  <ul style={{ listStyle: 'none', margin: '0 0 1.25rem', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
+                    {doc.highlights.map(h => (
+                      <li key={h} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.8rem', color: '#6b7280' }}>
+                        <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: doc.accentText, flexShrink: 0 }} />
+                        {h}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <Link
+                    href={doc.href}
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.35rem',
+                      fontFamily: 'Nunito, sans-serif',
+                      fontWeight: 800,
+                      fontSize: '0.85rem',
+                      color: '#E8934F',
+                      textDecoration: 'none',
+                    }}
+                    className="doctor-link"
+                  >
+                    Meet Dr. {doc.firstName}
+                    <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </Link>
+                </div>
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
+
+        {/* Bottom CTA */}
+        <AnimatedSection delay={0.15}>
+          <div
+            style={{
+              background: 'linear-gradient(135deg, #4A90A4 0%, #6BA899 100%)',
+              borderRadius: '2rem',
+              padding: '3rem 2rem',
+              textAlign: 'center',
+              boxShadow: '0 12px 40px rgba(74,144,164,0.22)',
+              marginBottom: '2rem',
+            }}
+          >
+            <p style={{ fontFamily: 'Nunito, sans-serif', fontSize: '0.78rem', fontWeight: 900, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.75)', marginBottom: '0.75rem' }}>
+              Ready to Visit?
+            </p>
+            <h3 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.5rem, 3vw, 2rem)', color: '#fff', lineHeight: 1.2, margin: '0 0 0.85rem' }}>
+              Your child deserves the best.
+            </h3>
+            <p style={{ fontSize: '1rem', fontWeight: 500, color: 'rgba(255,255,255,0.88)', maxWidth: '460px', margin: '0 auto 1.75rem', lineHeight: 1.7 }}>
+              Our team of four specialists is here to make every visit a positive experience. New patients always welcome.
+            </p>
+            <Link
+              href="/request-appointment"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                background: '#E8934F',
+                color: '#fff',
+                fontFamily: 'Nunito, sans-serif',
+                fontWeight: 800,
+                fontSize: '0.95rem',
+                padding: '0.9rem 2.25rem',
+                borderRadius: '100px',
+                textDecoration: 'none',
+                boxShadow: '0 6px 22px rgba(232,147,79,0.45)',
+              }}
             >
-              <button
-                className="w-full rounded-2xl bg-[#E8934F] py-2.5 text-sm font-800 text-white shadow-sm transition-colors hover:bg-[#E97D63]"
-                style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800 }}
-              >
-                Meet the Doctor →
-              </button>
-            </motion.div>
-          </motion.div>
-        ))}
-      </motion.div>
+              Request an Appointment
+              <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
+          </div>
+        </AnimatedSection>
 
-      {/* Bottom CTA band */}
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        className="mx-auto mt-16 max-w-2xl rounded-[2rem] bg-gradient-to-br from-[#4A90A4] to-[#6BA899] px-8 py-10 text-center text-white shadow-xl"
-      >
-        <p className="text-sm font-700 uppercase tracking-widest opacity-80" style={{ fontWeight: 700 }}>
-          Ready to visit us?
-        </p>
-        <h3
-          className="mt-2 text-3xl font-black"
-          style={{ fontFamily: 'Nunito, sans-serif' }}
-        >
-          Your child deserves the best.
-        </h3>
-        <p className="mx-auto mt-3 max-w-sm text-base opacity-90">
-          Our team of four specialists is here to make every visit a positive experience.
-        </p>
-        <a
-          href="/contact"
-          className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#E8934F] px-8 py-3.5 text-sm font-800 text-white shadow-lg transition-all hover:scale-105 hover:bg-[#E97D63]"
-          style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800 }}
-        >
-          Request an Appointment →
-        </a>
-      </motion.div>
+      </div>
+
+      <style>{`
+        .dentist-card:hover { box-shadow: 0 20px 52px rgba(74,144,164,0.17) !important; transform: translateY(-6px); }
+        .doctor-link:hover { color: #E97D63 !important; }
+        @media (max-width: 900px) { .dentist-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+        @media (max-width: 540px) { .dentist-grid { grid-template-columns: 1fr !important; } }
+      `}</style>
     </SubPageLayout>
   )
 }
