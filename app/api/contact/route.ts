@@ -23,22 +23,11 @@ export async function POST(req: NextRequest) {
             <p style="color: rgba(255,255,255,0.85); margin: 6px 0 0; font-size: 14px;">Kids Dentist Grayslake — kidsdds.com</p>
           </div>
           <div style="background: #fff; border: 1px solid #e5e7eb; border-top: none; padding: 32px; border-radius: 0 0 12px 12px;">
-            <table style="width: 100%; border-collapse: collapse;">
-              <tr>
-                <td style="padding: 8px 0; font-size: 13px; color: #9ca3af; width: 110px; vertical-align: top;">Name</td>
-                <td style="padding: 8px 0; font-size: 15px; font-weight: 600;">${name}</td>
-              </tr>
-              <tr>
-                <td style="padding: 8px 0; font-size: 13px; color: #9ca3af; vertical-align: top;">Email</td>
-                <td style="padding: 8px 0; font-size: 15px;"><a href="mailto:${email}" style="color: #4A90A4;">${email}</a></td>
-              </tr>
-              <tr>
-                <td style="padding: 8px 0; font-size: 13px; color: #9ca3af; vertical-align: top;">Phone</td>
-                <td style="padding: 8px 0; font-size: 15px;">${phone || '<em style="color:#9ca3af">Not provided</em>'}</td>
-              </tr>
-            </table>
-            <hr style="border: none; border-top: 1px solid #f3f4f6; margin: 20px 0;" />
-            <p style="font-size: 13px; color: #9ca3af; margin: 0 0 8px;">Message</p>
+            <div style="margin-bottom: 12px;"><p style="font-size: 12px; color: #9ca3af; margin: 0 0 3px;">Name</p><p style="font-size: 15px; font-weight: 600; margin: 0;">${name}</p></div>
+            <div style="margin-bottom: 12px;"><p style="font-size: 12px; color: #9ca3af; margin: 0 0 3px;">Email</p><p style="font-size: 15px; margin: 0;"><a href="mailto:${email}" style="color: #4A90A4;">${email}</a></p></div>
+            <div style="margin-bottom: 24px;"><p style="font-size: 12px; color: #9ca3af; margin: 0 0 3px;">Phone</p><p style="font-size: 15px; margin: 0;">${phone || '<em style="color:#9ca3af">Not provided</em>'}</p></div>
+            <hr style="border: none; border-top: 1px solid #f3f4f6; margin: 0 0 24px;" />
+            <p style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #9ca3af; margin: 0 0 8px;">Message</p>
             <p style="font-size: 15px; line-height: 1.7; margin: 0; white-space: pre-wrap;">${message}</p>
             <hr style="border: none; border-top: 1px solid #f3f4f6; margin: 24px 0 16px;" />
             <p style="font-size: 12px; color: #d1d5db; margin: 0;">

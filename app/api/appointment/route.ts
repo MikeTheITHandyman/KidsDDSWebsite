@@ -37,57 +37,24 @@ export async function POST(req: NextRequest) {
           </div>
           <div style="background: #fff; border: 1px solid #e5e7eb; border-top: none; padding: 32px; border-radius: 0 0 12px 12px;">
 
-            <p style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #9ca3af; margin: 0 0 12px;">Parent / Guardian</p>
-            <table style="width: 100%; border-collapse: collapse; margin-bottom: 24px;">
-              <tr>
-                <td style="padding: 6px 0; font-size: 13px; color: #9ca3af; width: 140px; vertical-align: top;">Name</td>
-                <td style="padding: 6px 0; font-size: 15px; font-weight: 600;">${parentName}</td>
-              </tr>
-              <tr>
-                <td style="padding: 6px 0; font-size: 13px; color: #9ca3af; vertical-align: top;">Email</td>
-                <td style="padding: 6px 0; font-size: 15px;"><a href="mailto:${email}" style="color: #4A90A4;">${email}</a></td>
-              </tr>
-              <tr>
-                <td style="padding: 6px 0; font-size: 13px; color: #9ca3af; vertical-align: top;">Phone</td>
-                <td style="padding: 6px 0; font-size: 15px; font-weight: 600;">${phone}</td>
-              </tr>
-            </table>
+            <p style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #9ca3af; margin: 0 0 16px;">Parent / Guardian</p>
+            <div style="margin-bottom: 12px;"><p style="font-size: 12px; color: #9ca3af; margin: 0 0 3px;">Name</p><p style="font-size: 15px; font-weight: 600; margin: 0;">${parentName}</p></div>
+            <div style="margin-bottom: 12px;"><p style="font-size: 12px; color: #9ca3af; margin: 0 0 3px;">Email</p><p style="font-size: 15px; margin: 0;"><a href="mailto:${email}" style="color: #4A90A4;">${email}</a></p></div>
+            <div style="margin-bottom: 24px;"><p style="font-size: 12px; color: #9ca3af; margin: 0 0 3px;">Phone</p><p style="font-size: 15px; font-weight: 600; margin: 0;">${phone}</p></div>
 
             <hr style="border: none; border-top: 1px solid #f3f4f6; margin: 0 0 24px;" />
 
-            <p style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #9ca3af; margin: 0 0 12px;">Child</p>
-            <table style="width: 100%; border-collapse: collapse; margin-bottom: 24px;">
-              <tr>
-                <td style="padding: 6px 0; font-size: 13px; color: #9ca3af; width: 140px;">Name</td>
-                <td style="padding: 6px 0; font-size: 15px; font-weight: 600;">${childName}</td>
-              </tr>
-              <tr>
-                <td style="padding: 6px 0; font-size: 13px; color: #9ca3af;">Age</td>
-                <td style="padding: 6px 0; font-size: 15px;">${childAge}</td>
-              </tr>
-            </table>
+            <p style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #9ca3af; margin: 0 0 16px;">Child</p>
+            <div style="margin-bottom: 12px;"><p style="font-size: 12px; color: #9ca3af; margin: 0 0 3px;">Name</p><p style="font-size: 15px; font-weight: 600; margin: 0;">${childName}</p></div>
+            <div style="margin-bottom: 24px;"><p style="font-size: 12px; color: #9ca3af; margin: 0 0 3px;">Age</p><p style="font-size: 15px; margin: 0;">${childAge}</p></div>
 
             <hr style="border: none; border-top: 1px solid #f3f4f6; margin: 0 0 24px;" />
 
-            <p style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #9ca3af; margin: 0 0 12px;">Visit Details</p>
-            <table style="width: 100%; border-collapse: collapse; margin-bottom: 24px;">
-              <tr>
-                <td style="padding: 6px 0; font-size: 13px; color: #9ca3af; width: 140px;">Reason</td>
-                <td style="padding: 6px 0; font-size: 15px; font-weight: 600;">${reason}</td>
-              </tr>
-              <tr>
-                <td style="padding: 6px 0; font-size: 13px; color: #9ca3af;">Preferred Dentist</td>
-                <td style="padding: 6px 0; font-size: 15px;">${dentistLabel}</td>
-              </tr>
-              <tr>
-                <td style="padding: 6px 0; font-size: 13px; color: #9ca3af;">Preferred Day</td>
-                <td style="padding: 6px 0; font-size: 15px;">${preferredDay || 'No Preference'}</td>
-              </tr>
-              <tr>
-                <td style="padding: 6px 0; font-size: 13px; color: #9ca3af;">Preferred Time</td>
-                <td style="padding: 6px 0; font-size: 15px;">${preferredTime || 'No Preference'}</td>
-              </tr>
-            </table>
+            <p style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #9ca3af; margin: 0 0 16px;">Visit Details</p>
+            <div style="margin-bottom: 12px;"><p style="font-size: 12px; color: #9ca3af; margin: 0 0 3px;">Reason</p><p style="font-size: 15px; font-weight: 600; margin: 0;">${reason}</p></div>
+            <div style="margin-bottom: 12px;"><p style="font-size: 12px; color: #9ca3af; margin: 0 0 3px;">Preferred Dentist</p><p style="font-size: 15px; margin: 0;">${dentistLabel}</p></div>
+            <div style="margin-bottom: 12px;"><p style="font-size: 12px; color: #9ca3af; margin: 0 0 3px;">Preferred Day</p><p style="font-size: 15px; margin: 0;">${preferredDay || 'No Preference'}</p></div>
+            <div style="margin-bottom: 24px;"><p style="font-size: 12px; color: #9ca3af; margin: 0 0 3px;">Preferred Time</p><p style="font-size: 15px; margin: 0;">${preferredTime || 'No Preference'}</p></div>
 
             ${notes ? `
             <hr style="border: none; border-top: 1px solid #f3f4f6; margin: 0 0 24px;" />
@@ -96,9 +63,7 @@ export async function POST(req: NextRequest) {
             ` : ''}
 
             <hr style="border: none; border-top: 1px solid #f3f4f6; margin: 24px 0 16px;" />
-            <p style="font-size: 12px; color: #d1d5db; margin: 0;">
-              Reply to this email to respond directly to ${parentName}.
-            </p>
+            <p style="font-size: 12px; color: #d1d5db; margin: 0;">Reply to this email to respond directly to ${parentName}.</p>
           </div>
         </div>
       `,
