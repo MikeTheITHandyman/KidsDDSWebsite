@@ -6,15 +6,15 @@ import ValueProps from '../components/ValueProps'
 import InstagramFeed from '../components/InstagramFeed'
 import InsuranceBanner from '../components/InsuranceBanner'
 import { client } from '../sanity/lib/client'
-import { featuredReviewsQuery } from '../sanity/lib/queries'
+import { featuredReviewsQuery, instagramPostsQuery } from '../sanity/lib/queries'
 import type { SanityReview } from '../components/ReviewBubbles'
+import type { SanityInstagramPost } from '../components/InstagramFeed'
 
 export default async function HomePage() {
-  const reviews = await client.fetch<SanityReview[]>(
-    featuredReviewsQuery,
-    {},
-    { next: { revalidate: 60 } },
-  )
+  const [reviews, instagramPosts] = await Promise.all([
+    client.fetch<SanityReview[]>(featuredReviewsQuery, {}, { next: { revalidate: 60 } }),
+    client.fetch<SanityInstagramPost[]>(instagramPostsQuery, {}, { next: { revalidate: 300 } }),
+  ])
 
   return (
     <>
@@ -24,7 +24,7 @@ export default async function HomePage() {
       <MeetOurDoctors />
       <ReviewBubbles sanityReviews={reviews} />
       <ValueProps />
-      <InstagramFeed />
+      <InstagramFeed posts={instagramPosts} />
     </>
   )
 }
