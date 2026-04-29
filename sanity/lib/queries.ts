@@ -38,6 +38,31 @@ export const featuredReviewsQuery = groq`
   }
 `
 
+export const allEventsQuery = groq`
+  *[_type == "event"] | order(eventDate desc) {
+    _id,
+    title,
+    "slug": slug.current,
+    mainImage,
+    excerpt,
+    eventDate,
+  }
+`
+
+export const eventBySlugQuery = groq`
+  *[_type == "event" && slug.current == $slug][0] {
+    _id,
+    title,
+    "slug": slug.current,
+    mainImage,
+    excerpt,
+    body,
+    eventDate,
+    location,
+    registrationUrl,
+  }
+`
+
 export const upcomingEventsQuery = groq`
   *[_type == "event" && isPublished == true && eventDate > now()] | order(eventDate asc) [0..3] {
     _id,
