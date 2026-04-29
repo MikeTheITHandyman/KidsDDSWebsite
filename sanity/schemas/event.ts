@@ -6,8 +6,8 @@ export const event = defineType({
   type: 'document',
   fields: [
     defineField({
-      name: 'title',
-      title: 'Event Title',
+      name: 'name',
+      title: 'Event Name',
       type: 'string',
       validation: (rule) => rule.required(),
     }),
@@ -15,12 +15,12 @@ export const event = defineType({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
-      options: { source: 'title' },
+      options: { source: 'name' },
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'mainImage',
-      title: 'Main Image',
+      name: 'image',
+      title: 'Event Image',
       type: 'image',
       options: { hotspot: true },
       fields: [
@@ -28,8 +28,8 @@ export const event = defineType({
       ],
     }),
     defineField({
-      name: 'excerpt',
-      title: 'Excerpt',
+      name: 'description',
+      title: 'Description',
       type: 'text',
       rows: 3,
       description: 'Short summary for the feed',
@@ -42,7 +42,7 @@ export const event = defineType({
       of: [{ type: 'block' }],
     }),
     defineField({
-      name: 'eventDate',
+      name: 'dateTime',
       title: 'Event Date & Time',
       type: 'datetime',
       validation: (rule) => rule.required(),
@@ -74,7 +74,7 @@ export const event = defineType({
     }),
   ],
   preview: {
-    select: { title: 'title', date: 'eventDate', media: 'mainImage' },
+    select: { title: 'name', date: 'dateTime', media: 'image' },
     prepare({ title, date, media }) {
       const formatted = date
         ? new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })

@@ -39,49 +39,49 @@ export const featuredReviewsQuery = groq`
 `
 
 export const allEventsQuery = groq`
-  *[_type == "event"] | order(eventDate desc) {
+  *[_type == "event"] | order(dateTime desc) {
     _id,
-    title,
+    "title": name,
     "slug": slug.current,
-    mainImage,
-    excerpt,
-    eventDate,
+    "mainImage": image,
+    "excerpt": description,
+    "eventDate": dateTime,
   }
 `
 
 export const eventBySlugQuery = groq`
   *[_type == "event" && slug.current == $slug][0] {
     _id,
-    title,
+    "title": name,
     "slug": slug.current,
-    mainImage,
-    excerpt,
+    "mainImage": image,
+    "excerpt": description,
     body,
-    eventDate,
+    "eventDate": dateTime,
     location,
     registrationUrl,
   }
 `
 
 export const upcomingEventsQuery = groq`
-  *[_type == "event" && isPublished == true && eventDate > now()] | order(eventDate asc) [0..3] {
+  *[_type == "event" && isPublished == true && dateTime > now()] | order(dateTime asc) [0..3] {
     _id,
-    title,
+    "title": name,
     "slug": slug.current,
-    eventDate,
+    "eventDate": dateTime,
     location,
-    mainImage,
-    excerpt,
+    "mainImage": image,
+    "excerpt": description,
     registrationUrl,
   }
 `
 
 export const featuredEventQuery = groq`
   *[_type == "event" && isFeatured == true] | order(_updatedAt desc)[0] {
-    title,
+    "title": name,
     "slug": slug.current,
-    eventDate,
+    "eventDate": dateTime,
     location,
-    excerpt,
+    "excerpt": description,
   }
 `
