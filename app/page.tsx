@@ -20,11 +20,11 @@ export default async function HomePage() {
     <>
       <Hero />
       <ServicesGrid />
+      <InsuranceBanner />
       <MeetOurDoctors />
       <ReviewBubbles sanityReviews={reviews} />
       <ValueProps />
       <InstagramFeed />
-      <InsuranceBanner />
     </>
   )
 }
