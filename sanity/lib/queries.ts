@@ -39,13 +39,24 @@ export const featuredReviewsQuery = groq`
 `
 
 export const upcomingEventsQuery = groq`
-  *[_type == "event" && isPublished == true && dateTime > now()] | order(dateTime asc) [0..3] {
+  *[_type == "event" && isPublished == true && eventDate > now()] | order(eventDate asc) [0..3] {
     _id,
-    name,
-    dateTime,
+    title,
+    "slug": slug.current,
+    eventDate,
     location,
-    image,
-    description,
+    mainImage,
+    excerpt,
     registrationUrl,
+  }
+`
+
+export const featuredEventQuery = groq`
+  *[_type == "event" && isFeatured == true] | order(_updatedAt desc)[0] {
+    title,
+    "slug": slug.current,
+    eventDate,
+    location,
+    excerpt,
   }
 `

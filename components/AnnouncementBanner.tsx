@@ -1,32 +1,25 @@
+import Link from 'next/link'
 import { client } from '@/sanity/lib/client'
+import { featuredEventQuery } from '@/sanity/lib/queries'
 
-interface PracticeEvent {
-  name: string
-  dateTime: string
+interface FeaturedEvent {
+  title: string
+  slug: string
+  eventDate: string
   location?: string
-  description?: string
-  registrationUrl?: string
+  excerpt?: string
 }
 
-const QUERY = `*[_type == "event" && isPublished == true] | order(dateTime desc)[0] {
-  name,
-  dateTime,
-  location,
-  description,
-  registrationUrl
-}`
-
 export default async function AnnouncementBanner() {
-  const event = await client.fetch<PracticeEvent | null>(
-    QUERY,
+  const event = await client.fetch<FeaturedEvent | null>(
+    featuredEventQuery,
     {},
     { next: { revalidate: 300 } }
   )
 
   if (!event) return null
 
-  const date = new Date(event.dateTime)
-  const formatted = date.toLocaleDateString('en-US', {
+  const formatted = new Date(event.eventDate).toLocaleDateString('en-US', {
     weekday: 'short',
     month: 'short',
     day: 'numeric',
@@ -48,40 +41,32 @@ export default async function AnnouncementBanner() {
         zIndex: 1200,
       }}
     >
-      <span
+      <Link
+        href={`/about/recent-events/${event.slug}`}
         style={{
           display: 'inline-flex',
           alignItems: 'center',
           gap: '0.5rem',
           flexWrap: 'wrap',
           justifyContent: 'center',
+          color: 'white',
+          textDecoration: 'none',
         }}
+        className="banner-link"
       >
         <span aria-hidden="true">📅</span>
         <span>
-          <strong>{event.name}</strong>
+          <strong>{event.title}</strong>
           {' · '}
           {formatted}
           {event.location && ` · ${event.location}`}
         </span>
-        {event.registrationUrl && (
-          <a
-            href={event.registrationUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              color: 'white',
-              fontWeight: 900,
-              textDecoration: 'underline',
-              textDecorationColor: 'rgba(255,255,255,0.55)',
-              textUnderlineOffset: '2px',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            Learn More →
-          </a>
-        )}
-      </span>
+        <span style={{ opacity: 0.85 }}>View Details →</span>
+      </Link>
+
+      <style>{`
+        .banner-link:hover { opacity: 0.88; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(255,255,255,0.6); }
+      `}</style>
     </div>
   )
 }

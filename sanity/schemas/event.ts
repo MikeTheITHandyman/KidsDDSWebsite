@@ -6,14 +6,44 @@ export const event = defineType({
   type: 'document',
   fields: [
     defineField({
-      name: 'name',
-      title: 'Event Name',
+      name: 'title',
+      title: 'Event Title',
       type: 'string',
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'dateTime',
-      title: 'Date & Time',
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: { source: 'title' },
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'mainImage',
+      title: 'Main Image',
+      type: 'image',
+      options: { hotspot: true },
+      fields: [
+        defineField({ name: 'alt', title: 'Alt Text', type: 'string' }),
+      ],
+    }),
+    defineField({
+      name: 'excerpt',
+      title: 'Excerpt',
+      type: 'text',
+      rows: 3,
+      description: 'Short summary for the feed',
+      validation: (rule) => rule.max(300),
+    }),
+    defineField({
+      name: 'body',
+      title: 'Body',
+      type: 'array',
+      of: [{ type: 'block' }],
+    }),
+    defineField({
+      name: 'eventDate',
+      title: 'Event Date & Time',
       type: 'datetime',
       validation: (rule) => rule.required(),
     }),
@@ -25,20 +55,10 @@ export const event = defineType({
       initialValue: '160 Commerce Dr #100, Grayslake, IL 60030',
     }),
     defineField({
-      name: 'image',
-      title: 'Event Image',
-      type: 'image',
-      options: { hotspot: true },
-      fields: [
-        defineField({ name: 'alt', title: 'Alt Text', type: 'string' }),
-      ],
-    }),
-    defineField({
-      name: 'description',
-      title: 'Description',
-      type: 'text',
-      rows: 4,
-      validation: (rule) => rule.max(300),
+      name: 'isFeatured',
+      title: 'Feature in Top Banner?',
+      type: 'boolean',
+      initialValue: false,
     }),
     defineField({
       name: 'registrationUrl',
@@ -54,9 +74,11 @@ export const event = defineType({
     }),
   ],
   preview: {
-    select: { title: 'name', date: 'dateTime', media: 'image' },
+    select: { title: 'title', date: 'eventDate', media: 'mainImage' },
     prepare({ title, date, media }) {
-      const formatted = date ? new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'No date'
+      const formatted = date
+        ? new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+        : 'No date'
       return { title, subtitle: formatted, media }
     },
   },
