@@ -38,15 +38,6 @@ export const featuredReviewsQuery = groq`
   }
 `
 
-export const instagramPostsQuery = groq`
-  *[_type == "instagramPost"] | order(publishedAt desc)[0...4] {
-    _id,
-    image,
-    altText,
-    postUrl,
-  }
-`
-
 export const upcomingEventsQuery = groq`
   *[_type == "event" && isPublished == true && dateTime > now()] | order(dateTime asc) [0..3] {
     _id,
