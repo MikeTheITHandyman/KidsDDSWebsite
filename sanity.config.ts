@@ -19,6 +19,7 @@ export default defineConfig({
             S.listItem().title('Blog Posts').schemaType('post').child(S.documentTypeList('post')),
             S.listItem().title('Parent Reviews').schemaType('review').child(S.documentTypeList('review')),
             S.listItem().title('Practice Events').schemaType('event').child(S.documentTypeList('event')),
+            S.listItem().title('Instagram Posts').schemaType('instagramPost').child(S.documentTypeList('instagramPost')),
           ]),
     }),
   ],
