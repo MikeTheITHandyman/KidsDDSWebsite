@@ -33,7 +33,7 @@ Saturday & Sunday: Closed
 
 ### Key Trust Signals
 - 30+ years serving families
-- 4.9★ Google rating with 500+ reviews
+- 4.8★ Google rating with 650+ reviews
 - Same-day appointments available
 - Emergency pediatric visits accepted
 - Board-certified pediatric specialists only
@@ -119,6 +119,21 @@ All buttons: `border-radius: 100px`, `font-family: Nunito`, `font-weight: 700–
 - White background, `border-radius: 24px`, `padding: 2rem`
 - Star rating row, quote text, author avatar + name
 
+### Navigation Dropdowns
+Dropdown menus must use a semi-opaque frosted glass effect via **inline styles** (not Tailwind classes, which can be stripped by the Framer Motion cascade in v4):
+```tsx
+style={{
+  background: 'rgba(250,250,248,0.97)',
+  backdropFilter: 'blur(14px)',
+  WebkitBackdropFilter: 'blur(14px)',
+  border: '1px solid rgba(74,144,164,0.14)',
+  borderRadius: '1rem',
+  boxShadow: '0 8px 32px rgba(74,144,164,0.18), 0 2px 8px rgba(0,0,0,0.08)',
+  zIndex: 1050,
+}}
+```
+Tailwind utility classes such as `bg-white/95 backdrop-blur-md` must **not** be used on `motion.div` dropdown containers — inline styles are the only reliable approach.
+
 ### Animation Patterns
 - **Page enter:** `initial={{ opacity: 0, y: 20–36 }}` → `whileInView={{ opacity: 1, y: 0 }}` with `viewport={{ once: true }}`
 - **Staggered children:** `transition={{ delay: 0, 0.1, 0.2, 0.3 }}`
@@ -140,10 +155,11 @@ All buttons: `border-radius: 100px`, `font-family: Nunito`, `font-weight: 700–
 
 ### Root Layout (`app/layout.tsx`)
 Wraps every page. Renders:
-1. `<Header />` — sticky top navigation
-2. `{children}` — page content
-3. `<Footer />` — full site footer
-4. `<FloatingWidget />` — fixed bottom-right CTA
+1. `<AnnouncementBanner />` — Server Component; fetches the most recently published "Practice Event" from Sanity CMS (GROQ: `*[_type == "event" && isPublished == true] | order(dateTime desc)[0]`). Renders a purple gradient banner with event name, formatted date, optional location, and "Learn More →" link. Returns `null` when no event is published. Revalidates every 300 seconds.
+2. `<Header />` — sticky top navigation
+3. `{children}` — page content
+4. `<Footer />` — full site footer
+5. `<FloatingWidget />` — fixed bottom-right CTA
 
 ### Header (`components/Header.tsx`)
 - **Top announcement banner** — thin orange gradient bar linking to `/blog`; text: "Check out our latest blog post ›"
@@ -158,6 +174,7 @@ Home                    → /
 About                   → /about
   ├── About Us          → /about
   ├── Meet the Dentists → /about/meet-the-dentists
+  ├── Meet the Team     → /about/meet-the-team
   └── Tour Our Office   → /about/tour-our-office
 Services                → /services
   ├── All Services      → /services
@@ -193,7 +210,7 @@ Monday–Friday: 8:00am – 5:00pm (Saturday/Sunday not shown)
 **Column 4 — Stay Connected**
 - Facebook + Instagram icon buttons
 - "Book Appointment" pill button → `/request-appointment`
-- "Pay Now" pill button (amber tint) → `/pay`
+- "Pay Now" pill button (amber tint) → `/pay-now`
 - "New patients always welcome. Hablamos Español." text
 
 **Bottom bar:** Copyright, Privacy Policy link, Sitemap link
@@ -220,7 +237,7 @@ The homepage composes these components in order:
 ### Hero (`components/Hero.tsx`)
 - **Left:** Badge ("Pediatric Dentist · Grayslake, IL"), H1 headline, sub-headline, two CTA buttons, four trust-signal chips
 - **Right:** Blob-shaped container with looping `hero-video.mp4` + decorative floating circles
-- **Trust chips:** "4.9★ Google Reviews" | "Same-Day Available" | "Emergency Visits" | "Hablamos Español"
+- **Trust chips:** "4.8★ Google Reviews" | "Same-Day Available" | "Emergency Visits" | "Hablamos Español"
 - **Background:** Animated radial gradient blobs (CSS `@keyframes blob-float`)
 
 ### ServicesGrid (`components/ServicesGrid.tsx`)
@@ -240,21 +257,24 @@ Carousel controls: prev/next arrow buttons + dot indicators.
 ### MeetOurDoctors (`components/MeetOurDoctors.tsx`)
 - Section kicker: "Get to Know Us"
 - H2: "Meet Our Doctors"
+- Sub-headline: "Four pediatric specialists who genuinely love what they do. Get to know the team your family will see at every visit."
 - 4-column grid of doctor cards
-- Each card: 200×200px blob-shaped headshot, doctor name, role, individual "Meet Dr. [FirstName] ›" link
+- Each card: **256×256px** blob-shaped headshot, doctor name, role, individual "Meet Dr. [FirstName] ›" link
 
 **Doctor Bio Links:**
-| Doctor | First Name | Bio URL |
+| Doctor | First Name (used in card CTA) | Bio URL |
 |---|---|---|
 | Dr. Sonia Gutierrez | Sonia | `/about/meet-the-dentists/dr-sonia-gutierrez` |
 | Dr. Dave Rutcosky | Dave | `/about/meet-the-dentists/dr-dave-rutcosky` |
 | Dr. Sahar Alrayyes | Sahar | `/about/meet-the-dentists/dr-sahar-alrayyes` |
-| Dr. Anne-Ashley Compton | Anne-Ashley | `/about/meet-the-dentists/dr-anne-ashley-compton` |
+| Dr. Anne-Ashley Compton | **Ashley** | `/about/meet-the-dentists/dr-anne-ashley-compton` |
 
-Section-level CTA: "Meet The Team" → `/about/meet-the-dentists`
+Section-level CTAs (two side-by-side buttons):
+- "Meet the Dentists" (orange gradient) → `/about/meet-the-dentists`
+- "Meet the Team" (transparent teal border) → `/about/meet-the-team`
 
 ### ReviewBubbles (`components/ReviewBubbles.tsx`)
-Rotating testimonial carousel with 4.9★ badge and 500+ reviews count. Links to Google reviews. CTA to leave a review.
+Rotating testimonial carousel with 4.8★ badge and 650+ reviews count. Links to Google reviews. CTA to leave a review.
 
 ### ValueProps (`components/ValueProps.tsx`)
 - Section kicker: "Why Families Choose Us"
@@ -460,16 +480,21 @@ Below is every route in the site with its current status and what it needs to co
 ---
 
 ### `/for-patients/insurance-info` — Insurance & Financing
-**Status:** Exists (needs content)  
-**Must include:**
-- SubPageLayout hero (kicker: "Coverage Made Simple", title: "Insurance & Financing")
-- "We're in-network with most major PPOs" statement
-- List of accepted insurance providers (placeholder list with actual logos if available)
-- What to do if uninsured / self-pay options
-- Flexible payment / financing options
-- How to verify your benefits (phone number CTA)
-- FAQ accordion (3–5 questions)
-- CTA: Call to Verify Your Coverage
+**Status:** Built  
+**In-Network Providers (equal-weight card grid, 5 cards):**
+1. Aetna Dental
+2. Cigna Dental
+3. Delta Dental
+4. Guardian Dental
+5. UnitedHealthcare Dental
+
+**Sections:**
+- SubPageLayout hero (kicker: "Financial Peace of Mind", title: "Insurance & Financing", gradient: "green")
+- Intro paragraph
+- 5-card in-network provider grid (`auto-fit, minmax(160px, 1fr)`) — "Other Accepted Plans" section has been removed
+- Out-of-Network Patients card + Flexible Financing / CareCredit card (side-by-side)
+- "No Insurance? No Problem." purple-accent callout
+- CTA row: Call + View Patient Forms
 
 ---
 
@@ -508,7 +533,7 @@ Below is every route in the site with its current status and what it needs to co
 - Fields: Parent Name, Child's Name, Child's Age/DOB, Phone, Email, Preferred Date/Time, Insurance Provider, Message/Reason for Visit
 - "What happens next" reassurance text (we'll call within 1 business day)
 - Office phone as alternative
-- Trust signals sidebar: 4.9★, Same-Day, Hablamos Español
+- Trust signals sidebar: 4.8★, Same-Day, Hablamos Español
 
 ---
 
@@ -543,7 +568,7 @@ Below is every route in the site with its current status and what it needs to co
 **Status:** Exists (needs content)  
 **Must include:**
 - SubPageLayout hero (kicker: "What Parents Say", title: "Patient Reviews")
-- 4.9★ aggregate rating badge
+- 4.8★ aggregate rating badge
 - Grid of written testimonials (8–12 cards) — `.review-card` style
 - Google Reviews embed or CTA to view on Google
 - CTA: Leave us a review on Google
@@ -562,7 +587,7 @@ Below is every route in the site with its current status and what it needs to co
 
 ---
 
-### `/pay` — Pay Now (Placeholder)
+### `/pay-now` — Pay Now (Placeholder)
 **Status:** Linked from footer "Pay Now" button — page may not exist yet  
 **Must include:** Simple page with payment portal link or embedded payment widget
 
@@ -638,4 +663,4 @@ Do not create new components unless necessary — prefer composing existing ones
 
 ---
 
-*Last updated: April 2026. Reference CLAUDE.md for Claude Code-specific rules.*
+*Last updated: April 29, 2026. Reference CLAUDE.md for Claude Code-specific rules.*
