@@ -3,7 +3,6 @@ import ServicesGrid from '../components/ServicesGrid'
 import MeetOurDoctors from '../components/MeetOurDoctors'
 import ReviewBubbles from '../components/ReviewBubbles'
 import ValueProps from '../components/ValueProps'
-import InstagramFeed from '../components/InstagramFeed'
 import InsuranceBanner from '../components/InsuranceBanner'
 import { client } from '../sanity/lib/client'
 import { featuredReviewsQuery } from '../sanity/lib/queries'
@@ -24,7 +23,6 @@ export default async function HomePage() {
       <MeetOurDoctors />
       <ReviewBubbles sanityReviews={reviews} />
       <ValueProps />
-      <InstagramFeed />
     </>
   )
 }
