@@ -6,7 +6,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Insurance & Financing | Kids Dentist Grayslake, IL',
   description:
-    'Kids Dentist Grayslake accepts most major dental insurance plans including Delta Dental, BlueCross, Cigna, and Medicaid. Learn about financing options and out-of-network benefits.',
+    'Kids Dentist Grayslake is in-network with Aetna, Cigna, Delta Dental, Guardian, and UnitedHealthcare. We also accept Medicaid, CHIP, and out-of-network plans. Learn about financing options.',
   openGraph: {
     title: 'Insurance & Financing | Kids Dentist Grayslake, IL',
     description:
@@ -18,26 +18,12 @@ export const metadata: Metadata = {
   },
 }
 
-const FEATURED_INSURANCE = {
-  name: 'Delta Dental',
-  note: 'Premier Preferred Provider',
-  description:
-    'As a Delta Dental Premier and PPO provider, our patients receive the highest level of benefits and the lowest out-of-pocket costs available under most Delta Dental plans.',
-}
-
-const ACCEPTED_PLANS = [
-  'BlueCross BlueShield',
-  'Cigna',
-  'Aetna',
-  'United Healthcare',
-  'Humana',
-  'Guardian',
-  'MetLife',
-  'Principal',
-  'Sun Life',
-  'Ameritas',
-  'Medicaid (All Kids)',
-  'CHIP',
+const IN_NETWORK_PROVIDERS = [
+  { name: 'Aetna Dental' },
+  { name: 'Cigna Dental' },
+  { name: 'Delta Dental' },
+  { name: 'Guardian Dental' },
+  { name: 'UnitedHealthcare Dental' },
 ]
 
 const OUT_OF_NETWORK_POINTS = [
@@ -76,141 +62,109 @@ export default function InsuranceInfoPage() {
           </p>
         </AnimatedSection>
 
-        {/* Delta Dental featured */}
+        {/* In-network provider cards */}
         <AnimatedSection>
-          <div
+          <h2
             style={{
-              background: 'linear-gradient(135deg, #4A90A4, #6BA899)',
-              borderRadius: '2rem',
-              padding: '2.5rem 2rem',
-              marginBottom: '2rem',
-              color: '#fff',
+              fontFamily: 'Nunito, sans-serif',
+              fontWeight: 900,
+              fontSize: 'clamp(1.2rem, 2.5vw, 1.5rem)',
+              color: '#4A90A4',
+              textAlign: 'center',
+              margin: '0 0 1.75rem',
+            }}
+          >
+            In-Network Providers
+          </h2>
+          <div
+            className="insurance-grid"
+            style={{
               display: 'grid',
-              gridTemplateColumns: 'auto 1fr',
-              gap: '1.5rem',
-              alignItems: 'center',
-              boxShadow: '0 12px 36px rgba(74,144,164,0.28)',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
+              gap: '1.25rem',
+              marginBottom: '1.25rem',
             }}
           >
-            <div
-              style={{
-                width: '64px',
-                height: '64px',
-                borderRadius: '1rem',
-                background: 'rgba(255,255,255,0.18)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '1.75rem',
-                flexShrink: 0,
-              }}
-              aria-hidden="true"
-            >
-              🛡️
-            </div>
-            <div>
+            {IN_NETWORK_PROVIDERS.map((provider) => (
               <div
+                key={provider.name}
+                className="insurance-card"
                 style={{
-                  display: 'inline-block',
-                  background: 'rgba(255,255,255,0.22)',
-                  borderRadius: '100px',
-                  padding: '0.2rem 0.85rem',
-                  fontSize: '0.7rem',
-                  fontWeight: 800,
-                  letterSpacing: '0.08em',
-                  textTransform: 'uppercase',
-                  marginBottom: '0.5rem',
-                  fontFamily: 'Nunito, sans-serif',
+                  background: '#fff',
+                  border: '1.5px solid rgba(74,144,164,0.18)',
+                  borderRadius: '1.75rem',
+                  padding: '1.75rem 1.25rem',
+                  textAlign: 'center',
+                  boxShadow: '0 4px 18px rgba(74,144,164,0.07)',
+                  transition: 'box-shadow 0.22s ease, transform 0.22s ease',
                 }}
               >
-                {FEATURED_INSURANCE.note}
-              </div>
-              <h2
-                style={{
-                  fontFamily: 'Nunito, sans-serif',
-                  fontWeight: 900,
-                  fontSize: 'clamp(1.3rem, 3vw, 1.75rem)',
-                  margin: '0 0 0.6rem',
-                  lineHeight: 1.2,
-                }}
-              >
-                {FEATURED_INSURANCE.name}
-              </h2>
-              <p style={{ fontSize: '0.92rem', lineHeight: 1.7, margin: 0, opacity: 0.9, fontWeight: 500 }}>
-                {FEATURED_INSURANCE.description}
-              </p>
-            </div>
-          </div>
-        </AnimatedSection>
-
-        {/* Other accepted plans */}
-        <AnimatedSection>
-          <div
-            style={{
-              background: 'linear-gradient(135deg, rgba(107,168,153,0.07), rgba(74,144,164,0.05))',
-              border: '1.5px solid rgba(74,144,164,0.12)',
-              borderRadius: '2rem',
-              padding: '2.5rem 2rem',
-              marginBottom: '4rem',
-            }}
-          >
-            <h2
-              style={{
-                fontFamily: 'Nunito, sans-serif',
-                fontWeight: 900,
-                fontSize: 'clamp(1.2rem, 2.5vw, 1.5rem)',
-                color: '#4A90A4',
-                margin: '0 0 1.5rem',
-                textAlign: 'center',
-              }}
-            >
-              Other Accepted Plans
-            </h2>
-            <div
-              style={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                gap: '0.65rem',
-                justifyContent: 'center',
-              }}
-            >
-              {ACCEPTED_PLANS.map((plan) => (
-                <span
-                  key={plan}
+                <div
                   style={{
-                    background: '#fff',
-                    border: '1.5px solid rgba(74,144,164,0.18)',
-                    borderRadius: '100px',
-                    padding: '0.45rem 1.1rem',
-                    fontSize: '0.875rem',
-                    fontWeight: 700,
-                    color: '#4A90A4',
+                    width: '48px',
+                    height: '48px',
+                    borderRadius: '1rem',
+                    background: 'linear-gradient(135deg, #dcf0ee, #b8e0da)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    margin: '0 auto 1rem',
+                  }}
+                  aria-hidden="true"
+                >
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4A90A4" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" opacity="0"/>
+                    <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                  </svg>
+                </div>
+                <p
+                  style={{
                     fontFamily: 'Nunito, sans-serif',
-                    boxShadow: '0 2px 8px rgba(74,144,164,0.06)',
+                    fontWeight: 900,
+                    fontSize: '0.95rem',
+                    color: '#1f2937',
+                    margin: '0 0 0.4rem',
+                    lineHeight: 1.3,
                   }}
                 >
-                  {plan}
+                  {provider.name}
+                </p>
+                <span
+                  style={{
+                    display: 'inline-block',
+                    background: 'rgba(74,144,164,0.10)',
+                    borderRadius: '100px',
+                    padding: '0.15rem 0.7rem',
+                    fontSize: '0.7rem',
+                    fontWeight: 800,
+                    letterSpacing: '0.06em',
+                    textTransform: 'uppercase',
+                    color: '#4A90A4',
+                    fontFamily: 'Nunito, sans-serif',
+                  }}
+                >
+                  In-Network
                 </span>
-              ))}
-            </div>
-            <p
-              style={{
-                textAlign: 'center',
-                fontSize: '0.85rem',
-                color: '#9ca3af',
-                marginTop: '1.25rem',
-                fontWeight: 500,
-              }}
-            >
-              Not seeing your plan? Call us — we likely accept it.{' '}
-              <Link
-                href="tel:+18472231400"
-                style={{ color: '#4A90A4', fontWeight: 700, textDecoration: 'none' }}
-              >
-                (847) 223-1400
-              </Link>
-            </p>
+              </div>
+            ))}
           </div>
+          <p
+            style={{
+              textAlign: 'center',
+              fontSize: '0.85rem',
+              color: '#9ca3af',
+              marginBottom: '4rem',
+              fontWeight: 500,
+            }}
+          >
+            Don&apos;t see your plan? Call us — we likely accept it.{' '}
+            <Link
+              href="tel:+18472231400"
+              style={{ color: '#4A90A4', fontWeight: 700, textDecoration: 'none' }}
+            >
+              (847) 223-1400
+            </Link>
+          </p>
         </AnimatedSection>
 
         {/* Out-of-network */}
@@ -435,6 +389,13 @@ export default function InsuranceInfoPage() {
         </AnimatedSection>
 
       </div>
+
+      <style>{`
+        .insurance-card:hover {
+          box-shadow: 0 8px 28px rgba(74,144,164,0.16) !important;
+          transform: translateY(-4px) !important;
+        }
+      `}</style>
     </SubPageLayout>
   )
 }
