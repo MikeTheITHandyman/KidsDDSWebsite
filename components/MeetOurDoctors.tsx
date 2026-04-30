@@ -89,7 +89,7 @@ export default function MeetOurDoctors() {
         }}
       />
 
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem' }}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
 
         {/* Header */}
         <motion.div
@@ -153,21 +153,20 @@ export default function MeetOurDoctors() {
               {/* Blob photo container */}
               <div
                 style={{
-                  width: '256px',
-                  height: '256px',
+                  width: '80%',
+                  aspectRatio: '1',
                   margin: '0 auto 1.4rem',
                   borderRadius: doc.blobRadius,
                   background: `linear-gradient(135deg, ${doc.gradientFrom}, ${doc.gradientTo})`,
                   position: 'relative',
                   overflow: 'hidden',
-                  flexShrink: 0,
                 }}
               >
                 <Image
                   src={doc.photo}
                   alt={`Headshot of ${doc.name}`}
                   fill
-                  sizes="256px"
+                  sizes="(max-width: 540px) 80vw, (max-width: 900px) 35vw, 18vw"
                   style={{ objectFit: 'cover', objectPosition: 'top center' }}
                 />
               </div>
