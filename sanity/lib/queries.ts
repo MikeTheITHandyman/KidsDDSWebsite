@@ -39,49 +39,49 @@ export const featuredReviewsQuery = groq`
 `
 
 export const allEventsQuery = groq`
-  *[_type == "event"] | order(dateTime desc) {
+  *[_type == "event"] | order(coalesce(eventDate, dateTime) desc) {
     _id,
-    "title": name,
-    "slug": slug.current,
-    "mainImage": image,
-    "excerpt": description,
-    "eventDate": dateTime,
+    "title":     coalesce(title, name),
+    "slug":      slug.current,
+    "mainImage": coalesce(mainImage, image),
+    "excerpt":   coalesce(excerpt, description),
+    "eventDate": coalesce(eventDate, dateTime),
   }
 `
 
 export const eventBySlugQuery = groq`
   *[_type == "event" && slug.current == $slug][0] {
     _id,
-    "title": name,
-    "slug": slug.current,
-    "mainImage": image,
-    "excerpt": description,
+    "title":     coalesce(title, name),
+    "slug":      slug.current,
+    "mainImage": coalesce(mainImage, image),
+    "excerpt":   coalesce(excerpt, description),
     body,
-    "eventDate": dateTime,
+    "eventDate": coalesce(eventDate, dateTime),
     location,
     registrationUrl,
   }
 `
 
 export const upcomingEventsQuery = groq`
-  *[_type == "event" && isPublished == true && dateTime > now()] | order(dateTime asc) [0..3] {
+  *[_type == "event" && isPublished == true && coalesce(eventDate, dateTime) > now()] | order(coalesce(eventDate, dateTime) asc) [0..3] {
     _id,
-    "title": name,
-    "slug": slug.current,
-    "eventDate": dateTime,
+    "title":     coalesce(title, name),
+    "slug":      slug.current,
+    "eventDate": coalesce(eventDate, dateTime),
     location,
-    "mainImage": image,
-    "excerpt": description,
+    "mainImage": coalesce(mainImage, image),
+    "excerpt":   coalesce(excerpt, description),
     registrationUrl,
   }
 `
 
 export const featuredEventQuery = groq`
   *[_type == "event" && isFeatured == true] | order(_updatedAt desc)[0] {
-    "title": name,
-    "slug": slug.current,
-    "eventDate": dateTime,
+    "title":     coalesce(title, name),
+    "slug":      slug.current,
+    "eventDate": coalesce(eventDate, dateTime),
     location,
-    "excerpt": description,
+    "excerpt":   coalesce(excerpt, description),
   }
 `
