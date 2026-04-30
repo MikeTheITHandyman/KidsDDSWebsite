@@ -3,7 +3,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { motion } from 'framer-motion'
 
-const VISIBLE = 3
 const INTERVAL_MS = 4000
 
 const services = [
@@ -89,17 +88,34 @@ const services = [
   },
 ]
 
-const MAX_INDEX = services.length - VISIBLE // 2
-
 export default function ServicesGrid() {
   const [index, setIndex] = useState(0)
   const [paused, setPaused] = useState(false)
+  const [visibleCount, setVisibleCount] = useState(3)
 
-  const advance = useCallback(() => {
-    setIndex((i) => (i >= MAX_INDEX ? 0 : i + 1))
+  useEffect(() => {
+    const update = () => {
+      if (window.innerWidth < 640) setVisibleCount(1)
+      else if (window.innerWidth < 1024) setVisibleCount(2)
+      else setVisibleCount(3)
+    }
+    update()
+    window.addEventListener('resize', update)
+    return () => window.removeEventListener('resize', update)
   }, [])
 
-  const retreat = () => setIndex((i) => (i <= 0 ? MAX_INDEX : i - 1))
+  const maxIndex = services.length - visibleCount
+
+  // Clamp index when visibleCount changes (e.g. rotating device)
+  useEffect(() => {
+    if (index > maxIndex) setIndex(Math.max(0, maxIndex))
+  }, [maxIndex, index])
+
+  const advance = useCallback(() => {
+    setIndex((i) => (i >= maxIndex ? 0 : i + 1))
+  }, [maxIndex])
+
+  const retreat = () => setIndex((i) => (i <= 0 ? maxIndex : i - 1))
 
   useEffect(() => {
     if (paused) return
@@ -107,9 +123,7 @@ export default function ServicesGrid() {
     return () => clearInterval(id)
   }, [paused, advance])
 
-  // x% is relative to the track itself.
-  // Track = (services.length / VISIBLE) * 100% of container = 166.67%
-  // One card = (1 / services.length) * 100% of track = 20% of track = 33.33% of container
+  const trackWidthPct = (services.length / visibleCount) * 100
   const xPercent = -(index * (100 / services.length))
 
   return (
@@ -122,7 +136,7 @@ export default function ServicesGrid() {
       </div>
 
       <div
-        style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 2rem' }}
+        style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1rem' }}
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >
@@ -131,7 +145,7 @@ export default function ServicesGrid() {
           <motion.div
             style={{
               display: 'flex',
-              width: `${(services.length / VISIBLE) * 100}%`,
+              width: `${trackWidthPct}%`,
             }}
             animate={{ x: `${xPercent}%` }}
             transition={{ type: 'spring', stiffness: 280, damping: 32, mass: 0.9 }}
@@ -142,11 +156,11 @@ export default function ServicesGrid() {
                 style={{
                   width: `${100 / services.length}%`,
                   flexShrink: 0,
-                  padding: '0 0.875rem',
+                  padding: '0 0.625rem',
                 }}
               >
                 <motion.div
-                  className={`service-card`}
+                  className="service-card"
                   whileHover={{
                     y: -5,
                     scale: 1.02,
@@ -155,10 +169,7 @@ export default function ServicesGrid() {
                   whileTap={{ scale: 0.97 }}
                   style={{ height: '100%' }}
                 >
-                  <div
-                    className="service-icon"
-                    style={{ background: '#a6a8d2' }}
-                  >
+                  <div className="service-icon" style={{ background: '#a6a8d2' }}>
                     {svc.icon}
                   </div>
                   <h3>{svc.title}</h3>
@@ -185,23 +196,15 @@ export default function ServicesGrid() {
             marginTop: '2rem',
           }}
         >
-          {/* Prev */}
           <button
             onClick={retreat}
             aria-label="Previous services"
             style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: '40px',
-              height: '40px',
-              borderRadius: '50%',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              width: '40px', height: '40px', borderRadius: '50%',
               border: '1.5px solid rgba(74,144,164,0.3)',
-              background: 'white',
-              color: 'var(--brand-600)',
-              cursor: 'pointer',
-              transition: 'all 0.2s',
-              flexShrink: 0,
+              background: 'white', color: 'var(--brand-600)',
+              cursor: 'pointer', transition: 'all 0.2s', flexShrink: 0,
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.background = 'var(--brand-600)'
@@ -219,9 +222,8 @@ export default function ServicesGrid() {
             </svg>
           </button>
 
-          {/* Dots */}
           <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-            {Array.from({ length: MAX_INDEX + 1 }).map((_, i) => (
+            {Array.from({ length: maxIndex + 1 }).map((_, i) => (
               <button
                 key={i}
                 onClick={() => setIndex(i)}
@@ -240,23 +242,15 @@ export default function ServicesGrid() {
             ))}
           </div>
 
-          {/* Next */}
           <button
             onClick={advance}
             aria-label="Next services"
             style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: '40px',
-              height: '40px',
-              borderRadius: '50%',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              width: '40px', height: '40px', borderRadius: '50%',
               border: '1.5px solid rgba(74,144,164,0.3)',
-              background: 'white',
-              color: 'var(--brand-600)',
-              cursor: 'pointer',
-              transition: 'all 0.2s',
-              flexShrink: 0,
+              background: 'white', color: 'var(--brand-600)',
+              cursor: 'pointer', transition: 'all 0.2s', flexShrink: 0,
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.background = 'var(--brand-600)'

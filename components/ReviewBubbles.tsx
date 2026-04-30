@@ -291,6 +291,7 @@ export default function ReviewBubbles({ sanityReviews }: ReviewBubblesProps) {
                 }}
               >
                 <article
+                  className="review-bubble-card"
                   style={{
                     background: 'white',
                     borderRadius: '2rem',
@@ -421,6 +422,12 @@ export default function ReviewBubbles({ sanityReviews }: ReviewBubblesProps) {
         </motion.div>
 
       </div>
+
+      <style>{`
+        @media (max-width: 640px) {
+          .review-bubble-card { padding: 1.5rem 1.25rem !important; border-radius: 1.25rem !important; }
+        }
+      `}</style>
     </section>
   )
 }
