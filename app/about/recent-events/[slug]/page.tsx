@@ -19,6 +19,9 @@ interface SanityEvent {
   registrationUrl?: string
 }
 
+export const dynamicParams = true
+export const revalidate = 60
+
 interface Props {
   params: Promise<{ slug: string }>
 }
