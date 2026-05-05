@@ -34,7 +34,7 @@ const SERVICES = [
     tagline: 'Fix it early - protect it for life.',
     description:
       'Tooth-colored fillings, pediatric crowns, pulp therapy, and extractions - all performed with the gentle approach and honest communication children and parents deserve.',
-    href: '/services/restorative-dentistry',
+    href: '/services/restorative',
     gradient: 'linear-gradient(135deg, #D1FAE5, #A7F3D0)',
     accentColor: '#6BA899',
     icon: '✨',
@@ -54,7 +54,7 @@ const SERVICES = [
     tagline: 'Every child deserves excellent care.',
     description:
       'Specialized experience treating children with autism, Down syndrome, cerebral palsy, and sensory processing differences. Dr. Rutcosky leads our special needs program.',
-    href: '/services/sedation-dentistry',
+    href: '/services/special-needs',
     gradient: 'linear-gradient(135deg, #EDE9FE, #DDD6FE)',
     accentColor: '#7C3AED',
     icon: '💜',
@@ -64,7 +64,7 @@ const SERVICES = [
     tagline: 'Fast care when your child needs it most.',
     description:
       'Knocked-out tooth, sudden toothache, or dental trauma - call us immediately. Same-day emergency appointments are available for our patients and for new families in need.',
-    href: '/request-appointment',
+    href: '/services/emergency',
     gradient: 'linear-gradient(135deg, #FFE4E6, #FECDD3)',
     accentColor: '#E97D63',
     icon: '🚨',

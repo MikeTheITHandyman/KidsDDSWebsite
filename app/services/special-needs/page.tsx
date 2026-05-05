@@ -1,0 +1,246 @@
+import SubPageLayout from '@/components/SubPageLayout'
+import AnimatedSection from '@/components/AnimatedSection'
+import Link from 'next/link'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Special Needs Dentistry | Kids Dentist Grayslake, IL',
+  description:
+    'Compassionate, specialized dental care for children with autism, Down syndrome, cerebral palsy, sensory processing differences, and complex medical needs. Led by Dr. Dave Rutcosky in Grayslake, IL.',
+  openGraph: {
+    title: 'Special Needs Dentistry | Kids Dentist Grayslake, IL',
+    description:
+      'Every child deserves excellent dental care. Dr. Rutcosky leads our specialized program for children with diverse needs in Grayslake, IL.',
+    url: 'https://kidsdds.com/services/special-needs',
+    siteName: 'Kids Dentist',
+    locale: 'en_US',
+    type: 'website',
+  },
+}
+
+const WHO_WE_SERVE = [
+  { icon: '🧩', label: 'Autism Spectrum Disorder (ASD)' },
+  { icon: '🧠', label: 'Sensory Processing Differences' },
+  { icon: '💙', label: 'Down Syndrome' },
+  { icon: '🏃', label: 'Cerebral Palsy & Motor Differences' },
+  { icon: '⚡', label: 'ADHD & Behavioral Differences' },
+  { icon: '🩺', label: 'Complex Medical Histories' },
+]
+
+const APPROACH = [
+  {
+    title: 'Pre-Visit Familiarization',
+    body: 'We welcome families to schedule a no-treatment "meet and greet" visit before the first appointment. Children can explore the office, meet our team, sit in the chair, and hear the sounds of the equipment - all without any dental work. For many children with anxiety or sensory differences, familiarity is the most powerful tool we have.',
+  },
+  {
+    title: 'Tell-Show-Do Technique',
+    body: 'Every step of the appointment is narrated before it happens. We show your child each instrument, explain what it does in simple, friendly language, and only proceed when your child is ready. This approach removes the element of surprise and builds trust at every visit.',
+  },
+  {
+    title: 'Sedation Options When Needed',
+    body: 'When a child needs a higher level of support, Dr. Rutcosky is certified in general anesthesiology and can provide the full range of sedation options - from nitrous oxide through full in-office general anesthesia. No child is ever denied the care they need because of anxiety or behavioral differences.',
+  },
+  {
+    title: 'Communication with Caregivers',
+    body: 'We know that you are the expert on your child. Before every appointment, we ask about your child\'s specific triggers, preferences, and communication style. That information shapes everything we do from the moment you walk in the door.',
+  },
+]
+
+export default function SpecialNeedsDentistryPage() {
+  return (
+    <SubPageLayout
+      title="Special Needs Dentistry"
+      subtitle="Every child deserves excellent dental care - regardless of their needs, challenges, or history."
+      kicker="Specialized Care"
+      gradient="green"
+    >
+      <div className="max-w-5xl mx-auto px-4">
+
+        {/* Intro block */}
+        <AnimatedSection>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gap: '3.5rem',
+              alignItems: 'center',
+              marginBottom: '5rem',
+            }}
+            className="service-detail-grid"
+          >
+            <div>
+              <span className="section-kicker">Our Program</span>
+              <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.6rem, 3vw, 2.1rem)', color: 'var(--brand-600)', margin: '0.5rem 0 1.1rem', lineHeight: 1.2 }}>
+                Led by Dr. Dave Rutcosky
+              </h2>
+              <p style={{ color: '#6b7280', fontSize: '1rem', lineHeight: 1.78, fontWeight: 500, marginBottom: '1rem' }}>
+                Dr. Rutcosky is the practice&apos;s specialist in treating children with diverse needs. With over 20 years of pediatric experience and advanced certification in general anesthesiology, he has dedicated his career to ensuring that no child is ever turned away from the care they need.
+              </p>
+              <p style={{ color: '#6b7280', fontSize: '1rem', lineHeight: 1.78, fontWeight: 500 }}>
+                Our team takes the time to understand each child individually - their triggers, their communication style, and their comfort level - before any treatment begins. We adjust our pace, our environment, and our techniques to meet each patient exactly where they are.
+              </p>
+            </div>
+            <div
+              style={{
+                width: '100%',
+                aspectRatio: '4 / 3',
+                borderRadius: '1.5rem',
+                background: 'linear-gradient(135deg, #d2ebe5, #aed8cf)',
+                flexShrink: 0,
+              }}
+              aria-hidden="true"
+            />
+          </div>
+        </AnimatedSection>
+
+        {/* Who we serve */}
+        <AnimatedSection delay={0.05}>
+          <div style={{ marginBottom: '5rem' }}>
+            <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+              <span className="section-kicker">Who We Serve</span>
+              <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.6rem, 3vw, 2.1rem)', color: 'var(--brand-600)', margin: '0.5rem 0 0', lineHeight: 1.2 }}>
+                Experience Across a Wide Range of Needs
+              </h2>
+            </div>
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(3, 1fr)',
+                gap: '1rem',
+              }}
+              className="service-chips-grid"
+            >
+              {WHO_WE_SERVE.map((item) => (
+                <div
+                  key={item.label}
+                  style={{
+                    background: 'linear-gradient(135deg, #d2ebe518, #aed8cf18)',
+                    border: '1.5px solid rgba(107,168,153,0.2)',
+                    borderRadius: '1rem',
+                    padding: '1.25rem 1.25rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.75rem',
+                  }}
+                >
+                  <span style={{ fontSize: '1.5rem', flexShrink: 0 }} aria-hidden="true">{item.icon}</span>
+                  <span style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 700, fontSize: '0.9rem', color: '#4b5563', lineHeight: 1.4 }}>{item.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </AnimatedSection>
+
+        {/* Approach - alternating blocks */}
+        {APPROACH.map((block, i) => (
+          <AnimatedSection key={block.title} delay={i * 0.06}>
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: i % 2 === 0 ? '1fr 1.4fr' : '1.4fr 1fr',
+                gap: '3rem',
+                alignItems: 'center',
+                marginBottom: '4rem',
+              }}
+              className="service-detail-grid"
+            >
+              {i % 2 === 0 && (
+                <div
+                  style={{
+                    width: '100%',
+                    aspectRatio: '4 / 3',
+                    borderRadius: '1.5rem',
+                    background: `linear-gradient(135deg, ${i % 3 === 0 ? '#EDE9FE, #DDD6FE' : i % 3 === 1 ? '#D1FAE5, #A7F3D0' : '#FEF3C7, #FDE68A'})`,
+                    flexShrink: 0,
+                  }}
+                  aria-hidden="true"
+                />
+              )}
+              <div>
+                <h3 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: '1.25rem', color: 'var(--brand-600)', margin: '0 0 0.85rem', lineHeight: 1.3 }}>
+                  {block.title}
+                </h3>
+                <p style={{ color: '#6b7280', fontSize: '0.975rem', lineHeight: 1.78, fontWeight: 500, margin: 0 }}>
+                  {block.body}
+                </p>
+              </div>
+              {i % 2 !== 0 && (
+                <div
+                  style={{
+                    width: '100%',
+                    aspectRatio: '4 / 3',
+                    borderRadius: '1.5rem',
+                    background: `linear-gradient(135deg, ${i % 3 === 0 ? '#EDE9FE, #DDD6FE' : i % 3 === 1 ? '#D1FAE5, #A7F3D0' : '#FEF3C7, #FDE68A'})`,
+                    flexShrink: 0,
+                  }}
+                  aria-hidden="true"
+                />
+              )}
+            </div>
+          </AnimatedSection>
+        ))}
+
+        {/* CTA */}
+        <AnimatedSection delay={0.1}>
+          <div
+            style={{
+              background: 'linear-gradient(135deg, #6BA899, #4A90A4)',
+              borderRadius: '2rem',
+              padding: '3rem 2rem',
+              textAlign: 'center',
+              marginBottom: '2rem',
+              boxShadow: '0 12px 40px rgba(74,144,164,0.22)',
+            }}
+          >
+            <p style={{ fontFamily: 'Nunito, sans-serif', fontSize: '0.78rem', fontWeight: 900, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.72)', marginBottom: '0.6rem' }}>
+              We Are Here for Your Family
+            </p>
+            <h3 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.4rem, 3vw, 1.9rem)', color: '#fff', lineHeight: 1.2, margin: '0 0 0.85rem' }}>
+              Ready to find out how we can help?
+            </h3>
+            <p style={{ fontSize: '1rem', fontWeight: 500, color: 'rgba(255,255,255,0.88)', maxWidth: '440px', margin: '0 auto 1.75rem', lineHeight: 1.7 }}>
+              Call us to talk through your child&apos;s specific needs before booking. We want to make sure your first visit is set up for success.
+            </p>
+            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <Link
+                href="/request-appointment"
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: '0.45rem',
+                  background: '#E8934F', color: '#fff', fontFamily: 'Nunito, sans-serif',
+                  fontWeight: 800, fontSize: '0.95rem', padding: '0.9rem 2rem',
+                  borderRadius: '100px', textDecoration: 'none',
+                  boxShadow: '0 6px 22px rgba(232,147,79,0.45)',
+                }}
+              >
+                Request an Appointment
+              </Link>
+              <a
+                href="tel:+18472231400"
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: '0.45rem',
+                  background: 'rgba(255,255,255,0.15)', color: '#fff',
+                  fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '0.95rem',
+                  padding: '0.9rem 2rem', borderRadius: '100px', textDecoration: 'none',
+                  border: '1.5px solid rgba(255,255,255,0.4)',
+                }}
+              >
+                Call (847) 223-1400
+              </a>
+            </div>
+          </div>
+        </AnimatedSection>
+
+      </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .service-detail-grid { grid-template-columns: 1fr !important; }
+          .service-chips-grid { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+        @media (max-width: 480px) {
+          .service-chips-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
+    </SubPageLayout>
+  )
+}

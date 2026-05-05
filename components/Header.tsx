@@ -25,7 +25,10 @@ const NAV = [
     children: [
       { label: 'All Services', href: '/services' },
       { label: 'Preventive Dentistry', href: '/services/preventive-dentistry' },
+      { label: 'Restorative Dentistry', href: '/services/restorative' },
+      { label: 'Special Needs Dentistry', href: '/services/special-needs' },
       { label: 'Sedation Dentistry', href: '/services/sedation-dentistry' },
+      { label: 'Emergency Dental Care', href: '/services/emergency' },
     ],
   },
   {
