@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 
 const TREATMENTS = [
   {
-    number: '01',
+    icon: '🦷',
     title: 'Tooth-Colored Fillings',
     body: 'When a cavity is caught early, a tooth-colored composite filling is all that\'s needed. We use composite resin that matches your child\'s natural tooth shade - no silver amalgam, no visible metal. The procedure is quick, gentle, and often surprises both kids and parents with how manageable it is.',
     gradientFrom: '#DBEAFE',
@@ -28,7 +28,7 @@ const TREATMENTS = [
     accentColor: '#4A90A4',
   },
   {
-    number: '02',
+    icon: '👑',
     title: 'Pediatric Crowns',
     body: 'When decay is more advanced or a tooth is significantly weakened, a crown provides full coverage protection. We use tooth-colored zirconia crowns for front teeth and durable stainless steel crowns for back molars - both designed to last until the baby tooth naturally falls out.',
     gradientFrom: '#D1FAE5',
@@ -36,7 +36,7 @@ const TREATMENTS = [
     accentColor: '#6BA899',
   },
   {
-    number: '03',
+    icon: '🩺',
     title: 'Pulp Therapy',
     body: 'When decay reaches the nerve of a baby tooth, pulp therapy removes the infected tissue to save the tooth. Preserving baby teeth is important: they hold space for permanent teeth and are essential for proper speech and chewing development. The procedure is gentler than it sounds.',
     gradientFrom: '#FEF3C7',
@@ -44,7 +44,7 @@ const TREATMENTS = [
     accentColor: '#D97706',
   },
   {
-    number: '04',
+    icon: '✂️',
     title: 'Tooth Extractions',
     body: 'Sometimes a tooth is too damaged to save, or a baby tooth needs to come out to make room for an erupting permanent tooth. When an extraction is necessary, we perform it with care, precision, and appropriate anesthesia - ensuring your child feels nothing beyond a light pressure sensation.',
     gradientFrom: '#EDE9FE',
@@ -63,117 +63,89 @@ export default function RestorativeDentistryPage() {
     >
       <div className="max-w-5xl mx-auto px-4">
 
-        {/* Intro block */}
+        {/* Back link */}
         <AnimatedSection>
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              gap: '3.5rem',
-              alignItems: 'center',
-              marginBottom: '5rem',
-            }}
-            className="service-detail-grid"
+          <Link
+            href="/services"
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', color: '#4A90A4', fontFamily: 'Nunito, sans-serif', fontWeight: 700, fontSize: '0.875rem', textDecoration: 'none', marginBottom: '2.5rem' }}
           >
-            <div>
-              <span className="section-kicker">Why Early Treatment Matters</span>
-              <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.6rem, 3vw, 2.1rem)', color: 'var(--brand-600)', margin: '0.5rem 0 1.1rem', lineHeight: 1.2 }}>
-                A Small Cavity Is a Filling. Not for Long.
-              </h2>
-              <p style={{ color: '#6b7280', fontSize: '1rem', lineHeight: 1.78, fontWeight: 500, marginBottom: '1rem' }}>
-                Untreated cavities in baby teeth can cause severe pain, lead to dangerous infections, and directly affect the development and spacing of the permanent teeth growing underneath. Baby teeth are not just placeholders - they support speech, nutrition, and jaw development.
-              </p>
-              <p style={{ color: '#6b7280', fontSize: '1rem', lineHeight: 1.78, fontWeight: 500 }}>
-                We will always be honest about where your child stands - and we treat problems at the earliest possible stage. Our goal is to keep treatment as simple and conservative as possible.
-              </p>
-            </div>
-            <div
-              style={{
-                width: '100%',
-                aspectRatio: '4 / 3',
-                borderRadius: '1.5rem',
-                background: 'linear-gradient(135deg, #fef0dc, #faddaa)',
-                flexShrink: 0,
-              }}
-              aria-hidden="true"
-            />
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+            Back to All Services
+          </Link>
+        </AnimatedSection>
+
+        {/* Intro */}
+        <AnimatedSection>
+          <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+            <span className="section-kicker">Why Early Treatment Matters</span>
+            <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.6rem, 3vw, 2.1rem)', color: 'var(--brand-600)', margin: '0.5rem 0 1.1rem', lineHeight: 1.2 }}>
+              A Small Cavity Is a Filling. Not for Long.
+            </h2>
           </div>
+          <p style={{ textAlign: 'center', fontSize: '1.05rem', fontWeight: 500, color: '#6b7280', maxWidth: '640px', margin: '0 auto 1rem', lineHeight: 1.78 }}>
+            Untreated cavities in baby teeth can cause severe pain, lead to dangerous infections, and directly affect the development and spacing of the permanent teeth growing underneath. Baby teeth are not just placeholders - they support speech, nutrition, and jaw development.
+          </p>
+          <p style={{ textAlign: 'center', fontSize: '1rem', fontWeight: 500, color: '#6b7280', maxWidth: '600px', margin: '0 auto 4rem', lineHeight: 1.78 }}>
+            We will always be honest about where your child stands - and we treat problems at the earliest possible stage. Our goal is to keep treatment as simple and conservative as possible.
+          </p>
         </AnimatedSection>
 
         {/* Treatment options */}
         <AnimatedSection delay={0.05}>
-          <div style={{ marginBottom: '5rem' }}>
-            <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-              <span className="section-kicker">Treatment Options</span>
-              <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.6rem, 3vw, 2.1rem)', color: 'var(--brand-600)', margin: '0.5rem 0 0', lineHeight: 1.2 }}>
-                The Right Treatment for Every Situation
-              </h2>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-              {TREATMENTS.map((t, i) => (
-                <AnimatedSection key={t.number} delay={i * 0.07}>
-                  <div
-                    style={{
-                      display: 'grid',
-                      gridTemplateColumns: i % 2 === 0 ? 'auto 1fr 1.2fr' : 'auto 1.2fr 1fr',
-                      gap: '2.5rem',
-                      alignItems: 'center',
-                      background: '#fff',
-                      borderRadius: '1.5rem',
-                      padding: '2rem 2.25rem',
-                      border: '1.5px solid rgba(74,144,164,0.09)',
-                      boxShadow: '0 2px 16px rgba(74,144,164,0.06)',
-                    }}
-                    className="treatment-row"
-                  >
-                    <div
-                      style={{
-                        width: '52px', height: '52px', borderRadius: '50%',
-                        background: `linear-gradient(135deg, ${t.gradientFrom}, ${t.gradientTo})`,
-                        display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        fontFamily: 'Nunito, sans-serif', fontWeight: 900,
-                        fontSize: '0.88rem', color: t.accentColor, flexShrink: 0,
-                      }}
-                    >
-                      {t.number}
-                    </div>
-                    {i % 2 === 0 ? (
-                      <>
-                        <div>
-                          <h3 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: '1.1rem', color: 'var(--brand-600)', margin: '0 0 0.5rem' }}>{t.title}</h3>
-                          <p style={{ color: '#6b7280', fontSize: '0.925rem', lineHeight: 1.75, fontWeight: 500, margin: 0 }}>{t.body}</p>
-                        </div>
-                        <div
-                          style={{
-                            width: '100%', aspectRatio: '16 / 9',
-                            borderRadius: '1rem',
-                            background: `linear-gradient(135deg, ${t.gradientFrom}, ${t.gradientTo})`,
-                          }}
-                          aria-hidden="true"
-                        />
-                      </>
-                    ) : (
-                      <>
-                        <div
-                          style={{
-                            width: '100%', aspectRatio: '16 / 9',
-                            borderRadius: '1rem',
-                            background: `linear-gradient(135deg, ${t.gradientFrom}, ${t.gradientTo})`,
-                          }}
-                          aria-hidden="true"
-                        />
-                        <div>
-                          <h3 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: '1.1rem', color: 'var(--brand-600)', margin: '0 0 0.5rem' }}>{t.title}</h3>
-                          <p style={{ color: '#6b7280', fontSize: '0.925rem', lineHeight: 1.75, fontWeight: 500, margin: 0 }}>{t.body}</p>
-                        </div>
-                      </>
-                    )}
-                  </div>
-                </AnimatedSection>
-              ))}
-            </div>
+          <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+            <span className="section-kicker">Treatment Options</span>
+            <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.6rem, 3vw, 2.1rem)', color: 'var(--brand-600)', margin: '0.5rem 0 0', lineHeight: 1.2 }}>
+              The Right Treatment for Every Situation
+            </h2>
           </div>
         </AnimatedSection>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', marginBottom: '5rem' }}>
+          {TREATMENTS.map((t, i) => (
+            <AnimatedSection key={t.title} delay={i * 0.06}>
+              <div
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'auto 1fr',
+                  gap: '1.5rem',
+                  background: `linear-gradient(135deg, ${t.gradientFrom}55, ${t.gradientTo}33)`,
+                  border: `1.5px solid ${t.accentColor}22`,
+                  borderRadius: '1.5rem',
+                  padding: '1.75rem',
+                  alignItems: 'flex-start',
+                }}
+              >
+                <div
+                  style={{
+                    width: '52px',
+                    height: '52px',
+                    borderRadius: '1rem',
+                    background: `linear-gradient(135deg, ${t.gradientFrom}, ${t.gradientTo})`,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '1.5rem',
+                    flexShrink: 0,
+                    boxShadow: `0 4px 14px ${t.accentColor}22`,
+                  }}
+                  aria-hidden="true"
+                >
+                  {t.icon}
+                </div>
+                <div>
+                  <h3 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: '1.05rem', color: t.accentColor, margin: '0 0 0.5rem', lineHeight: 1.3 }}>
+                    {t.title}
+                  </h3>
+                  <p style={{ fontSize: '0.92rem', lineHeight: 1.72, color: '#6b7280', margin: 0 }}>
+                    {t.body}
+                  </p>
+                </div>
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
 
         {/* CTA */}
         <AnimatedSection delay={0.1}>
@@ -215,14 +187,6 @@ export default function RestorativeDentistryPage() {
         </AnimatedSection>
 
       </div>
-
-      <style>{`
-        @media (max-width: 768px) {
-          .service-detail-grid { grid-template-columns: 1fr !important; }
-          .treatment-row { grid-template-columns: auto 1fr !important; }
-          .treatment-row > div:last-child[aria-hidden] { display: none; }
-        }
-      `}</style>
     </SubPageLayout>
   )
 }

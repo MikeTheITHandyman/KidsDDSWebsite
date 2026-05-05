@@ -29,20 +29,36 @@ const WHO_WE_SERVE = [
 
 const APPROACH = [
   {
+    icon: '🏠',
     title: 'Pre-Visit Familiarization',
     body: 'We welcome families to schedule a no-treatment "meet and greet" visit before the first appointment. Children can explore the office, meet our team, sit in the chair, and hear the sounds of the equipment - all without any dental work. For many children with anxiety or sensory differences, familiarity is the most powerful tool we have.',
+    gradientFrom: '#EDE9FE',
+    gradientTo: '#DDD6FE',
+    accentColor: '#7C3AED',
   },
   {
+    icon: '💬',
     title: 'Tell-Show-Do Technique',
     body: 'Every step of the appointment is narrated before it happens. We show your child each instrument, explain what it does in simple, friendly language, and only proceed when your child is ready. This approach removes the element of surprise and builds trust at every visit.',
+    gradientFrom: '#D1FAE5',
+    gradientTo: '#A7F3D0',
+    accentColor: '#6BA899',
   },
   {
+    icon: '😌',
     title: 'Sedation Options When Needed',
     body: 'When a child needs a higher level of support, Dr. Rutcosky is certified in general anesthesiology and can provide the full range of sedation options - from nitrous oxide through full in-office general anesthesia. No child is ever denied the care they need because of anxiety or behavioral differences.',
+    gradientFrom: '#DBEAFE',
+    gradientTo: '#BAE6FD',
+    accentColor: '#4A90A4',
   },
   {
+    icon: '🤝',
     title: 'Communication with Caregivers',
     body: 'We know that you are the expert on your child. Before every appointment, we ask about your child\'s specific triggers, preferences, and communication style. That information shapes everything we do from the moment you walk in the door.',
+    gradientFrom: '#FEF3C7',
+    gradientTo: '#FDE68A',
+    accentColor: '#D97706',
   },
 ]
 
@@ -56,47 +72,39 @@ export default function SpecialNeedsDentistryPage() {
     >
       <div className="max-w-5xl mx-auto px-4">
 
-        {/* Intro block */}
+        {/* Back link */}
         <AnimatedSection>
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              gap: '3.5rem',
-              alignItems: 'center',
-              marginBottom: '5rem',
-            }}
-            className="service-detail-grid"
+          <Link
+            href="/services"
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', color: '#4A90A4', fontFamily: 'Nunito, sans-serif', fontWeight: 700, fontSize: '0.875rem', textDecoration: 'none', marginBottom: '2.5rem' }}
           >
-            <div>
-              <span className="section-kicker">Our Program</span>
-              <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.6rem, 3vw, 2.1rem)', color: 'var(--brand-600)', margin: '0.5rem 0 1.1rem', lineHeight: 1.2 }}>
-                Led by Dr. Dave Rutcosky
-              </h2>
-              <p style={{ color: '#6b7280', fontSize: '1rem', lineHeight: 1.78, fontWeight: 500, marginBottom: '1rem' }}>
-                Dr. Rutcosky is the practice&apos;s specialist in treating children with diverse needs. With over 20 years of pediatric experience and advanced certification in general anesthesiology, he has dedicated his career to ensuring that no child is ever turned away from the care they need.
-              </p>
-              <p style={{ color: '#6b7280', fontSize: '1rem', lineHeight: 1.78, fontWeight: 500 }}>
-                Our team takes the time to understand each child individually - their triggers, their communication style, and their comfort level - before any treatment begins. We adjust our pace, our environment, and our techniques to meet each patient exactly where they are.
-              </p>
-            </div>
-            <div
-              style={{
-                width: '100%',
-                aspectRatio: '4 / 3',
-                borderRadius: '1.5rem',
-                background: 'linear-gradient(135deg, #d2ebe5, #aed8cf)',
-                flexShrink: 0,
-              }}
-              aria-hidden="true"
-            />
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+            Back to All Services
+          </Link>
+        </AnimatedSection>
+
+        {/* Intro */}
+        <AnimatedSection>
+          <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+            <span className="section-kicker">Our Program</span>
+            <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.6rem, 3vw, 2.1rem)', color: 'var(--brand-600)', margin: '0.5rem 0 1.1rem', lineHeight: 1.2 }}>
+              Led by Dr. Dave Rutcosky
+            </h2>
           </div>
+          <p style={{ textAlign: 'center', fontSize: '1.05rem', fontWeight: 500, color: '#6b7280', maxWidth: '640px', margin: '0 auto 1rem', lineHeight: 1.78 }}>
+            Dr. Rutcosky is the practice&apos;s specialist in treating children with diverse needs. With over 20 years of pediatric experience and advanced certification in general anesthesiology, he has dedicated his career to ensuring that no child is ever turned away from the care they need.
+          </p>
+          <p style={{ textAlign: 'center', fontSize: '1rem', fontWeight: 500, color: '#6b7280', maxWidth: '600px', margin: '0 auto 4rem', lineHeight: 1.78 }}>
+            Our team takes the time to understand each child individually - their triggers, their communication style, and their comfort level - before any treatment begins. We adjust our pace, our environment, and our techniques to meet each patient exactly where they are.
+          </p>
         </AnimatedSection>
 
         {/* Who we serve */}
         <AnimatedSection delay={0.05}>
-          <div style={{ marginBottom: '5rem' }}>
-            <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+          <div style={{ marginBottom: '4rem' }}>
+            <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
               <span className="section-kicker">Who We Serve</span>
               <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.6rem, 3vw, 2.1rem)', color: 'var(--brand-600)', margin: '0.5rem 0 0', lineHeight: 1.2 }}>
                 Experience Across a Wide Range of Needs
@@ -114,10 +122,10 @@ export default function SpecialNeedsDentistryPage() {
                 <div
                   key={item.label}
                   style={{
-                    background: 'linear-gradient(135deg, #d2ebe518, #aed8cf18)',
+                    background: 'linear-gradient(135deg, rgba(107,168,153,0.08), rgba(74,144,164,0.06))',
                     border: '1.5px solid rgba(107,168,153,0.2)',
                     borderRadius: '1rem',
-                    padding: '1.25rem 1.25rem',
+                    padding: '1.25rem',
                     display: 'flex',
                     alignItems: 'center',
                     gap: '0.75rem',
@@ -131,54 +139,60 @@ export default function SpecialNeedsDentistryPage() {
           </div>
         </AnimatedSection>
 
-        {/* Approach - alternating blocks */}
-        {APPROACH.map((block, i) => (
-          <AnimatedSection key={block.title} delay={i * 0.06}>
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: i % 2 === 0 ? '1fr 1.4fr' : '1.4fr 1fr',
-                gap: '3rem',
-                alignItems: 'center',
-                marginBottom: '4rem',
-              }}
-              className="service-detail-grid"
-            >
-              {i % 2 === 0 && (
+        {/* Approach */}
+        <AnimatedSection delay={0.05}>
+          <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+            <span className="section-kicker">How We Work</span>
+            <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.6rem, 3vw, 2.1rem)', color: 'var(--brand-600)', margin: '0.5rem 0 0', lineHeight: 1.2 }}>
+              Our Approach to Every Visit
+            </h2>
+          </div>
+        </AnimatedSection>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', marginBottom: '5rem' }}>
+          {APPROACH.map((block, i) => (
+            <AnimatedSection key={block.title} delay={i * 0.06}>
+              <div
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'auto 1fr',
+                  gap: '1.5rem',
+                  background: `linear-gradient(135deg, ${block.gradientFrom}55, ${block.gradientTo}33)`,
+                  border: `1.5px solid ${block.accentColor}22`,
+                  borderRadius: '1.5rem',
+                  padding: '1.75rem',
+                  alignItems: 'flex-start',
+                }}
+              >
                 <div
                   style={{
-                    width: '100%',
-                    aspectRatio: '4 / 3',
-                    borderRadius: '1.5rem',
-                    background: `linear-gradient(135deg, ${i % 3 === 0 ? '#EDE9FE, #DDD6FE' : i % 3 === 1 ? '#D1FAE5, #A7F3D0' : '#FEF3C7, #FDE68A'})`,
+                    width: '52px',
+                    height: '52px',
+                    borderRadius: '1rem',
+                    background: `linear-gradient(135deg, ${block.gradientFrom}, ${block.gradientTo})`,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '1.5rem',
                     flexShrink: 0,
+                    boxShadow: `0 4px 14px ${block.accentColor}22`,
                   }}
                   aria-hidden="true"
-                />
-              )}
-              <div>
-                <h3 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: '1.25rem', color: 'var(--brand-600)', margin: '0 0 0.85rem', lineHeight: 1.3 }}>
-                  {block.title}
-                </h3>
-                <p style={{ color: '#6b7280', fontSize: '0.975rem', lineHeight: 1.78, fontWeight: 500, margin: 0 }}>
-                  {block.body}
-                </p>
+                >
+                  {block.icon}
+                </div>
+                <div>
+                  <h3 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: '1.05rem', color: block.accentColor, margin: '0 0 0.5rem', lineHeight: 1.3 }}>
+                    {block.title}
+                  </h3>
+                  <p style={{ fontSize: '0.92rem', lineHeight: 1.72, color: '#6b7280', margin: 0 }}>
+                    {block.body}
+                  </p>
+                </div>
               </div>
-              {i % 2 !== 0 && (
-                <div
-                  style={{
-                    width: '100%',
-                    aspectRatio: '4 / 3',
-                    borderRadius: '1.5rem',
-                    background: `linear-gradient(135deg, ${i % 3 === 0 ? '#EDE9FE, #DDD6FE' : i % 3 === 1 ? '#D1FAE5, #A7F3D0' : '#FEF3C7, #FDE68A'})`,
-                    flexShrink: 0,
-                  }}
-                  aria-hidden="true"
-                />
-              )}
-            </div>
-          </AnimatedSection>
-        ))}
+            </AnimatedSection>
+          ))}
+        </div>
 
         {/* CTA */}
         <AnimatedSection delay={0.1}>
@@ -234,7 +248,6 @@ export default function SpecialNeedsDentistryPage() {
 
       <style>{`
         @media (max-width: 768px) {
-          .service-detail-grid { grid-template-columns: 1fr !important; }
           .service-chips-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
         @media (max-width: 480px) {
