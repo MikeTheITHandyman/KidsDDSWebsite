@@ -130,7 +130,7 @@ const slideVariants: Variants = {
 
 function Stars({ count }: { count: number }) {
   return (
-    <div aria-label={`${count} out of 5 stars`} style={{ display: 'flex', gap: '2px', marginBottom: '1.25rem' }}>
+    <div aria-label={`${count} out of 5 stars`} style={{ display: 'flex', gap: '2px', marginBottom: '0.75rem' }}>
       {Array.from({ length: 5 }).map((_, i) => (
         <svg
           key={i}
@@ -181,7 +181,7 @@ export default function ReviewBubbles({ sanityReviews }: ReviewBubblesProps) {
       aria-labelledby="reviews-heading"
       style={{
         background: 'linear-gradient(145deg, #2D6A7F 0%, #4A90A4 45%, #6BA899 100%)',
-        padding: '5.5rem 0 5rem',
+        padding: '3.5rem 0 3rem',
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -213,7 +213,7 @@ export default function ReviewBubbles({ sanityReviews }: ReviewBubblesProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.55 }}
-          style={{ textAlign: 'center', marginBottom: '2.75rem' }}
+          style={{ textAlign: 'center', marginBottom: '1.5rem' }}
         >
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1.25rem' }}>
             <div style={{
@@ -273,7 +273,7 @@ export default function ReviewBubbles({ sanityReviews }: ReviewBubblesProps) {
           onMouseLeave={() => setPaused(false)}
           style={{ position: 'relative' }}
         >
-          <div style={{ position: 'relative', minHeight: '260px', overflow: 'hidden' }}>
+          <div style={{ position: 'relative', minHeight: '210px', overflow: 'hidden' }}>
             <AnimatePresence mode="wait" custom={direction}>
               <motion.div
                 key={index}
@@ -295,7 +295,7 @@ export default function ReviewBubbles({ sanityReviews }: ReviewBubblesProps) {
                   style={{
                     background: 'white',
                     borderRadius: '2rem',
-                    padding: '2.5rem 2.75rem',
+                    padding: '1.75rem 2.25rem',
                     width: '100%',
                     boxShadow: '0 20px 60px rgba(0,0,0,0.18)',
                   }}
@@ -303,7 +303,7 @@ export default function ReviewBubbles({ sanityReviews }: ReviewBubblesProps) {
                   <Stars count={review.stars} />
                   <blockquote
                     style={{
-                      margin: '0 0 1.75rem',
+                      margin: '0 0 1.1rem',
                       fontSize: '1.08rem',
                       fontWeight: 500,
                       color: '#374151',
@@ -347,7 +347,7 @@ export default function ReviewBubbles({ sanityReviews }: ReviewBubblesProps) {
           </div>
 
           {/* Controls */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', marginTop: '1.75rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', marginTop: '1.25rem' }}>
             <NavButton onClick={() => paginate(-1)} label="Previous review" direction="left" />
 
             <div style={{ display: 'flex', gap: '0.45rem', alignItems: 'center' }}>
@@ -380,7 +380,7 @@ export default function ReviewBubbles({ sanityReviews }: ReviewBubblesProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          style={{ textAlign: 'center', marginTop: '2.5rem' }}
+          style={{ textAlign: 'center', marginTop: '1.5rem' }}
         >
           <motion.a
             href={GOOGLE_REVIEWS_URL}

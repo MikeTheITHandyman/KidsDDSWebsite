@@ -82,7 +82,7 @@ export default function MeetTheDentistsPage() {
   return (
     <SubPageLayout
       title="Meet Our Dentists"
-      subtitle="Four passionate specialists united by one mission — giving every child a smile they love."
+      subtitle="Four pediatric specialists who genuinely love what they do. Get to know the team your family will see at every visit."
     >
       <div className="mx-auto max-w-6xl px-4">
 
@@ -129,25 +129,6 @@ export default function MeetTheDentistsPage() {
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     style={{ objectFit: 'cover', objectPosition: 'top center' }}
                   />
-                  {/* Credential badge */}
-                  <div
-                    style={{
-                      position: 'absolute',
-                      bottom: '12px',
-                      left: '12px',
-                      background: 'rgba(255,255,255,0.92)',
-                      backdropFilter: 'blur(6px)',
-                      borderRadius: '100px',
-                      padding: '0.3rem 0.85rem',
-                      fontFamily: 'Nunito, sans-serif',
-                      fontSize: '0.72rem',
-                      fontWeight: 800,
-                      color: doc.accentText,
-                      letterSpacing: '0.04em',
-                    }}
-                  >
-                    {doc.tagline}
-                  </div>
                 </div>
 
                 {/* Card body */}

@@ -72,13 +72,11 @@ const SERVICES = [
 ]
 
 const INSURANCES = [
+  'Aetna Dental',
+  'Cigna Dental',
   'Delta Dental',
-  'BlueCross BlueShield',
-  'Cigna',
-  'Aetna',
-  'United Healthcare',
-  'Humana',
-  'Medicaid (All Kids)',
+  'Guardian Dental',
+  'UnitedHealthcare Dental',
 ]
 
 export default function ServicesPage() {
@@ -254,7 +252,7 @@ export default function ServicesPage() {
                 fontWeight: 500,
               }}
             >
-              We accept most major dental insurance plans including Medicaid (All Kids). Our team
+              We are in-network with major PPO plans and also accept Medicaid and CHIP. Our team
               handles the billing paperwork — you focus on your child.
             </p>
             <div
@@ -285,7 +283,7 @@ export default function ServicesPage() {
               ))}
             </div>
             <Link
-              href="/insurance-and-forms"
+              href="/for-patients/insurance-info"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',

@@ -169,7 +169,7 @@ export default function ServicesGrid() {
                   whileTap={{ scale: 0.97 }}
                   style={{ height: '100%' }}
                 >
-                  <div className="service-icon" style={{ background: '#a6a8d2' }}>
+                  <div className="service-icon" style={{ background: svc.iconBg }}>
                     {svc.icon}
                   </div>
                   <h3>{svc.title}</h3>
