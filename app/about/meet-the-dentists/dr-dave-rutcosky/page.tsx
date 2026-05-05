@@ -7,7 +7,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Dr. Dave Rutcosky, DDS | Kids Dentist Grayslake, IL',
   description:
-    'Meet Dr. Dave Rutcosky — board-certified pediatric dentist and general anesthesiologist specializing in special needs dentistry at Kids Dentist Grayslake, IL.',
+    'Meet Dr. Dave Rutcosky - board-certified pediatric dentist and general anesthesiologist specializing in special needs dentistry at Kids Dentist Grayslake, IL.',
   openGraph: {
     title: 'Dr. Dave Rutcosky, DDS | Kids Dentist Grayslake, IL',
     description: 'Specialist in special needs dentistry and general anesthesiology for children. Serving Grayslake, IL.',
@@ -123,7 +123,7 @@ export default function DrDavePage() {
               Dr. Rutcosky has been practicing pediatric dentistry for over 20 years and is widely respected as one of Lake County's leading specialists in treating children with special needs. His patients include children with autism spectrum disorder, Down syndrome, cerebral palsy, sensory processing differences, and complex medical histories.
             </p>
             <p style={{ fontSize: '1.02rem', lineHeight: 1.78, color: '#6b7280', marginBottom: '1.1rem' }}>
-              His advanced training in general anesthesiology allows him to provide comprehensive dental care to children who require a higher level of sedation support — ensuring no child is ever denied the care they need because of anxiety, behavioral differences, or a complex medical background.
+              His advanced training in general anesthesiology allows him to provide comprehensive dental care to children who require a higher level of sedation support - ensuring no child is ever denied the care they need because of anxiety, behavioral differences, or a complex medical background.
             </p>
             <p style={{ fontSize: '1.02rem', lineHeight: 1.78, color: '#6b7280', marginBottom: '2rem' }}>
               Dr. Dave partners closely with pediatricians, neurologists, and school administrators throughout Lake County to provide coordinated care that puts every family's mind at ease.
@@ -140,10 +140,10 @@ export default function DrDavePage() {
               }}
             >
               <p style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 700, fontSize: '1.05rem', color: '#4A90A4', fontStyle: 'italic', lineHeight: 1.65, margin: '0 0 0.6rem' }}>
-                "Every child deserves excellent dental care — regardless of their needs, challenges, or fears. I am privileged to be the doctor who makes that possible for families who often do not know where else to turn."
+                "Every child deserves excellent dental care - regardless of their needs, challenges, or fears. I am privileged to be the doctor who makes that possible for families who often do not know where else to turn."
               </p>
               <cite style={{ fontSize: '0.82rem', fontWeight: 800, color: '#9ca3af', fontStyle: 'normal', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
-                — Dr. Dave Rutcosky, DDS
+                - Dr. Dave Rutcosky, DDS
               </cite>
             </blockquote>
 

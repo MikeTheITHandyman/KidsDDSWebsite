@@ -23,25 +23,25 @@ const PDF_FORMS = [
     title: 'New Patient Information',
     description: 'Demographics, emergency contacts, and patient details.',
     icon: '📋',
-    size: 'PDF — 2 pages',
+    size: 'PDF - 2 pages',
   },
   {
     title: 'Medical & Dental History',
     description: "Your child's health conditions, medications, and dental history.",
     icon: '🏥',
-    size: 'PDF — 3 pages',
+    size: 'PDF - 3 pages',
   },
   {
     title: 'HIPAA Privacy Consent',
     description: 'Authorization for us to use and share health information.',
     icon: '🔒',
-    size: 'PDF — 1 page',
+    size: 'PDF - 1 page',
   },
   {
     title: 'Financial Policy Agreement',
     description: 'Payment, insurance assignment, and billing authorization.',
     icon: '💳',
-    size: 'PDF — 1 page',
+    size: 'PDF - 1 page',
   },
 ]
 
@@ -75,7 +75,7 @@ export default function PatientFormsPage() {
               lineHeight: 1.78,
             }}
           >
-            We offer two ways to complete your paperwork — digital (fastest) or printable PDFs.
+            We offer two ways to complete your paperwork - digital (fastest) or printable PDFs.
             Either way, completing forms before your visit means more time relaxing and less time
             at the front desk.
           </p>
@@ -91,7 +91,7 @@ export default function PatientFormsPage() {
             alignItems: 'start',
           }}
         >
-          {/* Digital — Patient Manager */}
+          {/* Digital - Patient Manager */}
           <AnimatedSection direction="left">
             <div
               style={{
@@ -147,7 +147,7 @@ export default function PatientFormsPage() {
                 Complete Forms Online
               </h2>
               <p style={{ fontSize: '0.9rem', lineHeight: 1.72, opacity: 0.92, margin: '0 0 2rem', fontWeight: 500 }}>
-                Our secure Patient Manager portal lets you fill out all required forms digitally —
+                Our secure Patient Manager portal lets you fill out all required forms digitally,
                 any time, any device. Information goes directly to our team and is ready before you
                 arrive. Encrypted and HIPAA-compliant.
               </p>
@@ -159,7 +159,7 @@ export default function PatientFormsPage() {
                   marginBottom: '1.75rem',
                 }}
               >
-                {['Secure, HIPAA-compliant encryption', 'Fills in on any device — phone, tablet, laptop', 'Saved automatically as you go', 'Received instantly by our team'].map((f) => (
+                {['Secure, HIPAA-compliant encryption', 'Fills in on any device - phone, tablet, laptop', 'Saved automatically as you go', 'Received instantly by our team'].map((f) => (
                   <div key={f} style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', fontSize: '0.85rem', fontWeight: 600, opacity: 0.92 }}>
                     <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="rgba(255,255,255,0.9)" strokeWidth="2.5" aria-hidden="true">
                       <polyline points="20 6 9 17 4 12" />

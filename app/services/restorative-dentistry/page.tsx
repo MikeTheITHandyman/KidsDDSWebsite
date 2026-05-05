@@ -7,7 +7,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Restorative Dentistry for Kids | Kids Dentist Grayslake, IL',
   description:
-    'Gentle restorative dental care for children in Grayslake, IL — tooth-colored fillings, pediatric crowns, pulp therapy, and extractions. Treating cavities early protects your child\'s smile.',
+    'Gentle restorative dental care for children in Grayslake, IL - tooth-colored fillings, pediatric crowns, pulp therapy, and extractions. Treating cavities early protects your child\'s smile.',
   openGraph: {
     title: 'Restorative Dentistry for Kids | Kids Dentist Grayslake, IL',
     description:
@@ -24,7 +24,7 @@ const TREATMENTS = [
     number: '01',
     title: 'Tooth-Colored Fillings',
     description:
-      'When a cavity is caught early, a tooth-colored composite filling is all that\'s needed. We use composite resin that matches your child\'s natural tooth shade — no silver amalgam, no visible metal. The procedure is quick, gentle, and often surprises both kids and parents with how easy it is.',
+      'When a cavity is caught early, a tooth-colored composite filling is all that\'s needed. We use composite resin that matches your child\'s natural tooth shade - no silver amalgam, no visible metal. The procedure is quick, gentle, and often surprises both kids and parents with how easy it is.',
     whatToExpect: 'Typically completed in a single visit. Mild numbing, quick cleanup of decay, and a perfectly matched restoration. Most kids leave ready for lunch.',
     accentColor: '#6BA899',
     gradientFrom: '#D1FAE5',
@@ -35,8 +35,8 @@ const TREATMENTS = [
     number: '02',
     title: 'Pediatric Crowns',
     description:
-      'When decay is more advanced or a tooth is significantly weakened, a crown provides full coverage protection. We use tooth-colored zirconia crowns for front teeth and durable stainless steel crowns for back molars — both designed to last until the baby tooth naturally falls out.',
-    whatToExpect: 'Usually completed in one appointment. We prioritize making the experience as comfortable as possible — children are often surprised by how manageable it is.',
+      'When decay is more advanced or a tooth is significantly weakened, a crown provides full coverage protection. We use tooth-colored zirconia crowns for front teeth and durable stainless steel crowns for back molars - both designed to last until the baby tooth naturally falls out.',
+    whatToExpect: 'Usually completed in one appointment. We prioritize making the experience as comfortable as possible - children are often surprised by how manageable it is.',
     accentColor: '#4A90A4',
     gradientFrom: '#DBEAFE',
     gradientTo: '#BAE6FD',
@@ -46,7 +46,7 @@ const TREATMENTS = [
     number: '03',
     title: 'Pulp Therapy (Pediatric Root Canal)',
     description:
-      'When decay reaches the nerve of a baby tooth, pulp therapy — sometimes called a pediatric root canal — removes the infected tissue to save the tooth. Preserving baby teeth is important: they hold space for permanent teeth and are essential for proper speech and chewing development.',
+      'When decay reaches the nerve of a baby tooth, pulp therapy - sometimes called a pediatric root canal - removes the infected tissue to save the tooth. Preserving baby teeth is important: they hold space for permanent teeth and are essential for proper speech and chewing development.',
     whatToExpect: 'The term "root canal" sounds intimidating, but pediatric pulp therapy is far simpler than an adult procedure. We perform it with gentle technique and appropriate anesthesia to keep your child comfortable throughout.',
     accentColor: '#D97706',
     gradientFrom: '#FEF3C7',
@@ -57,7 +57,7 @@ const TREATMENTS = [
     number: '04',
     title: 'Tooth Extractions',
     description:
-      'Sometimes a tooth is too damaged to save, or a baby tooth needs to be removed to make room for an erupting permanent tooth. When an extraction is necessary, we perform it with care, precision, and appropriate anesthesia — ensuring your child feels nothing beyond a pressure sensation.',
+      'Sometimes a tooth is too damaged to save, or a baby tooth needs to be removed to make room for an erupting permanent tooth. When an extraction is necessary, we perform it with care, precision, and appropriate anesthesia - ensuring your child feels nothing beyond a pressure sensation.',
     whatToExpect: 'We will walk you and your child through exactly what to expect before, during, and after. Space maintainers are discussed when needed to protect alignment for the incoming permanent tooth.',
     accentColor: '#7C3AED',
     gradientFrom: '#EDE9FE',
@@ -70,12 +70,12 @@ const FAQ_ITEMS: FaqItem[] = [
   {
     question: 'Why fill a cavity in a baby tooth if it\'s going to fall out anyway?',
     answer:
-      'Untreated cavities in baby teeth can cause severe pain, lead to dangerous infections, and directly affect the development and spacing of the permanent teeth growing underneath. Baby teeth are not just placeholders — they support speech, nutrition, and jaw development. Leaving a cavity untreated is never the safe choice.',
+      'Untreated cavities in baby teeth can cause severe pain, lead to dangerous infections, and directly affect the development and spacing of the permanent teeth growing underneath. Baby teeth are not just placeholders - they support speech, nutrition, and jaw development. Leaving a cavity untreated is never the safe choice.',
   },
   {
     question: 'Are your fillings and crowns safe?',
     answer:
-      'Yes. We use safe, mercury-free, tooth-colored composite fillings and high-quality crowns to restore your child\'s smile safely and beautifully. Our restorative materials are chosen specifically for pediatric patients — durable, biocompatible, and virtually invisible in your child\'s smile.',
+      'Yes. We use safe, mercury-free, tooth-colored composite fillings and high-quality crowns to restore your child\'s smile safely and beautifully. Our restorative materials are chosen specifically for pediatric patients - durable, biocompatible, and virtually invisible in your child\'s smile.',
   },
 ]
 
@@ -104,7 +104,7 @@ export default function RestorativeDentistryPage() {
         {/* Intro */}
         <AnimatedSection>
           <p style={{ textAlign: 'center', fontSize: '1.05rem', fontWeight: 500, color: '#6b7280', maxWidth: '620px', margin: '0 auto 4rem', lineHeight: 1.78 }}>
-            When decay or damage reaches a tooth, early treatment is always the right call. A small cavity treated today is a filling. A cavity ignored for six months becomes a crown. A crown ignored becomes an extraction. We will always be honest about where your child stands — and we treat problems at the earliest possible stage.
+            When decay or damage reaches a tooth, early treatment is always the right call. A small cavity treated today is a filling. A cavity ignored for six months becomes a crown. A crown ignored becomes an extraction. We will always be honest about where your child stands - and we treat problems at the earliest possible stage.
           </p>
         </AnimatedSection>
 
@@ -125,7 +125,7 @@ export default function RestorativeDentistryPage() {
             <span style={{ fontSize: '2rem', lineHeight: 1, flexShrink: 0 }} aria-hidden="true">⚠️</span>
             <div>
               <h3 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: '1.1rem', color: '#E97D63', margin: '0 0 0.5rem' }}>
-                Don't Wait — Cavities Grow
+                Don't Wait - Cavities Grow
               </h3>
               <p style={{ fontSize: '0.92rem', lineHeight: 1.7, color: '#6b7280', margin: 0 }}>
                 Tooth decay does not pause between appointments. What starts as a minor cavity in enamel can reach the nerve within months, turning a quick filling into a much more involved procedure. If your child has been overdue for a visit, or if you have noticed sensitivity, discoloration, or visible spots, now is the time to schedule.

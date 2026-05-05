@@ -238,7 +238,7 @@ export default function ContactContent() {
                   </motion.button>
                   {error && (
                     <p style={{ fontSize: '0.85rem', color: '#E97D63', margin: '0.75rem 0 0', fontWeight: 600, textAlign: 'center' }}>
-                      Something went wrong — please call us at{' '}
+                      Something went wrong - please call us at{' '}
                       <a href="tel:+18472231400" style={{ color: '#E97D63' }}>(847) 223-1400</a>.
                     </p>
                   )}

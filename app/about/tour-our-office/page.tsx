@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     'Take a virtual tour of Kids Dentist Grayslake. See our welcoming lobby, child-friendly treatment rooms, play area, and advanced digital technology suite.',
   openGraph: {
     title: 'Tour Our Office | Kids Dentist Grayslake, IL',
-    description: 'See inside the Kids Dentist office in Grayslake, IL — designed from the ground up to make children and parents feel at home.',
+    description: 'See inside the Kids Dentist office in Grayslake, IL - designed from the ground up to make children and parents feel at home.',
     url: 'https://kidsdds.com/about/tour-our-office',
     siteName: 'Kids Dentist',
     locale: 'en_US',
@@ -19,10 +19,10 @@ export const metadata: Metadata = {
 }
 
 const COMFORT_FEATURES = [
-  { icon: '📺', label: 'TVs in every treatment room — kids choose what they watch' },
+  { icon: '📺', label: 'TVs in every treatment room - kids choose what they watch' },
   { icon: '🌿', label: 'HEPA air purification throughout all clinical spaces' },
   { icon: '💡', label: 'Sensory-friendly, adjustable lighting in treatment areas' },
-  { icon: '🧸', label: 'Child-scaled furnishings — nothing feels too big or scary' },
+  { icon: '🧸', label: 'Child-scaled furnishings - nothing feels too big or scary' },
   { icon: '🎮', label: 'Dedicated kids play zone in the waiting area' },
   { icon: '🔬', label: 'Sterilization standards exceeding ADA guidelines' },
 ]
@@ -32,10 +32,10 @@ const SPACES = [
     number: '01',
     name: 'The Welcome Lobby',
     description:
-      'The first thing you will notice is that it does not feel like a dentist\'s office at all. Our lobby is designed to be warm, bright, and immediately reassuring — a space where kids want to explore and parents can finally exhale. Colorful artwork, comfortable seating, and a dedicated children\'s play area make every wait feel short.',
-    features: ['Children\'s play zone with age-appropriate activities', 'Comfortable seating for parents and guardians', 'Bright, warm color palette — no cold clinical whites'],
+      'The first thing you will notice is that it does not feel like a dentist\'s office at all. Our lobby is designed to be warm, bright, and immediately reassuring - a space where kids want to explore and parents can finally exhale. Colorful artwork, comfortable seating, and a dedicated children\'s play area make every wait feel short.',
+    features: ['Children\'s play zone with age-appropriate activities', 'Comfortable seating for parents and guardians', 'Bright, warm color palette - no cold clinical whites'],
     imagePath: '/brand_assets/office-tour-lobby.jpg',
-    imageAlt: 'Welcoming lobby of Kids Dentist Grayslake — bright, colorful, and child-friendly',
+    imageAlt: 'Welcoming lobby of Kids Dentist Grayslake - bright, colorful, and child-friendly',
     gradientFrom: '#DBEAFE',
     gradientTo: '#BAE6FD',
     accentColor: '#4A90A4',
@@ -46,7 +46,7 @@ const SPACES = [
     number: '02',
     name: 'Treatment Rooms',
     description:
-      'Each treatment room is child-sized, child-scaled, and child-tested. Chairs that feel comfortable to a 4-year-old. Overhead TVs so they can watch their favorite show during cleanings. No intimidating equipment in plain sight — we have been intentional about every detail so the environment itself helps children relax before we even begin.',
+      'Each treatment room is child-sized, child-scaled, and child-tested. Chairs that feel comfortable to a 4-year-old. Overhead TVs so they can watch their favorite show during cleanings. No intimidating equipment in plain sight - we have been intentional about every detail so the environment itself helps children relax before we even begin.',
     features: ['Overhead TVs with patient-controlled viewing', 'Child-sized, contoured dental chairs', 'Equipment stored out of sight until needed'],
     imagePath: '/brand_assets/office-tour-treatment.jpg',
     imageAlt: 'Child-friendly treatment room at Kids Dentist Grayslake with overhead TV and comfortable chair',
@@ -60,10 +60,10 @@ const SPACES = [
     number: '03',
     name: 'Kids Play & Waiting Area',
     description:
-      'For patients still waiting for their appointment — and their siblings who came along — we have a dedicated play zone stocked with age-appropriate entertainment. We believe the time before the appointment matters just as much as the appointment itself. A child who arrives relaxed and happy is a child who leaves the same way.',
+      'For patients still waiting for their appointment - and their siblings who came along - we have a dedicated play zone stocked with age-appropriate entertainment. We believe the time before the appointment matters just as much as the appointment itself. A child who arrives relaxed and happy is a child who leaves the same way.',
     features: ['Age-segmented play areas for toddlers and older kids', 'Seating for parents with a clear sightline to children', 'Entertainment options for siblings during appointments'],
     imagePath: '/brand_assets/office-tour-play.jpg',
-    imageAlt: 'Kids play and waiting area at Kids Dentist Grayslake — designed to make waiting fun',
+    imageAlt: 'Kids play and waiting area at Kids Dentist Grayslake - designed to make waiting fun',
     gradientFrom: '#FEF3C7',
     gradientTo: '#FDE68A',
     accentColor: '#D97706',
@@ -74,8 +74,8 @@ const SPACES = [
     number: '04',
     name: 'Digital Technology Suite',
     description:
-      'We invest in the latest digital X-ray and imaging technology because it directly benefits your child — faster diagnosis, significantly lower radiation exposure than traditional X-rays, and less time sitting still in the chair. Our digital workflow also means your records are always current and easily shared with your pediatrician when needed.',
-    features: ['Digital X-rays with up to 90% less radiation', 'Instant imaging — results available during your visit', 'Secure digital record-keeping and easy specialist referrals'],
+      'We invest in the latest digital X-ray and imaging technology because it directly benefits your child - faster diagnosis, significantly lower radiation exposure than traditional X-rays, and less time sitting still in the chair. Our digital workflow also means your records are always current and easily shared with your pediatrician when needed.',
+    features: ['Digital X-rays with up to 90% less radiation', 'Instant imaging - results available during your visit', 'Secure digital record-keeping and easy specialist referrals'],
     imagePath: '/brand_assets/office-tour-tech.jpg',
     imageAlt: 'Digital X-ray and imaging technology suite at Kids Dentist Grayslake pediatric dental office',
     gradientFrom: '#EDE9FE',
@@ -102,7 +102,7 @@ export default function TourOurOfficePage() {
           </p>
         </AnimatedSection>
 
-        {/* Room sections — alternating layout */}
+        {/* Room sections - alternating layout */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '5rem', marginBottom: '5rem' }}>
           {SPACES.map((space) => (
             <div
@@ -129,7 +129,7 @@ export default function TourOurOfficePage() {
                     sizes="(max-width: 768px) 100vw, 50vw"
                     style={{ objectFit: 'cover' }}
                   />
-                  {/* Fallback overlay — shows when image is missing */}
+                  {/* Fallback overlay - shows when image is missing */}
                   <div
                     style={{
                       position: 'absolute',
@@ -242,7 +242,7 @@ export default function TourOurOfficePage() {
         <AnimatedSection>
           <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
             <p style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 700, fontSize: '1.1rem', color: '#4A90A4', marginBottom: '1.25rem' }}>
-              See it for yourself — schedule your first visit today.
+              See it for yourself - schedule your first visit today.
             </p>
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
               <Link

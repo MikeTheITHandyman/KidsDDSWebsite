@@ -31,7 +31,7 @@ const cards = [
       </svg>
     ),
     title: 'Same-Day Appointments',
-    body: "We hold urgent slots open every single day. Whether it's a toothache or a routine check-up, your child is seen promptly — no long waits.",
+    body: "We hold urgent slots open every single day. Whether it's a toothache or a routine check-up, your child is seen promptly - no long waits.",
   },
   {
     key: 'comms',
@@ -58,7 +58,7 @@ const cards = [
       </svg>
     ),
     title: 'Specialized Pediatric Experts',
-    body: 'All four of our board-certified doctors focus exclusively on pediatric dentistry — care designed specifically for little mouths and big feelings.',
+    body: 'All four of our board-certified doctors focus exclusively on pediatric dentistry - care designed specifically for little mouths and big feelings.',
   },
 ]
 

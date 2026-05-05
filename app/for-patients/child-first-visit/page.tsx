@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Your Child's First Dental Visit | Kids Dentist Grayslake, IL",
     description:
-      "First visits should be fun. Learn what to expect at Kids Dentist Grayslake — welcoming, gentle, and designed for tiny patients from age one.",
+      "First visits should be fun. Learn what to expect at Kids Dentist Grayslake - welcoming, gentle, and designed for tiny patients from age one.",
     url: 'https://kidsdds.com/for-patients/child-first-visit',
     siteName: 'Kids Dentist',
     locale: 'en_US',
@@ -24,7 +24,7 @@ const STEPS = [
     icon: '👋',
     title: 'A Warm Welcome',
     description:
-      "From the moment you walk in, both you and your child should feel at home. Our front desk team greets you by name, helps with any paperwork, and gives your child time to explore, meet the team, and feel comfortable — before we ever look at a tooth.",
+      "From the moment you walk in, both you and your child should feel at home. Our front desk team greets you by name, helps with any paperwork, and gives your child time to explore, meet the team, and feel comfortable - before we ever look at a tooth.",
     gradientFrom: '#DBEAFE',
     gradientTo: '#BAE6FD',
     accentColor: '#4A90A4',
@@ -34,7 +34,7 @@ const STEPS = [
     icon: '🔍',
     title: 'A Gentle Exam',
     description:
-      "We count teeth — and that is often the whole exam for very young patients. Our doctors use a tiny mirror, a gentle touch, and a lot of narration so your child always knows what is happening. We check growth patterns, bite, and look for very early signs of decay. No surprises.",
+      "We count teeth - and that is often the whole exam for very young patients. Our doctors use a tiny mirror, a gentle touch, and a lot of narration so your child always knows what is happening. We check growth patterns, bite, and look for very early signs of decay. No surprises.",
     gradientFrom: '#D1FAE5',
     gradientTo: '#A7F3D0',
     accentColor: '#6BA899',
@@ -44,7 +44,7 @@ const STEPS = [
     icon: '🪥',
     title: 'Cleaning & Fluoride',
     description:
-      "A gentle cleaning with a soft brush and a fun choice of flavors — strawberry, bubblegum, watermelon. Then a quick fluoride treatment that protects enamel for months. We teach brushing technique in a way that sticks long after the visit.",
+      "A gentle cleaning with a soft brush and a fun choice of flavors - strawberry, bubblegum, watermelon. Then a quick fluoride treatment that protects enamel for months. We teach brushing technique in a way that sticks long after the visit.",
     gradientFrom: '#FEF3C7',
     gradientTo: '#FDE68A',
     accentColor: '#D97706',
@@ -54,7 +54,7 @@ const STEPS = [
     icon: '🎁',
     title: 'The Prize Box',
     description:
-      "Every patient picks something from the prize box before they leave. Children leave associating the dentist with a reward and a good experience — not dread. That association, built early, is one of the most powerful tools in preventing lifelong dental anxiety.",
+      "Every patient picks something from the prize box before they leave. Children leave associating the dentist with a reward and a good experience - not dread. That association, built early, is one of the most powerful tools in preventing lifelong dental anxiety.",
     gradientFrom: '#EDE9FE',
     gradientTo: '#DDD6FE',
     accentColor: '#7C3AED',
@@ -63,9 +63,9 @@ const STEPS = [
 
 const WHAT_TO_BRING = [
   'Insurance card and any insurance information',
-  "Child's medical history — medications, allergies, prior hospitalizations",
+  "Child's medical history - medications, allergies, prior hospitalizations",
   'Prior dental records if this is not your child\'s very first dental visit',
-  'A comfort object — stuffed animal, blanket, or pacifier are all welcome here',
+  'A comfort object - stuffed animal, blanket, or pacifier are all welcome here',
   'A parent or legal guardian must be present for all first visits',
 ]
 
@@ -122,14 +122,14 @@ export default function ChildFirstVisitPage() {
                   lineHeight: 1.3,
                 }}
               >
-                The Age One Dental Visit — Why It Matters
+                The Age One Dental Visit - Why It Matters
               </h2>
               <p style={{ fontSize: '0.95rem', lineHeight: 1.75, color: '#6b7280', margin: 0, fontWeight: 500 }}>
                 The American Academy of Pediatric Dentistry recommends a first dental visit when the{' '}
                 <strong style={{ color: '#4A90A4' }}>
                   first tooth appears, or by your child's first birthday
                 </strong>{' '}
-                — whichever comes first. This is not about treatment. It is about building a relationship,
+                - whichever comes first. This is not about treatment. It is about building a relationship,
                 checking that development is on track, and giving you the guidance to protect your child's
                 smile from day one. The earlier we start, the healthier the long-term outcome.
               </p>
@@ -457,7 +457,7 @@ export default function ChildFirstVisitPage() {
                 textTransform: 'uppercase',
               }}
             >
-              — The Kids Dentist Team
+              - The Kids Dentist Team
             </cite>
           </blockquote>
         </AnimatedSection>

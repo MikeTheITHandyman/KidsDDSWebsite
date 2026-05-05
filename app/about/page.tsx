@@ -28,7 +28,7 @@ const WHY_ITEMS = [
       </svg>
     ),
     title: '2–3 Years of Extra Training',
-    body: 'After dental school, our doctors completed a dedicated pediatric residency — learning child development, behavior management, and how to treat conditions specific to growing teeth and jaws.',
+    body: 'After dental school, our doctors completed a dedicated pediatric residency - learning child development, behavior management, and how to treat conditions specific to growing teeth and jaws.',
   },
   {
     icon: (
@@ -65,7 +65,7 @@ export default function AboutPage() {
   return (
     <SubPageLayout
       title="About Kids Dentist"
-      subtitle="Grayslake's most trusted pediatric dental practice — where little smiles are our big mission."
+      subtitle="Grayslake's most trusted pediatric dental practice - where little smiles are our big mission."
       gradient="blue"
     >
       <div className="mx-auto max-w-5xl px-4">
@@ -101,10 +101,10 @@ export default function AboutPage() {
               30+ Years of Smiles in Grayslake
             </h2>
             <p style={{ fontSize: '1.02rem', lineHeight: 1.75, color: '#6b7280', marginBottom: '1rem' }}>
-              Kids Dentist has been a cornerstone of the Grayslake community since the early 1990s — built on the simple belief that every child deserves dental care that is kind, expert, and never scary.
+              Kids Dentist has been a cornerstone of the Grayslake community since the early 1990s - built on the simple belief that every child deserves dental care that is kind, expert, and never scary.
             </p>
             <p style={{ fontSize: '1.02rem', lineHeight: 1.75, color: '#6b7280', marginBottom: '0' }}>
-              What began as a small neighborhood practice has grown into one of Lake County's most trusted pediatric dental homes, serving thousands of families across Grayslake, Libertyville, Waukegan, and beyond — while never losing the warmth and personal attention that defines who we are.
+              What began as a small neighborhood practice has grown into one of Lake County's most trusted pediatric dental homes, serving thousands of families across Grayslake, Libertyville, Waukegan, and beyond - while never losing the warmth and personal attention that defines who we are.
             </p>
             <div style={{ marginTop: '1.5rem', height: '3px', width: '64px', borderRadius: '100px', background: 'linear-gradient(90deg, #E8934F, #F4C77F)' }} />
           </AnimatedSection>
@@ -210,10 +210,10 @@ export default function AboutPage() {
               An Office Built for Children
             </h2>
             <p style={{ fontSize: '1.02rem', lineHeight: 1.75, color: '#6b7280', marginBottom: '1rem' }}>
-              Step inside and you will instantly feel the difference. No clinical cold whites or intimidating equipment in plain sight — our office is warm, colorful, and filled with details that make kids smile before they even sit in the chair.
+              Step inside and you will instantly feel the difference. No clinical cold whites or intimidating equipment in plain sight - our office is warm, colorful, and filled with details that make kids smile before they even sit in the chair.
             </p>
             <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-              {['Child-scaled furnishings throughout', 'Sensory-friendly lighting in all treatment rooms', 'TVs in every operatory — kids choose what they watch', 'HEPA air purification', 'Dedicated kids play zone in the waiting area'].map(f => (
+              {['Child-scaled furnishings throughout', 'Sensory-friendly lighting in all treatment rooms', 'TVs in every operatory - kids choose what they watch', 'HEPA air purification', 'Dedicated kids play zone in the waiting area'].map(f => (
                 <li key={f} style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', fontSize: '0.93rem', color: '#6b7280' }}>
                   <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#6BA899', flexShrink: 0 }} />
                   {f}
@@ -361,7 +361,7 @@ export default function AboutPage() {
               New patients always welcome.
             </h2>
             <p style={{ fontSize: '1rem', fontWeight: 500, color: '#6b7280', maxWidth: '440px', margin: '0 auto 1.75rem', lineHeight: 1.7 }}>
-              Request an appointment online — we will call you within one business day to confirm. Same-day appointments available.
+              Request an appointment online - we will call you within one business day to confirm. Same-day appointments available.
             </p>
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
               <Link

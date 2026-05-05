@@ -7,11 +7,11 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Frequently Asked Questions | Kids Dentist Grayslake, IL',
   description:
-    'Answers to the questions parents ask most about pediatric dental care at Kids Dentist Grayslake — first visits, X-ray safety, emergencies, and more.',
+    'Answers to the questions parents ask most about pediatric dental care at Kids Dentist Grayslake - first visits, X-ray safety, emergencies, and more.',
   openGraph: {
     title: 'Frequently Asked Questions | Kids Dentist Grayslake, IL',
     description:
-      'Everything parents ask about pediatric dentistry — answered clearly and honestly by the Kids Dentist Grayslake team.',
+      'Everything parents ask about pediatric dentistry - answered clearly and honestly by the Kids Dentist Grayslake team.',
     url: 'https://kidsdds.com/faq',
     siteName: 'Kids Dentist',
     locale: 'en_US',
@@ -45,12 +45,12 @@ const GROUPS: { label: string; icon: string; accentColor: string; items: FaqItem
       {
         question: 'Are dental X-rays safe for children?',
         answer:
-          'Yes. We use state-of-the-art digital X-rays that reduce radiation exposure by up to 90% compared to traditional film X-rays. X-rays are an essential diagnostic tool for finding hidden cavities and monitoring the development of permanent teeth — and we only take them when clinically necessary.',
+          'Yes. We use state-of-the-art digital X-rays that reduce radiation exposure by up to 90% compared to traditional film X-rays. X-rays are an essential diagnostic tool for finding hidden cavities and monitoring the development of permanent teeth - and we only take them when clinically necessary.',
       },
       {
         question: "Why fix a cavity in a baby tooth if it's going to fall out anyway?",
         answer:
-          'Baby teeth are crucial for proper chewing, speech development, and saving space for permanent teeth. Untreated cavities can cause severe pain, lead to dangerous infections, and permanently damage the adult teeth growing underneath. "It will fall out anyway" is one of the most common misconceptions we address — and one of the most important to correct.',
+          'Baby teeth are crucial for proper chewing, speech development, and saving space for permanent teeth. Untreated cavities can cause severe pain, lead to dangerous infections, and permanently damage the adult teeth growing underneath. "It will fall out anyway" is one of the most common misconceptions we address - and one of the most important to correct.',
       },
     ],
   },
@@ -62,7 +62,7 @@ const GROUPS: { label: string; icon: string; accentColor: string; items: FaqItem
       {
         question: 'What should I do if my child knocks out a permanent tooth?',
         answer:
-          'Find the tooth and hold it by the crown — the top part, not the root. Gently rinse it with cold water. If possible, carefully reinsert it into the socket and have your child hold it in place. If you cannot reinsert it, place the tooth in a cup of cold milk and call us immediately. Time is critical — the sooner we see your child, the better the chance of saving the tooth.',
+          'Find the tooth and hold it by the crown - the top part, not the root. Gently rinse it with cold water. If possible, carefully reinsert it into the socket and have your child hold it in place. If you cannot reinsert it, place the tooth in a cup of cold milk and call us immediately. Time is critical - the sooner we see your child, the better the chance of saving the tooth.',
       },
     ],
   },
@@ -73,7 +73,7 @@ export default function FaqPage() {
     <SubPageLayout
       kicker="Got Questions?"
       title="Frequently Asked Questions"
-      subtitle="Everything parents ask — answered clearly and honestly."
+      subtitle="Everything parents ask - answered clearly and honestly."
       gradient="blue"
     >
       <div className="mx-auto max-w-3xl px-4">

@@ -7,7 +7,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Dr. Sahar Alrayyes, DDS | Kids Dentist Grayslake, IL',
   description:
-    'Meet Dr. Sahar Alrayyes — board-certified pediatric dentist specializing in preventive care and infant oral health at Kids Dentist Grayslake, IL.',
+    'Meet Dr. Sahar Alrayyes - board-certified pediatric dentist specializing in preventive care and infant oral health at Kids Dentist Grayslake, IL.',
   openGraph: {
     title: 'Dr. Sahar Alrayyes, DDS | Kids Dentist Grayslake, IL',
     description: 'Preventive care leader and infant oral health specialist at Kids Dentist Grayslake, IL.',
@@ -103,14 +103,14 @@ export default function DrSaharPage() {
               Pediatric Dentist, DDS
             </span>
             <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.6rem, 3vw, 2.1rem)', color: '#4A90A4', lineHeight: 1.2, margin: '0 0 1.5rem' }}>
-              Prevention First — A Lifetime of Healthy Smiles Starts Early
+              Prevention First - A Lifetime of Healthy Smiles Starts Early
             </h2>
 
             <p style={{ fontSize: '1.02rem', lineHeight: 1.78, color: '#6b7280', marginBottom: '1.1rem' }}>
-              Dr. Alrayyes joined the Kids Dentist family bringing a deeply research-informed perspective to pediatric oral health. Her passion is prevention — the belief that the right habits and the right guidance in the first years of a child's life lay the foundation for a lifetime of healthy smiles.
+              Dr. Alrayyes joined the Kids Dentist family bringing a deeply research-informed perspective to pediatric oral health. Her passion is prevention - the belief that the right habits and the right guidance in the first years of a child's life lay the foundation for a lifetime of healthy smiles.
             </p>
             <p style={{ fontSize: '1.02rem', lineHeight: 1.78, color: '#6b7280', marginBottom: '1.1rem' }}>
-              She has a particular interest in infant oral health, advising parents from their child's very first tooth on how to establish healthy routines and avoid early childhood caries. Her orthodontic screening expertise means that alignment issues are caught at the earliest possible stage — when intervention is simplest.
+              She has a particular interest in infant oral health, advising parents from their child's very first tooth on how to establish healthy routines and avoid early childhood caries. Her orthodontic screening expertise means that alignment issues are caught at the earliest possible stage - when intervention is simplest.
             </p>
             <p style={{ fontSize: '1.02rem', lineHeight: 1.78, color: '#6b7280', marginBottom: '2rem' }}>
               Dr. Sahar is an active speaker at pediatric dental conferences and contributes to ongoing research in early childhood oral health education, bringing the latest evidence-based practices directly to her patients in Grayslake.
@@ -121,10 +121,10 @@ export default function DrSaharPage() {
               style={{ borderLeft: '4px solid #F59E0B', background: 'linear-gradient(135deg, rgba(245,158,11,0.06), rgba(232,147,79,0.06))', borderRadius: '0 1.25rem 1.25rem 0', padding: '1.25rem 1.5rem', margin: '0 0 2.25rem' }}
             >
               <p style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 700, fontSize: '1.05rem', color: '#4A90A4', fontStyle: 'italic', lineHeight: 1.65, margin: '0 0 0.6rem' }}>
-                "Healthy teeth start before the first tooth. I love helping parents understand what to do — and what to look for — from day one. That early guidance changes everything."
+                "Healthy teeth start before the first tooth. I love helping parents understand what to do - and what to look for - from day one. That early guidance changes everything."
               </p>
               <cite style={{ fontSize: '0.82rem', fontWeight: 800, color: '#9ca3af', fontStyle: 'normal', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
-                — Dr. Sahar Alrayyes, DDS
+                - Dr. Sahar Alrayyes, DDS
               </cite>
             </blockquote>
 

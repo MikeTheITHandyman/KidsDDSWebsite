@@ -5,7 +5,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Pay Online | Kids Dentist Grayslake, IL',
   description:
-    'Pay your Kids Dentist Grayslake bill securely. Our online portal is being upgraded — call (847) 223-1400 to pay by phone in the meantime.',
+    'Pay your Kids Dentist Grayslake bill securely. Our online portal is being upgraded - call (847) 223-1400 to pay by phone in the meantime.',
   openGraph: {
     title: 'Pay Online | Kids Dentist Grayslake, IL',
     description:
@@ -28,7 +28,7 @@ export default function PayPage() {
     <SubPageLayout
       kicker="Secure Payment"
       title="Pay Your Bill Online"
-      subtitle="Fast, secure, and private — just like the care we provide."
+      subtitle="Fast, secure, and private - just like the care we provide."
       gradient="blue"
     >
       <div className="mx-auto max-w-3xl px-4">
@@ -130,7 +130,7 @@ export default function PayPage() {
                   d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                 />
               </svg>
-              Call Office to Pay — (847) 223-1400
+              Call Office to Pay - (847) 223-1400
             </a>
 
             <p

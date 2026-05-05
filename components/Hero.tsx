@@ -55,7 +55,7 @@ export default function Hero() {
             {' '}in Grayslake.
           </h1>
 
-          {/* Tagline — below the headline */}
+          {/* Tagline - below the headline */}
           <motion.p
             className="hero-sub"
             initial={{ opacity: 0, y: 10 }}
@@ -65,7 +65,7 @@ export default function Hero() {
             High-quality pediatric care that kids actually look forward to.
           </motion.p>
 
-          {/* Trusted 30 years — prominent inline banner */}
+          {/* Trusted 30 years - prominent inline banner */}
           <motion.div
             initial={{ opacity: 0, x: -16 }}
             animate={{ opacity: 1, x: 0 }}
@@ -124,7 +124,7 @@ export default function Hero() {
             </motion.a>
           </div>
 
-          {/* Trust signals — Delta Dental stays prominent */}
+          {/* Trust signals - Delta Dental stays prominent */}
           <div className="hero-trust">
             <div className="trust-item">
               <div className="trust-dot" aria-hidden="true"/>

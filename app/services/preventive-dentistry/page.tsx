@@ -7,7 +7,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Preventive Dentistry for Kids | Kids Dentist Grayslake, IL',
   description:
-    'Comprehensive preventive dental care for children in Grayslake, IL — cleanings, fluoride treatments, dental sealants, digital X-rays, and early orthodontic screening. Starting at age one.',
+    'Comprehensive preventive dental care for children in Grayslake, IL - cleanings, fluoride treatments, dental sealants, digital X-rays, and early orthodontic screening. Starting at age one.',
   openGraph: {
     title: 'Preventive Dentistry for Kids | Kids Dentist Grayslake, IL',
     description:
@@ -24,7 +24,7 @@ const SERVICES_COVERED = [
     icon: '🪥',
     title: 'Cleanings & Comprehensive Exams',
     description:
-      'Professional cleanings remove tartar and plaque that brushing at home cannot reach. Every cleaning includes a thorough exam of teeth, gums, bite, jaw, and soft tissues — catching small issues before they become big ones.',
+      'Professional cleanings remove tartar and plaque that brushing at home cannot reach. Every cleaning includes a thorough exam of teeth, gums, bite, jaw, and soft tissues - catching small issues before they become big ones.',
     accentColor: '#4A90A4',
     gradientFrom: '#DBEAFE',
     gradientTo: '#BAE6FD',
@@ -33,7 +33,7 @@ const SERVICES_COVERED = [
     icon: '💧',
     title: 'Fluoride Treatments',
     description:
-      'Fluoride is nature\'s cavity fighter. A quick professional fluoride treatment after each cleaning strengthens enamel, reverses early-stage decay, and dramatically reduces the likelihood of cavities — especially during high-risk growth years.',
+      'Fluoride is nature\'s cavity fighter. A quick professional fluoride treatment after each cleaning strengthens enamel, reverses early-stage decay, and dramatically reduces the likelihood of cavities - especially during high-risk growth years.',
     accentColor: '#6BA899',
     gradientFrom: '#D1FAE5',
     gradientTo: '#A7F3D0',
@@ -42,7 +42,7 @@ const SERVICES_COVERED = [
     icon: '🛡️',
     title: 'Dental Sealants',
     description:
-      'The chewing surfaces of back molars are full of grooves where bacteria hide and thrive. Sealants are a thin, protective coating that bonds into those grooves and acts as a shield — proven to reduce cavity risk by up to 80% in the treated teeth.',
+      'The chewing surfaces of back molars are full of grooves where bacteria hide and thrive. Sealants are a thin, protective coating that bonds into those grooves and acts as a shield - proven to reduce cavity risk by up to 80% in the treated teeth.',
     accentColor: '#D97706',
     gradientFrom: '#FEF3C7',
     gradientTo: '#FDE68A',
@@ -51,7 +51,7 @@ const SERVICES_COVERED = [
     icon: '📡',
     title: 'Digital X-Rays',
     description:
-      'Our digital X-ray system uses up to 90% less radiation than traditional film X-rays. Images are available instantly on-screen, so we can show you exactly what we see — and explain everything clearly — right during your visit.',
+      'Our digital X-ray system uses up to 90% less radiation than traditional film X-rays. Images are available instantly on-screen, so we can show you exactly what we see - and explain everything clearly - right during your visit.',
     accentColor: '#7C3AED',
     gradientFrom: '#EDE9FE',
     gradientTo: '#DDD6FE',
@@ -60,7 +60,7 @@ const SERVICES_COVERED = [
     icon: '🦷',
     title: 'Early Orthodontic Screening',
     description:
-      'The American Association of Orthodontists recommends a first orthodontic screening at age 7. Catching alignment issues early means simpler, shorter, and less expensive treatment — and avoids problems that compound as the jaw grows.',
+      'The American Association of Orthodontists recommends a first orthodontic screening at age 7. Catching alignment issues early means simpler, shorter, and less expensive treatment - and avoids problems that compound as the jaw grows.',
     accentColor: '#E97D63',
     gradientFrom: '#FFE4E6',
     gradientTo: '#FECDD3',
@@ -72,14 +72,14 @@ const AGE_STAGES = [
     range: '0 – 2',
     label: 'First Tooth to Age 2',
     detail:
-      'The first dental visit should happen when the first tooth appears or by your child\'s first birthday — whichever comes first. We check for early decay, advise on feeding habits, and set the stage for a lifetime of healthy routines.',
+      'The first dental visit should happen when the first tooth appears or by your child\'s first birthday - whichever comes first. We check for early decay, advise on feeding habits, and set the stage for a lifetime of healthy routines.',
     color: '#4A90A4',
   },
   {
     range: '3 – 5',
     label: 'Toddler & Preschool Years',
     detail:
-      'Baby teeth matter more than many parents realize — they hold space for permanent teeth and affect speech development. We focus on cavity prevention and making every visit a positive, low-stress experience.',
+      'Baby teeth matter more than many parents realize - they hold space for permanent teeth and affect speech development. We focus on cavity prevention and making every visit a positive, low-stress experience.',
     color: '#6BA899',
   },
   {
@@ -102,17 +102,17 @@ const FAQ_ITEMS: FaqItem[] = [
   {
     question: 'Is fluoride safe for kids?',
     answer:
-      'Yes! Fluoride strengthens enamel and prevents cavities — it is one of the most well-studied and safe tools in pediatric dentistry. We recommend a tiny smear of fluoride toothpaste for kids under 3, and a pea-sized amount for older children. Professional fluoride treatments at each cleaning visit provide an extra layer of protection exactly where your child needs it most.',
+      'Yes! Fluoride strengthens enamel and prevents cavities - it is one of the most well-studied and safe tools in pediatric dentistry. We recommend a tiny smear of fluoride toothpaste for kids under 3, and a pea-sized amount for older children. Professional fluoride treatments at each cleaning visit provide an extra layer of protection exactly where your child needs it most.',
   },
   {
     question: 'What are dental sealants?',
     answer:
-      'Dental sealants are a thin protective coating painted directly onto the chewing surfaces of back teeth — the molars where cavities most often start. The sealant flows into the grooves and hardens, acting as a shield against bacteria and food particles. The procedure is quick, easy, and completely pain-free, and sealants have been shown to reduce cavity risk in treated teeth by up to 80%.',
+      'Dental sealants are a thin protective coating painted directly onto the chewing surfaces of back teeth - the molars where cavities most often start. The sealant flows into the grooves and hardens, acting as a shield against bacteria and food particles. The procedure is quick, easy, and completely pain-free, and sealants have been shown to reduce cavity risk in treated teeth by up to 80%.',
   },
   {
     question: 'How often should my child visit the dentist?',
     answer:
-      'The American Academy of Pediatric Dentistry recommends a routine checkup and cleaning every 6 months to maintain optimal oral health. Some children with higher cavity risk may benefit from more frequent visits — we will give you a personalized recommendation at your child\'s first exam.',
+      'The American Academy of Pediatric Dentistry recommends a routine checkup and cleaning every 6 months to maintain optimal oral health. Some children with higher cavity risk may benefit from more frequent visits - we will give you a personalized recommendation at your child\'s first exam.',
   },
 ]
 
@@ -141,7 +141,7 @@ export default function PreventiveDentistryPage() {
         {/* Intro */}
         <AnimatedSection>
           <p style={{ textAlign: 'center', fontSize: '1.05rem', fontWeight: 500, color: '#6b7280', maxWidth: '620px', margin: '0 auto 1.5rem', lineHeight: 1.78 }}>
-            Preventive dentistry is the foundation of everything we do. When we catch small problems early — or stop them from forming in the first place — your child avoids pain, avoids complex treatment, and builds a healthy, confident relationship with dental care that lasts a lifetime.
+            Preventive dentistry is the foundation of everything we do. When we catch small problems early - or stop them from forming in the first place - your child avoids pain, avoids complex treatment, and builds a healthy, confident relationship with dental care that lasts a lifetime.
           </p>
           <p style={{ textAlign: 'center', fontSize: '0.95rem', fontWeight: 600, color: '#4A90A4', margin: '0 auto 4rem', maxWidth: '400px' }}>
             We recommend visits every 6 months, starting at age one.

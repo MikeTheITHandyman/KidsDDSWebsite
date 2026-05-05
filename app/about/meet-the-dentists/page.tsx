@@ -7,7 +7,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Meet Our Dentists | Kids Dentist Grayslake, IL',
   description:
-    'Meet Dr. Sonia Gutierrez, Dr. Dave Rutcosky, Dr. Sahar Alrayyes, and Dr. Anne-Ashley Compton — four board-certified pediatric dentists serving Grayslake, IL.',
+    'Meet Dr. Sonia Gutierrez, Dr. Dave Rutcosky, Dr. Sahar Alrayyes, and Dr. Anne-Ashley Compton - four board-certified pediatric dentists serving Grayslake, IL.',
   openGraph: {
     title: 'Meet Our Dentists | Kids Dentist Grayslake, IL',
     description:
@@ -44,7 +44,7 @@ const doctors = [
     accentFrom: '#D1FAE5',
     accentTo: '#A7F3D0',
     accentText: '#6BA899',
-    bio: "Dr. Dave is the practice's specialist in treating children with diverse needs — including those with physical, developmental, and sensory challenges. A certified general anesthesiologist with 20+ years of experience.",
+    bio: "Dr. Dave is the practice's specialist in treating children with diverse needs - including those with physical, developmental, and sensory challenges. A certified general anesthesiologist with 20+ years of experience.",
     highlights: ['Special Needs Dentistry Focus', 'General Anesthesiology Certified', '20+ Years Pediatric Experience'],
     delay: 0.1,
   },
@@ -58,7 +58,7 @@ const doctors = [
     accentFrom: '#FEF3C7',
     accentTo: '#FDE68A',
     accentText: '#D97706',
-    bio: 'Dr. Sahar is passionate about prevention — the idea that the right habits early can mean a lifetime of healthy smiles. She brings a research-informed approach to infant oral health, orthodontic screening, and family education.',
+    bio: 'Dr. Sahar is passionate about prevention - the idea that the right habits early can mean a lifetime of healthy smiles. She brings a research-informed approach to infant oral health, orthodontic screening, and family education.',
     highlights: ['Preventive Dentistry Advocate', 'Infant Oral Health Expert', 'Orthodontic Screening Specialist'],
     delay: 0.2,
   },

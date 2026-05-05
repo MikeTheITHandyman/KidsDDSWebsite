@@ -65,7 +65,7 @@ export default function Footer() {
               margin: '0 0 1.25rem',
             }}
           >
-            Pediatric dentistry in Grayslake, IL — where every visit ends with a smile.
+            Pediatric dentistry in Grayslake, IL - where every visit ends with a smile.
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
             <a

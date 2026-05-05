@@ -189,8 +189,8 @@ export default async function EventDetailPage({ params }: Props) {
           <PortableText value={event.body as any} components={portableTextComponents} />
         ) : (
           <p className="blog-post-coming-soon">
-            Details coming soon —{' '}
-            <a href="/studio" className="blog-empty-link">add content in the Studio</a>.
+            Details coming soon.{' '}
+            <a href="/studio" className="blog-empty-link">Add content in the Studio</a>.
           </p>
         )}
 

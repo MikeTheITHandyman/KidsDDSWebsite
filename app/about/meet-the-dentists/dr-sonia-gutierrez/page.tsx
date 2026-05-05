@@ -7,7 +7,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Dr. Sonia Gutierrez, DDS | Kids Dentist Grayslake, IL',
   description:
-    'Meet Dr. Sonia Gutierrez — bilingual, board-certified pediatric dentist at Kids Dentist Grayslake. Specializing in gentle care and sedation dentistry for children.',
+    'Meet Dr. Sonia Gutierrez - bilingual, board-certified pediatric dentist at Kids Dentist Grayslake. Specializing in gentle care and sedation dentistry for children.',
   openGraph: {
     title: 'Dr. Sonia Gutierrez, DDS | Kids Dentist Grayslake, IL',
     description: 'Board-certified pediatric dentist specializing in gentle care and sedation dentistry. Serving Grayslake, IL.',
@@ -24,7 +24,7 @@ const credentials = [
   'American Board of Pediatric Dentistry (ABPD)',
   'Advanced Certificate in Pediatric Dentistry',
   'Fluent in English & Spanish',
-  'Sedation Dentistry Certified — Nitrous Oxide & IV',
+  'Sedation Dentistry Certified - Nitrous Oxide & IV',
   '15+ Years of Pediatric Practice Experience',
 ]
 
@@ -130,10 +130,10 @@ export default function DrSoniaPage() {
             </h2>
 
             <p style={{ fontSize: '1.02rem', lineHeight: 1.78, color: '#6b7280', marginBottom: '1.1rem' }}>
-              Dr. Gutierrez grew up in Lake County and has been a cornerstone of the Kids Dentist team for over 15 years. Her gentle chair-side manner and bilingual communication — she is fluent in both English and Spanish — make her a trusted favorite among families of all backgrounds throughout Grayslake and the surrounding communities.
+              Dr. Gutierrez grew up in Lake County and has been a cornerstone of the Kids Dentist team for over 15 years. Her gentle chair-side manner and bilingual communication - she is fluent in both English and Spanish - make her a trusted favorite among families of all backgrounds throughout Grayslake and the surrounding communities.
             </p>
             <p style={{ fontSize: '1.02rem', lineHeight: 1.78, color: '#6b7280', marginBottom: '1.1rem' }}>
-              She completed her advanced pediatric training and holds board certification from the American Board of Pediatric Dentistry. Dr. Sonia specializes in anxiety reduction, nitrous oxide and IV sedation, and making first dental experiences magical for children of all ages — from infants seeing their first tooth to teenagers preparing for adult care.
+              She completed her advanced pediatric training and holds board certification from the American Board of Pediatric Dentistry. Dr. Sonia specializes in anxiety reduction, nitrous oxide and IV sedation, and making first dental experiences magical for children of all ages - from infants seeing their first tooth to teenagers preparing for adult care.
             </p>
             <p style={{ fontSize: '1.02rem', lineHeight: 1.78, color: '#6b7280', marginBottom: '2rem' }}>
               Outside the office, Dr. Sonia is an active member of the Grayslake community, participating in local school outreach events and free dental health screenings for underserved families.
@@ -153,7 +153,7 @@ export default function DrSoniaPage() {
                 "The first dental visit sets the tone for a lifetime. I wake up every morning thinking about how to make that experience better for every child who walks through our door."
               </p>
               <cite style={{ fontSize: '0.82rem', fontWeight: 800, color: '#9ca3af', fontStyle: 'normal', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
-                — Dr. Sonia Gutierrez, DDS
+                - Dr. Sonia Gutierrez, DDS
               </cite>
             </blockquote>
 

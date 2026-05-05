@@ -46,7 +46,7 @@ function EmptyState() {
         No events yet
       </h2>
       <p style={{ color: '#9ca3af', fontFamily: 'Nunito, sans-serif', fontWeight: 600, fontSize: '0.9rem', maxWidth: '380px', margin: '0 auto 1.5rem' }}>
-        Check back soon — or add your first event in the{' '}
+        Check back soon - or add your first event in the{' '}
         <a href="/studio" style={{ color: '#4A90A4', textDecoration: 'underline' }}>Studio</a>.
       </p>
     </div>

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Insurance & Financing | Kids Dentist Grayslake, IL',
     description:
-      'We accept most major PPO plans and Medicaid. Our team handles the paperwork — you focus on your child.',
+      'We accept most major PPO plans and Medicaid. Our team handles the paperwork - you focus on your child.',
     url: 'https://kidsdds.com/for-patients/insurance-info',
     siteName: 'Kids Dentist',
     locale: 'en_US',
@@ -56,7 +56,7 @@ export default function InsuranceInfoPage() {
               lineHeight: 1.78,
             }}
           >
-            We believe every child deserves access to excellent dental care — regardless of insurance
+            We believe every child deserves access to excellent dental care - regardless of insurance
             status. We accept most major PPO plans, Medicaid, and CHIP, and our billing team works
             hard to maximize your benefits at every visit.
           </p>
@@ -157,7 +157,7 @@ export default function InsuranceInfoPage() {
               fontWeight: 500,
             }}
           >
-            Don&apos;t see your plan? Call us — we likely accept it.{' '}
+            Don&apos;t see your plan? Call us - we likely accept it.{' '}
             <Link
               href="tel:+18472231400"
               style={{ color: '#4A90A4', fontWeight: 700, textDecoration: 'none' }}
@@ -287,7 +287,7 @@ export default function InsuranceInfoPage() {
                     CareCredit &amp; Financing Options
                   </p>
                   <p style={{ fontSize: '0.8rem', color: '#6b7280', margin: 0, fontWeight: 500 }}>
-                    Low- and no-interest plans available — ask us for details
+                    Low- and no-interest plans available - ask us for details
                   </p>
                 </div>
               </div>
@@ -325,7 +325,7 @@ export default function InsuranceInfoPage() {
               <p style={{ fontSize: '0.9rem', lineHeight: 1.72, color: '#6b7280', margin: 0, fontWeight: 500 }}>
                 We never turn a child away based on insurance status. Our team will work with you on
                 payment arrangements and connect you with available state assistance programs if
-                needed. Every child in our community deserves excellent dental care — full stop.
+                needed. Every child in our community deserves excellent dental care - full stop.
                 Call us and let us figure it out together.
               </p>
             </div>

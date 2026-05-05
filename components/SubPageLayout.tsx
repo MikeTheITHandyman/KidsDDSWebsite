@@ -34,7 +34,7 @@ export default function SubPageLayout({
 
   return (
     <>
-      {/* Full-bleed hero — breaks out of the container's 1rem padding */}
+      {/* Full-bleed hero - breaks out of the container's 1rem padding */}
       <div
         className={`relative overflow-hidden bg-gradient-to-br ${gradients[gradient]} rounded-b-[3rem]`}
         style={{

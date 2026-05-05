@@ -7,7 +7,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Sedation Dentistry for Kids | Kids Dentist Grayslake, IL',
   description:
-    'Safe, comfortable sedation dentistry for children in Grayslake, IL — nitrous oxide, oral conscious sedation, and general anesthesiology. Serving anxious children and those with special needs.',
+    'Safe, comfortable sedation dentistry for children in Grayslake, IL - nitrous oxide, oral conscious sedation, and general anesthesiology. Serving anxious children and those with special needs.',
   openGraph: {
     title: 'Sedation Dentistry for Kids | Kids Dentist Grayslake, IL',
     description:
@@ -32,9 +32,9 @@ const SEDATION_OPTIONS = [
   {
     number: '01',
     title: 'Nitrous Oxide',
-    subtitle: 'Laughing Gas — Light Relaxation',
+    subtitle: 'Laughing Gas - Light Relaxation',
     description:
-      'Nitrous oxide is a mild sedative inhaled through a small nose mask during treatment. It produces a pleasant, relaxed feeling — children often describe it as feeling "floaty" or "funny." It does not put your child to sleep; they remain awake and can respond to directions.',
+      'Nitrous oxide is a mild sedative inhaled through a small nose mask during treatment. It produces a pleasant, relaxed feeling - children often describe it as feeling "floaty" or "funny." It does not put your child to sleep; they remain awake and can respond to directions.',
     howItWorks: 'Effects begin within minutes and wear off completely within 5 minutes of removing the mask. Children can eat normally beforehand and return to school or activities immediately after.',
     ideal: 'Mild to moderate anxiety, short procedures, children who are cooperative but nervous.',
     accentColor: '#4A90A4',
@@ -45,9 +45,9 @@ const SEDATION_OPTIONS = [
   {
     number: '02',
     title: 'Oral Conscious Sedation',
-    subtitle: 'Liquid Medication — Deeper Calm',
+    subtitle: 'Liquid Medication - Deeper Calm',
     description:
-      'Oral conscious sedation involves a liquid medication given by mouth before the appointment. Your child will become deeply relaxed — often drowsy or even sleepy — but remains able to breathe independently and respond if spoken to. It is commonly used for children with moderate to significant anxiety, or for longer procedures.',
+      'Oral conscious sedation involves a liquid medication given by mouth before the appointment. Your child will become deeply relaxed - often drowsy or even sleepy - but remains able to breathe independently and respond if spoken to. It is commonly used for children with moderate to significant anxiety, or for longer procedures.',
     howItWorks: 'The medication takes 30–45 minutes to take effect. Children typically have little or no memory of the procedure. A responsible adult must drive to and from the appointment, and children must follow fasting guidelines.',
     ideal: 'Moderate to significant anxiety, longer appointments, children who struggle with needles or gagging.',
     accentColor: '#D97706',
@@ -58,9 +58,9 @@ const SEDATION_OPTIONS = [
   {
     number: '03',
     title: 'General Anesthesiology',
-    subtitle: 'In-Office — Deepest Level of Care',
+    subtitle: 'In-Office - Deepest Level of Care',
     description:
-      'Our practice is one of the few in Lake County to offer in-office general anesthesiology — administered by Dr. Rutcosky, who holds advanced certification in general anesthesiology. This option allows children who require the deepest level of sedation support to receive comprehensive dental care safely, comfortably, and in a familiar environment.',
+      'Our practice is one of the few in Lake County to offer in-office general anesthesiology - administered by Dr. Rutcosky, who holds advanced certification in general anesthesiology. This option allows children who require the deepest level of sedation support to receive comprehensive dental care safely, comfortably, and in a familiar environment.',
     howItWorks: 'Performed in our office with full monitoring equipment. Children are completely asleep and have no awareness or memory of the procedure. A thorough pre-operative consultation is required to review medical history and determine candidacy.',
     ideal: 'Children with severe anxiety, extensive treatment needs, special needs, complex medical backgrounds, or who have not responded to lighter sedation.',
     accentColor: '#7C3AED',
@@ -74,7 +74,7 @@ const FAQ_ITEMS: FaqItem[] = [
   {
     question: 'Do you offer sedation for nervous kids?',
     answer:
-      'Yes! We have safe, gentle options — including laughing gas (nitrous oxide) — to help kids feel completely relaxed and comfortable during their visit. For children who need a deeper level of calm, we also offer oral conscious sedation and in-office general anesthesiology administered by Dr. Rutcosky, who holds advanced certification in pediatric anesthesiology.',
+      'Yes! We have safe, gentle options - including laughing gas (nitrous oxide) - to help kids feel completely relaxed and comfortable during their visit. For children who need a deeper level of calm, we also offer oral conscious sedation and in-office general anesthesiology administered by Dr. Rutcosky, who holds advanced certification in pediatric anesthesiology.',
   },
   {
     question: 'Is sedation safe for my child?',
@@ -108,7 +108,7 @@ export default function SedationDentistryPage() {
         {/* Intro */}
         <AnimatedSection>
           <p style={{ textAlign: 'center', fontSize: '1.05rem', fontWeight: 500, color: '#6b7280', maxWidth: '620px', margin: '0 auto 4rem', lineHeight: 1.78 }}>
-            Dental anxiety is real — and it is more common than most parents realize. The last thing we want is for fear to stand between your child and the care they need. That is why we offer three levels of sedation, tailored to each child's situation, so that every patient can receive treatment comfortably and without trauma.
+            Dental anxiety is real - and it is more common than most parents realize. The last thing we want is for fear to stand between your child and the care they need. That is why we offer three levels of sedation, tailored to each child's situation, so that every patient can receive treatment comfortably and without trauma.
           </p>
         </AnimatedSection>
 

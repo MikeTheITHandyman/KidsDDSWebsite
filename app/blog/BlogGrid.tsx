@@ -67,7 +67,7 @@ function EmptyState() {
         <h2 className="blog-empty-title">First post coming soon!</h2>
         <p className="blog-empty-sub">
           Our doctors are writing expert tips and guides for Grayslake families.
-          Check back soon — or visit the Studio at{' '}
+          Check back soon - or visit the Studio at{' '}
           <a href="/studio" className="blog-empty-link">/studio</a> to publish the first post.
         </p>
         <Link href="/request-appointment" className="btn-hero-primary" style={{ marginTop: '1.5rem', display: 'inline-flex' }}>

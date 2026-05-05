@@ -7,7 +7,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Dr. Anne-Ashley Compton, DDS | Kids Dentist Grayslake, IL',
   description:
-    'Meet Dr. Anne-Ashley Compton — board-certified pediatric dentist specializing in restorative dentistry for children at Kids Dentist Grayslake, IL.',
+    'Meet Dr. Anne-Ashley Compton - board-certified pediatric dentist specializing in restorative dentistry for children at Kids Dentist Grayslake, IL.',
   openGraph: {
     title: 'Dr. Anne-Ashley Compton, DDS | Kids Dentist Grayslake, IL',
     description: 'Restorative dentistry specialist with an exceptional bedside manner for children. Serving Grayslake, IL.',
@@ -107,13 +107,13 @@ export default function DrAnneAshleyPage() {
             </h2>
 
             <p style={{ fontSize: '1.02rem', lineHeight: 1.78, color: '#6b7280', marginBottom: '1.1rem' }}>
-              Dr. Compton brings an exceptional combination of technical skill and emotional intelligence to every patient encounter. Her restorative work is meticulous — she takes great pride in outcomes that look natural, feel comfortable, and are delivered with zero trauma to the child.
+              Dr. Compton brings an exceptional combination of technical skill and emotional intelligence to every patient encounter. Her restorative work is meticulous - she takes great pride in outcomes that look natural, feel comfortable, and are delivered with zero trauma to the child.
             </p>
             <p style={{ fontSize: '1.02rem', lineHeight: 1.78, color: '#6b7280', marginBottom: '1.1rem' }}>
-              Parents frequently comment that their children actually look forward to appointments with Dr. Anne-Ashley — which she considers the highest compliment she can receive. Her ability to communicate with children at exactly the right level, and to involve them as active participants in their own care, is what sets her apart.
+              Parents frequently comment that their children actually look forward to appointments with Dr. Anne-Ashley - which she considers the highest compliment she can receive. Her ability to communicate with children at exactly the right level, and to involve them as active participants in their own care, is what sets her apart.
             </p>
             <p style={{ fontSize: '1.02rem', lineHeight: 1.78, color: '#6b7280', marginBottom: '2rem' }}>
-              Dr. Compton has been recognized for excellence in patient experience and continues to invest in the latest advances in minimally invasive restorative techniques — always with the goal of preserving as much healthy tooth structure as possible.
+              Dr. Compton has been recognized for excellence in patient experience and continues to invest in the latest advances in minimally invasive restorative techniques - always with the goal of preserving as much healthy tooth structure as possible.
             </p>
 
             {/* Philosophy quote */}
@@ -121,10 +121,10 @@ export default function DrAnneAshleyPage() {
               style={{ borderLeft: '4px solid #a78bfa', background: 'linear-gradient(135deg, rgba(167,139,250,0.07), rgba(74,144,164,0.06))', borderRadius: '0 1.25rem 1.25rem 0', padding: '1.25rem 1.5rem', margin: '0 0 2.25rem' }}
             >
               <p style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 700, fontSize: '1.05rem', color: '#4A90A4', fontStyle: 'italic', lineHeight: 1.65, margin: '0 0 0.6rem' }}>
-                "When a child leaves my chair smiling — not just because we are done, but because it really was not bad at all — that is the moment I live for. That is what this career is about."
+                "When a child leaves my chair smiling - not just because we are done, but because it really was not bad at all - that is the moment I live for. That is what this career is about."
               </p>
               <cite style={{ fontSize: '0.82rem', fontWeight: 800, color: '#9ca3af', fontStyle: 'normal', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
-                — Dr. Anne-Ashley Compton, DDS
+                - Dr. Anne-Ashley Compton, DDS
               </cite>
             </blockquote>
 

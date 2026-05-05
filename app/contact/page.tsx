@@ -22,7 +22,7 @@ export default function ContactPage() {
     <SubPageLayout
       kicker="We're Here for You"
       title="Contact Our Office"
-      subtitle="Questions, comments, or ready to book — we would love to hear from you."
+      subtitle="Questions, comments, or ready to book - we would love to hear from you."
       gradient="blue"
     >
       <ContactContent />

@@ -340,7 +340,7 @@ export default function InstagramFeed() {
             Share your Kids Dentist visit!
           </p>
           <p style={{ color: '#9ca3af', fontFamily: 'Nunito, sans-serif', fontWeight: 600, fontSize: '0.82rem', margin: 0 }}>
-            Tag us <strong style={{ color: 'var(--brand-purple)' }}>@kidsddsgrayslake</strong> — we love seeing your smiles.
+            Tag us <strong style={{ color: 'var(--brand-purple)' }}>@kidsddsgrayslake</strong> - we love seeing your smiles.
           </p>
         </motion.div>
       </div>

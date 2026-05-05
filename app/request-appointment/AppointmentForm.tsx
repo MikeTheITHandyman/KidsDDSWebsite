@@ -257,7 +257,7 @@ export default function AppointmentForm() {
                 >
                   <form onSubmit={handleSubmit} noValidate>
 
-                    {/* Section 1 — Parent info */}
+                    {/* Section 1 - Parent info */}
                     {sectionHead('1', 'Parent / Guardian Info', 'We use this to confirm your appointment')}
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem' }}>
                       <div style={{ gridColumn: '1 / -1' }}>
@@ -315,7 +315,7 @@ export default function AppointmentForm() {
 
                     {divider}
 
-                    {/* Section 2 — Child info */}
+                    {/* Section 2 - Child info */}
                     {sectionHead('2', "Your Child's Information", "Tell us a little about who we'll be seeing")}
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem' }}>
                       <div>
@@ -358,7 +358,7 @@ export default function AppointmentForm() {
 
                     {divider}
 
-                    {/* Section 3 — Reason for visit */}
+                    {/* Section 3 - Reason for visit */}
                     {sectionHead('3', 'Reason for Visit', 'Helps us prepare the right care for your child')}
                     <div style={{ marginBottom: '1rem' }}>
                       <label htmlFor="reason" style={labelStyle}>
@@ -437,7 +437,7 @@ export default function AppointmentForm() {
 
                     {divider}
 
-                    {/* Section 4 — Preferred timing */}
+                    {/* Section 4 - Preferred timing */}
                     {sectionHead('4', 'Preferred Timing', "We'll do our best to accommodate you")}
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem' }}>
                       <div>
@@ -522,7 +522,7 @@ export default function AppointmentForm() {
                       </motion.button>
                       {error && (
                         <p style={{ textAlign: 'center', fontSize: '0.85rem', color: '#E97D63', margin: '0.75rem 0 0', fontWeight: 600 }}>
-                          Something went wrong — please call us at{' '}
+                          Something went wrong - please call us at{' '}
                           <a href="tel:+18472231400" style={{ color: '#E97D63' }}>(847) 223-1400</a>.
                         </p>
                       )}
@@ -672,7 +672,7 @@ export default function AppointmentForm() {
                 Why Families Choose Us
               </h2>
               <p style={{ fontSize: '0.8rem', opacity: 0.8, margin: '0 0 1.5rem', fontWeight: 500, lineHeight: 1.55 }}>
-                You are in good hands — here is why.
+                You are in good hands - here is why.
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
                 {TRUST_SIGNALS.map((signal) => (

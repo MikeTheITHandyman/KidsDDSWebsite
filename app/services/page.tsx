@@ -6,11 +6,11 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Pediatric Dental Services | Kids Dentist Grayslake, IL',
   description:
-    'Explore all pediatric dental services at Kids Dentist Grayslake — preventive care, restorative treatments, sedation dentistry, special needs care, and emergency visits.',
+    'Explore all pediatric dental services at Kids Dentist Grayslake - preventive care, restorative treatments, sedation dentistry, special needs care, and emergency visits.',
   openGraph: {
     title: 'Pediatric Dental Services | Kids Dentist Grayslake, IL',
     description:
-      'Every service we offer is designed exclusively for children — from routine cleanings to complex restorative work and special needs care.',
+      'Every service we offer is designed exclusively for children - from routine cleanings to complex restorative work and special needs care.',
     url: 'https://kidsdds.com/services',
     siteName: 'Kids Dentist',
     locale: 'en_US',
@@ -31,9 +31,9 @@ const SERVICES = [
   },
   {
     title: 'Restorative Dentistry',
-    tagline: 'Fix it early — protect it for life.',
+    tagline: 'Fix it early - protect it for life.',
     description:
-      'Tooth-colored fillings, pediatric crowns, pulp therapy, and extractions — all performed with the gentle approach and honest communication children and parents deserve.',
+      'Tooth-colored fillings, pediatric crowns, pulp therapy, and extractions - all performed with the gentle approach and honest communication children and parents deserve.',
     href: '/services/restorative-dentistry',
     gradient: 'linear-gradient(135deg, #D1FAE5, #A7F3D0)',
     accentColor: '#6BA899',
@@ -43,7 +43,7 @@ const SERVICES = [
     title: 'Sedation Dentistry',
     tagline: 'Calm, comfortable care for anxious kids.',
     description:
-      'Nitrous oxide, oral conscious sedation, and in-office general anesthesiology — because no child should ever avoid necessary dental care due to fear or anxiety.',
+      'Nitrous oxide, oral conscious sedation, and in-office general anesthesiology - because no child should ever avoid necessary dental care due to fear or anxiety.',
     href: '/services/sedation-dentistry',
     gradient: 'linear-gradient(135deg, #FEF3C7, #FDE68A)',
     accentColor: '#D97706',
@@ -63,7 +63,7 @@ const SERVICES = [
     title: 'Emergency Dentistry',
     tagline: 'Fast care when your child needs it most.',
     description:
-      'Knocked-out tooth, sudden toothache, or dental trauma — call us immediately. Same-day emergency appointments are available for our patients and for new families in need.',
+      'Knocked-out tooth, sudden toothache, or dental trauma - call us immediately. Same-day emergency appointments are available for our patients and for new families in need.',
     href: '/request-appointment',
     gradient: 'linear-gradient(135deg, #FFE4E6, #FECDD3)',
     accentColor: '#E97D63',
@@ -83,7 +83,7 @@ export default function ServicesPage() {
   return (
     <SubPageLayout
       title="Our Services"
-      subtitle="100% pediatric dentistry — because children aren't just small adults."
+      subtitle="100% pediatric dentistry - because children aren't just small adults."
       gradient="blue"
     >
       <div className="mx-auto max-w-5xl px-4">
@@ -103,12 +103,12 @@ export default function ServicesPage() {
           >
             Our practice is{' '}
             <strong style={{ color: '#4A90A4' }}>strictly limited to pediatric dentistry</strong>{' '}
-            — meaning every doctor, every team member, every piece of equipment, and every inch of
+            - meaning every doctor, every team member, every piece of equipment, and every inch of
             this office exists to serve children and their families. Nothing else.
           </p>
         </AnimatedSection>
 
-        {/* Services grid — 5 cards */}
+        {/* Services grid - 5 cards */}
         <div
           style={{
             display: 'grid',
@@ -253,7 +253,7 @@ export default function ServicesPage() {
               }}
             >
               We are in-network with major PPO plans and also accept Medicaid and CHIP. Our team
-              handles the billing paperwork — you focus on your child.
+              handles the billing paperwork - you focus on your child.
             </p>
             <div
               style={{

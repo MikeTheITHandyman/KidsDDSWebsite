@@ -75,7 +75,7 @@ const STATIC_REVIEWS: ReviewItem[] = [
   },
   {
     stars: 5,
-    text: "Finally a dentist who explains everything to ME, not just nods at my kid. Parent-first communication is real here — I always leave knowing the full picture.",
+    text: "Finally a dentist who explains everything to ME, not just nods at my kid. Parent-first communication is real here - I always leave knowing the full picture.",
     author: 'Michelle K.',
     role: 'Mom',
     initial: 'M',

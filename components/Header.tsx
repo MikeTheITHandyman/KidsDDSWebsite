@@ -162,7 +162,7 @@ export default function Header() {
 
   return (
     <>
-      {/* Announcement banner — hidden inside Studio */}
+      {/* Announcement banner - hidden inside Studio */}
       {!isStudio && (
         <div
           style={{
@@ -199,7 +199,7 @@ export default function Header() {
         transition={{ duration: 0.35, ease: 'easeOut' }}
       >
         <div className="header-inner">
-          <Link href="/" className="brand-logo" aria-label="Kids Dentist — go to homepage">
+          <Link href="/" className="brand-logo" aria-label="Kids Dentist - go to homepage">
             <Image
               src="/brand_assets/kids-dentist-logo.png"
               alt="Kids Dentist Grayslake IL logo"
@@ -242,7 +242,7 @@ export default function Header() {
             </motion.a>
           </div>
 
-          {/* Hamburger — mobile only */}
+          {/* Hamburger - mobile only */}
           <button
             className="mobile-menu-btn"
             onClick={() => setMenuOpen((o) => !o)}
@@ -256,7 +256,7 @@ export default function Header() {
           </button>
         </div>
 
-        {/* Mobile nav — slides down inside the sticky header element */}
+        {/* Mobile nav - slides down inside the sticky header element */}
         <AnimatePresence>
           {menuOpen && (
             <motion.nav

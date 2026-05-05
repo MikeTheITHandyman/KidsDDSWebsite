@@ -119,7 +119,7 @@ export default function MeetOurDoctors() {
           </p>
         </motion.div>
 
-        {/* Doctor cards — 4-column horizontal row */}
+        {/* Doctor cards - 4-column horizontal row */}
         <div
           style={{
             display: 'grid',

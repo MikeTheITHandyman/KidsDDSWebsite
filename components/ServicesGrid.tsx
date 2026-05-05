@@ -140,7 +140,7 @@ export default function ServicesGrid() {
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >
-        {/* Track wrapper — clips overflow */}
+        {/* Track wrapper - clips overflow */}
         <div style={{ overflow: 'hidden' }}>
           <motion.div
             style={{

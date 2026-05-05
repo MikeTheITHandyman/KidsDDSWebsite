@@ -32,7 +32,7 @@ const features = [
       </svg>
     ),
     title: 'Same-Day Appointments',
-    body: "We keep urgent slots open every single day. When your child needs care, we make sure they're seen — fast.",
+    body: "We keep urgent slots open every single day. When your child needs care, we make sure they're seen - fast.",
   },
   {
     key: 'communication',
@@ -46,7 +46,7 @@ const features = [
       </svg>
     ),
     title: 'Parent-Centric Communication',
-    body: 'We speak your language — real updates, clear next steps, and zero confusing dental jargon after every visit.',
+    body: 'We speak your language - real updates, clear next steps, and zero confusing dental jargon after every visit.',
   },
   {
     key: 'experts',
@@ -58,7 +58,7 @@ const features = [
       </svg>
     ),
     title: 'Specialized Pediatric Experts',
-    body: 'All four of our doctors specialize exclusively in pediatric dentistry. Kids are our only focus — every single day.',
+    body: 'All four of our doctors specialize exclusively in pediatric dentistry. Kids are our only focus - every single day.',
   },
 ]
 
@@ -69,7 +69,7 @@ export default function ValueProposition() {
         <span className="section-kicker">Why Families Choose Us</span>
         <h2 id="value-heading">A Practice Built Around Your Child</h2>
         <p>
-          We designed every part of our practice — from our approach to our schedule —
+          We designed every part of our practice - from our approach to our schedule -
           with young patients and their parents in mind.
         </p>
       </div>

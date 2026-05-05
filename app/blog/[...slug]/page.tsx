@@ -178,8 +178,8 @@ export default async function BlogPost({ params }: Props) {
           <PortableText value={post.body as any} components={portableTextComponents} />
         ) : (
           <p className="blog-post-coming-soon">
-            No body content yet —{' '}
-            <a href="/studio" className="blog-empty-link">add it in the Studio</a>.
+            No body content yet.{' '}
+            <a href="/studio" className="blog-empty-link">Add it in the Studio</a>.
           </p>
         )}
       </div>
