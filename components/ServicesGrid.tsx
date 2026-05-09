@@ -128,7 +128,7 @@ export default function ServicesGrid() {
   const xPercent = -(index * (100 / services.length))
 
   return (
-    <section className="services-section" aria-labelledby="services-heading">
+    <section className="services-section" aria-labelledby="services-heading" style={{ paddingTop: '3rem' }}>
       <div className="services-header">
         <h2 id="services-heading">Our Services</h2>
         <p>

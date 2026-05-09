@@ -15,6 +15,7 @@ const TRUST_ITEMS = [
 export default function Hero() {
   return (
     <section className="hero">
+      <div className="hero-outer">
       <div className="hero-inner">
 
         {/* ── Left: Text Content ── */}
@@ -99,7 +100,7 @@ export default function Hero() {
           </motion.div>
 
           {/* CTAs */}
-          <div className="hero-ctas flex flex-col sm:flex-row gap-4">
+          <div className="hero-ctas flex flex-col sm:flex-row gap-4 items-start">
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -183,8 +184,41 @@ export default function Hero() {
           </div>
         ))}
       </motion.div>
+      </div>{/* end hero-outer */}
 
       <style>{`
+        /* Tighten hero section bottom padding */
+        .hero {
+          padding-bottom: 2.5rem;
+        }
+
+        /* Button row: prevent wrap, kill the bottom margin that creates the gap */
+        .hero .hero-ctas {
+          flex-wrap: nowrap;
+          margin-bottom: 0;
+        }
+        @media (max-width: 639px) {
+          .hero .hero-ctas {
+            flex-direction: column;
+            align-items: flex-start;
+          }
+        }
+        @media (min-width: 640px) {
+          .hero .hero-ctas {
+            flex-direction: row;
+            align-items: center;
+          }
+        }
+
+        /* Outer wrapper: makes grid + trust bar stack vertically inside .hero's flex context */
+        .hero-outer {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          position: relative;
+          z-index: 2;
+        }
+
         /* Right column: video only */
         .hero-right-col {
           display: flex;
@@ -192,23 +226,33 @@ export default function Hero() {
           min-width: 0;
         }
 
-        /* Trust bar: full width below both columns, stacked on mobile */
+        /* Scale the video blob ~25% larger on desktop; section overflow:hidden clips the bleed */
+        @media (min-width: 1024px) {
+          .hero-visual {
+            transform: scale(1.25);
+            transform-origin: center center;
+          }
+        }
+
+        /* Trust bar: full width below both columns */
         .hero-trust-bar {
           display: flex;
           flex-direction: column;
+          align-items: center;
           justify-content: space-between;
           width: 100%;
-          margin-top: 3rem;
-          gap: 0.5rem;
+          max-width: 1200px;
+          margin: 0.75rem auto 0;
+          gap: 1.5rem;
           background: rgba(255,255,255,0.55);
           backdrop-filter: blur(10px);
           -webkit-backdrop-filter: blur(10px);
           border: 1.5px solid rgba(74,144,164,0.13);
           border-radius: 1.25rem;
-          padding: 0.85rem 1rem;
+          padding: 0.85rem 1.5rem;
         }
 
-        /* Trust bar items: inline row on mobile */
+        /* Trust bar items: row layout on mobile */
         .trust-bar-item {
           display: flex;
           flex-direction: row;
@@ -229,12 +273,12 @@ export default function Hero() {
           margin-top: 4px;
         }
 
-        /* lg+: horizontal row, items centered */
+        /* lg+: single horizontal row, items centered */
         @media (min-width: 1024px) {
           .hero-trust-bar {
             flex-direction: row;
             flex-wrap: nowrap;
-            align-items: flex-start;
+            align-items: center;
           }
           .trust-bar-item {
             flex-direction: column;
@@ -245,6 +289,15 @@ export default function Hero() {
           }
           .trust-bar-item .trust-dot {
             margin-top: 0;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .hero-trust-bar {
+            max-width: 100%;
+            margin-left: 1.5rem;
+            margin-right: 1.5rem;
+            width: auto;
           }
         }
       `}</style>
