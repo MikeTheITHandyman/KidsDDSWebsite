@@ -107,7 +107,26 @@ export default function Footer() {
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .01h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/>
               </svg>
-              (847) 223-1400
+              Text/Call us: (847) 223-1400
+            </a>
+            <a
+              href="mailto:info@kidsdds.com"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.45rem',
+                color: 'rgba(255,255,255,0.85)',
+                textDecoration: 'none',
+                fontSize: '0.88rem',
+                fontWeight: 600,
+                transition: 'color 0.2s',
+              }}
+            >
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+              info@kidsdds.com
             </a>
           </div>
         </div>
@@ -215,33 +234,36 @@ export default function Footer() {
             Stay Connected
           </h4>
 
-          {/* Social icon buttons */}
-          <div style={{ display: 'flex', gap: '0.65rem', marginBottom: '1.5rem' }}>
+          {/* Social icon buttons — with labels */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.55rem', marginBottom: '1.5rem' }}>
             <motion.a
               href="https://www.facebook.com/kidsddsgrayslake"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Kids Dentist on Facebook"
-              whileHover={{ scale: 1.1, y: -2 }}
-              whileTap={{ scale: 0.94 }}
+              whileHover={{ scale: 1.03, x: 2 }}
+              whileTap={{ scale: 0.96 }}
               style={{
-                width: '42px',
-                height: '42px',
-                borderRadius: '12px',
-                background: 'rgba(255,255,255,0.15)',
-                border: '1.5px solid rgba(255,255,255,0.25)',
-                display: 'flex',
+                display: 'inline-flex',
                 alignItems: 'center',
-                justifyContent: 'center',
+                gap: '0.6rem',
+                background: 'rgba(255,255,255,0.13)',
+                border: '1.5px solid rgba(255,255,255,0.22)',
+                borderRadius: '100px',
+                padding: '0.48rem 1rem',
                 color: 'white',
                 textDecoration: 'none',
+                fontFamily: 'Nunito, sans-serif',
+                fontWeight: 700,
+                fontSize: '0.82rem',
                 backdropFilter: 'blur(6px)',
                 transition: 'background 0.2s',
               }}
             >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
               </svg>
+              Facebook · kidsddsgrayslake
             </motion.a>
 
             <motion.a
@@ -249,28 +271,31 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Kids Dentist on Instagram"
-              whileHover={{ scale: 1.1, y: -2 }}
-              whileTap={{ scale: 0.94 }}
+              whileHover={{ scale: 1.03, x: 2 }}
+              whileTap={{ scale: 0.96 }}
               style={{
-                width: '42px',
-                height: '42px',
-                borderRadius: '12px',
-                background: 'rgba(255,255,255,0.15)',
-                border: '1.5px solid rgba(255,255,255,0.25)',
-                display: 'flex',
+                display: 'inline-flex',
                 alignItems: 'center',
-                justifyContent: 'center',
+                gap: '0.6rem',
+                background: 'rgba(255,255,255,0.13)',
+                border: '1.5px solid rgba(255,255,255,0.22)',
+                borderRadius: '100px',
+                padding: '0.48rem 1rem',
                 color: 'white',
                 textDecoration: 'none',
+                fontFamily: 'Nunito, sans-serif',
+                fontWeight: 700,
+                fontSize: '0.82rem',
                 backdropFilter: 'blur(6px)',
                 transition: 'background 0.2s',
               }}
             >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
                 <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
                 <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
               </svg>
+              Instagram · @kidsddsgrayslake
             </motion.a>
           </div>
 
@@ -349,8 +374,35 @@ export default function Footer() {
         </div>
       </div>
 
+      {/* SEO service area block */}
+      <div
+        style={{
+          maxWidth: '1200px',
+          margin: '0 auto',
+          padding: '1.25rem 2rem 0',
+          borderTop: '1px solid rgba(255,255,255,0.1)',
+          textAlign: 'center',
+        }}
+      >
+        <p
+          style={{
+            fontSize: '0.75rem',
+            fontWeight: 600,
+            opacity: 0.55,
+            lineHeight: 1.7,
+            margin: 0,
+            fontFamily: 'Nunito, sans-serif',
+          }}
+        >
+          Kids Dentist proudly serves families throughout Lake County, Illinois, including{' '}
+          <strong>Grayslake</strong>, <strong>Waukegan</strong>, <strong>Libertyville</strong>,{' '}
+          <strong>Mundelein</strong>, <strong>Vernon Hills</strong>, <strong>Lake Forest</strong>,{' '}
+          Round Lake, Lindenhurst, Antioch, Gurnee, Zion, and surrounding communities.
+        </p>
+      </div>
+
       {/* Divider */}
-      <div style={{ borderTop: '1px solid rgba(255,255,255,0.15)', maxWidth: '1200px', margin: '0 auto' }} />
+      <div style={{ borderTop: '1px solid rgba(255,255,255,0.15)', maxWidth: '1200px', margin: '1.25rem auto 0' }} />
 
       {/* Bottom bar */}
       <div

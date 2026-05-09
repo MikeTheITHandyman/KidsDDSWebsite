@@ -25,6 +25,28 @@ export default function InsuranceBanner() {
         </a>
 
       </div>
+
+      {/* "Don't see your plan?" note */}
+      <div
+        style={{
+          textAlign: 'center',
+          padding: '0.5rem 1.5rem 0.75rem',
+          fontSize: '0.82rem',
+          fontWeight: 600,
+          color: '#6b7280',
+          fontFamily: 'Nunito, sans-serif',
+        }}
+      >
+        Don&apos;t see your plan?{' '}
+        <a
+          href="tel:+18472231400"
+          style={{ color: '#4A90A4', fontWeight: 800, textDecoration: 'none' }}
+        >
+          Text/Call us — we likely accept it.
+        </a>
+        {' '}(847) 223-1400
+      </div>
+
     </section>
   )
 }

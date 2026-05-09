@@ -178,7 +178,7 @@ export default function FaqPage() {
                   boxShadow: '0 6px 20px rgba(232,147,79,0.32)',
                 }}
               >
-                Call (847) 223-1400
+                Text/Call us: (847) 223-1400
               </Link>
               <Link
                 href="/contact"

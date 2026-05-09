@@ -293,7 +293,7 @@ export default function PreventiveDentistryPage() {
                 href="tel:+18472231400"
                 style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem', color: '#4A90A4', fontFamily: 'Nunito, sans-serif', fontWeight: 700, fontSize: '0.95rem', padding: '0.85rem 2rem', borderRadius: '100px', textDecoration: 'none', border: '2px solid rgba(74,144,164,0.3)' }}
               >
-                Call (847) 223-1400
+                Text/Call us: (847) 223-1400
               </Link>
             </div>
           </div>

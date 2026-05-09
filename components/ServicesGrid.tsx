@@ -39,14 +39,15 @@ const services = [
   },
   {
     title: 'Special Needs Dentistry',
-    description: 'Compassionate, specialized care for children with diverse needs.',
+    description: 'Compassionate, specialized care for children with diverse needs — including autism, Down syndrome, ADHD, and sensory differences.',
     buttonText: 'Special Needs Care',
     href: '/services/special-needs',
-    cardClass: 'card-sage',
-    iconColor: '#6BA899',
-    iconBg: 'linear-gradient(135deg, #d2ebe5, #aed8cf)',
+    cardClass: 'card-purple',
+    iconColor: '#78509b',
+    iconBg: 'linear-gradient(135deg, #ede9fe, #ddd6fe)',
+    featured: true,
     icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6BA899" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#78509b" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
         <circle cx="9" cy="7" r="4"/>
         <path d="M23 21v-2a4 4 0 00-3-3.87"/>
@@ -167,8 +168,32 @@ export default function ServicesGrid() {
                     transition: { type: 'spring', stiffness: 300, damping: 18 },
                   }}
                   whileTap={{ scale: 0.97 }}
-                  style={{ height: '100%' }}
+                  style={{
+                    height: '100%',
+                    ...('featured' in svc && svc.featured ? {
+                      border: '2px solid rgba(120,80,155,0.32)',
+                      boxShadow: '0 0 0 4px rgba(120,80,155,0.07), 0 4px 18px rgba(120,80,155,0.12)',
+                    } : {}),
+                  }}
                 >
+                  {'featured' in svc && svc.featured && (
+                    <div style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.3rem',
+                      background: 'linear-gradient(135deg, #ede9fe, #ddd6fe)',
+                      color: '#78509b',
+                      borderRadius: '100px',
+                      padding: '0.22rem 0.65rem',
+                      fontSize: '0.68rem',
+                      fontWeight: 800,
+                      letterSpacing: '0.04em',
+                      textTransform: 'uppercase',
+                      marginBottom: '0.75rem',
+                    }}>
+                      ✦ Specialized Care
+                    </div>
+                  )}
                   <div className="service-icon" style={{ background: svc.iconBg }}>
                     {svc.icon}
                   </div>

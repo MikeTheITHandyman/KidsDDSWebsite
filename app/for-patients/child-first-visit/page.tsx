@@ -512,7 +512,7 @@ export default function ChildFirstVisitPage() {
                   border: '2px solid rgba(74,144,164,0.3)',
                 }}
               >
-                Call (847) 223-1400
+                Text/Call us: (847) 223-1400
               </Link>
             </div>
           </div>

@@ -23,7 +23,7 @@ const doctors = [
   {
     name: 'Dr. Sonia Gutierrez',
     firstName: 'Sonia',
-    credentials: 'DDS',
+    credentials: 'DDS, MS',
     tagline: 'Gentle Care Specialist',
     photo: '/brand_assets/index-dr-sonia.jpg',
     href: '/about/meet-the-dentists/dr-sonia-gutierrez',
@@ -37,7 +37,7 @@ const doctors = [
   {
     name: 'Dr. Dave Rutcosky',
     firstName: 'Dave',
-    credentials: 'DDS',
+    credentials: 'DDS, MS',
     tagline: 'Special Needs Champion',
     photo: '/brand_assets/index-dr-dave.jpg',
     href: '/about/meet-the-dentists/dr-dave-rutcosky',
@@ -51,7 +51,7 @@ const doctors = [
   {
     name: 'Dr. Sahar Alrayyes',
     firstName: 'Sahar',
-    credentials: 'DDS',
+    credentials: 'DDS, MS',
     tagline: 'Preventive Care Leader',
     photo: '/brand_assets/index-dr-alrayyes.jpg',
     href: '/about/meet-the-dentists/dr-sahar-alrayyes',
@@ -65,7 +65,7 @@ const doctors = [
   {
     name: 'Dr. Anne-Ashley Compton',
     firstName: 'Anne-Ashley',
-    credentials: 'DDS',
+    credentials: 'DDS, MS',
     tagline: 'Restorative Arts Expert',
     photo: '/brand_assets/index-dr-ashley.jpg',
     href: '/about/meet-the-dentists/dr-anne-ashley-compton',

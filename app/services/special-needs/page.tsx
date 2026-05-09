@@ -298,7 +298,7 @@ export default function SpecialNeedsDentistryPage() {
                   border: '1.5px solid rgba(255,255,255,0.4)',
                 }}
               >
-                Call (847) 223-1400
+                Text/Call us: (847) 223-1400
               </a>
             </div>
           </div>

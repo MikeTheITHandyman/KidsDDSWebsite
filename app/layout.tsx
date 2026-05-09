@@ -6,6 +6,7 @@ import Footer from '../components/Footer'
 import FloatingWidget from '../components/FloatingWidget'
 import AnnouncementBanner from '../components/AnnouncementBanner'
 import BannerWrapper from '../components/BannerWrapper'
+import TopActionBar from '../components/TopActionBar'
 import '../styles/global.css'
 
 export const metadata: Metadata = {
@@ -62,6 +63,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="site-root">
+        <TopActionBar />
         <BannerWrapper>
           <AnnouncementBanner />
         </BannerWrapper>

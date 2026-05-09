@@ -407,8 +407,90 @@ export default function ContactContent() {
                     href="tel:+18472231400"
                     style={{ color: '#4A90A4', fontWeight: 700, fontSize: '1rem', textDecoration: 'none' }}
                   >
-                    (847) 223-1400
+                    Text/Call us: (847) 223-1400
                   </a>
+                </div>
+              </div>
+
+              {/* Email */}
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.85rem', marginBottom: '1.25rem' }}>
+                <div
+                  style={{
+                    width: '36px',
+                    height: '36px',
+                    borderRadius: '0.7rem',
+                    background: 'rgba(120,80,155,0.10)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                    fontSize: '1rem',
+                  }}
+                  aria-hidden="true"
+                >
+                  ✉️
+                </div>
+                <div>
+                  <p style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '0.82rem', color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '0.06em', margin: '0 0 0.2rem' }}>
+                    Email
+                  </p>
+                  <a
+                    href="mailto:info@kidsdds.com"
+                    style={{ color: '#4A90A4', fontWeight: 700, fontSize: '0.95rem', textDecoration: 'none' }}
+                  >
+                    info@kidsdds.com
+                  </a>
+                </div>
+              </div>
+
+              {/* Social */}
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.85rem', marginBottom: '1.25rem' }}>
+                <div
+                  style={{
+                    width: '36px',
+                    height: '36px',
+                    borderRadius: '0.7rem',
+                    background: 'rgba(74,144,164,0.08)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                    fontSize: '1rem',
+                  }}
+                  aria-hidden="true"
+                >
+                  📱
+                </div>
+                <div>
+                  <p style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '0.82rem', color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '0.06em', margin: '0 0 0.55rem' }}>
+                    Follow Us
+                  </p>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                    <a
+                      href="https://www.facebook.com/kidsddsgrayslake"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem', color: '#4A90A4', fontWeight: 700, fontSize: '0.875rem', textDecoration: 'none' }}
+                    >
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+                      </svg>
+                      facebook.com/kidsddsgrayslake
+                    </a>
+                    <a
+                      href="https://www.instagram.com/kidsddsgrayslake/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem', color: '#4A90A4', fontWeight: 700, fontSize: '0.875rem', textDecoration: 'none' }}
+                    >
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                        <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                      </svg>
+                      @kidsddsgrayslake
+                    </a>
+                  </div>
                 </div>
               </div>
 

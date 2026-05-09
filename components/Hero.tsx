@@ -88,7 +88,7 @@ export default function Hero() {
               <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
             </svg>
             <span style={{ fontSize: '0.92rem', fontWeight: 800, color: 'var(--brand-600)' }}>
-              Trusted by Families for Over 30 Years
+              Serving Lake County for Over 30 Years · Est. 1994
             </span>
           </motion.div>
 
@@ -120,7 +120,7 @@ export default function Hero() {
               <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 9.8 19.79 19.79 0 0 1 1 1.18 2 2 0 0 1 2.82 0h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L6.91 7.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/>
               </svg>
-              (847) 223-1400
+              Text/Call us: (847) 223-1400
             </motion.a>
           </div>
 

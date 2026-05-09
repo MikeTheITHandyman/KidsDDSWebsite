@@ -316,6 +316,81 @@ export default function PatientFormsPage() {
           </AnimatedSection>
         </div>
 
+        {/* School Form request */}
+        <AnimatedSection>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '1.5rem',
+              background: 'linear-gradient(135deg, rgba(120,80,155,0.07), rgba(167,139,250,0.07))',
+              border: '1.5px solid rgba(120,80,155,0.18)',
+              borderRadius: '1.75rem',
+              padding: '1.75rem 2rem',
+              marginBottom: '2rem',
+              flexWrap: 'wrap',
+            }}
+          >
+            <div
+              style={{
+                width: '52px',
+                height: '52px',
+                borderRadius: '1rem',
+                background: 'linear-gradient(135deg, #ede9fe, #ddd6fe)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0,
+                fontSize: '1.5rem',
+              }}
+              aria-hidden="true"
+            >
+              🏫
+            </div>
+            <div style={{ flex: 1, minWidth: '200px' }}>
+              <p
+                style={{
+                  fontFamily: 'Nunito, sans-serif',
+                  fontWeight: 900,
+                  fontSize: '1rem',
+                  color: '#78509b',
+                  margin: '0 0 0.3rem',
+                }}
+              >
+                Need a School or Camp Health Form?
+              </p>
+              <p style={{ fontSize: '0.875rem', color: '#6b7280', margin: 0, fontWeight: 500, lineHeight: 1.6 }}>
+                We complete school, camp, and sports physical forms for our patients. Just contact us and we&apos;ll take care of it.
+              </p>
+            </div>
+            <Link
+              href="/contact?subject=School+Form+Request"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.4rem',
+                background: 'linear-gradient(135deg, #78509b, #9b6dc5)',
+                color: '#fff',
+                fontFamily: 'Nunito, sans-serif',
+                fontWeight: 800,
+                fontSize: '0.88rem',
+                padding: '0.75rem 1.5rem',
+                borderRadius: '100px',
+                textDecoration: 'none',
+                whiteSpace: 'nowrap',
+                boxShadow: '0 4px 16px rgba(120,80,155,0.3)',
+                flexShrink: 0,
+              }}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+              Request a School Form
+            </Link>
+          </div>
+        </AnimatedSection>
+
         {/* Tips */}
         <AnimatedSection>
           <div
@@ -427,7 +502,7 @@ export default function PatientFormsPage() {
                   border: '2px solid rgba(74,144,164,0.3)',
                 }}
               >
-                Call (847) 223-1400
+                Text/Call us: (847) 223-1400
               </Link>
             </div>
           </div>
