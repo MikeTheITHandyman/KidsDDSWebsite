@@ -171,21 +171,39 @@ export default function EmergencyDentalCarePage() {
                 We hold same-day urgent slots every single day.
               </p>
             </div>
-            <a
-              href="tel:+18472231400"
-              style={{
-                display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-                background: '#fff', color: '#E97D63', fontFamily: 'Nunito, sans-serif',
-                fontWeight: 900, fontSize: '1.05rem', padding: '0.85rem 2rem',
-                borderRadius: '100px', textDecoration: 'none', flexShrink: 0,
-                boxShadow: '0 4px 16px rgba(0,0,0,0.12)',
-              }}
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 9.8 19.79 19.79 0 0 1 1 1.18 2 2 0 0 1 2.82 0h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L6.91 7.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/>
-              </svg>
-              Text/Call us: (847) 223-1400
-            </a>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
+              <a
+                href="tel:+18472231400"
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+                  background: '#fff', color: '#E97D63', fontFamily: 'Nunito, sans-serif',
+                  fontWeight: 900, fontSize: '1.05rem', padding: '0.85rem 2rem',
+                  borderRadius: '100px', textDecoration: 'none', flexShrink: 0,
+                  boxShadow: '0 4px 16px rgba(0,0,0,0.12)',
+                }}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 9.8 19.79 19.79 0 0 1 1 1.18 2 2 0 0 1 2.82 0h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L6.91 7.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/>
+                </svg>
+                Text/Call us: (847) 223-1400
+              </a>
+              <Link
+                href="/ask-the-doctor"
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+                  background: 'rgba(255,255,255,0.15)', color: '#fff', fontFamily: 'Nunito, sans-serif',
+                  fontWeight: 800, fontSize: '0.95rem', padding: '0.85rem 1.75rem',
+                  borderRadius: '100px', textDecoration: 'none', flexShrink: 0,
+                  border: '1.5px solid rgba(255,255,255,0.55)',
+                }}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <line x1="22" y1="2" x2="11" y2="13"/>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                </svg>
+                Send Doctor a Message
+              </Link>
+            </div>
           </div>
         </AnimatedSection>
 

@@ -87,6 +87,7 @@ export default function AskDoctorForm() {
       errs.email = 'Please enter a valid email address.'
     if (!form.childName.trim()) errs.childName = "Please enter your child's name."
     if (!form.childAge.trim()) errs.childAge = "Please enter your child's age."
+    if (!form.childDob.trim()) errs.childDob = "Please enter your child's date of birth."
     if (!form.question.trim()) errs.question = 'Please enter your question.'
     setFieldErrors(errs)
     return Object.keys(errs).length === 0
@@ -249,18 +250,22 @@ export default function AskDoctorForm() {
           {/* Date of Birth */}
           <div>
             <label htmlFor="childDob" style={labelStyle}>
-              Date of Birth <span style={{ color: '#9ca3af', fontWeight: 500 }}>(optional)</span>
+              Date of Birth {req}
             </label>
             <input
               id="childDob"
               name="childDob"
               type="date"
+              required
               value={form.childDob}
               onChange={handleChange}
               onFocus={() => setFocused('childDob')}
               onBlur={() => setFocused(null)}
               style={focusStyle('childDob')}
             />
+            {fieldErrors.childDob && (
+              <p style={{ fontSize: '0.78rem', color: '#E97D63', margin: '0.3rem 0 0', fontWeight: 600 }}>{fieldErrors.childDob}</p>
+            )}
           </div>
 
           {/* ── Routing ── */}

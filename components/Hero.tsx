@@ -99,7 +99,7 @@ export default function Hero() {
           </motion.div>
 
           {/* CTAs */}
-          <div className="hero-ctas">
+          <div className="hero-ctas flex flex-col sm:flex-row gap-4">
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -132,7 +132,7 @@ export default function Hero() {
 
         </div>
 
-        {/* ── Right: Video + Trust Bar ── */}
+        {/* ── Right: Video ── */}
         <div className="hero-right-col">
 
           {/* Video blob — decorative */}
@@ -160,47 +160,45 @@ export default function Hero() {
             <div className="hero-deco-3"/>
           </div>
 
-          {/* Trust bar — single row desktop, 2×2 mobile */}
-          <motion.div
-            className="hero-trust-bar"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.55 }}
-            aria-label="Practice highlights"
-          >
-            {TRUST_ITEMS.map((item) => (
-              <div
-                key={item.text}
-                className="trust-bar-item"
-                style={{ fontWeight: item.bold ? 800 : 600 }}
-              >
-                <div className="trust-dot" aria-hidden="true"/>
-                <span>{item.text}</span>
-              </div>
-            ))}
-          </motion.div>
-
         </div>
 
       </div>
 
+      {/* Trust bar — full width below both columns */}
+      <motion.div
+        className="hero-trust-bar"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.55 }}
+        aria-label="Practice highlights"
+      >
+        {TRUST_ITEMS.map((item) => (
+          <div
+            key={item.text}
+            className="trust-bar-item"
+            style={{ fontWeight: item.bold ? 800 : 600 }}
+          >
+            <div className="trust-dot" aria-hidden="true"/>
+            <span>{item.text}</span>
+          </div>
+        ))}
+      </motion.div>
+
       <style>{`
-        /* Right column: stacks video above trust bar */
+        /* Right column: video only */
         .hero-right-col {
           display: flex;
           flex-direction: column;
-          gap: 1rem;
           min-width: 0;
         }
 
-        /* Trust bar: single row on desktop */
+        /* Trust bar: full width below both columns, stacked on mobile */
         .hero-trust-bar {
           display: flex;
-          flex-direction: row;
-          flex-wrap: nowrap;
+          flex-direction: column;
           justify-content: space-between;
-          align-items: flex-start;
           width: 100%;
+          margin-top: 3rem;
           gap: 0.5rem;
           background: rgba(255,255,255,0.55);
           backdrop-filter: blur(10px);
@@ -210,14 +208,15 @@ export default function Hero() {
           padding: 0.85rem 1rem;
         }
 
+        /* Trust bar items: inline row on mobile */
         .trust-bar-item {
           display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 0.3rem;
-          flex: 1 1 0;
+          flex-direction: row;
+          align-items: flex-start;
+          gap: 0.4rem;
+          flex: 1 1 auto;
           min-width: 0;
-          text-align: center;
+          text-align: left;
           font-family: Nunito, sans-serif;
           font-size: 0.75rem;
           color: #4b5563;
@@ -227,31 +226,25 @@ export default function Hero() {
 
         .trust-bar-item .trust-dot {
           flex-shrink: 0;
+          margin-top: 4px;
         }
 
-        /* 2×2 grid on medium and below */
-        @media (max-width: 900px) {
+        /* lg+: horizontal row, items centered */
+        @media (min-width: 1024px) {
           .hero-trust-bar {
-            flex-wrap: wrap;
-            justify-content: flex-start;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-items: flex-start;
           }
           .trust-bar-item {
-            flex: 1 1 calc(50% - 0.5rem);
-            min-width: calc(50% - 0.5rem);
-            align-items: flex-start;
-            text-align: left;
-            flex-direction: row;
-            gap: 0.4rem;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            flex: 1 1 0;
+            gap: 0.3rem;
           }
           .trust-bar-item .trust-dot {
-            margin-top: 4px;
-          }
-        }
-
-        /* Single column on very small screens */
-        @media (max-width: 380px) {
-          .trust-bar-item {
-            flex: 1 1 100%;
+            margin-top: 0;
           }
         }
       `}</style>
