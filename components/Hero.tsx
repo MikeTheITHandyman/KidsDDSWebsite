@@ -5,6 +5,13 @@ import { motion } from 'framer-motion'
 
 const springBtn = { type: 'spring', stiffness: 400, damping: 20 } as const
 
+const TRUST_ITEMS = [
+  { text: '4.8★ · 650+ Reviews', bold: false },
+  { text: 'Emergency Visits Available Today', bold: true },
+  { text: 'In-Network with Major Insurance Providers', bold: false },
+  { text: 'Most Kids Seen Within Days', bold: false },
+]
+
 export default function Hero() {
   return (
     <section className="hero">
@@ -55,7 +62,7 @@ export default function Hero() {
             {' '}in Grayslake.
           </h1>
 
-          {/* Tagline - below the headline */}
+          {/* Tagline */}
           <motion.p
             className="hero-sub"
             initial={{ opacity: 0, y: 10 }}
@@ -65,7 +72,7 @@ export default function Hero() {
             High-quality pediatric and children&apos;s dental care that kids actually look forward to — serving families throughout Lake County.
           </motion.p>
 
-          {/* Trusted 30 years - prominent inline banner */}
+          {/* Trusted 30 years banner */}
           <motion.div
             initial={{ opacity: 0, x: -16 }}
             animate={{ opacity: 1, x: 0 }}
@@ -82,7 +89,6 @@ export default function Hero() {
               fontFamily: 'Nunito, sans-serif',
             }}
           >
-            {/* Medal icon */}
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A90A4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <circle cx="12" cy="8" r="6"/>
               <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
@@ -124,53 +130,131 @@ export default function Hero() {
             </motion.a>
           </div>
 
-          {/* Trust signals */}
-          <div className="hero-trust">
-            <div className="trust-item">
-              <div className="trust-dot" aria-hidden="true"/>
-              4.8★ · 650+ Reviews
-            </div>
-            <div className="trust-item" style={{ fontWeight: 800 }}>
-              <div className="trust-dot" aria-hidden="true"/>
-              Emergency Visits Available Today
-            </div>
-            <div className="trust-item">
-              <div className="trust-dot" aria-hidden="true"/>
-              In-Network with Delta Dental
-            </div>
-            <div className="trust-item">
-              <div className="trust-dot" aria-hidden="true"/>
-              Most Kids Seen Within Days
-            </div>
-          </div>
         </div>
 
-        {/* ── Right: Organic Image Visual ── */}
-        <div className="hero-visual" aria-hidden="true">
-          <div className="hero-image-blob">
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="hero-video"
-              aria-hidden="true"
-            >
-              <source
-                src={
-                  process.env.NEXT_PUBLIC_HERO_VIDEO_URL ||
-                  'https://res.cloudinary.com/dkrbvqzlw/video/upload/q_auto:low,w_1280/v1777343603/hero-video_oznoe1.mp4'
-                }
-                type="video/mp4"
-              />
-            </video>
+        {/* ── Right: Video + Trust Bar ── */}
+        <div className="hero-right-col">
+
+          {/* Video blob — decorative */}
+          <div className="hero-visual" aria-hidden="true">
+            <div className="hero-image-blob">
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="hero-video"
+                aria-hidden="true"
+              >
+                <source
+                  src={
+                    process.env.NEXT_PUBLIC_HERO_VIDEO_URL ||
+                    'https://res.cloudinary.com/dkrbvqzlw/video/upload/q_auto:low,w_1280/v1777343603/hero-video_oznoe1.mp4'
+                  }
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div className="hero-deco-1"/>
+            <div className="hero-deco-2"/>
+            <div className="hero-deco-3"/>
           </div>
-          <div className="hero-deco-1"/>
-          <div className="hero-deco-2"/>
-          <div className="hero-deco-3"/>
+
+          {/* Trust bar — single row desktop, 2×2 mobile */}
+          <motion.div
+            className="hero-trust-bar"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.55 }}
+            aria-label="Practice highlights"
+          >
+            {TRUST_ITEMS.map((item) => (
+              <div
+                key={item.text}
+                className="trust-bar-item"
+                style={{ fontWeight: item.bold ? 800 : 600 }}
+              >
+                <div className="trust-dot" aria-hidden="true"/>
+                <span>{item.text}</span>
+              </div>
+            ))}
+          </motion.div>
+
         </div>
 
       </div>
+
+      <style>{`
+        /* Right column: stacks video above trust bar */
+        .hero-right-col {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          min-width: 0;
+        }
+
+        /* Trust bar: single row on desktop */
+        .hero-trust-bar {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: nowrap;
+          justify-content: space-between;
+          align-items: flex-start;
+          width: 100%;
+          gap: 0.5rem;
+          background: rgba(255,255,255,0.55);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          border: 1.5px solid rgba(74,144,164,0.13);
+          border-radius: 1.25rem;
+          padding: 0.85rem 1rem;
+        }
+
+        .trust-bar-item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 0.3rem;
+          flex: 1 1 0;
+          min-width: 0;
+          text-align: center;
+          font-family: Nunito, sans-serif;
+          font-size: 0.75rem;
+          color: #4b5563;
+          line-height: 1.4;
+          padding: 0 0.25rem;
+        }
+
+        .trust-bar-item .trust-dot {
+          flex-shrink: 0;
+        }
+
+        /* 2×2 grid on medium and below */
+        @media (max-width: 900px) {
+          .hero-trust-bar {
+            flex-wrap: wrap;
+            justify-content: flex-start;
+          }
+          .trust-bar-item {
+            flex: 1 1 calc(50% - 0.5rem);
+            min-width: calc(50% - 0.5rem);
+            align-items: flex-start;
+            text-align: left;
+            flex-direction: row;
+            gap: 0.4rem;
+          }
+          .trust-bar-item .trust-dot {
+            margin-top: 4px;
+          }
+        }
+
+        /* Single column on very small screens */
+        @media (max-width: 380px) {
+          .trust-bar-item {
+            flex: 1 1 100%;
+          }
+        }
+      `}</style>
     </section>
   )
 }

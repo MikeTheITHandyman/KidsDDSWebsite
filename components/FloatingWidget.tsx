@@ -110,7 +110,7 @@ export default function FloatingWidget() {
 
             {/* Trust micro-badges */}
             <div style={{ display: 'flex', gap: '5px', flexWrap: 'wrap', justifyContent: 'flex-end' }}>
-              {['Emergency Visits Available Today', 'In-Network with Delta Dental', 'Most Kids Seen Within Days'].map((label) => (
+              {['Emergency Visits Available Today', 'In-Network with Major Insurance Providers', 'Most Kids Seen Within Days'].map((label) => (
                 <span
                   key={label}
                   style={{
