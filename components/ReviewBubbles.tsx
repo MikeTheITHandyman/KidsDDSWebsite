@@ -32,6 +32,7 @@ interface ReviewItem {
   initial: string
   avatarBg: string
   date: string
+  category?: string
 }
 
 function formatShortDate(iso?: string) {
@@ -63,6 +64,7 @@ const STATIC_REVIEWS: ReviewItem[] = [
     initial: 'S',
     avatarBg: 'linear-gradient(135deg, #E8934F, #E97D63)',
     date: 'Nov 2024',
+    category: 'Anxious Child Success',
   },
   {
     stars: 5,
@@ -72,6 +74,27 @@ const STATIC_REVIEWS: ReviewItem[] = [
     initial: 'J',
     avatarBg: 'linear-gradient(135deg, #4A90A4, #6BA899)',
     date: 'Oct 2024',
+    category: 'Emergency Visit',
+  },
+  {
+    stars: 5,
+    text: "My son has severe dental anxiety — we had been turned away by two other offices. Kids Dentist took the time to do a no-treatment 'meet and greet' visit first. By the third appointment he was getting a cleaning without a single tear. I genuinely don't know what we'd do without them.",
+    author: 'Christine B.',
+    role: 'Mom',
+    initial: 'C',
+    avatarBg: 'linear-gradient(135deg, #7C3AED, #6BA899)',
+    date: 'Jan 2025',
+    category: 'Anxious Child Success',
+  },
+  {
+    stars: 5,
+    text: "Called at 7:45 AM on a Monday after my daughter fell and knocked a tooth loose. They had us in by 9:30, saw her immediately, and she was back at school by noon. The front desk was calm, the doctor was reassuring, and the whole experience was shockingly smooth for what felt like a crisis.",
+    author: 'Rachel & Tom W.',
+    role: 'Parents',
+    initial: 'R',
+    avatarBg: 'linear-gradient(135deg, #E8934F, #E97D63)',
+    date: 'Feb 2025',
+    category: 'Emergency Visit',
   },
   {
     stars: 5,
@@ -90,6 +113,7 @@ const STATIC_REVIEWS: ReviewItem[] = [
     initial: 'D',
     avatarBg: 'linear-gradient(135deg, #4A90A4, #4A90A4)',
     date: 'Aug 2024',
+    category: 'Special Needs',
   },
   {
     stars: 5,
@@ -110,6 +134,12 @@ const STATIC_REVIEWS: ReviewItem[] = [
     date: 'Jun 2024',
   },
 ]
+
+const CATEGORY_COLORS: Record<string, { bg: string; text: string }> = {
+  'Anxious Child Success': { bg: 'rgba(124,58,237,0.1)', text: '#7C3AED' },
+  'Emergency Visit':       { bg: 'rgba(232,147,79,0.12)', text: '#C2621A' },
+  'Special Needs':         { bg: 'rgba(107,168,153,0.12)', text: '#4A7A6E' },
+}
 
 const slideVariants: Variants = {
   enter: (dir: number) => ({
@@ -215,29 +245,33 @@ export default function ReviewBubbles({ sanityReviews }: ReviewBubblesProps) {
           transition={{ duration: 0.55 }}
           style={{ textAlign: 'center', marginBottom: '1.5rem' }}
         >
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1.25rem' }}>
+          {/* Prominent rating block */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', marginBottom: '1.4rem' }}>
             <div style={{
-              display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-              background: 'rgba(255,255,255,0.15)',
-              backdropFilter: 'blur(8px)',
-              border: '1px solid rgba(255,255,255,0.22)',
-              borderRadius: '100px',
-              padding: '0.45rem 1.1rem',
+              display: 'inline-flex', alignItems: 'center', gap: '0.65rem',
+              background: 'rgba(255,255,255,0.18)',
+              backdropFilter: 'blur(10px)',
+              border: '1.5px solid rgba(255,255,255,0.32)',
+              borderRadius: '1rem',
+              padding: '0.65rem 1.5rem',
               color: 'white',
-              fontSize: '0.88rem',
-              fontWeight: 800,
               fontFamily: 'Nunito, sans-serif',
             }}>
-              <span style={{ display: 'flex', gap: '1px' }}>
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <svg key={i} width="13" height="13" viewBox="0 0 24 24" fill="#F4C77F" stroke="none" aria-hidden="true">
-                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                  </svg>
-                ))}
-              </span>
-              <span>4.8 Rating</span>
-              <span style={{ opacity: 0.5 }}>·</span>
-              <span>650+ Reviews</span>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3px' }}>
+                <span style={{ fontSize: '2rem', fontWeight: 900, lineHeight: 1, letterSpacing: '-0.02em' }}>4.8</span>
+                <span style={{ display: 'flex', gap: '2px' }}>
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <svg key={i} width="14" height="14" viewBox="0 0 24 24" fill="#F4C77F" stroke="none" aria-hidden="true">
+                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                    </svg>
+                  ))}
+                </span>
+              </div>
+              <div style={{ width: '1px', height: '36px', background: 'rgba(255,255,255,0.3)' }} aria-hidden="true" />
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1px' }}>
+                <span style={{ fontSize: '1.55rem', fontWeight: 900, lineHeight: 1, letterSpacing: '-0.02em' }}>650+</span>
+                <span style={{ fontSize: '0.78rem', fontWeight: 700, opacity: 0.85, letterSpacing: '0.04em' }}>Google Reviews</span>
+              </div>
             </div>
           </div>
 
@@ -249,7 +283,7 @@ export default function ReviewBubbles({ sanityReviews }: ReviewBubblesProps) {
             marginBottom: '0.6rem',
             fontFamily: 'Nunito, sans-serif',
           }}>
-            Happy Parents
+            What Lake County Parents Say
           </span>
           <h2
             id="reviews-heading"
@@ -263,7 +297,7 @@ export default function ReviewBubbles({ sanityReviews }: ReviewBubblesProps) {
               lineHeight: 1.18,
             }}
           >
-            See Why Families Love Us
+            650+ Families Trust Kids Dentist
           </h2>
         </motion.div>
 
@@ -300,6 +334,23 @@ export default function ReviewBubbles({ sanityReviews }: ReviewBubblesProps) {
                     boxShadow: '0 20px 60px rgba(0,0,0,0.18)',
                   }}
                 >
+                  {review.category && CATEGORY_COLORS[review.category] && (
+                    <div style={{ marginBottom: '0.6rem' }}>
+                      <span style={{
+                        display: 'inline-block',
+                        background: CATEGORY_COLORS[review.category].bg,
+                        color: CATEGORY_COLORS[review.category].text,
+                        borderRadius: '100px',
+                        padding: '0.2rem 0.7rem',
+                        fontFamily: 'Nunito, sans-serif',
+                        fontWeight: 800,
+                        fontSize: '0.72rem',
+                        letterSpacing: '0.02em',
+                      }}>
+                        {review.category}
+                      </span>
+                    </div>
+                  )}
                   <Stars count={review.stars} />
                   <blockquote
                     style={{

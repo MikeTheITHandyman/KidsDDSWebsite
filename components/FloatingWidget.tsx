@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
+import { sendGAEvent } from '@next/third-parties/google'
 
 export default function FloatingWidget() {
   const pathname = usePathname()
@@ -42,6 +43,7 @@ export default function FloatingWidget() {
             {expanded && (
               <motion.a
                 href="tel:8472231400"
+                onClick={() => sendGAEvent('event', 'call_click', { location: 'floating_widget' })}
                 initial={{ opacity: 0, y: 12, scale: 0.88 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 12, scale: 0.88 }}
@@ -71,38 +73,65 @@ export default function FloatingWidget() {
             )}
           </AnimatePresence>
 
-          {/* Primary CTA pill */}
-          <motion.a
-            href="/request-appointment"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.96 }}
-            transition={{ type: 'spring', stiffness: 380, damping: 22 }}
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              background: 'linear-gradient(135deg, var(--accent-500) 0%, var(--cta-coral) 100%)',
-              color: 'white',
-              borderRadius: '100px',
-              padding: '0.85rem 1.6rem',
-              fontFamily: 'Nunito, sans-serif',
-              fontWeight: 800,
-              fontSize: '0.95rem',
-              textDecoration: 'none',
-              boxShadow: '0 8px 28px rgba(232,147,79,0.48)',
-              whiteSpace: 'nowrap',
-            }}
-            aria-label="Request an appointment"
-          >
-            {/* Calendar icon */}
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-              <line x1="16" y1="2" x2="16" y2="6"/>
-              <line x1="8" y1="2" x2="8" y2="6"/>
-              <line x1="3" y1="10" x2="21" y2="10"/>
-            </svg>
-            Request Appointment
-          </motion.a>
+          {/* Primary CTA pill + trust micro-badges */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '6px' }}>
+            <motion.a
+              href="/request-appointment"
+              onClick={() => sendGAEvent('event', 'appointment_click', { location: 'floating_widget' })}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.96 }}
+              transition={{ type: 'spring', stiffness: 380, damping: 22 }}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                background: 'linear-gradient(135deg, var(--accent-500) 0%, var(--cta-coral) 100%)',
+                color: 'white',
+                borderRadius: '100px',
+                padding: '0.85rem 1.6rem',
+                fontFamily: 'Nunito, sans-serif',
+                fontWeight: 800,
+                fontSize: '0.95rem',
+                textDecoration: 'none',
+                boxShadow: '0 8px 28px rgba(232,147,79,0.48)',
+                whiteSpace: 'nowrap',
+              }}
+              aria-label="Request an appointment at Kids Dentist Grayslake"
+            >
+              {/* Calendar icon */}
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+              Request Appointment
+            </motion.a>
+
+            {/* Trust micro-badges */}
+            <div style={{ display: 'flex', gap: '5px', flexWrap: 'wrap', justifyContent: 'flex-end' }}>
+              {['Emergency Visits Available Today', 'In-Network with Delta Dental', 'Most Kids Seen Within Days'].map((label) => (
+                <span
+                  key={label}
+                  style={{
+                    display: 'inline-block',
+                    background: 'rgba(255,255,255,0.94)',
+                    color: '#4A90A4',
+                    border: '1px solid rgba(74,144,164,0.2)',
+                    borderRadius: '100px',
+                    padding: '0.22rem 0.65rem',
+                    fontFamily: 'Nunito, sans-serif',
+                    fontWeight: 700,
+                    fontSize: '0.68rem',
+                    whiteSpace: 'nowrap',
+                    boxShadow: '0 2px 8px rgba(74,144,164,0.12)',
+                  }}
+                >
+                  {label}
+                </span>
+              ))}
+            </div>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>

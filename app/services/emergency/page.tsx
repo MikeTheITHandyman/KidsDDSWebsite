@@ -3,15 +3,50 @@ import AnimatedSection from '@/components/AnimatedSection'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Emergency Pediatric Dentistry',
+  description: 'Same-day emergency dental care for children in Grayslake, IL. Knocked-out teeth, severe toothaches, broken teeth, dental injuries, and abscesses treated urgently.',
+  provider: {
+    '@type': 'Dentist',
+    name: 'Kids Dentist',
+    url: 'https://kidsdds.com',
+    telephone: '+1-847-223-1400',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '160 Commerce Dr #100',
+      addressLocality: 'Grayslake',
+      addressRegion: 'IL',
+      postalCode: '60030',
+      addressCountry: 'US',
+    },
+  },
+  serviceType: 'Emergency Pediatric Dentistry',
+  areaServed: { '@type': 'City', name: 'Grayslake', containedInPlace: { '@type': 'State', name: 'Illinois' } },
+  url: 'https://kidsdds.com/services/emergency',
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Emergency Treatments',
+    itemListElement: [
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Knocked-Out Tooth Treatment' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Severe Toothache Relief' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Chipped or Broken Tooth Repair' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Dental Abscess Treatment' } },
+    ],
+  },
+}
+
 export const metadata: Metadata = {
-  title: 'Emergency Pediatric Dentist | Kids Dentist Grayslake, IL',
+  title: 'Emergency Pediatric Dentist Grayslake, IL | Same-Day Kids Dentist',
   description:
-    'Same-day emergency dental care for children in Grayslake, IL. Knocked-out teeth, toothaches, broken teeth, and dental injuries - call (847) 223-1400 right now.',
+    'Same-day emergency dental care for children near Waukegan, Libertyville, Vernon Hills, Mundelein, and Lake Forest. Knocked-out teeth, toothaches, broken teeth — call (847) 223-1400 now. Kids Dentist Grayslake, IL.',
+  alternates: { canonical: 'https://www.kidsdds.com/services/emergency' },
   openGraph: {
-    title: 'Emergency Pediatric Dentist | Kids Dentist Grayslake, IL',
+    title: 'Emergency Pediatric Dentist Grayslake, IL | Same-Day Kids Dentist',
     description:
-      'Dental emergencies don\'t wait. Kids Dentist Grayslake holds urgent slots every day for children in pain or after dental trauma.',
-    url: 'https://kidsdds.com/services/emergency',
+      "Dental emergencies don't wait. Kids Dentist Grayslake holds urgent slots every day for Lake County children in pain or after dental trauma.",
+    url: 'https://www.kidsdds.com/services/emergency',
     siteName: 'Kids Dentist',
     locale: 'en_US',
     type: 'website',
@@ -58,7 +93,12 @@ const STEPS = [
 
 export default function EmergencyDentalCarePage() {
   return (
-    <SubPageLayout
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <SubPageLayout
       title="Emergency Dental Care"
       subtitle="When your child is in pain or has had a dental injury, we will get them in the same day. Call us now."
       kicker="Same-Day Available"
@@ -318,5 +358,6 @@ export default function EmergencyDentalCarePage() {
         }
       `}</style>
     </SubPageLayout>
+    </>
   )
 }

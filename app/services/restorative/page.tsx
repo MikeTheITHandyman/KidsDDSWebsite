@@ -3,15 +3,50 @@ import AnimatedSection from '@/components/AnimatedSection'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Restorative Dentistry for Kids',
+  description: 'Gentle restorative dental care for children including tooth-colored fillings, pediatric crowns, pulp therapy, and tooth extractions in Grayslake, IL.',
+  provider: {
+    '@type': 'Dentist',
+    name: 'Kids Dentist',
+    url: 'https://kidsdds.com',
+    telephone: '+1-847-223-1400',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '160 Commerce Dr #100',
+      addressLocality: 'Grayslake',
+      addressRegion: 'IL',
+      postalCode: '60030',
+      addressCountry: 'US',
+    },
+  },
+  serviceType: 'Restorative Pediatric Dentistry',
+  areaServed: { '@type': 'City', name: 'Grayslake', containedInPlace: { '@type': 'State', name: 'Illinois' } },
+  url: 'https://kidsdds.com/services/restorative',
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Restorative Treatments',
+    itemListElement: [
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Tooth-Colored Fillings' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Pediatric Crowns' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Pulp Therapy' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Tooth Extractions' } },
+    ],
+  },
+}
+
 export const metadata: Metadata = {
-  title: 'Restorative Dentistry for Kids | Kids Dentist Grayslake, IL',
+  title: "Restorative Dentistry for Kids | Children's Dentist Grayslake, IL",
   description:
-    'Gentle restorative dental care for children in Grayslake, IL - tooth-colored fillings, pediatric crowns, pulp therapy, and extractions. Early treatment protects your child\'s smile.',
+    'Gentle restorative dental care for children near Libertyville, Mundelein, Waukegan, and Lake Forest — tooth-colored fillings, pediatric crowns, pulp therapy, and extractions. Early treatment at Kids Dentist Grayslake, IL.',
+  alternates: { canonical: 'https://www.kidsdds.com/services/restorative' },
   openGraph: {
-    title: 'Restorative Dentistry for Kids | Kids Dentist Grayslake, IL',
+    title: "Restorative Dentistry for Kids | Children's Dentist Grayslake, IL",
     description:
-      'A small cavity treated today is a filling. Left untreated, it becomes a crown or worse. Kids Dentist Grayslake treats problems at the earliest possible stage.',
-    url: 'https://kidsdds.com/services/restorative',
+      'A small cavity treated today is a filling. Left untreated, it becomes a crown or worse. Serving Lake County families at Kids Dentist Grayslake, IL.',
+    url: 'https://www.kidsdds.com/services/restorative',
     siteName: 'Kids Dentist',
     locale: 'en_US',
     type: 'website',
@@ -55,7 +90,12 @@ const TREATMENTS = [
 
 export default function RestorativeDentistryPage() {
   return (
-    <SubPageLayout
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <SubPageLayout
       title="Restorative Dentistry"
       subtitle="Gentle, precise treatment that repairs damage, relieves pain, and protects your child's smile for years to come."
       kicker="Fix It Early"
@@ -188,5 +228,6 @@ export default function RestorativeDentistryPage() {
 
       </div>
     </SubPageLayout>
+    </>
   )
 }

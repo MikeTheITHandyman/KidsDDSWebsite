@@ -5,14 +5,15 @@ import Image from 'next/image'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'About Us | Kids Dentist Grayslake, IL',
+  title: 'About Our Pediatric Dental Practice | Kids Dentist Grayslake, IL',
   description:
-    'Meet the pediatric dental practice that has served Grayslake and Lake County families for 30+ years. Our mission: expert, compassionate care for every child.',
+    "Meet the children's dental practice that has served Grayslake, Libertyville, Waukegan, Vernon Hills, and Lake County families for 30+ years. Four board-certified pediatric dentists. Expert, compassionate care for every child.",
+  alternates: { canonical: 'https://www.kidsdds.com/about' },
   openGraph: {
-    title: 'About Us | Kids Dentist Grayslake, IL',
+    title: 'About Our Pediatric Dental Practice | Kids Dentist Grayslake, IL',
     description:
-      'Meet the pediatric dental practice that has served Grayslake and Lake County families for 30+ years.',
-    url: 'https://kidsdds.com/about',
+      "30+ years serving Lake County families. Meet the four board-certified pediatric dentists who lead Grayslake's most trusted children's dental practice.",
+    url: 'https://www.kidsdds.com/about',
     siteName: 'Kids Dentist',
     locale: 'en_US',
     type: 'website',

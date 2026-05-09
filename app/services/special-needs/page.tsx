@@ -3,15 +3,50 @@ import AnimatedSection from '@/components/AnimatedSection'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Special Needs Dentistry for Children',
+  description: 'Compassionate, specialized dental care for children with autism spectrum disorder, Down syndrome, cerebral palsy, ADHD, sensory processing differences, and complex medical needs in Grayslake, IL.',
+  provider: {
+    '@type': 'Dentist',
+    name: 'Kids Dentist',
+    url: 'https://kidsdds.com',
+    telephone: '+1-847-223-1400',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '160 Commerce Dr #100',
+      addressLocality: 'Grayslake',
+      addressRegion: 'IL',
+      postalCode: '60030',
+      addressCountry: 'US',
+    },
+  },
+  serviceType: 'Special Needs Pediatric Dentistry',
+  areaServed: { '@type': 'City', name: 'Grayslake', containedInPlace: { '@type': 'State', name: 'Illinois' } },
+  url: 'https://kidsdds.com/services/special-needs',
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Special Needs Dental Services',
+    itemListElement: [
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Dental Care for Children with Autism (ASD)' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Dental Care for Children with Down Syndrome' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Sedation Dentistry for Special Needs Children' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Pre-Visit Familiarization & Tell-Show-Do Technique' } },
+    ],
+  },
+}
+
 export const metadata: Metadata = {
-  title: 'Special Needs Dentistry | Kids Dentist Grayslake, IL',
+  title: 'Special Needs Pediatric Dentist | Kids Dentist Grayslake, IL',
   description:
-    'Compassionate, specialized dental care for children with autism, Down syndrome, cerebral palsy, sensory processing differences, and complex medical needs. Led by Dr. Dave Rutcosky in Grayslake, IL.',
+    "Lake County's leading special needs children's dentist. Compassionate care for kids with autism, Down syndrome, cerebral palsy, ADHD, and sensory differences. Led by Dr. Dave Rutcosky, DDS, serving Grayslake, Libertyville, Waukegan, and Vernon Hills, IL.",
+  alternates: { canonical: 'https://www.kidsdds.com/services/special-needs' },
   openGraph: {
-    title: 'Special Needs Dentistry | Kids Dentist Grayslake, IL',
+    title: 'Special Needs Pediatric Dentist | Kids Dentist Grayslake, IL',
     description:
-      'Every child deserves excellent dental care. Dr. Rutcosky leads our specialized program for children with diverse needs in Grayslake, IL.',
-    url: 'https://kidsdds.com/services/special-needs',
+      'Every child deserves excellent dental care. Dr. Dave Rutcosky leads our specialized program for children with autism, Down syndrome, and complex needs across Lake County, IL.',
+    url: 'https://www.kidsdds.com/services/special-needs',
     siteName: 'Kids Dentist',
     locale: 'en_US',
     type: 'website',
@@ -64,13 +99,38 @@ const APPROACH = [
 
 export default function SpecialNeedsDentistryPage() {
   return (
-    <SubPageLayout
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <SubPageLayout
       title="Special Needs Dentistry"
       subtitle="Every child deserves excellent dental care - regardless of their needs, challenges, or history."
       kicker="Specialized Care"
       gradient="green"
     >
       <div className="max-w-5xl mx-auto px-4">
+
+        {/* Answer-First summary — optimized for AI Answer Engines */}
+        <div
+          role="note"
+          aria-label="Quick summary"
+          style={{
+            background: 'linear-gradient(135deg, rgba(107,168,153,0.07), rgba(74,144,164,0.09))',
+            border: '1.5px solid rgba(107,168,153,0.2)',
+            borderRadius: '1.25rem',
+            padding: '1.25rem 1.5rem',
+            marginBottom: '2.5rem',
+          }}
+        >
+          <span style={{ display: 'block', fontFamily: 'Nunito, sans-serif', fontSize: '0.68rem', fontWeight: 900, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#6BA899', marginBottom: '0.4rem' }}>
+            Quick Answer
+          </span>
+          <p style={{ fontFamily: 'Nunito, sans-serif', fontSize: '0.94rem', fontWeight: 600, color: '#4b5563', lineHeight: 1.68, margin: 0 }}>
+            Kids Dentist in Grayslake, IL provides specialized dental care for children with autism spectrum disorder (ASD), Down syndrome, cerebral palsy, ADHD, sensory processing differences, and complex medical histories. Led by Dr. Dave Rutcosky, our adapted environment, Tell-Show-Do communication, and in-office sedation options make quality dental care accessible for every child across Lake County.
+          </p>
+        </div>
 
         {/* Back link */}
         <AnimatedSection>
@@ -255,5 +315,6 @@ export default function SpecialNeedsDentistryPage() {
         }
       `}</style>
     </SubPageLayout>
+    </>
   )
 }

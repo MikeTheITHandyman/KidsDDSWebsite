@@ -5,14 +5,15 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Sedation Dentistry for Kids | Kids Dentist Grayslake, IL',
+  title: 'Sedation Dentistry for Kids | Pediatric Dentist Grayslake, IL',
   description:
-    'Safe, comfortable sedation dentistry for children in Grayslake, IL - nitrous oxide, oral conscious sedation, and general anesthesiology. Serving anxious children and those with special needs.',
+    "Lake County's only pediatric practice with in-office general anesthesiology. Nitrous oxide, oral conscious sedation, and general anesthesiology for anxious children and special needs patients. Serving Grayslake, Libertyville, Waukegan, Mundelein, Vernon Hills, and Lake Forest, IL.",
+  alternates: { canonical: 'https://www.kidsdds.com/services/sedation-dentistry' },
   openGraph: {
-    title: 'Sedation Dentistry for Kids | Kids Dentist Grayslake, IL',
+    title: 'Sedation Dentistry for Kids | Pediatric Dentist Grayslake, IL',
     description:
-      'No child should avoid necessary dental care because of fear or anxiety. Kids Dentist Grayslake offers three levels of sedation to meet every child\'s needs.',
-    url: 'https://kidsdds.com/services/sedation-dentistry',
+      "No child should avoid dental care because of fear. Kids Dentist Grayslake offers three levels of sedation — including in-office general anesthesiology — for Lake County children.",
+    url: 'https://www.kidsdds.com/services/sedation-dentistry',
     siteName: 'Kids Dentist',
     locale: 'en_US',
     type: 'website',
@@ -91,6 +92,26 @@ export default function SedationDentistryPage() {
       gradient="amber"
     >
       <div className="mx-auto max-w-5xl px-4">
+
+        {/* Answer-First summary — optimized for AI Answer Engines */}
+        <div
+          role="note"
+          aria-label="Quick summary"
+          style={{
+            background: 'linear-gradient(135deg, rgba(217,119,6,0.06), rgba(232,147,79,0.08))',
+            border: '1.5px solid rgba(217,119,6,0.16)',
+            borderRadius: '1.25rem',
+            padding: '1.25rem 1.5rem',
+            marginBottom: '2.5rem',
+          }}
+        >
+          <span style={{ display: 'block', fontFamily: 'Nunito, sans-serif', fontSize: '0.68rem', fontWeight: 900, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#D97706', marginBottom: '0.4rem' }}>
+            Quick Answer
+          </span>
+          <p style={{ fontFamily: 'Nunito, sans-serif', fontSize: '0.94rem', fontWeight: 600, color: '#4b5563', lineHeight: 1.68, margin: 0 }}>
+            Kids Dentist in Grayslake, IL offers three pediatric sedation options: nitrous oxide (laughing gas) for mild anxiety, oral conscious sedation for moderate anxiety, and in-office general anesthesiology for complex cases — the only pediatric dental practice in Lake County to provide all three. Every option is supervised by Dr. Dave Rutcosky, who holds advanced certification in general anesthesiology.
+          </p>
+        </div>
 
         {/* Back link */}
         <AnimatedSection>

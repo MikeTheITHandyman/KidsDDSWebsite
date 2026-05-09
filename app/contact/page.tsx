@@ -3,14 +3,15 @@ import ContactContent from './ContactContent'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Contact Our Office | Kids Dentist Grayslake, IL',
+  title: 'Contact a Pediatric Dentist in Grayslake, IL | Kids Dentist',
   description:
-    'Contact Kids Dentist Grayslake at (847) 223-1400. Located at 160 Commerce Dr #100, Grayslake, IL. Office hours Mon–Thu 9 am–5 pm, Wed 8:30 am–5 pm, Fri 8 am–2 pm.',
+    'Contact Kids Dentist Grayslake — serving Libertyville, Mundelein, Waukegan, Vernon Hills, and Lake Forest. Call (847) 223-1400. 160 Commerce Dr #100, Grayslake, IL. Emergency visits available.',
+  alternates: { canonical: 'https://www.kidsdds.com/contact' },
   openGraph: {
-    title: 'Contact Our Office | Kids Dentist Grayslake, IL',
+    title: 'Contact a Pediatric Dentist in Grayslake, IL | Kids Dentist',
     description:
-      'Send us a message or call (847) 223-1400. We respond within one business day.',
-    url: 'https://kidsdds.com/contact',
+      'Call (847) 223-1400 or send a message. Serving families from Grayslake, Libertyville, Mundelein, and throughout Lake County, IL.',
+    url: 'https://www.kidsdds.com/contact',
     siteName: 'Kids Dentist',
     locale: 'en_US',
     type: 'website',

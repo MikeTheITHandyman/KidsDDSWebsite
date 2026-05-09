@@ -20,7 +20,7 @@ export default function Hero() {
                 <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/>
                 <circle cx="12" cy="10" r="3"/>
               </svg>
-              Pediatric Dentistry · Grayslake, IL
+              Pediatric Dentistry · Grayslake &amp; Lake County, IL
             </div>
 
             {/* Hablamos Español bubble */}
@@ -62,7 +62,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.2 }}
           >
-            High-quality pediatric care that kids actually look forward to.
+            High-quality pediatric and children&apos;s dental care that kids actually look forward to — serving families throughout Lake County.
           </motion.p>
 
           {/* Trusted 30 years - prominent inline banner */}
@@ -124,19 +124,23 @@ export default function Hero() {
             </motion.a>
           </div>
 
-          {/* Trust signals - Delta Dental stays prominent */}
+          {/* Trust signals */}
           <div className="hero-trust">
             <div className="trust-item">
               <div className="trust-dot" aria-hidden="true"/>
-              4.8★ Google Rating
-            </div>
-            <div className="trust-item">
-              <div className="trust-dot" aria-hidden="true"/>
-              Same-Day Available
+              4.8★ · 650+ Reviews
             </div>
             <div className="trust-item" style={{ fontWeight: 800 }}>
               <div className="trust-dot" aria-hidden="true"/>
-              Emergency Visits
+              Emergency Visits Available Today
+            </div>
+            <div className="trust-item">
+              <div className="trust-dot" aria-hidden="true"/>
+              In-Network with Delta Dental
+            </div>
+            <div className="trust-item">
+              <div className="trust-dot" aria-hidden="true"/>
+              Most Kids Seen Within Days
             </div>
           </div>
         </div>

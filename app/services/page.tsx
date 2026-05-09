@@ -4,14 +4,15 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Pediatric Dental Services | Kids Dentist Grayslake, IL',
+  title: "Children's Dental Services | Pediatric Dentist Grayslake, IL",
   description:
-    'Explore all pediatric dental services at Kids Dentist Grayslake - preventive care, restorative treatments, sedation dentistry, special needs care, and emergency visits.',
+    'Complete pediatric dental services in Grayslake, IL — preventive care, restorative dentistry, sedation, special needs, and same-day emergency visits. Serving Libertyville, Mundelein, Vernon Hills, Waukegan, and all of Lake County.',
+  alternates: { canonical: 'https://www.kidsdds.com/services' },
   openGraph: {
-    title: 'Pediatric Dental Services | Kids Dentist Grayslake, IL',
+    title: "Children's Dental Services | Pediatric Dentist Grayslake, IL",
     description:
-      'Every service we offer is designed exclusively for children - from routine cleanings to complex restorative work and special needs care.',
-    url: 'https://kidsdds.com/services',
+      'Every service exclusively designed for children — from first-tooth cleanings to complex restorative work and special needs care. Serving all of Lake County, IL.',
+    url: 'https://www.kidsdds.com/services',
     siteName: 'Kids Dentist',
     locale: 'en_US',
     type: 'website',

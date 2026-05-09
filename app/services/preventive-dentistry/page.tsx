@@ -5,14 +5,15 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Preventive Dentistry for Kids | Kids Dentist Grayslake, IL',
+  title: 'Preventive Dentistry for Kids | Pediatric Dentist Grayslake, IL',
   description:
-    'Comprehensive preventive dental care for children in Grayslake, IL - cleanings, fluoride treatments, dental sealants, digital X-rays, and early orthodontic screening. Starting at age one.',
+    "Children's preventive dental care near Libertyville, Mundelein, Vernon Hills, and Waukegan — cleanings, fluoride, sealants, digital X-rays, and early orthodontic screening starting at age one. Kids Dentist Grayslake, IL.",
+  alternates: { canonical: 'https://www.kidsdds.com/services/preventive-dentistry' },
   openGraph: {
-    title: 'Preventive Dentistry for Kids | Kids Dentist Grayslake, IL',
+    title: 'Preventive Dentistry for Kids | Pediatric Dentist Grayslake, IL',
     description:
-      'Prevention is the most powerful tool in pediatric dentistry. Learn how Kids Dentist Grayslake keeps your child cavity-free and healthy at every age.',
-    url: 'https://kidsdds.com/services/preventive-dentistry',
+      'Keeping Lake County kids cavity-free since 1990. Cleanings, fluoride, sealants, and age-one first visits at Kids Dentist in Grayslake, IL.',
+    url: 'https://www.kidsdds.com/services/preventive-dentistry',
     siteName: 'Kids Dentist',
     locale: 'en_US',
     type: 'website',

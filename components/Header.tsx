@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion'
+import { sendGAEvent } from '@next/third-parties/google'
 
 const NAV = [
   { label: 'Home', href: '/' },
@@ -224,6 +225,7 @@ export default function Header() {
             <motion.a
               href="tel:+18472231400"
               className="btn btn-secondary"
+              onClick={() => sendGAEvent('event', 'call_click', { location: 'header_desktop' })}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               transition={{ type: 'spring', stiffness: 400, damping: 20 }}
@@ -300,7 +302,7 @@ export default function Header() {
 
                 {/* CTAs at bottom of mobile menu */}
                 <div className="mobile-nav-ctas">
-                  <a href="tel:+18472231400" className="mobile-nav-cta-call" onClick={() => setMenuOpen(false)}>
+                  <a href="tel:+18472231400" className="mobile-nav-cta-call" onClick={() => { setMenuOpen(false); sendGAEvent('event', 'call_click', { location: 'header_mobile' }) }}>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                       <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 9.8 19.79 19.79 0 0 1 1 1.18 2 2 0 0 1 2.82 0h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L6.91 7.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/>
                     </svg>
