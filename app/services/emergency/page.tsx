@@ -106,6 +106,47 @@ export default function EmergencyDentalCarePage() {
     >
       <div className="max-w-5xl mx-auto px-4">
 
+        {/* 911 medical emergency caveat */}
+        <div
+          role="alert"
+          style={{
+            display: 'flex',
+            alignItems: 'flex-start',
+            gap: '1rem',
+            background: 'linear-gradient(135deg, rgba(239,68,68,0.07), rgba(252,165,165,0.09))',
+            border: '1.5px solid rgba(239,68,68,0.28)',
+            borderRadius: '1.25rem',
+            padding: '1rem 1.4rem',
+            marginBottom: '1.75rem',
+          }}
+        >
+          <div
+            style={{
+              width: '34px',
+              height: '34px',
+              borderRadius: '50%',
+              background: 'rgba(239,68,68,0.12)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexShrink: 0,
+              fontSize: '1rem',
+              marginTop: '1px',
+            }}
+            aria-hidden="true"
+          >
+            🚨
+          </div>
+          <p style={{ fontSize: '0.88rem', fontWeight: 600, color: '#4b5563', lineHeight: 1.65, margin: 0 }}>
+            <strong style={{ color: 'rgba(185,28,28,0.88)', fontFamily: 'Nunito, sans-serif' }}>
+              Life-threatening emergency?
+            </strong>{' '}
+            If your child is experiencing a life-threatening medical emergency, please{' '}
+            <strong style={{ color: 'rgba(185,28,28,0.88)' }}>call 911 immediately.</strong>{' '}
+            This page covers dental emergencies — we hold same-day dental slots, but we are not a substitute for emergency medical services.
+          </p>
+        </div>
+
         {/* Urgent CTA at top */}
         <AnimatedSection>
           <div

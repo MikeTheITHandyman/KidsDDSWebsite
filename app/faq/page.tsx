@@ -78,6 +78,66 @@ export default function FaqPage() {
     >
       <div className="mx-auto max-w-3xl px-4">
 
+        {/* Ask the Doctor prompt — top of FAQ */}
+        <AnimatedSection>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: '1rem',
+              background: 'linear-gradient(135deg, rgba(120,80,155,0.07), rgba(74,144,164,0.07))',
+              border: '1.5px solid rgba(120,80,155,0.18)',
+              borderRadius: '1.5rem',
+              padding: '1.25rem 1.6rem',
+              marginBottom: '2.5rem',
+              flexWrap: 'wrap',
+            }}
+          >
+            <div>
+              <p
+                style={{
+                  fontFamily: 'Nunito, sans-serif',
+                  fontWeight: 900,
+                  fontSize: '0.92rem',
+                  color: '#78509b',
+                  margin: '0 0 0.2rem',
+                }}
+              >
+                Don&apos;t see your question?
+              </p>
+              <p style={{ fontSize: '0.82rem', color: '#6b7280', fontWeight: 500, margin: 0 }}>
+                Send it directly to our doctors — we respond within one business day.
+              </p>
+            </div>
+            <Link
+              href="/ask-the-doctor"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.4rem',
+                background: 'linear-gradient(135deg, #78509b, #9b6dc5)',
+                color: '#fff',
+                fontFamily: 'Nunito, sans-serif',
+                fontWeight: 800,
+                fontSize: '0.875rem',
+                padding: '0.72rem 1.4rem',
+                borderRadius: '100px',
+                textDecoration: 'none',
+                whiteSpace: 'nowrap',
+                boxShadow: '0 4px 16px rgba(120,80,155,0.28)',
+                flexShrink: 0,
+              }}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <line x1="22" y1="2" x2="11" y2="13"/>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+              </svg>
+              Send Doctor a Message
+            </Link>
+          </div>
+        </AnimatedSection>
+
         {GROUPS.map((group, gi) => (
           <AnimatedSection key={group.label} delay={gi * 0.08}>
             <div style={{ marginBottom: '3rem' }}>
@@ -181,23 +241,27 @@ export default function FaqPage() {
                 Text/Call us: (847) 223-1400
               </Link>
               <Link
-                href="/contact"
+                href="/ask-the-doctor"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '0.45rem',
-                  color: '#4A90A4',
+                  background: 'linear-gradient(135deg, #78509b, #9b6dc5)',
+                  color: '#fff',
                   fontFamily: 'Nunito, sans-serif',
                   fontWeight: 800,
                   fontSize: '0.9rem',
                   padding: '0.8rem 1.75rem',
                   borderRadius: '100px',
                   textDecoration: 'none',
-                  border: '1.5px solid rgba(74,144,164,0.28)',
-                  background: '#fff',
+                  boxShadow: '0 4px 16px rgba(120,80,155,0.28)',
                 }}
               >
-                Send a Message →
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <line x1="22" y1="2" x2="11" y2="13"/>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                </svg>
+                Send Doctor a Message
               </Link>
             </div>
           </div>
