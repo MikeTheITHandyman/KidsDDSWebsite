@@ -176,24 +176,6 @@ export default function ServicesGrid() {
                     } : {}),
                   }}
                 >
-                  {'featured' in svc && svc.featured && (
-                    <div style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '0.3rem',
-                      background: 'linear-gradient(135deg, #ede9fe, #ddd6fe)',
-                      color: '#78509b',
-                      borderRadius: '100px',
-                      padding: '0.22rem 0.65rem',
-                      fontSize: '0.68rem',
-                      fontWeight: 800,
-                      letterSpacing: '0.04em',
-                      textTransform: 'uppercase',
-                      marginBottom: '0.75rem',
-                    }}>
-                      ✦ Specialized Care
-                    </div>
-                  )}
                   <div className="service-icon" style={{ background: svc.iconBg }}>
                     {svc.icon}
                   </div>

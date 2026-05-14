@@ -163,6 +163,7 @@ export default function Hero() {
       <style>{`
         /* Tighten hero section bottom padding */
         .hero {
+          padding-top: 0.25in;
           padding-bottom: 2.5rem;
         }
 

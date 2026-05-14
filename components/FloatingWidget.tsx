@@ -108,29 +108,6 @@ export default function FloatingWidget() {
               Request Appointment
             </motion.a>
 
-            {/* Trust micro-badges */}
-            <div style={{ display: 'flex', gap: '5px', flexWrap: 'wrap', justifyContent: 'flex-end' }}>
-              {['Emergency Visits Available Today', 'In-Network with Major Insurance Providers', 'Most Kids Seen Within Days'].map((label) => (
-                <span
-                  key={label}
-                  style={{
-                    display: 'inline-block',
-                    background: 'rgba(255,255,255,0.94)',
-                    color: '#4A90A4',
-                    border: '1px solid rgba(74,144,164,0.2)',
-                    borderRadius: '100px',
-                    padding: '0.22rem 0.65rem',
-                    fontFamily: 'Nunito, sans-serif',
-                    fontWeight: 700,
-                    fontSize: '0.68rem',
-                    whiteSpace: 'nowrap',
-                    boxShadow: '0 2px 8px rgba(74,144,164,0.12)',
-                  }}
-                >
-                  {label}
-                </span>
-              ))}
-            </div>
           </div>
         </motion.div>
       )}

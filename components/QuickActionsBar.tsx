@@ -31,14 +31,15 @@ export default function QuickActionsBar() {
         margin: '0 -1rem',
         background: 'linear-gradient(180deg, #ffffff 0%, #fafaf8 100%)',
         borderBottom: '1.5px solid rgba(74,144,164,0.12)',
+        paddingTop: '0.25in',
+        paddingBottom: '0.5rem',
       }}
     >
       <div
-        className="flex flex-col w-full px-4 gap-2 md:flex-row md:justify-center md:gap-6 md:py-4"
+        className="flex flex-row flex-wrap justify-center px-4 py-2"
         style={{
           maxWidth: '900px',
           margin: '0 auto',
-          padding: '0.75rem 1rem',
         }}
       >
 
@@ -47,24 +48,24 @@ export default function QuickActionsBar() {
           href="/services/emergency"
           className="qa-btn qa-emergency"
           style={{
-            display: 'flex',
+            display: 'inline-flex',
             alignItems: 'center',
-            justifyContent: 'center',
-            gap: '0.5rem',
+            gap: '0.35rem',
             background: 'linear-gradient(135deg, #c81f1f 0%, #e53535 100%)',
             color: '#fff',
             borderRadius: '100px',
-            padding: '0.82rem 1.75rem',
+            padding: '0.45rem 0.9rem',
             fontFamily: 'Nunito, sans-serif',
             fontWeight: 900,
-            fontSize: '0.95rem',
+            fontSize: '0.78rem',
             textDecoration: 'none',
             letterSpacing: '0.01em',
-            boxShadow: '0 4px 18px rgba(220,38,38,0.30)',
+            boxShadow: '0 3px 12px rgba(220,38,38,0.28)',
             transition: 'all 0.2s cubic-bezier(0.25,0.46,0.45,0.94)',
+            whiteSpace: 'nowrap',
           }}
         >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
             <line x1="12" y1="9" x2="12" y2="13"/>
             <line x1="12" y1="17" x2="12.01" y2="17"/>
@@ -77,24 +78,25 @@ export default function QuickActionsBar() {
           href="/ask-the-doctor"
           className="qa-btn qa-doctor"
           style={{
-            display: 'flex',
+            display: 'inline-flex',
+            marginLeft: '2.5rem',
             alignItems: 'center',
-            justifyContent: 'center',
-            gap: '0.5rem',
+            gap: '0.35rem',
             background: 'linear-gradient(135deg, #78509b 0%, #9b6dc5 100%)',
             color: '#fff',
             borderRadius: '100px',
-            padding: '0.82rem 1.75rem',
+            padding: '0.45rem 0.9rem',
             fontFamily: 'Nunito, sans-serif',
             fontWeight: 900,
-            fontSize: '0.95rem',
+            fontSize: '0.78rem',
             textDecoration: 'none',
             letterSpacing: '0.01em',
-            boxShadow: '0 4px 18px rgba(120,80,155,0.28)',
+            boxShadow: '0 3px 12px rgba(120,80,155,0.26)',
             transition: 'all 0.2s cubic-bezier(0.25,0.46,0.45,0.94)',
+            whiteSpace: 'nowrap',
           }}
         >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
           </svg>
           Ask the Doctor
@@ -105,25 +107,26 @@ export default function QuickActionsBar() {
           onClick={downloadVCard}
           className="qa-btn qa-contact"
           style={{
-            display: 'flex',
+            display: 'inline-flex',
+            marginLeft: '2.5rem',
             alignItems: 'center',
-            justifyContent: 'center',
-            gap: '0.5rem',
+            gap: '0.35rem',
             background: 'transparent',
             color: '#4A90A4',
-            border: '2px solid #4A90A4',
+            border: '1.5px solid #4A90A4',
             borderRadius: '100px',
-            padding: '0.72rem 1.75rem',
+            padding: '0.43rem 0.9rem',
             fontFamily: 'Nunito, sans-serif',
             fontWeight: 900,
-            fontSize: '0.95rem',
+            fontSize: '0.78rem',
             cursor: 'pointer',
             letterSpacing: '0.01em',
             transition: 'all 0.2s cubic-bezier(0.25,0.46,0.45,0.94)',
+            whiteSpace: 'nowrap',
           }}
           aria-label="Save Kids Dentist contact to your phone"
         >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
             <line x1="12" y1="18" x2="12.01" y2="18"/>
           </svg>
