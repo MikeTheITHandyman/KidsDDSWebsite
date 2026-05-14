@@ -5,6 +5,7 @@ import MeetOurDoctors from '../components/MeetOurDoctors'
 import ReviewBubbles from '../components/ReviewBubbles'
 import ValueProps from '../components/ValueProps'
 import InsuranceBanner from '../components/InsuranceBanner'
+import QuickActionsBar from '../components/QuickActionsBar'
 import { client } from '../sanity/lib/client'
 import { featuredReviewsQuery } from '../sanity/lib/queries'
 import type { SanityReview } from '../components/ReviewBubbles'
@@ -32,6 +33,7 @@ export default async function HomePage() {
 
   return (
     <>
+      <QuickActionsBar />
       <Hero />
       <ServicesGrid />
       <InsuranceBanner />

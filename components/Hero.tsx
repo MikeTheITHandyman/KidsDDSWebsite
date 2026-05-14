@@ -5,13 +5,6 @@ import { motion } from 'framer-motion'
 
 const springBtn = { type: 'spring', stiffness: 400, damping: 20 } as const
 
-const TRUST_ITEMS = [
-  { text: '4.8★ · 650+ Reviews', bold: false },
-  { text: 'Emergency Visits Available Today', bold: true },
-  { text: 'In-Network with Major Insurance Providers', bold: false },
-  { text: 'Most Kids Seen Within Days', bold: false },
-]
-
 export default function Hero() {
   return (
     <section className="hero">
@@ -156,34 +149,15 @@ export default function Hero() {
                 />
               </video>
             </div>
-            <div className="hero-deco-1"/>
-            <div className="hero-deco-2"/>
-            <div className="hero-deco-3"/>
+            <div className="hero-deco-1 hidden md:block"/>
+            <div className="hero-deco-2 hidden md:block"/>
+            <div className="hero-deco-3 hidden md:block"/>
           </div>
 
         </div>
 
       </div>
 
-      {/* Trust bar — full width below both columns */}
-      <motion.div
-        className="hero-trust-bar"
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.55 }}
-        aria-label="Practice highlights"
-      >
-        {TRUST_ITEMS.map((item) => (
-          <div
-            key={item.text}
-            className="trust-bar-item"
-            style={{ fontWeight: item.bold ? 800 : 600 }}
-          >
-            <div className="trust-dot" aria-hidden="true"/>
-            <span>{item.text}</span>
-          </div>
-        ))}
-      </motion.div>
       </div>{/* end hero-outer */}
 
       <style>{`
@@ -234,72 +208,6 @@ export default function Hero() {
           }
         }
 
-        /* Trust bar: full width below both columns */
-        .hero-trust-bar {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: space-between;
-          width: 100%;
-          max-width: 1200px;
-          margin: 0.75rem auto 0;
-          gap: 1.5rem;
-          background: rgba(255,255,255,0.55);
-          backdrop-filter: blur(10px);
-          -webkit-backdrop-filter: blur(10px);
-          border: 1.5px solid rgba(74,144,164,0.13);
-          border-radius: 1.25rem;
-          padding: 0.85rem 1.5rem;
-        }
-
-        /* Trust bar items: row layout on mobile */
-        .trust-bar-item {
-          display: flex;
-          flex-direction: row;
-          align-items: flex-start;
-          gap: 0.4rem;
-          flex: 1 1 auto;
-          min-width: 0;
-          text-align: left;
-          font-family: Nunito, sans-serif;
-          font-size: 0.75rem;
-          color: #4b5563;
-          line-height: 1.4;
-          padding: 0 0.25rem;
-        }
-
-        .trust-bar-item .trust-dot {
-          flex-shrink: 0;
-          margin-top: 4px;
-        }
-
-        /* lg+: single horizontal row, items centered */
-        @media (min-width: 1024px) {
-          .hero-trust-bar {
-            flex-direction: row;
-            flex-wrap: nowrap;
-            align-items: center;
-          }
-          .trust-bar-item {
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            flex: 1 1 0;
-            gap: 0.3rem;
-          }
-          .trust-bar-item .trust-dot {
-            margin-top: 0;
-          }
-        }
-
-        @media (max-width: 768px) {
-          .hero-trust-bar {
-            max-width: 100%;
-            margin-left: 1.5rem;
-            margin-right: 1.5rem;
-            width: auto;
-          }
-        }
       `}</style>
     </section>
   )
