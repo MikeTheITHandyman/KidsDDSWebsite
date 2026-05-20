@@ -144,11 +144,8 @@ export default function Hero() {
                 aria-hidden="true"
               >
                 <source
-                  src={
-                    process.env.NEXT_PUBLIC_HERO_VIDEO_URL ||
-                    'https://res.cloudinary.com/dkrbvqzlw/video/upload/q_auto:low,w_1280/v1777343603/hero-video_oznoe1.mp4'
-                  }
-                  type="video/mp4"
+                  src="/brand_assets/hero-video.mov"
+                  type="video/quicktime"
                 />
               </video>
             </div>
