@@ -87,27 +87,7 @@ export default function ServicesPage() {
       subtitle="100% pediatric dentistry - because children aren't just small adults."
       gradient="blue"
     >
-      <div className="mx-auto max-w-5xl px-4">
-
-        {/* Intro */}
-        <AnimatedSection>
-          <p
-            style={{
-              textAlign: 'center',
-              fontSize: '1.05rem',
-              fontWeight: 500,
-              color: '#6b7280',
-              maxWidth: '640px',
-              margin: '0 auto 4rem',
-              lineHeight: 1.78,
-            }}
-          >
-            Our practice is{' '}
-            <strong style={{ color: '#4A90A4' }}>strictly limited to pediatric dentistry</strong>{' '}
-            - meaning every doctor, every team member, every piece of equipment, and every inch of
-            this office exists to serve children and their families. Nothing else.
-          </p>
-        </AnimatedSection>
+      <div className="mx-auto max-w-6xl px-4">
 
         {/* Services grid - 5 cards */}
         <div

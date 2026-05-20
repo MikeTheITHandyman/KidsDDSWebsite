@@ -101,7 +101,7 @@ export default function RestorativeDentistryPage() {
       kicker="Fix It Early"
       gradient="amber"
     >
-      <div className="max-w-5xl mx-auto px-4">
+      <div className="max-w-6xl mx-auto px-4">
 
         {/* Back link */}
         <AnimatedSection>
@@ -114,22 +114,6 @@ export default function RestorativeDentistryPage() {
             </svg>
             Back to All Services
           </Link>
-        </AnimatedSection>
-
-        {/* Intro */}
-        <AnimatedSection>
-          <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-            <span className="section-kicker">Why Early Treatment Matters</span>
-            <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.6rem, 3vw, 2.1rem)', color: 'var(--brand-600)', margin: '0.5rem 0 1.1rem', lineHeight: 1.2 }}>
-              A Small Cavity Is a Filling. Not for Long.
-            </h2>
-          </div>
-          <p style={{ textAlign: 'center', fontSize: '1.05rem', fontWeight: 500, color: '#6b7280', maxWidth: '640px', margin: '0 auto 1rem', lineHeight: 1.78 }}>
-            Untreated cavities in baby teeth can cause severe pain, lead to dangerous infections, and directly affect the development and spacing of the permanent teeth growing underneath. Baby teeth are not just placeholders - they support speech, nutrition, and jaw development.
-          </p>
-          <p style={{ textAlign: 'center', fontSize: '1rem', fontWeight: 500, color: '#6b7280', maxWidth: '600px', margin: '0 auto 4rem', lineHeight: 1.78 }}>
-            We will always be honest about where your child stands - and we treat problems at the earliest possible stage. Our goal is to keep treatment as simple and conservative as possible.
-          </p>
         </AnimatedSection>
 
         {/* Treatment options */}

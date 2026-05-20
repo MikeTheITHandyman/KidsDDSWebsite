@@ -91,7 +91,7 @@ export default function SedationDentistryPage() {
       subtitle="Because every child deserves dental care that is calm, safe, and completely manageable."
       gradient="amber"
     >
-      <div className="mx-auto max-w-5xl px-4">
+      <div className="mx-auto max-w-6xl px-4">
 
         {/* Answer-First summary — optimized for AI Answer Engines */}
         <div
@@ -124,13 +124,6 @@ export default function SedationDentistryPage() {
             </svg>
             Back to All Services
           </Link>
-        </AnimatedSection>
-
-        {/* Intro */}
-        <AnimatedSection>
-          <p style={{ textAlign: 'center', fontSize: '1.05rem', fontWeight: 500, color: '#6b7280', maxWidth: '620px', margin: '0 auto 4rem', lineHeight: 1.78 }}>
-            Dental anxiety is real - and it is more common than most parents realize. The last thing we want is for fear to stand between your child and the care they need. That is why we offer three levels of sedation, tailored to each child's situation, so that every patient can receive treatment comfortably and without trauma.
-          </p>
         </AnimatedSection>
 
         {/* Who it's for */}

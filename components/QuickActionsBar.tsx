@@ -36,9 +36,9 @@ export default function QuickActionsBar() {
       }}
     >
       <div
-        className="flex flex-row flex-wrap justify-center px-4 py-2"
+        className="flex flex-row flex-wrap gap-3 justify-center md:justify-end px-4 md:px-8 py-2"
         style={{
-          maxWidth: '900px',
+          maxWidth: '1200px',
           margin: '0 auto',
         }}
       >
@@ -79,19 +79,20 @@ export default function QuickActionsBar() {
           className="qa-btn qa-doctor"
           style={{
             display: 'inline-flex',
-            marginLeft: '2.5rem',
             alignItems: 'center',
             gap: '0.35rem',
-            background: 'linear-gradient(135deg, #78509b 0%, #9b6dc5 100%)',
-            color: '#fff',
+            background: 'rgba(255,255,255,0.55)',
+            backdropFilter: 'blur(10px)',
+            WebkitBackdropFilter: 'blur(10px)',
+            color: '#4b5563',
+            border: '1px solid rgba(209,213,219,0.5)',
             borderRadius: '100px',
             padding: '0.45rem 0.9rem',
             fontFamily: 'Nunito, sans-serif',
-            fontWeight: 900,
+            fontWeight: 600,
             fontSize: '0.78rem',
             textDecoration: 'none',
             letterSpacing: '0.01em',
-            boxShadow: '0 3px 12px rgba(120,80,155,0.26)',
             transition: 'all 0.2s cubic-bezier(0.25,0.46,0.45,0.94)',
             whiteSpace: 'nowrap',
           }}
@@ -101,37 +102,6 @@ export default function QuickActionsBar() {
           </svg>
           Ask the Doctor
         </Link>
-
-        {/* Save Contact */}
-        <button
-          onClick={downloadVCard}
-          className="qa-btn qa-contact"
-          style={{
-            display: 'inline-flex',
-            marginLeft: '2.5rem',
-            alignItems: 'center',
-            gap: '0.35rem',
-            background: 'transparent',
-            color: '#4A90A4',
-            border: '1.5px solid #4A90A4',
-            borderRadius: '100px',
-            padding: '0.43rem 0.9rem',
-            fontFamily: 'Nunito, sans-serif',
-            fontWeight: 900,
-            fontSize: '0.78rem',
-            cursor: 'pointer',
-            letterSpacing: '0.01em',
-            transition: 'all 0.2s cubic-bezier(0.25,0.46,0.45,0.94)',
-            whiteSpace: 'nowrap',
-          }}
-          aria-label="Save Kids Dentist contact to your phone"
-        >
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
-            <line x1="12" y1="18" x2="12.01" y2="18"/>
-          </svg>
-          Save Contact
-        </button>
 
       </div>
 
@@ -144,13 +114,9 @@ export default function QuickActionsBar() {
           background: linear-gradient(135deg, #b91c1c 0%, #dc2626 100%) !important;
         }
         .qa-doctor:hover {
-          box-shadow: 0 8px 26px rgba(120,80,155,0.48) !important;
-          background: linear-gradient(135deg, #6b3f8e 0%, #8b5cbf 100%) !important;
-        }
-        .qa-contact:hover {
-          background: #4A90A4 !important;
-          color: #fff !important;
-          box-shadow: 0 8px 26px rgba(74,144,164,0.38) !important;
+          background: rgba(255,255,255,0.8) !important;
+          color: #374151 !important;
+          box-shadow: 0 4px 16px rgba(0,0,0,0.08) !important;
         }
       `}</style>
     </div>

@@ -124,7 +124,7 @@ export default function PreventiveDentistryPage() {
       subtitle="The best dental treatment is the kind that never needs to happen."
       gradient="blue"
     >
-      <div className="mx-auto max-w-5xl px-4">
+      <div className="mx-auto max-w-6xl px-4">
 
         {/* Back link */}
         <AnimatedSection>
@@ -137,16 +137,6 @@ export default function PreventiveDentistryPage() {
             </svg>
             Back to All Services
           </Link>
-        </AnimatedSection>
-
-        {/* Intro */}
-        <AnimatedSection>
-          <p style={{ textAlign: 'center', fontSize: '1.05rem', fontWeight: 500, color: '#6b7280', maxWidth: '620px', margin: '0 auto 1.5rem', lineHeight: 1.78 }}>
-            Preventive dentistry is the foundation of everything we do. When we catch small problems early - or stop them from forming in the first place - your child avoids pain, avoids complex treatment, and builds a healthy, confident relationship with dental care that lasts a lifetime.
-          </p>
-          <p style={{ textAlign: 'center', fontSize: '0.95rem', fontWeight: 600, color: '#4A90A4', margin: '0 auto 4rem', maxWidth: '400px' }}>
-            We recommend visits every 6 months, starting at age one.
-          </p>
         </AnimatedSection>
 
         {/* Services covered */}

@@ -110,7 +110,7 @@ export default function SpecialNeedsDentistryPage() {
       kicker="Specialized Care"
       gradient="green"
     >
-      <div className="max-w-5xl mx-auto px-4">
+      <div className="max-w-6xl mx-auto px-4">
 
         {/* Answer-First summary — optimized for AI Answer Engines */}
         <div
@@ -143,22 +143,6 @@ export default function SpecialNeedsDentistryPage() {
             </svg>
             Back to All Services
           </Link>
-        </AnimatedSection>
-
-        {/* Intro */}
-        <AnimatedSection>
-          <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-            <span className="section-kicker">Our Program</span>
-            <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.6rem, 3vw, 2.1rem)', color: 'var(--brand-600)', margin: '0.5rem 0 1.1rem', lineHeight: 1.2 }}>
-              Led by Dr. Dave Rutcosky
-            </h2>
-          </div>
-          <p style={{ textAlign: 'center', fontSize: '1.05rem', fontWeight: 500, color: '#6b7280', maxWidth: '640px', margin: '0 auto 1rem', lineHeight: 1.78 }}>
-            Dr. Rutcosky is the practice&apos;s specialist in treating children with diverse needs. With over 20 years of pediatric experience and advanced certification in general anesthesiology, he has dedicated his career to ensuring that no child is ever turned away from the care they need.
-          </p>
-          <p style={{ textAlign: 'center', fontSize: '1rem', fontWeight: 500, color: '#6b7280', maxWidth: '600px', margin: '0 auto 4rem', lineHeight: 1.78 }}>
-            Our team takes the time to understand each child individually - their triggers, their communication style, and their comfort level - before any treatment begins. We adjust our pace, our environment, and our techniques to meet each patient exactly where they are.
-          </p>
         </AnimatedSection>
 
         {/* Who we serve */}

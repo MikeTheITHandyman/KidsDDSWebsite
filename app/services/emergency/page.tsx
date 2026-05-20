@@ -104,7 +104,7 @@ export default function EmergencyDentalCarePage() {
       kicker="Same-Day Available"
       gradient="blue"
     >
-      <div className="max-w-5xl mx-auto px-4">
+      <div className="max-w-6xl mx-auto px-4">
 
         {/* 911 medical emergency caveat */}
         <div

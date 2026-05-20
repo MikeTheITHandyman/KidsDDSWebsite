@@ -97,9 +97,102 @@ export default function TourOurOfficePage() {
 
         {/* Intro */}
         <AnimatedSection>
-          <p style={{ textAlign: 'center', fontSize: '1.05rem', fontWeight: 500, color: '#6b7280', maxWidth: '620px', margin: '0 auto 4rem', lineHeight: 1.75 }}>
+          <p style={{ textAlign: 'center', fontSize: '1.05rem', fontWeight: 500, color: '#6b7280', maxWidth: '620px', margin: '0 auto 2.5rem', lineHeight: 1.75 }}>
             We believe the environment is part of the treatment. Every room, every corner, and every detail of our Grayslake office was chosen with one question in mind: <em style={{ color: '#4A90A4', fontStyle: 'normal', fontWeight: 700 }}>will this make a child feel safe?</em>
           </p>
+        </AnimatedSection>
+
+        {/* Photo carousel */}
+        <AnimatedSection>
+          <div
+            className="office-carousel"
+            style={{
+              display: 'flex',
+              gap: '1.25rem',
+              overflowX: 'auto',
+              scrollSnapType: 'x mandatory',
+              scrollbarWidth: 'none',
+              paddingBottom: '0.5rem',
+              marginBottom: '4rem',
+            }}
+          >
+            {SPACES.map((space) => (
+              <div
+                key={space.number}
+                style={{
+                  flexShrink: 0,
+                  width: 'clamp(260px, 38vw, 420px)',
+                  scrollSnapAlign: 'start',
+                  borderRadius: '1.5rem',
+                  overflow: 'hidden',
+                  background: `linear-gradient(135deg, ${space.gradientFrom}, ${space.gradientTo})`,
+                  boxShadow: '0 6px 28px rgba(0,0,0,0.09)',
+                  position: 'relative',
+                }}
+              >
+                <div style={{ position: 'relative', width: '100%', aspectRatio: '4 / 3', overflow: 'hidden' }}>
+                  <Image
+                    src={space.imagePath}
+                    alt={space.imageAlt}
+                    fill
+                    sizes="(max-width: 640px) 90vw, 420px"
+                    style={{ objectFit: 'cover' }}
+                  />
+                  {/* Fallback icon overlay */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '0.5rem',
+                      opacity: 0.5,
+                      pointerEvents: 'none',
+                    }}
+                  >
+                    <span style={{ fontSize: '2.5rem', lineHeight: 1 }} aria-hidden="true">{space.icon}</span>
+                  </div>
+                  {/* Room number badge */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: '12px',
+                      left: '12px',
+                      width: '36px',
+                      height: '36px',
+                      borderRadius: '50%',
+                      background: 'rgba(255,255,255,0.9)',
+                      backdropFilter: 'blur(6px)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontFamily: 'Nunito, sans-serif',
+                      fontWeight: 900,
+                      fontSize: '0.75rem',
+                      color: space.accentColor,
+                    }}
+                  >
+                    {space.number}
+                  </div>
+                </div>
+                <div style={{ padding: '1rem 1.25rem 1.25rem' }}>
+                  <p
+                    style={{
+                      fontFamily: 'Nunito, sans-serif',
+                      fontWeight: 900,
+                      fontSize: '0.95rem',
+                      color: space.accentColor,
+                      margin: 0,
+                    }}
+                  >
+                    {space.name}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
         </AnimatedSection>
 
         {/* Room sections - alternating layout */}
@@ -231,7 +324,7 @@ export default function TourOurOfficePage() {
                   }}
                 >
                   <span style={{ fontSize: '1.4rem', lineHeight: 1, flexShrink: 0 }} aria-hidden="true">{f.icon}</span>
-                  <p style={{ fontSize: '0.875rem', fontWeight: 600, color: '#6b7280', margin: 0, lineHeight: 1.55 }}>{f.label}</p>
+                  <p style={{ fontSize: '1rem', fontWeight: 600, color: '#6b7280', margin: 0, lineHeight: 1.55 }}>{f.label}</p>
                 </div>
               ))}
             </div>
@@ -268,6 +361,7 @@ export default function TourOurOfficePage() {
           .office-flip { direction: rtl; }
           .office-flip > * { direction: ltr; }
         }
+        .office-carousel::-webkit-scrollbar { display: none; }
       `}</style>
     </SubPageLayout>
   )

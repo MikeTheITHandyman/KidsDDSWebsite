@@ -51,9 +51,9 @@ export default function Hero() {
 
           {/* Headline */}
           <h1>
-            A Dental Home for{' '}
-            <span className="highlight">Happy Kids</span>
-            {' '}in Grayslake.
+            Grayslake&apos;s{' '}
+            <span className="highlight">Pediatric Dentist</span>
+            {' '}Since 1994.
           </h1>
 
           {/* Tagline */}

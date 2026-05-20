@@ -331,33 +331,42 @@ export default function Footer() {
               Book Appointment
             </motion.a>
 
-            <motion.a
-              href="/pay"
-              whileHover={{ scale: 1.04, y: -2 }}
-              whileTap={{ scale: 0.97 }}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.45rem',
-                background: 'rgba(245,158,11,0.22)',
-                backdropFilter: 'blur(8px)',
-                border: '1.5px solid rgba(245,158,11,0.55)',
-                color: 'white',
-                borderRadius: '100px',
-                padding: '0.65rem 1.35rem',
-                fontFamily: 'Nunito, sans-serif',
-                fontWeight: 800,
-                fontSize: '0.88rem',
-                textDecoration: 'none',
-                transition: 'background 0.2s',
-              }}
+            <form
+              action="https://hostedpaynow.com/v2/paynowapp/processpayment"
+              method="post"
+              target="_top"
             >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <line x1="12" y1="1" x2="12" y2="23"/>
-                <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
-              </svg>
-              Pay Now
-            </motion.a>
+              <input type="hidden" name="cmd" value="_xclick" />
+              <input type="hidden" name="tokenuid" value="9ec06785636346c290a5a30375d1d3af@=1328f97b14f431bdea8caaaf4f1da76f8a2bb1fe691be4d69503d020bd502c3e" />
+              <motion.button
+                name="submit"
+                type="submit"
+                whileHover={{ scale: 1.04, y: -2 }}
+                whileTap={{ scale: 0.97 }}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.45rem',
+                  background: 'rgba(245,158,11,0.22)',
+                  backdropFilter: 'blur(8px)',
+                  border: '1.5px solid rgba(245,158,11,0.55)',
+                  color: 'white',
+                  borderRadius: '100px',
+                  padding: '0.65rem 1.35rem',
+                  fontFamily: 'Nunito, sans-serif',
+                  fontWeight: 800,
+                  fontSize: '0.88rem',
+                  cursor: 'pointer',
+                  transition: 'background 0.2s',
+                }}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <line x1="12" y1="1" x2="12" y2="23"/>
+                  <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+                </svg>
+                Pay Now
+              </motion.button>
+            </form>
           </div>
 
           <div
@@ -368,8 +377,7 @@ export default function Footer() {
               lineHeight: 1.55,
             }}
           >
-            New patients always welcome.<br/>
-            Hablamos Español.
+            We see kids from infants through teens. Hablamos Español.
           </div>
         </div>
       </div>
@@ -394,10 +402,7 @@ export default function Footer() {
             fontFamily: 'Nunito, sans-serif',
           }}
         >
-          Kids Dentist proudly serves families throughout Lake County, Illinois, including{' '}
-          <strong>Grayslake</strong>, <strong>Waukegan</strong>, <strong>Libertyville</strong>,{' '}
-          <strong>Mundelein</strong>, <strong>Vernon Hills</strong>, <strong>Lake Forest</strong>,{' '}
-          Round Lake, Lindenhurst, Antioch, Gurnee, Zion, and surrounding communities.
+          Pediatric dentistry in Grayslake, IL. Serving Lake County families since 1994.
         </p>
       </div>
 

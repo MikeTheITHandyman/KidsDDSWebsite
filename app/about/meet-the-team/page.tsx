@@ -115,12 +115,12 @@ export default function MeetTheTeamPage() {
             display: 'grid',
             gridTemplateColumns: 'repeat(3, 1fr)',
             gap: '1.75rem',
-            alignItems: 'start',
+            alignItems: 'stretch',
           }}
           className="team-grid"
         >
           {TEAM.map((member, i) => (
-            <AnimatedSection key={member.name} delay={i * 0.05}>
+            <AnimatedSection key={member.name} delay={i * 0.05} style={{ height: '100%' }}>
               <div
                 className="team-card"
                 style={{
@@ -131,6 +131,7 @@ export default function MeetTheTeamPage() {
                   border: '1.5px solid rgba(74,144,164,0.10)',
                   display: 'flex',
                   flexDirection: 'column',
+                  height: '100%',
                   transition: 'box-shadow 0.3s, transform 0.3s',
                 }}
               >
@@ -154,7 +155,7 @@ export default function MeetTheTeamPage() {
                 </div>
 
                 {/* Card body */}
-                <div style={{ padding: '1.5rem' }}>
+                <div style={{ padding: '1.5rem', flex: 1 }}>
                   <h3
                     style={{
                       fontFamily: 'Nunito, sans-serif',
