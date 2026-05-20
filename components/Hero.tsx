@@ -7,7 +7,7 @@ const springBtn = { type: 'spring', stiffness: 400, damping: 20 } as const
 
 export default function Hero() {
   return (
-    <section className="hero">
+    <section className="hero overflow-x-hidden">
       <div className="hero-outer">
       <div className="hero-inner">
 
@@ -71,6 +71,7 @@ export default function Hero() {
             initial={{ opacity: 0, x: -16 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.32 }}
+            className="hero-trust-banner"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -81,6 +82,8 @@ export default function Hero() {
               padding: '0.6rem 1.1rem',
               marginBottom: '1.5rem',
               fontFamily: 'Nunito, sans-serif',
+              maxWidth: '100%',
+              boxSizing: 'border-box',
             }}
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A90A4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -167,15 +170,29 @@ export default function Hero() {
           padding-bottom: 2.5rem;
         }
 
-        /* Button row: prevent wrap, kill the bottom margin that creates the gap */
+        /* Button row: allow wrap so buttons never burst out of narrow screens */
         .hero .hero-ctas {
-          flex-wrap: nowrap;
+          flex-wrap: wrap;
           margin-bottom: 0;
         }
         @media (max-width: 639px) {
           .hero .hero-ctas {
             flex-direction: column;
             align-items: flex-start;
+          }
+          /* Let button text wrap on very small screens instead of overflowing */
+          .hero .btn-hero-primary,
+          .hero .btn-hero-call {
+            white-space: normal;
+            text-align: left;
+          }
+          /* Trust banner: fill width and let text wrap naturally */
+          .hero .hero-trust-banner {
+            display: flex;
+            width: 100%;
+          }
+          .hero .hero-trust-banner span {
+            white-space: normal;
           }
         }
         @media (min-width: 640px) {
@@ -185,11 +202,13 @@ export default function Hero() {
           }
         }
 
-        /* Outer wrapper: makes grid + trust bar stack vertically inside .hero's flex context */
+        /* Outer wrapper: clips any child that escapes the grid on narrow screens */
         .hero-outer {
           display: flex;
           flex-direction: column;
           width: 100%;
+          max-width: 100%;
+          overflow-x: hidden;
           position: relative;
           z-index: 2;
         }
@@ -199,6 +218,12 @@ export default function Hero() {
           display: flex;
           flex-direction: column;
           min-width: 0;
+          max-width: 100%;
+        }
+
+        /* Ensure video blob never bursts its container */
+        .hero-image-blob {
+          max-width: 100%;
         }
 
         /* Scale the video blob ~25% larger on desktop; section overflow:hidden clips the bleed */
