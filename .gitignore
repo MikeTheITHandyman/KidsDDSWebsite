@@ -10,6 +10,8 @@ build.log
 *.mp4
 *.HEIC
 /brand_assets/
+# Exception: local hero video
+!public/brand_assets/hero-video.mp4
 
 # Generated / local-only — Next.js regenerates these on every build
 next-env.d.ts

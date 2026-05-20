@@ -144,8 +144,8 @@ export default function Hero() {
                 aria-hidden="true"
               >
                 <source
-                  src="/brand_assets/hero-video.mov"
-                  type="video/quicktime"
+                  src="/brand_assets/hero-video.mp4"
+                  type="video/mp4"
                 />
               </video>
             </div>
