@@ -140,7 +140,7 @@ export default function MeetTheTeamPage() {
                   style={{
                     position: 'relative',
                     width: '100%',
-                    aspectRatio: '4 / 3',
+                    aspectRatio: '4 / 5',
                     background: AVATAR_GRADIENTS[i % AVATAR_GRADIENTS.length],
                     overflow: 'hidden',
                   }}
@@ -150,7 +150,7 @@ export default function MeetTheTeamPage() {
                     alt={`${member.name}, ${member.role} at Kids Dentist Grayslake`}
                     fill
                     sizes="(max-width: 580px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    style={{ objectFit: 'cover', objectPosition: 'top center' }}
+                    style={{ objectFit: 'contain' }}
                   />
                 </div>
 

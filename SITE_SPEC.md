@@ -2,7 +2,7 @@
 
 > **Purpose of this document:** A living reference for the current build state. Covers every route, component, design token, and content requirement so Claude Code can produce precise, context-rich work.
 
-**Last updated:** 2026-05-20 — reconciled against actual source files.
+**Last updated:** 2026-06-15 — reconciled against actual source files.
 
 ---
 
@@ -158,8 +158,8 @@ style={{
 ## 4. Global Layout (`app/layout.tsx`)
 
 Renders on every page in this order:
-1. `<BannerWrapper>` → `<AnnouncementBanner />` — orange gradient top bar: "Check out our latest blog post ›" links to `/blog`. Hidden inside Studio.
-2. `<Header />` — sticky top navigation
+1. `<BannerWrapper>` → `<AnnouncementBanner />` — **purple gradient** top bar. Sanity-powered: fetches the latest featured event (`featuredEventQuery`, ISR 300s); links to `/about/recent-events/[slug]`. Returns `null` if no event is published. Hidden inside Studio via `BannerWrapper` (client component that checks pathname).
+2. `<Header />` — sticky top navigation (includes its own **orange** blog announcement bar — see §5)
 3. `<main className="container main-content">{children}</main>`
 4. `<Footer />`
 5. `<FloatingWidget />` — fixed bottom CTA
@@ -172,7 +172,7 @@ Renders on every page in this order:
 
 ## 5. Header (`components/Header.tsx`)
 
-**Announcement bar** (inside Header, above nav): orange gradient, "Check out our latest blog post ›" → `/blog`. Hidden when `pathname.startsWith('/studio')`.
+**Announcement bar** (rendered by `Header.tsx` itself, *above* the sticky `<motion.header>` in the JSX return): orange gradient (`#E8853A` → `#F5A623`), "Check out our latest blog post ›" → `/blog`. Hidden when `isStudio` (i.e. `pathname.startsWith('/studio')`). This is **separate** from the purple Sanity event banner in §4 — both may appear stacked.
 
 **Logo:** `/brand_assets/kids-dentist-logo.png` — 72px height, links to `/`.
 
@@ -265,8 +265,8 @@ Mon–Fri schedule (see Section 1 table above)
 | `AnimatedSection` | `components/AnimatedSection.tsx` | Scroll-triggered Framer Motion fade-in wrapper (prop: `delay`) |
 | `FaqAccordion` | `components/FaqAccordion.tsx` | Expand/collapse FAQ list |
 | `FirstVisitTimeline` | `components/FirstVisitTimeline.tsx` | 6-step animated first-visit timeline |
-| `AnnouncementBanner` | `components/AnnouncementBanner.tsx` | Orange top bar linking to blog |
-| `BannerWrapper` | `components/BannerWrapper.tsx` | Client wrapper for AnnouncementBanner |
+| `AnnouncementBanner` | `components/AnnouncementBanner.tsx` | **Purple** Sanity-powered top bar; fetches featured event (`featuredEventQuery`, ISR 300s); links to `/about/recent-events/[slug]`; returns `null` if no event |
+| `BannerWrapper` | `components/BannerWrapper.tsx` | Client wrapper; hides `AnnouncementBanner` on `/studio` paths |
 | `FloatingWidget` | `components/FloatingWidget.tsx` | Persistent bottom-screen CTA widget |
 | `InstagramFeed` | `components/InstagramFeed.tsx` | Instagram highlight grid (6 Story Highlight boxes) |
 | `ValueProposition` | `components/ValueProposition.tsx` | Modular value prop card (alternate/standalone variant) |
@@ -308,9 +308,15 @@ Renders these sections **in order**:
 - Canonical: `https://www.kidsdds.com/`
 
 ### Hero (`components/Hero.tsx`)
-- Left: Badge ("Pediatric Dentist · Grayslake, IL"), H1 headline, sub-headline, two CTA buttons, trust chips
-- Right: Blob-shaped video container with looping `/brand_assets/hero-video.mp4` + decorative circles
-- Trust chips: "4.8★ Google Reviews" | "Same-Day Available" | "Emergency Visits" | "Hablamos Español"
+- Left column:
+  - **Badge row** (flex, wrapping): location pill ("Pediatric Dentistry · Grayslake & Lake County, IL") + animated orange gradient "Hablamos Español" pill (Framer Motion spring entry)
+  - **H1:** "Grayslake's [Pediatric Dentist] Since 1994." (`<span class="highlight">` wraps "Pediatric Dentist")
+  - **Tagline:** "High-quality pediatric and children's dental care that kids actually look forward to — serving families throughout Lake County."
+  - **Trust banner:** teal-bordered pill — medal icon + "Serving Lake County for Over 30 Years · Est. 1994" (replaces old trust chips)
+  - **CTA buttons:** "Request Appointment" (`btn-hero-primary` → `/request-appointment`) + "Text/Call us: (847) 223-1400" (`btn-hero-call`, `tel:+18472231400`) — stack vertically on mobile, row on ≥640px
+- Right column: blob-shaped video container with looping `/brand_assets/hero-video.mp4` (MP4 only, no fallback source) + decorative circles (hidden on mobile: `hidden md:block`)
+- Desktop: video blob scaled 1.25× via `transform: scale(1.25)` at `min-width: 1024px`
+- ~~Trust chips~~ — **removed** (no "4.8★ Google Reviews", "Same-Day Available", "Emergency Visits" chips)
 - Background: animated radial gradient blobs (`@keyframes blob-float`)
 
 ### ServicesGrid (`components/ServicesGrid.tsx`)
