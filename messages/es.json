@@ -1,0 +1,31 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Sobre Nosotros",
+    "services": "Servicios",
+    "forPatients": "Para Pacientes",
+    "blog": "Blog",
+    "contact": "Contacto",
+    "requestAppointment": "Solicitar Cita",
+    "callUs": "Llámenos"
+  },
+  "hero": {
+    "headline": "Un Hogar Dental que a su Hijo le Encantará",
+    "subheadline": "Odontología pediátrica experta y gentil para bebés hasta adolescentes en Grayslake, IL.",
+    "ctaAppointment": "Solicitar una Cita",
+    "ctaCall": "Llamar al (847) 223-1400"
+  },
+  "footer": {
+    "tagline": "Cuidando las sonrisas de los niños en Grayslake desde el primer día.",
+    "address": "160 Commerce Dr #100, Grayslake, IL 60030",
+    "phone": "(847) 223-1400",
+    "rights": "Todos los derechos reservados."
+  },
+  "common": {
+    "learnMore": "Saber Más",
+    "readMore": "Leer Más",
+    "backToTop": "Volver arriba",
+    "loading": "Cargando...",
+    "error": "Algo salió mal. Por favor, inténtelo de nuevo."
+  }
+}

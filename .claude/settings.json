@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Read(//c/Users/miken/MyApps/kids_dds_schein_webapp/**)"
+      "Read(//c/Users/miken/MyApps/kids_dds_schein_webapp/**)",
+      "PowerShell(git checkout -b feature/i18n-en-es)"
     ]
   }
 }
