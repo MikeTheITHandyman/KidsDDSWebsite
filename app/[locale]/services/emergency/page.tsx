@@ -67,24 +67,24 @@ const EMERGENCIES = [
 const STEPS = [
   {
     step: '1',
-    title: 'Call Us First',
-    body: 'Text or call (847) 223-1400 immediately. Our team will assess the situation over the phone, give you first-aid guidance, and get your child into the next available same-day slot. Do not wait to see if it gets better.',
+    title: 'Call Us',
+    body: "If your child has a dental emergency, call our office right away. We do our best to see emergency patients the same day so they don't have to stay in pain. Our team will also give you instructions on how to care for your child until you arrive.",
     gradientFrom: '#FFE4E6',
     gradientTo: '#FECDD3',
     accentColor: '#E97D63',
   },
   {
     step: '2',
-    title: 'Get First-Aid Guidance',
-    body: 'Depending on the injury, our team will walk you through what to do before you arrive - whether that means rinsing a knocked-out tooth in milk, applying cold pressure to reduce swelling, or simply keeping your child calm. We prepare you before you walk in the door.',
+    title: 'Visit Our Office',
+    body: "When you arrive, we'll bring your child in as quickly as possible. One of our pediatric dentists will examine their teeth and gums, identify the problem, and explain the recommended treatment.",
     gradientFrom: '#FEF3C7',
     gradientTo: '#FDE68A',
     accentColor: '#D97706',
   },
   {
     step: '3',
-    title: 'Come Straight In',
-    body: 'We hold urgent slots every single day. When you arrive, you will not wait behind routine appointments. Your child will be seen, assessed, and treated as quickly and comfortably as possible. We handle the paperwork - you focus on your child.',
+    title: 'Get Relief',
+    body: "Our goal is to relieve your child's discomfort and restore their oral health. If additional treatment is needed, we'll schedule any follow-up visits before you leave and make sure you know exactly what to expect.",
     gradientFrom: '#D1FAE5',
     gradientTo: '#A7F3D0',
     accentColor: '#6BA899',
@@ -100,8 +100,8 @@ export default function EmergencyDentalCarePage() {
       />
       <SubPageLayout
       title="Emergency Dental Care"
-      subtitle="When your child is in pain or has had a dental injury, we will get them in the same day. Call us now."
-      kicker="Same-Day Available"
+      subtitle="When your child is in pain or has had a dental injury, call us right away — we're here to help."
+      kicker="Call Us Right Away"
       gradient="blue"
     >
       <div className="max-w-6xl mx-auto px-4">
@@ -168,7 +168,7 @@ export default function EmergencyDentalCarePage() {
                 Dental emergency? Don&apos;t wait.
               </p>
               <p style={{ fontFamily: 'Nunito, sans-serif', fontSize: '0.9rem', fontWeight: 600, color: 'rgba(255,255,255,0.88)', margin: 0 }}>
-                We hold same-day urgent slots every single day.
+                We do our best to see emergency patients the same day.
               </p>
             </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
@@ -242,11 +242,6 @@ export default function EmergencyDentalCarePage() {
                 >
                   <div style={{ fontSize: '1.6rem', marginBottom: '0.5rem' }} aria-hidden="true">{item.icon}</div>
                   <span style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 700, fontSize: '0.82rem', color: '#4b5563', lineHeight: 1.35 }}>{item.label}</span>
-                  {item.urgent && (
-                    <div style={{ marginTop: '0.4rem' }}>
-                      <span style={{ fontSize: '0.68rem', fontWeight: 900, color: '#E97D63', fontFamily: 'Nunito, sans-serif', letterSpacing: '0.06em', textTransform: 'uppercase' }}>Urgent</span>
-                    </div>
-                  )}
                 </div>
               ))}
             </div>
@@ -256,9 +251,9 @@ export default function EmergencyDentalCarePage() {
         {/* What to do - 3 steps alternating */}
         <AnimatedSection delay={0.05}>
           <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-            <span className="section-kicker">What Happens Next</span>
+            <span className="section-kicker">What to Expect</span>
             <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.6rem, 3vw, 2.1rem)', color: 'var(--brand-600)', margin: '0.5rem 0 0', lineHeight: 1.2 }}>
-              From First Call to Treated
+              How We Treat Dental Emergencies
             </h2>
           </div>
         </AnimatedSection>
@@ -351,7 +346,7 @@ export default function EmergencyDentalCarePage() {
                 Knocked-Out Tooth: Act Within 30 Minutes
               </h3>
               <p style={{ color: '#6b7280', fontSize: '0.925rem', lineHeight: 1.75, fontWeight: 500, margin: 0 }}>
-                Find the tooth and hold it by the crown - the top part, not the root. Gently rinse it with cold water. If possible, carefully reinsert it into the socket and have your child hold it gently in place. If you cannot reinsert it, place the tooth in a cup of cold milk and call us immediately. Time is critical - the sooner we see your child, the better the chance of saving the tooth.
+                Find the tooth and hold it by the crown — the top part, not the root. If possible, carefully reinsert it into the socket and have your child hold it gently in place. If you cannot reinsert it, place the tooth in a cup of cold milk and call us immediately. Time is critical — the sooner we see your child, the better the chance of saving the tooth.
               </p>
             </div>
           </div>

@@ -230,6 +230,56 @@ export default function RestorativeDentistryPage() {
           ))}
         </div>
 
+        {/* Pulp Therapy section */}
+        <AnimatedSection>
+          <div
+            style={{
+              background: 'linear-gradient(135deg, rgba(217,119,6,0.06), rgba(232,147,79,0.07))',
+              border: '1.5px solid rgba(217,119,6,0.16)',
+              borderRadius: '2rem',
+              padding: 'clamp(2rem, 4vw, 3rem)',
+              marginBottom: '5rem',
+              display: 'grid',
+              gridTemplateColumns: 'auto 1fr',
+              gap: '1.5rem',
+              alignItems: 'flex-start',
+            }}
+            className="pulp-therapy-grid"
+          >
+            <div
+              style={{
+                width: '52px',
+                height: '52px',
+                borderRadius: '1rem',
+                background: 'linear-gradient(135deg, #FEF3C7, #FDE68A)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '1.5rem',
+                flexShrink: 0,
+                boxShadow: '0 4px 14px rgba(217,119,6,0.18)',
+              }}
+              aria-hidden="true"
+            >
+              🩺
+            </div>
+            <div>
+              <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.3rem, 3vw, 1.75rem)', color: '#D97706', margin: '0 0 1rem', lineHeight: 1.25 }}>
+                Pulp Therapy
+              </h2>
+              <p style={{ fontSize: '0.95rem', lineHeight: 1.8, color: '#6b7280', margin: 0, fontWeight: 500 }}>
+                Baby teeth have several layers, and the center of the tooth contains the nerve. When a cavity is caught early, it only affects the outer layers of the tooth. However, if it becomes very deep and reaches the nerve, your child may need a pulpotomy or pulpectomy, often called a baby root canal.
+              </p>
+              <p style={{ fontSize: '0.95rem', lineHeight: 1.8, color: '#6b7280', margin: '0.85rem 0 0', fontWeight: 500 }}>
+                A pulpotomy removes the infected portion of the nerve inside the crown of the tooth. The tooth is then sealed with a special material and protected with a dental crown. If the infection has spread deeper into the roots or caused an abscess, a pulpectomy may be needed. Similar to an adult root canal, the infected tissue is removed, the inside of the tooth is cleaned, and the tooth is restored with a filling and a stainless steel crown.
+              </p>
+              <p style={{ fontSize: '0.95rem', lineHeight: 1.8, color: '#6b7280', margin: '0.85rem 0 0', fontWeight: 500 }}>
+                Both procedures are usually completed in a single visit. With modern techniques and sedation options, treatment is often comfortable and pain-free. These procedures not only relieve toothaches but also help save your child&apos;s tooth and maintain a healthy smile.
+              </p>
+            </div>
+          </div>
+        </AnimatedSection>
+
         {/* FAQ */}
         <AnimatedSection>
           <div style={{ marginBottom: '5rem' }}>
@@ -269,6 +319,12 @@ export default function RestorativeDentistryPage() {
         </AnimatedSection>
 
       </div>
+
+      <style>{`
+        @media (max-width: 540px) {
+          .pulp-therapy-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </SubPageLayout>
   )
 }

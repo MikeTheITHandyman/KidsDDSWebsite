@@ -44,7 +44,7 @@ const SERVICES = [
     title: 'Sedation Dentistry',
     tagline: 'Calm, comfortable care for anxious kids.',
     description:
-      'Nitrous oxide, oral conscious sedation, and in-office general anesthesiology - because no child should ever avoid necessary dental care due to fear or anxiety.',
+      'Nitrous oxide and in-office general anesthesiology — because no child should ever avoid necessary dental care due to fear or anxiety.',
     href: '/services/sedation-dentistry',
     gradient: 'linear-gradient(135deg, #FEF3C7, #FDE68A)',
     accentColor: '#D97706',
@@ -54,7 +54,7 @@ const SERVICES = [
     title: 'Special Needs Dentistry',
     tagline: 'Every child deserves excellent care.',
     description:
-      'Specialized experience treating children with autism, Down syndrome, cerebral palsy, and sensory processing differences. Dr. Rutcosky leads our special needs program.',
+      'Specialized experience treating children with autism, Down syndrome, cerebral palsy, and sensory processing differences.',
     href: '/services/special-needs',
     gradient: 'linear-gradient(135deg, #EDE9FE, #DDD6FE)',
     accentColor: '#7C3AED',

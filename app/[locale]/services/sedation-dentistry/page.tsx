@@ -7,7 +7,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Sedation Dentistry for Kids | Pediatric Dentist Grayslake, IL',
   description:
-    "Lake County's only pediatric practice with in-office general anesthesiology. Nitrous oxide, oral conscious sedation, and general anesthesiology for anxious children and special needs patients. Serving Grayslake, Libertyville, Waukegan, Mundelein, Vernon Hills, and Lake Forest, IL.",
+    "Lake County's only pediatric practice with in-office general anesthesiology. Nitrous oxide and general anesthesiology for anxious children and special needs patients. Serving Grayslake, Libertyville, Waukegan, Mundelein, Vernon Hills, and Lake Forest, IL.",
   alternates: { canonical: 'https://www.kidsdds.com/services/sedation-dentistry' },
   openGraph: {
     title: 'Sedation Dentistry for Kids | Pediatric Dentist Grayslake, IL',
@@ -45,19 +45,6 @@ const SEDATION_OPTIONS = [
   },
   {
     number: '02',
-    title: 'Oral Conscious Sedation',
-    subtitle: 'Liquid Medication - Deeper Calm',
-    description:
-      'Oral conscious sedation involves a liquid medication given by mouth before the appointment. Your child will become deeply relaxed - often drowsy or even sleepy - but remains able to breathe independently and respond if spoken to. It is commonly used for children with moderate to significant anxiety, or for longer procedures.',
-    howItWorks: 'The medication takes 30–45 minutes to take effect. Children typically have little or no memory of the procedure. A responsible adult must drive to and from the appointment, and children must follow fasting guidelines.',
-    ideal: 'Moderate to significant anxiety, longer appointments, children who struggle with needles or gagging.',
-    accentColor: '#D97706',
-    gradientFrom: '#FEF3C7',
-    gradientTo: '#FDE68A',
-    icon: '💤',
-  },
-  {
-    number: '03',
     title: 'General Anesthesiology',
     subtitle: 'In-Office - Deepest Level of Care',
     description:
@@ -75,7 +62,7 @@ const FAQ_ITEMS: FaqItem[] = [
   {
     question: 'Do you offer sedation for nervous kids?',
     answer:
-      'Yes! We have safe, gentle options - including laughing gas (nitrous oxide) - to help kids feel completely relaxed and comfortable during their visit. For children who need a deeper level of calm, we also offer oral conscious sedation and in-office general anesthesiology administered by Dr. Rutcosky, who holds advanced certification in pediatric anesthesiology.',
+      'Yes! We have safe, gentle options — including laughing gas (nitrous oxide) — to help kids feel completely relaxed and comfortable during their visit. For children who need a deeper level of support, we also offer in-office general anesthesiology. We will discuss all options with you and recommend the approach that best fits your child\'s needs.',
   },
   {
     question: 'Is sedation safe for my child?',
@@ -109,7 +96,7 @@ export default function SedationDentistryPage() {
             Quick Answer
           </span>
           <p style={{ fontFamily: 'Nunito, sans-serif', fontSize: '0.94rem', fontWeight: 600, color: '#4b5563', lineHeight: 1.68, margin: 0 }}>
-            Kids Dentist in Grayslake, IL offers three pediatric sedation options: nitrous oxide (laughing gas) for mild anxiety, oral conscious sedation for moderate anxiety, and in-office general anesthesiology for complex cases — the only pediatric dental practice in Lake County to provide all three. Every option is supervised by Dr. Dave Rutcosky, who holds advanced certification in general anesthesiology.
+            It&apos;s perfectly normal for children to feel nervous about visiting the dentist — and many adults feel the same way! At Kids Dentist, we do everything we can to help your child feel relaxed, comfortable, and at ease during their visit. However, some children experience anxiety that makes it difficult to safely complete treatment. In those situations, our pediatric dentists may recommend options such as nitrous oxide (&ldquo;laughing gas&rdquo;) or general anesthesia to help your child have a comfortable, stress-free experience. We&apos;ll discuss all of the options with you and recommend the approach that best fits your child&apos;s needs.
           </p>
         </div>
 
@@ -171,10 +158,10 @@ export default function SedationDentistryPage() {
         <AnimatedSection>
           <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
             <span style={{ display: 'inline-block', fontFamily: 'Nunito, sans-serif', fontSize: '0.72rem', fontWeight: 900, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#D97706', marginBottom: '0.5rem' }}>
-              Three Levels of Comfort
+              Sedation Options
             </span>
             <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.5rem, 3vw, 2rem)', color: '#3D3D3D', margin: 0 }}>
-              Sedation Options We Offer
+              Two Sedation Options We Offer
             </h2>
           </div>
         </AnimatedSection>

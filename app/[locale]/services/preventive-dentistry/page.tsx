@@ -145,7 +145,7 @@ export default function PreventiveDentistryPage() {
             <span style={{ display: 'inline-block', fontFamily: 'Nunito, sans-serif', fontSize: '0.72rem', fontWeight: 900, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#4A90A4', marginBottom: '0.5rem' }}>
               What We Cover
             </span>
-            <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.5rem, 3vw, 2rem)', color: '#3D3D3D', margin: 0 }}>
+            <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.5rem, 3vw, 2.2rem)', color: '#4A90A4', margin: 0 }}>
               Five Pillars of Preventive Care
             </h2>
           </div>
@@ -195,6 +195,31 @@ export default function PreventiveDentistryPage() {
             </AnimatedSection>
           ))}
         </div>
+
+        {/* Space Maintainer section */}
+        <AnimatedSection>
+          <div
+            style={{
+              background: 'linear-gradient(135deg, rgba(74,144,164,0.06), rgba(107,168,153,0.08))',
+              border: '1.5px solid rgba(74,144,164,0.14)',
+              borderRadius: '2rem',
+              padding: 'clamp(2rem, 4vw, 3rem)',
+              marginBottom: '5rem',
+            }}
+          >
+            <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+              <span style={{ display: 'inline-block', fontFamily: 'Nunito, sans-serif', fontSize: '0.72rem', fontWeight: 900, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#D97706', marginBottom: '0.5rem' }}>
+                Common Procedure
+              </span>
+              <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.4rem, 3vw, 1.9rem)', color: '#4A90A4', margin: 0 }}>
+                What Is a Space Maintainer?
+              </h2>
+            </div>
+            <p style={{ fontSize: '0.95rem', lineHeight: 1.8, color: '#6b7280', margin: '0 auto', maxWidth: '760px', fontWeight: 500 }}>
+              If your child loses one of their back baby teeth earlier than expected, our pediatric dentists may recommend a space maintainer. As the name suggests, this appliance helps preserve the space left by the missing tooth so the permanent tooth has room to erupt properly. When a baby tooth is lost too soon, neighboring teeth often begin to shift or drift into the empty space. This movement can lead to crowding, misalignment, and may prevent the permanent tooth from coming in where it should. A space maintainer helps keep the surrounding teeth in their proper positions, reducing the risk of future orthodontic problems and potentially minimizing the need for more extensive treatment later. Fortunately, space maintainers are generally not necessary when front baby teeth are lost prematurely, as these teeth do not typically affect the eruption of permanent teeth in the same way.
+            </p>
+          </div>
+        </AnimatedSection>
 
         {/* Age stages */}
         <AnimatedSection>
