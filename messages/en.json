@@ -1,19 +1,114 @@
 {
   "nav": {
     "home": "Home",
-    "about": "About Us",
+    "about": "About",
+    "aboutUs": "About Us",
+    "meetDentists": "Meet the Dentists",
+    "meetTeam": "Meet the Team",
+    "tourOffice": "Tour Our Office",
+    "recentEvents": "Recent Events",
     "services": "Services",
+    "allServices": "All Services",
+    "preventive": "Preventive Dentistry",
+    "restorative": "Restorative Dentistry",
+    "specialNeeds": "Special Needs Dentistry",
+    "sedation": "Sedation Dentistry",
+    "emergency": "Emergency Dental Care",
     "forPatients": "For Patients",
+    "firstVisit": "Child's First Visit",
+    "insurance": "Insurance & Financing",
+    "faq": "FAQ",
     "blog": "Blog",
     "contact": "Contact",
+    "directions": "Directions",
+    "callNumber": "(847) 223-1400",
+    "announcement": "Check out our latest blog post",
+    "openMenu": "Open navigation menu",
+    "closeMenu": "Close navigation menu",
     "requestAppointment": "Request Appointment",
     "callUs": "Call Us"
   },
   "hero": {
-    "headline": "A Dental Home Your Child Will Love",
-    "subheadline": "Gentle, expert pediatric dentistry for infants through teens in Grayslake, IL.",
-    "ctaAppointment": "Request an Appointment",
-    "ctaCall": "Call (847) 223-1400"
+    "badgeLocation": "Pediatric Dentistry · Grayslake & Lake County, IL",
+    "headlinePrefix": "Grayslake's",
+    "headlineHighlight": "Pediatric Dentist",
+    "headlineSuffix": "Since 1994.",
+    "tagline": "High-quality pediatric and children's dental care that kids actually look forward to — serving families throughout Lake County.",
+    "trustBanner": "Serving Lake County for Over 30 Years · Est. 1994",
+    "ctaAppointment": "Request Appointment",
+    "ctaCall": "Text/Call us: (847) 223-1400"
+  },
+  "services": {
+    "kicker": "Our Services",
+    "heading": "Our Services",
+    "body": "From routine check-ups to specialized treatments, we provide comprehensive, compassionate dental care designed specifically for children.",
+    "preventive": {
+      "title": "Preventive Dentistry",
+      "description": "Regular check-ups, cleanings, and fluoride treatments to keep your child's smile healthy and stop problems before they start.",
+      "button": "Preventative Care"
+    },
+    "restorative": {
+      "title": "Restorative Dentistry",
+      "description": "Expert, gentle treatment for cavities and broken teeth to restore healthy smiles using child-friendly techniques.",
+      "button": "Restorative Care"
+    },
+    "sedation": {
+      "title": "Sedation Dentistry",
+      "description": "Gentle sedation options for nervous kids and more complex procedures, including nitrous oxide and general anesthesia.",
+      "button": "Sedation Options"
+    },
+    "specialNeeds": {
+      "title": "Special Needs Dentistry",
+      "description": "Compassionate, specialized care for children with diverse needs — including autism, Down syndrome, ADHD, and sensory differences.",
+      "button": "Special Needs Care"
+    },
+    "emergency": {
+      "title": "Emergency Pediatric Dentist",
+      "description": "When your child has a toothache, knocked-out tooth, or dental injury, we'll get them in as soon as possible.",
+      "button": "Emergency Dental Care"
+    }
+  },
+  "insurance": {
+    "heading": "In-Network with Most Major PPOs",
+    "body": "We accept most major dental insurance plans to make care affordable for your family.",
+    "cta": "View Insurance Info",
+    "footerText": "Don't see your plan?",
+    "footerLink": "Text/Call us — we likely accept it."
+  },
+  "doctors": {
+    "kicker": "Get to Know Us",
+    "heading": "Meet Our Doctors",
+    "body": "Four pediatric specialists who genuinely love what they do. Get to know the team your family will see at every visit.",
+    "role": "Pediatric Dentist, DDS",
+    "meetPrefix": "Meet Dr.",
+    "ctaMeetDentists": "Meet the Dentists",
+    "ctaMeetTeam": "Meet the Team"
+  },
+  "valueProps": {
+    "kicker": "Why Families Choose Us",
+    "heading": "A Practice Built Around Your Child",
+    "body": "We designed every part of our practice, from our schedule to our bedside manner with young patients and their parents in mind.",
+    "experts": {
+      "title": "Specialized pediatric experts",
+      "body": "All four of our board-certified doctors focus exclusively on pediatric dentistry — care designed specifically for little mouths and big feelings."
+    },
+    "environment": {
+      "title": "Child-friendly environment",
+      "body": "Our office is designed to delight and comfort kids at every turn — from colorful spaces to gentle voices that make every dental visit something to look forward to."
+    },
+    "comms": {
+      "title": "Parent-centered communication",
+      "body": "Transparent treatment plans, plain-language explanations, and zero judgment. You'll always know exactly what's happening with your child's smile."
+    }
+  },
+  "floating": {
+    "ctaAppointment": "Request Appointment",
+    "ctaCall": "Text/Call: (847) 223-1400",
+    "ariaAppointment": "Request an appointment at Kids Dentist Grayslake"
+  },
+  "quickActions": {
+    "emergency": "Dental Emergency",
+    "askDoctor": "Ask the Doctor"
   },
   "footer": {
     "tagline": "Caring for kids' smiles in Grayslake since day one.",

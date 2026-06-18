@@ -2,13 +2,13 @@
 
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 
-const doctors = [
+const DOCTORS = [
   {
     name: 'Dr. Sonia Gutierrez',
     firstName: 'Sonia',
     bioHref: '/about/meet-the-dentists/dr-sonia-gutierrez',
-    role: 'Pediatric Dentist, DDS',
     blobRadius: '60% 40% 30% 70% / 60% 30% 70% 40%',
     gradientFrom: '#DBEAFE',
     gradientTo: '#BAE6FD',
@@ -19,7 +19,6 @@ const doctors = [
     name: 'Dr. Dave Rutcosky',
     firstName: 'Dave',
     bioHref: '/about/meet-the-dentists/dr-dave-rutcosky',
-    role: 'Pediatric Dentist, DDS',
     blobRadius: '40% 60% 70% 30% / 40% 70% 30% 60%',
     gradientFrom: '#D1FAE5',
     gradientTo: '#A7F3D0',
@@ -30,7 +29,6 @@ const doctors = [
     name: 'Dr. Sahar Alrayyes',
     firstName: 'Sahar',
     bioHref: '/about/meet-the-dentists/dr-sahar-alrayyes',
-    role: 'Pediatric Dentist, DDS',
     blobRadius: '50% 50% 30% 70% / 60% 40% 70% 30%',
     gradientFrom: '#FEF3C7',
     gradientTo: '#FDE68A',
@@ -41,7 +39,6 @@ const doctors = [
     name: 'Dr. Anne-Ashley Compton',
     firstName: 'Ashley',
     bioHref: '/about/meet-the-dentists/dr-anne-ashley-compton',
-    role: 'Pediatric Dentist, DDS',
     blobRadius: '70% 30% 50% 50% / 40% 60% 40% 60%',
     gradientFrom: '#EDE9FE',
     gradientTo: '#DDD6FE',
@@ -51,6 +48,8 @@ const doctors = [
 ]
 
 export default function MeetOurDoctors() {
+  const t = useTranslations('doctors')
+
   return (
     <section
       aria-labelledby="doctors-heading"
@@ -62,32 +61,8 @@ export default function MeetOurDoctors() {
       }}
     >
       {/* Ambient blob decorations */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: 'absolute',
-          top: '-80px',
-          right: '-80px',
-          width: '340px',
-          height: '340px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(74,144,164,0.08) 0%, transparent 70%)',
-          pointerEvents: 'none',
-        }}
-      />
-      <div
-        aria-hidden="true"
-        style={{
-          position: 'absolute',
-          bottom: '-60px',
-          left: '-60px',
-          width: '280px',
-          height: '280px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(244,199,127,0.12) 0%, transparent 70%)',
-          pointerEvents: 'none',
-        }}
-      />
+      <div aria-hidden="true" style={{ position: 'absolute', top: '-80px', right: '-80px', width: '340px', height: '340px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(74,144,164,0.08) 0%, transparent 70%)', pointerEvents: 'none' }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: '-60px', left: '-60px', width: '280px', height: '280px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(244,199,127,0.12) 0%, transparent 70%)', pointerEvents: 'none' }} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
 
@@ -99,36 +74,21 @@ export default function MeetOurDoctors() {
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
           style={{ textAlign: 'center', marginBottom: '3.5rem' }}
         >
-          <span className="section-kicker">Get to Know Us</span>
+          <span className="section-kicker">{t('kicker')}</span>
           <h2
             id="doctors-heading"
-            style={{
-              fontFamily: 'Nunito, sans-serif',
-              fontSize: 'clamp(1.9rem, 3.5vw, 2.6rem)',
-              fontWeight: 900,
-              color: 'var(--brand-600)',
-              letterSpacing: '-0.02em',
-              margin: '0.5rem 0 1rem',
-              lineHeight: 1.18,
-            }}
+            style={{ fontFamily: 'Nunito, sans-serif', fontSize: 'clamp(1.9rem, 3.5vw, 2.6rem)', fontWeight: 900, color: 'var(--brand-600)', letterSpacing: '-0.02em', margin: '0.5rem 0 1rem', lineHeight: 1.18 }}
           >
-            Meet Our Doctors
+            {t('heading')}
           </h2>
           <p style={{ color: '#6b7280', fontSize: '1.05rem', fontWeight: 500, maxWidth: '540px', margin: '0 auto', lineHeight: 1.7 }}>
-            Four pediatric specialists who genuinely love what they do. Get to know the team your family will see at every visit.
+            {t('body')}
           </p>
         </motion.div>
 
-        {/* Doctor cards - 4-column horizontal row */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
-            gap: '1.75rem',
-          }}
-          className="doctors-grid"
-        >
-          {doctors.map((doc) => (
+        {/* Doctor cards */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.75rem' }} className="doctors-grid">
+          {DOCTORS.map((doc) => (
             <motion.div
               key={doc.name}
               initial={{ opacity: 0, y: 36 }}
@@ -136,31 +96,11 @@ export default function MeetOurDoctors() {
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.6, delay: doc.delay, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
               whileHover={{ y: -8, transition: { type: 'spring', stiffness: 300, damping: 20 } }}
-              style={{
-                background: 'white',
-                borderRadius: '2rem',
-                padding: '2rem 1.5rem',
-                textAlign: 'center',
-                boxShadow: '0 4px 24px rgba(74,144,164,0.09)',
-                border: '1.5px solid rgba(74,144,164,0.10)',
-                cursor: 'default',
-                transition: 'box-shadow 0.3s',
-              }}
-              onHoverStart={(e) => {
-                ;(e.target as HTMLElement).closest?.('[data-doctor]')
-              }}
+              style={{ background: 'white', borderRadius: '2rem', padding: '2rem 1.5rem', textAlign: 'center', boxShadow: '0 4px 24px rgba(74,144,164,0.09)', border: '1.5px solid rgba(74,144,164,0.10)', cursor: 'default', transition: 'box-shadow 0.3s' }}
             >
               {/* Blob photo container */}
               <div
-                style={{
-                  width: '80%',
-                  aspectRatio: '1',
-                  margin: '0 auto 1.4rem',
-                  borderRadius: doc.blobRadius,
-                  background: `linear-gradient(135deg, ${doc.gradientFrom}, ${doc.gradientTo})`,
-                  position: 'relative',
-                  overflow: 'hidden',
-                }}
+                style={{ width: '80%', aspectRatio: '1', margin: '0 auto 1.4rem', borderRadius: doc.blobRadius, background: `linear-gradient(135deg, ${doc.gradientFrom}, ${doc.gradientTo})`, position: 'relative', overflow: 'hidden' }}
               >
                 <Image
                   src={doc.photo}
@@ -172,46 +112,18 @@ export default function MeetOurDoctors() {
               </div>
 
               {/* Name & role */}
-              <h3
-                style={{
-                  fontFamily: 'Nunito, sans-serif',
-                  fontSize: '1rem',
-                  fontWeight: 800,
-                  color: 'var(--brand-600)',
-                  margin: '0 0 0.35rem',
-                  lineHeight: 1.3,
-                }}
-              >
+              <h3 style={{ fontFamily: 'Nunito, sans-serif', fontSize: '1rem', fontWeight: 800, color: 'var(--brand-600)', margin: '0 0 0.35rem', lineHeight: 1.3 }}>
                 {doc.name}
               </h3>
-              <p
-                style={{
-                  fontSize: '0.8rem',
-                  fontWeight: 600,
-                  color: '#9ca3af',
-                  margin: 0,
-                  letterSpacing: '0.03em',
-                }}
-              >
-                {doc.role}
+              <p style={{ fontSize: '0.8rem', fontWeight: 600, color: '#9ca3af', margin: 0, letterSpacing: '0.03em' }}>
+                {t('role')}
               </p>
               <a
                 href={doc.bioHref}
                 className="doctor-bio-link"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.15rem',
-                  marginTop: '0.9rem',
-                  color: 'var(--brand-600)',
-                  fontSize: '0.85rem',
-                  fontFamily: 'Nunito, sans-serif',
-                  fontWeight: 800,
-                  textDecoration: 'none',
-                  transition: 'color 0.2s, gap 0.2s',
-                }}
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '0.15rem', marginTop: '0.9rem', color: 'var(--brand-600)', fontSize: '0.85rem', fontFamily: 'Nunito, sans-serif', fontWeight: 800, textDecoration: 'none', transition: 'color 0.2s, gap 0.2s' }}
               >
-                Meet Dr. {doc.firstName} &rsaquo;
+                {t('meetPrefix')} {doc.firstName} &rsaquo;
               </a>
             </motion.div>
           ))}
@@ -230,22 +142,9 @@ export default function MeetOurDoctors() {
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.97 }}
             transition={{ type: 'spring', stiffness: 380, damping: 22 }}
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              background: 'linear-gradient(135deg, #FF6B18, #FF4A2D)',
-              color: 'white',
-              fontFamily: 'Nunito, sans-serif',
-              fontWeight: 800,
-              fontSize: '1rem',
-              padding: '0.85rem 2rem',
-              borderRadius: '100px',
-              textDecoration: 'none',
-              boxShadow: '0 6px 22px rgba(255,107,24,0.38)',
-            }}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'linear-gradient(135deg, #FF6B18, #FF4A2D)', color: 'white', fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '1rem', padding: '0.85rem 2rem', borderRadius: '100px', textDecoration: 'none', boxShadow: '0 6px 22px rgba(255,107,24,0.38)' }}
           >
-            Meet the Dentists
+            {t('ctaMeetDentists')}
             <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
             </svg>
@@ -256,22 +155,9 @@ export default function MeetOurDoctors() {
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.97 }}
             transition={{ type: 'spring', stiffness: 380, damping: 22 }}
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              background: 'transparent',
-              color: 'var(--brand-600)',
-              fontFamily: 'Nunito, sans-serif',
-              fontWeight: 800,
-              fontSize: '1rem',
-              padding: '0.85rem 2rem',
-              borderRadius: '100px',
-              textDecoration: 'none',
-              border: '2px solid rgba(74,144,164,0.35)',
-            }}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'transparent', color: 'var(--brand-600)', fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '1rem', padding: '0.85rem 2rem', borderRadius: '100px', textDecoration: 'none', border: '2px solid rgba(74,144,164,0.35)' }}
           >
-            Meet the Team
+            {t('ctaMeetTeam')}
             <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
             </svg>
@@ -279,18 +165,10 @@ export default function MeetOurDoctors() {
         </motion.div>
       </div>
 
-      {/* Responsive grid override */}
       <style>{`
-        .doctor-bio-link:hover {
-          color: var(--accent-500) !important;
-          gap: 0.35rem !important;
-        }
-        @media (max-width: 900px) {
-          .doctors-grid { grid-template-columns: repeat(2, 1fr) !important; }
-        }
-        @media (max-width: 540px) {
-          .doctors-grid { grid-template-columns: 1fr !important; max-width: 320px; margin: 0 auto; }
-        }
+        .doctor-bio-link:hover { color: var(--accent-500) !important; gap: 0.35rem !important; }
+        @media (max-width: 900px) { .doctors-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+        @media (max-width: 540px) { .doctors-grid { grid-template-columns: 1fr !important; max-width: 320px; margin: 0 auto; } }
       `}</style>
     </section>
   )

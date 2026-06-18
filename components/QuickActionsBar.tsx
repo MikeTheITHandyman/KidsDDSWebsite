@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 
 function downloadVCard() {
   const lines = [
@@ -24,7 +25,12 @@ function downloadVCard() {
   URL.revokeObjectURL(url)
 }
 
+// Suppress unused warning — kept for future use
+void downloadVCard
+
 export default function QuickActionsBar() {
+  const t = useTranslations('quickActions')
+
   return (
     <div
       style={{
@@ -37,10 +43,7 @@ export default function QuickActionsBar() {
     >
       <div
         className="flex flex-row flex-wrap gap-3 justify-center md:justify-end px-4 md:px-8 py-2"
-        style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-        }}
+        style={{ maxWidth: '1200px', margin: '0 auto' }}
       >
 
         {/* Emergency */}
@@ -70,7 +73,7 @@ export default function QuickActionsBar() {
             <line x1="12" y1="9" x2="12" y2="13"/>
             <line x1="12" y1="17" x2="12.01" y2="17"/>
           </svg>
-          Dental Emergency
+          {t('emergency')}
         </Link>
 
         {/* Ask the Doctor */}
@@ -100,15 +103,13 @@ export default function QuickActionsBar() {
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
           </svg>
-          Ask the Doctor
+          {t('askDoctor')}
         </Link>
 
       </div>
 
       <style>{`
-        .qa-btn:hover {
-          transform: translateY(-2px);
-        }
+        .qa-btn:hover { transform: translateY(-2px); }
         .qa-emergency:hover {
           box-shadow: 0 8px 26px rgba(220,38,38,0.48) !important;
           background: linear-gradient(135deg, #b91c1c 0%, #dc2626 100%) !important;

@@ -1,19 +1,114 @@
 {
   "nav": {
     "home": "Inicio",
-    "about": "Sobre Nosotros",
+    "about": "Acerca de",
+    "aboutUs": "Sobre Nosotros",
+    "meetDentists": "Conoce a los Dentistas",
+    "meetTeam": "Conoce al Equipo",
+    "tourOffice": "Tour por la Oficina",
+    "recentEvents": "Eventos Recientes",
     "services": "Servicios",
+    "allServices": "Todos los Servicios",
+    "preventive": "Odontología Preventiva",
+    "restorative": "Odontología Restaurativa",
+    "specialNeeds": "Odontología para Necesidades Especiales",
+    "sedation": "Odontología con Sedación",
+    "emergency": "Atención Dental de Emergencia",
     "forPatients": "Para Pacientes",
+    "firstVisit": "Primera Visita del Niño",
+    "insurance": "Seguro y Financiamiento",
+    "faq": "Preguntas Frecuentes",
     "blog": "Blog",
     "contact": "Contacto",
+    "directions": "Cómo Llegar",
+    "callNumber": "(847) 223-1400",
+    "announcement": "Mira nuestra publicación más reciente del blog",
+    "openMenu": "Abrir menú de navegación",
+    "closeMenu": "Cerrar menú de navegación",
     "requestAppointment": "Solicitar Cita",
     "callUs": "Llámenos"
   },
   "hero": {
-    "headline": "Un Hogar Dental que a su Hijo le Encantará",
-    "subheadline": "Odontología pediátrica experta y gentil para bebés hasta adolescentes en Grayslake, IL.",
-    "ctaAppointment": "Solicitar una Cita",
-    "ctaCall": "Llamar al (847) 223-1400"
+    "badgeLocation": "Odontología Pediátrica · Grayslake y el Condado de Lake, IL",
+    "headlinePrefix": "El",
+    "headlineHighlight": "Dentista Pediátrico",
+    "headlineSuffix": "de Grayslake desde 1994.",
+    "tagline": "Atención dental pediátrica de alta calidad que los niños esperan con entusiasmo — sirviendo a familias en todo el Condado de Lake.",
+    "trustBanner": "Sirviendo al Condado de Lake por Más de 30 Años · Est. 1994",
+    "ctaAppointment": "Solicitar Cita",
+    "ctaCall": "Texto/Llamada: (847) 223-1400"
+  },
+  "services": {
+    "kicker": "Nuestros Servicios",
+    "heading": "Nuestros Servicios",
+    "body": "Desde chequeos de rutina hasta tratamientos especializados, brindamos atención dental integral y compasiva diseñada específicamente para niños.",
+    "preventive": {
+      "title": "Odontología Preventiva",
+      "description": "Chequeos regulares, limpiezas y tratamientos con flúor para mantener la sonrisa de su hijo saludable y detener los problemas antes de que comiencen.",
+      "button": "Cuidado Preventivo"
+    },
+    "restorative": {
+      "title": "Odontología Restaurativa",
+      "description": "Tratamiento experto y suave para caries y dientes rotos para restaurar sonrisas saludables utilizando técnicas amigables para los niños.",
+      "button": "Cuidado Restaurativo"
+    },
+    "sedation": {
+      "title": "Odontología con Sedación",
+      "description": "Opciones suaves de sedación para niños nerviosos y procedimientos más complejos, incluyendo óxido nitroso y anestesia general.",
+      "button": "Opciones de Sedación"
+    },
+    "specialNeeds": {
+      "title": "Odontología para Necesidades Especiales",
+      "description": "Atención compasiva y especializada para niños con diversas necesidades — incluyendo autismo, síndrome de Down, TDAH y diferencias sensoriales.",
+      "button": "Cuidado para Necesidades Especiales"
+    },
+    "emergency": {
+      "title": "Dentista Pediátrico de Emergencia",
+      "description": "Cuando su hijo tiene un dolor de muelas, un diente caído o una lesión dental, lo atenderemos lo antes posible.",
+      "button": "Atención Dental de Emergencia"
+    }
+  },
+  "insurance": {
+    "heading": "En Red con la Mayoría de los PPO Principales",
+    "body": "Aceptamos la mayoría de los planes de seguro dental principales para que la atención sea accesible para su familia.",
+    "cta": "Ver Información de Seguro",
+    "footerText": "¿No ve su plan?",
+    "footerLink": "Llámenos — probablemente lo aceptamos."
+  },
+  "doctors": {
+    "kicker": "Conózcanos",
+    "heading": "Conoce a Nuestros Dentistas",
+    "body": "Cuatro especialistas pediátricos que genuinamente aman lo que hacen. Conozca al equipo que su familia verá en cada visita.",
+    "role": "Dentista Pediátrico, DDS",
+    "meetPrefix": "Conoce a Dr.",
+    "ctaMeetDentists": "Conoce a los Dentistas",
+    "ctaMeetTeam": "Conoce al Equipo"
+  },
+  "valueProps": {
+    "kicker": "Por Qué las Familias Nos Eligen",
+    "heading": "Una Práctica Construida Alrededor de Su Hijo",
+    "body": "Diseñamos cada parte de nuestra práctica, desde nuestro horario hasta nuestra manera de ser con los jóvenes pacientes y sus padres en mente.",
+    "experts": {
+      "title": "Expertos pediátricos especializados",
+      "body": "Los cuatro de nuestros doctores certificados se enfocan exclusivamente en odontología pediátrica — cuidado diseñado específicamente para bocas pequeñas y grandes sentimientos."
+    },
+    "environment": {
+      "title": "Ambiente amigable para niños",
+      "body": "Nuestra oficina está diseñada para deleitar y consolar a los niños en cada momento — desde espacios coloridos hasta voces gentiles que hacen que cada visita dental sea algo esperado con ilusión."
+    },
+    "comms": {
+      "title": "Comunicación centrada en los padres",
+      "body": "Planes de tratamiento transparentes, explicaciones en lenguaje sencillo y sin juicios. Siempre sabrá exactamente lo que está pasando con la sonrisa de su hijo."
+    }
+  },
+  "floating": {
+    "ctaAppointment": "Solicitar Cita",
+    "ctaCall": "Texto/Llamada: (847) 223-1400",
+    "ariaAppointment": "Solicitar una cita en Kids Dentist Grayslake"
+  },
+  "quickActions": {
+    "emergency": "Emergencia Dental",
+    "askDoctor": "Pregúntale al Doctor"
   },
   "footer": {
     "tagline": "Cuidando las sonrisas de los niños en Grayslake desde el primer día.",

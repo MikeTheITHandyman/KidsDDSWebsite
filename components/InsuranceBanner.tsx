@@ -1,6 +1,9 @@
 import React from 'react'
+import { useTranslations } from 'next-intl'
 
 export default function InsuranceBanner() {
+  const t = useTranslations('insurance')
+
   return (
     <section className="insurance-strip">
       <div className="insurance-strip-inner">
@@ -15,13 +18,13 @@ export default function InsuranceBanner() {
 
         {/* Text */}
         <div className="insurance-text">
-          <strong>In-Network with Most Major PPOs</strong>
-          <span>We accept most major dental insurance plans to make care affordable for your family.</span>
+          <strong>{t('heading')}</strong>
+          <span>{t('body')}</span>
         </div>
 
         {/* CTA link */}
         <a href="/for-patients/insurance-info" className="insurance-link">
-          View Insurance Info
+          {t('cta')}
         </a>
 
       </div>
@@ -37,12 +40,12 @@ export default function InsuranceBanner() {
           fontFamily: 'Nunito, sans-serif',
         }}
       >
-        Don&apos;t see your plan?{' '}
+        {t('footerText')}{' '}
         <a
           href="tel:+18472231400"
           style={{ color: '#4A90A4', fontWeight: 800, textDecoration: 'none' }}
         >
-          Text/Call us — we likely accept it.
+          {t('footerLink')}
         </a>
         {' '}(847) 223-1400
       </div>

@@ -1,14 +1,14 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 
-const services = [
+const SERVICE_CONFIG = [
   {
-    title: 'Preventive Dentistry',
-    description: "Regular check-ups, cleanings, and fluoride treatments to keep your child's smile healthy and stop problems before they start.",
-    buttonText: 'Preventative Care',
+    key: 'preventive' as const,
     href: '/services/preventive-dentistry',
     iconBg: 'linear-gradient(135deg, #dcf0ee, #b8e0da)',
+    featured: false,
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4A90A4" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
@@ -16,11 +16,10 @@ const services = [
     ),
   },
   {
-    title: 'Restorative Dentistry',
-    description: 'Expert, gentle treatment for cavities and broken teeth to restore healthy smiles using child-friendly techniques.',
-    buttonText: 'Restorative Care',
+    key: 'restorative' as const,
     href: '/services/restorative',
     iconBg: 'linear-gradient(135deg, #fef0dc, #faddaa)',
+    featured: false,
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FF6B18" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
@@ -31,11 +30,10 @@ const services = [
     ),
   },
   {
-    title: 'Sedation Dentistry',
-    description: 'Gentle sedation options for nervous kids and more complex procedures, including nitrous oxide and general anesthesia.',
-    buttonText: 'Sedation Options',
+    key: 'sedation' as const,
     href: '/services/sedation-dentistry',
     iconBg: 'linear-gradient(135deg, #dcf0ee, #b8e0da)',
+    featured: false,
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4A90A4" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M18 8h1a4 4 0 010 8h-1"/>
@@ -47,12 +45,10 @@ const services = [
     ),
   },
   {
-    title: 'Special Needs Dentistry',
-    description: 'Compassionate, specialized care for children with diverse needs — including autism, Down syndrome, ADHD, and sensory differences.',
-    buttonText: 'Special Needs Care',
+    key: 'specialNeeds' as const,
     href: '/services/special-needs',
-    featured: true,
     iconBg: 'linear-gradient(135deg, #ede9fe, #ddd6fe)',
+    featured: true,
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#78509b" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
@@ -63,11 +59,10 @@ const services = [
     ),
   },
   {
-    title: 'Emergency Pediatric Dentist',
-    description: "When your child has a toothache, knocked-out tooth, or dental injury, we'll get them in as soon as possible.",
-    buttonText: 'Emergency Dental Care',
+    key: 'emergency' as const,
     href: '/services/emergency',
     iconBg: 'linear-gradient(135deg, #fde8e0, #f9c4b4)',
+    featured: false,
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FF4A2D" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
@@ -77,20 +72,20 @@ const services = [
 ]
 
 export default function ServicesGrid() {
+  const t = useTranslations('services')
+
   return (
     <section className="services-section" aria-labelledby="services-heading" style={{ paddingTop: '3rem' }}>
       <div className="services-header">
-        <h2 id="services-heading">Our Services</h2>
-        <p>
-          From routine check-ups to specialized treatments, we provide comprehensive, compassionate dental care designed specifically for children.
-        </p>
+        <h2 id="services-heading">{t('heading')}</h2>
+        <p>{t('body')}</p>
       </div>
 
       <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1.25rem' }}>
         <div className="services-all-grid">
-          {services.map((svc) => (
+          {SERVICE_CONFIG.map((svc) => (
             <motion.div
-              key={svc.title}
+              key={svc.key}
               className="service-card"
               whileHover={{
                 y: -5,
@@ -106,10 +101,10 @@ export default function ServicesGrid() {
               <div className="service-icon" style={{ background: svc.iconBg }}>
                 {svc.icon}
               </div>
-              <h3>{svc.title}</h3>
-              <p>{svc.description}</p>
+              <h3>{t(`${svc.key}.title`)}</h3>
+              <p>{t(`${svc.key}.description`)}</p>
               <a href={svc.href} className="service-link">
-                {svc.buttonText}
+                {t(`${svc.key}.button`)}
                 <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
@@ -120,20 +115,10 @@ export default function ServicesGrid() {
       </div>
 
       <style>{`
-        .services-all-grid {
-          display: grid;
-          grid-template-columns: repeat(5, 1fr);
-          gap: 1.25rem;
-        }
-        @media (max-width: 1100px) {
-          .services-all-grid { grid-template-columns: repeat(3, 1fr); }
-        }
-        @media (max-width: 700px) {
-          .services-all-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 440px) {
-          .services-all-grid { grid-template-columns: 1fr; }
-        }
+        .services-all-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.25rem; }
+        @media (max-width: 1100px) { .services-all-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 700px) { .services-all-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 440px) { .services-all-grid { grid-template-columns: 1fr; } }
       `}</style>
     </section>
   )

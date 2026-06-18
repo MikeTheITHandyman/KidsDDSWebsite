@@ -1,6 +1,7 @@
 'use client'
 
 import { motion, type Variants } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 
 const containerVariants: Variants = {
   hidden: {},
@@ -16,9 +17,9 @@ const cardVariants: Variants = {
   },
 }
 
-const cards = [
+const CARD_CONFIG = [
   {
-    key: 'experts',
+    key: 'experts' as const,
     cardClass: 'vp-card--blue',
     iconClass: 'vp-icon--blue',
     icon: (
@@ -27,11 +28,9 @@ const cards = [
         <polyline points="9 12 11 14 15 10"/>
       </svg>
     ),
-    title: 'Specialized pediatric experts',
-    body: 'All four of our board-certified doctors focus exclusively on pediatric dentistry — care designed specifically for little mouths and big feelings.',
   },
   {
-    key: 'environment',
+    key: 'environment' as const,
     cardClass: 'vp-card--green',
     iconClass: 'vp-icon--green',
     icon: (
@@ -40,11 +39,9 @@ const cards = [
         <polyline points="9,22 9,12 15,12 15,22"/>
       </svg>
     ),
-    title: 'Child-friendly environment',
-    body: 'Our office is designed to delight and comfort kids at every turn — from colorful spaces to gentle voices that make every dental visit something to look forward to.',
   },
   {
-    key: 'comms',
+    key: 'comms' as const,
     cardClass: 'vp-card--mint',
     iconClass: 'vp-icon--mint',
     icon: (
@@ -54,23 +51,19 @@ const cards = [
         <line x1="9" y1="14" x2="13" y2="14"/>
       </svg>
     ),
-    title: 'Parent-centered communication',
-    body: "Transparent treatment plans, plain-language explanations, and zero judgment. You'll always know exactly what's happening with your child's smile.",
   },
 ]
 
 export default function ValueProps() {
+  const t = useTranslations('valueProps')
+
   return (
     <section className="vp-section" aria-labelledby="vp-heading">
       <div className="vp-container">
-
         <div className="vp-header">
-          <span className="section-kicker">Why Families Choose Us</span>
-          <h2 id="vp-heading">A Practice Built Around Your Child</h2>
-          <p>
-            We designed every part of our practice, from our schedule to our
-            bedside manner with young patients and their parents in mind.
-          </p>
+          <span className="section-kicker">{t('kicker')}</span>
+          <h2 id="vp-heading">{t('heading')}</h2>
+          <p>{t('body')}</p>
         </div>
 
         <motion.div
@@ -80,7 +73,7 @@ export default function ValueProps() {
           whileInView="show"
           viewport={{ once: true, margin: '-60px' }}
         >
-          {cards.map(c => (
+          {CARD_CONFIG.map(c => (
             <motion.article
               key={c.key}
               className={`vp-card ${c.cardClass}`}
@@ -95,12 +88,11 @@ export default function ValueProps() {
               <div className={`vp-icon-wrap ${c.iconClass}`}>
                 {c.icon}
               </div>
-              <h3>{c.title}</h3>
-              <p>{c.body}</p>
+              <h3>{t(`${c.key}.title`)}</h3>
+              <p>{t(`${c.key}.body`)}</p>
             </motion.article>
           ))}
         </motion.div>
-
       </div>
     </section>
   )
