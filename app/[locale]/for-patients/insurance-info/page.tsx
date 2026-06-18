@@ -43,25 +43,6 @@ export default function InsuranceInfoPage() {
     >
       <div className="mx-auto max-w-5xl px-4">
 
-        {/* Intro */}
-        <AnimatedSection>
-          <p
-            style={{
-              textAlign: 'center',
-              fontSize: '1.05rem',
-              fontWeight: 500,
-              color: '#6b7280',
-              maxWidth: '620px',
-              margin: '0 auto 4rem',
-              lineHeight: 1.78,
-            }}
-          >
-            We believe every child deserves access to excellent dental care - regardless of insurance
-            status. We accept most major PPO plans, Medicaid, and CHIP, and our billing team works
-            hard to maximize your benefits at every visit.
-          </p>
-        </AnimatedSection>
-
         {/* In-network provider cards */}
         <AnimatedSection>
           <h2

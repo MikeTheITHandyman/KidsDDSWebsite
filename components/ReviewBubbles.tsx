@@ -268,7 +268,10 @@ export default function ReviewBubbles({ sanityReviews }: ReviewBubblesProps) {
                 </span>
               </div>
               <div style={{ width: '1px', height: '36px', background: 'rgba(255,255,255,0.3)' }} aria-hidden="true" />
-              <span style={{ fontSize: '0.78rem', fontWeight: 700, opacity: 0.85, letterSpacing: '0.04em' }}>Google Reviews</span>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1px' }}>
+                <span style={{ fontSize: '1.55rem', fontWeight: 900, lineHeight: 1, letterSpacing: '-0.02em' }}>650+</span>
+                <span style={{ fontSize: '0.78rem', fontWeight: 700, opacity: 0.85, letterSpacing: '0.04em' }}>Google Reviews</span>
+              </div>
             </div>
           </div>
 

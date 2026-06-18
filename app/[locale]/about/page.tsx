@@ -110,10 +110,8 @@ export default async function AboutPage() {
               style={{
                 display: 'inline-block',
                 fontFamily: 'Nunito, sans-serif',
-                fontSize: '0.72rem',
+                fontSize: 'clamp(1.2rem, 2.5vw, 1.5rem)',
                 fontWeight: 900,
-                letterSpacing: '0.14em',
-                textTransform: 'uppercase',
                 color: 'var(--brand-purple)',
                 marginBottom: '1rem',
               }}
@@ -154,10 +152,8 @@ export default async function AboutPage() {
               style={{
                 display: 'inline-block',
                 fontFamily: 'Nunito, sans-serif',
-                fontSize: '0.72rem',
+                fontSize: 'clamp(1.2rem, 2.5vw, 1.5rem)',
                 fontWeight: 900,
-                letterSpacing: '0.14em',
-                textTransform: 'uppercase',
                 color: 'var(--brand-600)',
                 marginBottom: '0.85rem',
               }}
