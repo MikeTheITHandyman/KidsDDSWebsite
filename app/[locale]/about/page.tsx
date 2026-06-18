@@ -94,42 +94,38 @@ export default function AboutPage() {
           <div
             style={{
               marginBottom: '5rem',
-              display: 'grid',
-              gap: '2.5rem',
-              gridTemplateColumns: '1fr',
+              textAlign: 'center',
             }}
           >
-            <div>
-              <span
-                style={{
-                  display: 'inline-block',
-                  fontFamily: 'Nunito, sans-serif',
-                  fontSize: '0.72rem',
-                  fontWeight: 900,
-                  letterSpacing: '0.14em',
-                  textTransform: 'uppercase',
-                  color: 'var(--brand-purple)',
-                  marginBottom: '1rem',
-                }}
-              >
-                Who We Are
-              </span>
-              <p
-                style={{
-                  fontFamily: 'Nunito, sans-serif',
-                  fontSize: 'clamp(1.2rem, 2.5vw, 1.5rem)',
-                  fontWeight: 700,
-                  color: '#374151',
-                  lineHeight: 1.65,
-                  maxWidth: '720px',
-                  margin: 0,
-                }}
-              >
-                Kids Dentist opened in Grayslake in 1994. We&apos;ve watched this community grow up.
-                We&apos;ve treated kids who now bring their own kids in. Our four doctors have spent
-                their entire careers focused on one thing: pediatric dentistry.
-              </p>
-            </div>
+            <span
+              style={{
+                display: 'inline-block',
+                fontFamily: 'Nunito, sans-serif',
+                fontSize: '0.72rem',
+                fontWeight: 900,
+                letterSpacing: '0.14em',
+                textTransform: 'uppercase',
+                color: 'var(--brand-purple)',
+                marginBottom: '1rem',
+              }}
+            >
+              Who We Are
+            </span>
+            <p
+              style={{
+                fontFamily: 'Nunito, sans-serif',
+                fontSize: 'clamp(1.2rem, 2.5vw, 1.5rem)',
+                fontWeight: 700,
+                color: '#374151',
+                lineHeight: 1.65,
+                maxWidth: '720px',
+                margin: '0 auto',
+              }}
+            >
+              Kids Dentist opened in Grayslake in 1994. We&apos;ve watched this community grow up.
+              We&apos;ve treated kids who now bring their own kids in. Our four doctors have spent
+              their entire careers focused on one thing: pediatric dentistry.
+            </p>
           </div>
         </AnimatedSection>
 
@@ -137,11 +133,12 @@ export default function AboutPage() {
         <AnimatedSection>
           <div
             style={{
-              background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)',
+              background: 'linear-gradient(135deg, #FDF9F4 0%, #FAF3E8 100%)',
               border: '1.5px solid rgba(74,144,164,0.14)',
               borderRadius: '2rem',
               padding: 'clamp(2.5rem, 5vw, 3.5rem)',
               marginBottom: '2rem',
+              textAlign: 'center',
             }}
           >
             <span
@@ -165,7 +162,7 @@ export default function AboutPage() {
                 fontWeight: 900,
                 color: '#1e3a5f',
                 lineHeight: 1.25,
-                margin: '0 0 1.1rem',
+                margin: '0 auto 1.1rem',
                 maxWidth: '560px',
               }}
             >
@@ -178,7 +175,7 @@ export default function AboutPage() {
                 color: '#4b5563',
                 lineHeight: 1.78,
                 maxWidth: '620px',
-                margin: '0 0 1.75rem',
+                margin: '0 auto 1.75rem',
               }}
             >
               Every doctor at Kids Dentist completed a pediatric dental residency after dental school,
@@ -191,7 +188,7 @@ export default function AboutPage() {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.45rem',
-                background: 'linear-gradient(135deg, #E8934F, #E97D63)',
+                background: 'linear-gradient(135deg, #FF6B18, #FF4A2D)',
                 color: '#fff',
                 fontFamily: 'Nunito, sans-serif',
                 fontWeight: 800,
@@ -199,7 +196,7 @@ export default function AboutPage() {
                 padding: '0.75rem 1.85rem',
                 borderRadius: '100px',
                 textDecoration: 'none',
-                boxShadow: '0 6px 20px rgba(232,147,79,0.35)',
+                boxShadow: '0 6px 20px rgba(255,107,24,0.35)',
               }}
             >
               Meet the Dentists
@@ -224,7 +221,7 @@ export default function AboutPage() {
             <AnimatedSection key={stat.label} delay={i * 0.1}>
               <div
                 style={{
-                  background: '#fff',
+                  background: 'var(--bg)',
                   border: '1.5px solid rgba(74,144,164,0.12)',
                   borderRadius: '1.5rem',
                   padding: '1.75rem 1.25rem',
@@ -665,6 +662,116 @@ export default function AboutPage() {
           </div>
         </AnimatedSection>
 
+        {/* ── Recent Events ─────────────────────────────────────── */}
+        <AnimatedSection>
+          <div style={{ margin: '5rem 0 4rem' }}>
+            <span
+              style={{
+                display: 'inline-block',
+                fontFamily: 'Nunito, sans-serif',
+                fontSize: '0.72rem',
+                fontWeight: 900,
+                letterSpacing: '0.14em',
+                textTransform: 'uppercase',
+                color: 'var(--serene-mint)',
+                marginBottom: '0.85rem',
+              }}
+            >
+              In the Community
+            </span>
+            <h2
+              style={{
+                fontFamily: 'Nunito, sans-serif',
+                fontSize: 'clamp(1.65rem, 3vw, 2.2rem)',
+                fontWeight: 900,
+                color: '#1e3a5f',
+                lineHeight: 1.25,
+                margin: '0 0 0.75rem',
+              }}
+            >
+              Recent Events &amp; Community Involvement
+            </h2>
+            <p
+              style={{
+                fontSize: '1rem',
+                fontWeight: 500,
+                color: '#6b7280',
+                lineHeight: 1.72,
+                maxWidth: '560px',
+                margin: '0 0 2rem',
+              }}
+            >
+              We&apos;re proud to support Lake County families beyond the dental chair — through
+              school visits, sports sponsorships, and community events.
+            </p>
+
+            <div className="events-placeholder-grid">
+              {[1, 2, 3].map((n) => (
+                <div
+                  key={n}
+                  style={{
+                    background: 'var(--bg)',
+                    border: '1.5px dashed rgba(74,144,164,0.25)',
+                    borderRadius: '1.5rem',
+                    padding: '2.5rem 1.5rem',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '0.85rem',
+                    aspectRatio: '4 / 3',
+                    textAlign: 'center',
+                  }}
+                >
+                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(74,144,164,0.38)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <rect x="3" y="4" width="18" height="18" rx="2"/>
+                    <line x1="16" y1="2" x2="16" y2="6"/>
+                    <line x1="8" y1="2" x2="8" y2="6"/>
+                    <line x1="3" y1="10" x2="21" y2="10"/>
+                    <line x1="8" y1="14" x2="16" y2="14"/>
+                    <line x1="8" y1="18" x2="12" y2="18"/>
+                  </svg>
+                  <span
+                    style={{
+                      fontFamily: 'Nunito, sans-serif',
+                      fontSize: '0.75rem',
+                      fontWeight: 700,
+                      color: 'rgba(74,144,164,0.45)',
+                      letterSpacing: '0.08em',
+                      textTransform: 'uppercase',
+                    }}
+                  >
+                    Event Photo Coming Soon
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            <div style={{ marginTop: '1.5rem' }}>
+              <Link
+                href="/about/recent-events"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.35rem',
+                  color: 'var(--brand-600)',
+                  fontFamily: 'Nunito, sans-serif',
+                  fontWeight: 800,
+                  fontSize: '0.88rem',
+                  textDecoration: 'none',
+                  borderBottom: '2px solid rgba(74,144,164,0.3)',
+                  paddingBottom: '2px',
+                }}
+              >
+                View all events
+                <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/>
+                </svg>
+              </Link>
+            </div>
+          </div>
+        </AnimatedSection>
+
         {/* ── Final CTA ─────────────────────────────────────────── */}
         <AnimatedSection>
           <div
@@ -760,7 +867,7 @@ export default function AboutPage() {
                   border: '2px solid rgba(255,255,255,0.25)',
                 }}
               >
-                Text/Call us: (847) 223-1400
+                (847) 223-1400
               </Link>
             </div>
           </div>
@@ -770,6 +877,14 @@ export default function AboutPage() {
 
       <style>{`
         .office-carousel::-webkit-scrollbar { display: none; }
+        .events-placeholder-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1.25rem;
+        }
+        @media (max-width: 640px) {
+          .events-placeholder-grid { grid-template-columns: 1fr; }
+        }
         @media (max-width: 540px) {
           .about-stat-grid { grid-template-columns: 1fr !important; }
         }

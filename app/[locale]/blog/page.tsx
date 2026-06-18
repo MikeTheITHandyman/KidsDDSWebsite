@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import SubPageLayout from '@/components/SubPageLayout'
-import { client } from '../../sanity/lib/client'
-import { allPostsQuery } from '../../sanity/lib/queries'
+import { client } from '@/sanity/lib/client'
+import { allPostsQuery } from '@/sanity/lib/queries'
 import BlogGrid from './BlogGrid'
 
 export const metadata: Metadata = {

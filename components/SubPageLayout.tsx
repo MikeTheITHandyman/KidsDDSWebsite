@@ -12,13 +12,13 @@ interface SubPageLayoutProps {
 }
 
 const gradients = {
-  blue: 'from-[#FDFCF8] via-[#EFF6FF] to-[#BFDBFE]',
-  green: 'from-[#FDFCF8] via-[#F0FDF4] to-[#BBF7D0]',
-  amber: 'from-[#FDFCF8] via-[#FFFBEB] to-[#FDE68A]',
+  blue: 'from-[#FDF8F2] via-[#FAF5EE] to-[#F5EDE0]',
+  green: 'from-[#FDF8F2] via-[#F0FDF4] to-[#BBF7D0]',
+  amber: 'from-[#FDF8F2] via-[#FFFBEB] to-[#FDE68A]',
 }
 
 const blobColors = {
-  blue: ['bg-blue-200/40', 'bg-amber-100/50', 'bg-sky-300/30'],
+  blue: ['bg-amber-50/70', 'bg-orange-50/60', 'bg-amber-100/40'],
   green: ['bg-green-200/40', 'bg-amber-100/50', 'bg-teal-200/30'],
   amber: ['bg-amber-200/40', 'bg-orange-100/50', 'bg-yellow-200/30'],
 }
@@ -72,7 +72,7 @@ export default function SubPageLayout({
             className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#4A90A4]/20 bg-white/60 px-4 py-1.5 text-xs font-800 uppercase tracking-widest text-[#4A90A4] backdrop-blur-sm"
             style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800 }}
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-[#E8934F]" />
+            <span className="h-1.5 w-1.5 rounded-full bg-[#FF6B18]" />
             {kicker ?? 'Kids Dentist · Grayslake, IL'}
           </motion.div>
 

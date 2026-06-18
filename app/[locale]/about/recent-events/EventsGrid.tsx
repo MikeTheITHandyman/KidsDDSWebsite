@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, type Variants } from 'framer-motion'
-import { urlFor } from '../../../sanity/lib/image'
+import { urlFor } from '@/sanity/lib/image'
 
 export interface SanityEvent {
   _id: string

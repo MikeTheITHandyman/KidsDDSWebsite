@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import SubPageLayout from '@/components/SubPageLayout'
-import { client } from '../../../sanity/lib/client'
-import { allEventsQuery } from '../../../sanity/lib/queries'
+import { client } from '@/sanity/lib/client'
+import { allEventsQuery } from '@/sanity/lib/queries'
 import EventsGrid, { type SanityEvent } from './EventsGrid'
 
 export const metadata: Metadata = {

@@ -3,9 +3,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { PortableText, type PortableTextComponents } from '@portabletext/react'
-import { client } from '../../../sanity/lib/client'
-import { postBySlugQuery } from '../../../sanity/lib/queries'
-import { urlFor } from '../../../sanity/lib/image'
+import { client } from '@/sanity/lib/client'
+import { postBySlugQuery } from '@/sanity/lib/queries'
+import { urlFor } from '@/sanity/lib/image'
 
 interface Post {
   _id: string
