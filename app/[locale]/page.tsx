@@ -12,7 +12,7 @@ import type { SanityReview } from '@/components/ReviewBubbles'
 
 export const metadata: Metadata = {
   title: 'Pediatric Dentist Grayslake, IL | Kids Dentist',
-  description: "Grayslake's trusted pediatric dentist serving families from Waukegan, Libertyville, Mundelein, Vernon Hills, and Lake Forest. 650+ five-star reviews. Emergency visits available. In-Network with Delta Dental. Call (847) 223-1400.",
+  description: "Grayslake's trusted pediatric dentist serving families from Waukegan, Libertyville, Mundelein, Vernon Hills, and Lake Forest. Emergency visits available. In-Network with Delta Dental. Call (847) 223-1400.",
   alternates: { canonical: 'https://www.kidsdds.com/' },
   openGraph: {
     title: 'Pediatric Dentist Grayslake, IL | Kids Dentist',

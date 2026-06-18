@@ -301,39 +301,6 @@ export default function Footer() {
 
           {/* CTA buttons */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.4rem', marginBottom: '0.85rem' }}>
-            <motion.a
-              href="/request-appointment"
-              whileHover={{ scale: 1.04, y: -2 }}
-              whileTap={{ scale: 0.97 }}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.45rem',
-                background: 'rgba(255,255,255,0.18)',
-                backdropFilter: 'blur(8px)',
-                border: '1.5px solid rgba(255,255,255,0.35)',
-                color: 'white',
-                borderRadius: '100px',
-                padding: '0.65rem 1.35rem',
-                fontFamily: 'Nunito, sans-serif',
-                fontWeight: 800,
-                fontSize: '0.88rem',
-                textDecoration: 'none',
-                transition: 'background 0.2s',
-              }}
-            >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                <line x1="16" y1="2" x2="16" y2="6"/>
-                <line x1="8" y1="2" x2="8" y2="6"/>
-                <line x1="3" y1="10" x2="21" y2="10"/>
-              </svg>
-              Book Appointment
-            </motion.a>
-            <p style={{ margin: 0, fontSize: '0.78rem', fontWeight: 600, opacity: 0.7, lineHeight: 1.4, paddingLeft: '0.1rem' }}>
-              Serving Lake County families since 1994.
-            </p>
-
             <form
               action="https://hostedpaynow.com/v2/paynowapp/processpayment"
               method="post"
@@ -372,16 +339,6 @@ export default function Footer() {
             </form>
           </div>
 
-          <div
-            style={{
-              fontSize: '0.8rem',
-              fontWeight: 600,
-              opacity: 0.65,
-              lineHeight: 1.55,
-            }}
-          >
-            We see kids from infants through teens. Hablamos Español.
-          </div>
         </div>
       </div>
 

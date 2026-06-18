@@ -3,16 +3,19 @@ import AnimatedSection from '@/components/AnimatedSection'
 import ReviewBubbles from '@/components/ReviewBubbles'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { client } from '@/sanity/lib/client'
+import { featuredReviewsQuery } from '@/sanity/lib/queries'
+import type { SanityReview } from '@/components/ReviewBubbles'
 
 export const metadata: Metadata = {
   title: 'About Our Pediatric Dental Practice | Kids Dentist Grayslake, IL',
   description:
-    "Kids Dentist has served Grayslake and Lake County families since 1994. Four board-certified pediatric specialists, 650+ five-star reviews, and a practice built entirely around children.",
+    "Kids Dentist has served Grayslake and Lake County families since 1994. Four board-certified pediatric specialists and a practice built entirely around children.",
   alternates: { canonical: 'https://www.kidsdds.com/about' },
   openGraph: {
     title: 'About Our Pediatric Dental Practice | Kids Dentist Grayslake, IL',
     description:
-      "Grayslake's most trusted pediatric dental practice since 1994. Four specialists. 650+ five-star reviews. Care built entirely around your child.",
+      "Grayslake's most trusted pediatric dental practice since 1994. Four specialists. Care built entirely around your child.",
     url: 'https://www.kidsdds.com/about',
     siteName: 'Kids Dentist',
     locale: 'en_US',
@@ -78,7 +81,13 @@ const OFFICE_SLIDES = [
   },
 ]
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const reviews = await client.fetch<SanityReview[]>(
+    featuredReviewsQuery,
+    {},
+    { next: { revalidate: 60 } },
+  )
+
   return (
     <SubPageLayout
       kicker="Since 1994 · Grayslake, IL"
@@ -491,7 +500,7 @@ export default function AboutPage() {
           width: 'calc(100% + 2rem)',
         }}
       >
-        <ReviewBubbles />
+        <ReviewBubbles sanityReviews={reviews} />
       </div>
 
       {/* ── Office carousel + CTA ─────────────────────────────── */}
