@@ -35,7 +35,7 @@ export default function Footer() {
         style={{
           maxWidth: '1200px',
           margin: '0 auto',
-          padding: '3.5rem 2rem 2.5rem',
+          padding: '2.25rem 2rem 1.5rem',
           display: 'grid',
           gridTemplateColumns: 'repeat(4, 1fr)',
           gap: '2.5rem',
@@ -300,7 +300,7 @@ export default function Footer() {
           </div>
 
           {/* CTA buttons */}
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.6rem', marginBottom: '0.85rem' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.4rem', marginBottom: '0.85rem' }}>
             <motion.a
               href="/request-appointment"
               whileHover={{ scale: 1.04, y: -2 }}
@@ -330,6 +330,9 @@ export default function Footer() {
               </svg>
               Book Appointment
             </motion.a>
+            <p style={{ margin: 0, fontSize: '0.78rem', fontWeight: 600, opacity: 0.7, lineHeight: 1.4, paddingLeft: '0.1rem' }}>
+              Serving Lake County families since 1994.
+            </p>
 
             <form
               action="https://hostedpaynow.com/v2/paynowapp/processpayment"
@@ -382,39 +385,15 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* SEO service area block */}
-      <div
-        style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          padding: '1.25rem 2rem 0',
-          borderTop: '1px solid rgba(255,255,255,0.1)',
-          textAlign: 'center',
-        }}
-      >
-        <p
-          style={{
-            fontSize: '0.75rem',
-            fontWeight: 600,
-            opacity: 0.55,
-            lineHeight: 1.7,
-            margin: 0,
-            fontFamily: 'Nunito, sans-serif',
-          }}
-        >
-          Pediatric dentistry in Grayslake, IL. Serving Lake County families since 1994.
-        </p>
-      </div>
-
       {/* Divider */}
-      <div style={{ borderTop: '1px solid rgba(255,255,255,0.15)', maxWidth: '1200px', margin: '1.25rem auto 0' }} />
+      <div style={{ borderTop: '1px solid rgba(255,255,255,0.15)', maxWidth: '1200px', margin: '0.5rem auto 0' }} />
 
       {/* Bottom bar */}
       <div
         style={{
           maxWidth: '1200px',
           margin: '0 auto',
-          padding: '1.1rem 2rem',
+          padding: '0.85rem 2rem',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',

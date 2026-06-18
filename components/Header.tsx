@@ -111,7 +111,7 @@ function NavItem({ item }: { item: (typeof NAV)[0] }) {
             style={{
               position: 'absolute', top: '100%', left: 0, marginTop: '10px',
               zIndex: 1050, minWidth: '210px', transformOrigin: 'top left',
-              background: 'rgba(250,250,248,0.97)', backdropFilter: 'blur(14px)',
+              background: 'rgba(253,248,242,0.97)', backdropFilter: 'blur(14px)',
               WebkitBackdropFilter: 'blur(14px)',
               border: '1px solid rgba(74,144,164,0.14)', borderRadius: '1rem',
               boxShadow: '0 8px 32px rgba(74,144,164,0.18), 0 2px 8px rgba(0,0,0,0.08)',
@@ -170,7 +170,7 @@ export default function Header() {
       {!isStudio && (
         <div
           style={{
-            background: 'linear-gradient(90deg, #E8853A 0%, #F5A623 100%)',
+            background: 'linear-gradient(90deg, #FF6B18 0%, #FF9A00 100%)',
             color: 'white', textAlign: 'center', padding: '0.48rem 1rem',
             fontSize: '0.8rem', fontFamily: 'Nunito, sans-serif',
             fontWeight: 700, letterSpacing: '0.015em',
@@ -195,7 +195,7 @@ export default function Header() {
       <motion.header
         className="site-header"
         animate={{
-          backgroundColor: scrolled ? 'rgba(250,250,248,1)' : 'rgba(250,250,248,0.95)',
+          backgroundColor: scrolled ? 'rgba(253,248,242,1)' : 'rgba(253,248,242,0.95)',
           boxShadow: scrolled
             ? '0 4px 24px rgba(74,144,164,0.10), 0 1px 4px rgba(0,0,0,0.06)'
             : '0 0px 0px rgba(0,0,0,0)',
@@ -233,7 +233,7 @@ export default function Header() {
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ marginRight: '0.4rem', flexShrink: 0 }}>
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 9.8 19.79 19.79 0 0 1 1 1.18 2 2 0 0 1 2.82 0h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L6.91 7.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z" />
               </svg>
-              Text/Call us: (847) 223-1400
+              (847) 223-1400
             </motion.a>
             <motion.a
               href="https://www.google.com/maps/dir/?api=1&destination=160+Commerce+Drive,+Grayslake,+IL+60030"
@@ -306,7 +306,7 @@ export default function Header() {
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                       <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 9.8 19.79 19.79 0 0 1 1 1.18 2 2 0 0 1 2.82 0h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L6.91 7.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/>
                     </svg>
-                    Text/Call us: (847) 223-1400
+                    (847) 223-1400
                   </a>
                   <a
                     href="https://www.google.com/maps/dir/?api=1&destination=160+Commerce+Drive,+Grayslake,+IL+60030"

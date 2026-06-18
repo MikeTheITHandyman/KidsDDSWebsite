@@ -93,7 +93,7 @@ export default function FloatingWidget() {
                 fontWeight: 800,
                 fontSize: '0.95rem',
                 textDecoration: 'none',
-                boxShadow: '0 8px 28px rgba(232,147,79,0.48)',
+                boxShadow: '0 8px 28px rgba(255,107,24,0.50)',
                 whiteSpace: 'nowrap',
               }}
               aria-label="Request an appointment at Kids Dentist Grayslake"
