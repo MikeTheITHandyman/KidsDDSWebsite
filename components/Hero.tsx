@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import LanguageSwitcher from '@/components/LanguageSwitcher'
 
 const springBtn = { type: 'spring', stiffness: 400, damping: 20 } as const
 
@@ -24,29 +25,7 @@ export default function Hero() {
               Pediatric Dentistry · Grayslake &amp; Lake County, IL
             </div>
 
-            {/* Hablamos Español bubble */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.85 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ type: 'spring', stiffness: 320, damping: 20, delay: 0.35 }}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.35rem',
-                background: 'linear-gradient(135deg, #E8934F, #E97D63)',
-                color: '#fff',
-                borderRadius: '100px',
-                padding: '0.38rem 1rem',
-                fontSize: '0.82rem',
-                fontWeight: 800,
-                fontFamily: 'Nunito, sans-serif',
-                letterSpacing: '0.02em',
-                boxShadow: '0 4px 14px rgba(232,147,79,0.35)',
-              }}
-              aria-label="We speak Spanish"
-            >
-              Hablamos Español
-            </motion.div>
+            <LanguageSwitcher variant="hero" />
           </div>
 
           {/* Headline */}
