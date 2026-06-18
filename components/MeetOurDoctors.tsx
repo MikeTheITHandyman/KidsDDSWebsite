@@ -55,7 +55,7 @@ export default function MeetOurDoctors() {
     <section
       aria-labelledby="doctors-heading"
       style={{
-        background: 'linear-gradient(180deg, #FDFCF8 0%, #EFF6FF 100%)',
+        background: 'linear-gradient(180deg, #FDF9F4 0%, #FAF3E8 100%)',
         padding: '5rem 0 5.5rem',
         position: 'relative',
         overflow: 'hidden',
@@ -234,7 +234,7 @@ export default function MeetOurDoctors() {
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.5rem',
-              background: 'linear-gradient(135deg, #E8934F, #E97D63)',
+              background: 'linear-gradient(135deg, #FF6B18, #FF4A2D)',
               color: 'white',
               fontFamily: 'Nunito, sans-serif',
               fontWeight: 800,
@@ -242,7 +242,7 @@ export default function MeetOurDoctors() {
               padding: '0.85rem 2rem',
               borderRadius: '100px',
               textDecoration: 'none',
-              boxShadow: '0 6px 22px rgba(232,147,79,0.38)',
+              boxShadow: '0 6px 22px rgba(255,107,24,0.38)',
             }}
           >
             Meet the Dentists
