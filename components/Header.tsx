@@ -197,6 +197,36 @@ export default function Header() {
         }}
         transition={{ duration: 0.35, ease: 'easeOut' }}
       >
+        {/* ── Utility bar: language · phone · directions ──────────────── */}
+        <div className="header-utility-bar-track">
+          <div className="header-utility-bar">
+            <LanguageSwitcher variant="header" />
+            <motion.a
+              href="tel:+18472231400"
+              className="btn btn-secondary utility-btn"
+              onClick={() => sendGAEvent('event', 'call_click', { location: 'header_desktop' })}
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ marginRight: '0.35rem', flexShrink: 0 }}>
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 9.8 19.79 19.79 0 0 1 1 1.18 2 2 0 0 1 2.82 0h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L6.91 7.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z" />
+              </svg>
+              {t('callNumber')}
+            </motion.a>
+            <motion.a
+              href="https://www.google.com/maps/dir/?api=1&destination=160+Commerce+Drive,+Grayslake,+IL+60030"
+              target="_blank" rel="noopener noreferrer"
+              className="btn btn-primary utility-btn"
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+            >
+              {t('directions')}
+            </motion.a>
+          </div>
+        </div>
+
         <div className="header-inner">
           <Link href="/" className="brand-logo" aria-label="Kids Dentist - go to homepage">
             <Image
@@ -215,33 +245,9 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Desktop CTA buttons */}
+          {/* Desktop actions — search only; CTAs live in utility bar above */}
           <div className="header-actions">
             <SiteSearch variant="desktop" />
-            <LanguageSwitcher variant="header" />
-            <motion.a
-              href="tel:+18472231400"
-              className="btn btn-secondary"
-              onClick={() => sendGAEvent('event', 'call_click', { location: 'header_desktop' })}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ marginRight: '0.4rem', flexShrink: 0 }}>
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 9.8 19.79 19.79 0 0 1 1 1.18 2 2 0 0 1 2.82 0h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L6.91 7.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z" />
-              </svg>
-              {t('callNumber')}
-            </motion.a>
-            <motion.a
-              href="https://www.google.com/maps/dir/?api=1&destination=160+Commerce+Drive,+Grayslake,+IL+60030"
-              target="_blank" rel="noopener noreferrer"
-              className="btn btn-primary"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-            >
-              {t('directions')}
-            </motion.a>
           </div>
 
           {/* Mobile action buttons — search + hamburger */}
@@ -383,6 +389,14 @@ export default function Header() {
       <style>{`
         .nav-link-hover:hover { color: var(--brand-600) !important; }
 
+        /* ── Utility bar ── */
+        .header-utility-bar-track { border-bottom: 1px solid rgba(74,144,164,0.11); }
+        .header-utility-bar { display: flex; align-items: center; justify-content: flex-end; gap: 0.75rem; padding: 0.42rem 2rem; max-width: 1440px; margin: 0 auto; }
+        .utility-btn { padding: 0.42rem 1.1rem !important; font-size: 0.82rem !important; white-space: nowrap; }
+
+        /* Reduce main-nav row vertical padding now that utility bar carries the CTAs */
+        .header-inner { padding-top: 0.7rem !important; padding-bottom: 0.7rem !important; }
+
         .mobile-action-group { display: none; align-items: center; gap: 0.15rem; margin-left: auto; }
         .mobile-search-btn { background: none; border: none; cursor: pointer; padding: 8px; border-radius: 10px; transition: background 0.2s; flex-shrink: 0; color: var(--muted-700); display: flex; align-items: center; justify-content: center; }
         .mobile-search-btn:hover { background: rgba(74,144,164,0.08); }
@@ -408,6 +422,7 @@ export default function Header() {
         .mobile-nav-cta-call:hover, .mobile-nav-cta-directions:hover { opacity: 0.88; }
 
         @media (max-width: 768px) {
+          .header-utility-bar-track { display: none; }
           .mobile-action-group { display: flex; }
           .mobile-menu-btn { display: flex; align-items: center; justify-content: center; }
           .header-inner { flex-direction: row !important; justify-content: space-between; align-items: center; padding: 0.875rem 1.25rem !important; gap: 0 !important; }
