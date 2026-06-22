@@ -2,7 +2,7 @@
 
 > **Purpose of this document:** A living reference for the current build state. Covers every route, component, design token, and content requirement so Claude Code can produce precise, context-rich work.
 
-**Last updated:** 2026-06-22 — added SiteSearch, Pay page, Patient Forms rewrite, Referral Portal, 301 redirect map.
+**Last updated:** 2026-06-22 — added SiteSearch, Pay page, Patient Forms rewrite, Referral Portal, 301 redirect map, two-row header layout.
 
 ---
 
@@ -176,16 +176,20 @@ Renders on every page in this order:
 
 **Logo:** `/brand_assets/kids-dentist-logo.png` — 72px height, links to `/`.
 
-**Desktop CTA buttons (right side of header):**
+**Two-row desktop layout** (stacks inside `motion.header`):
+- **Row 1 — Utility bar** (`.header-utility-bar-track`): right-aligned, slim (`0.42rem` padding). Contains `LanguageSwitcher`, phone CTA, and Directions CTA. Separated from Row 2 by a `1px` teal hairline border. Hidden at ≤768px. Buttons use `.utility-btn` modifier — compact padding (`0.42rem 1.1rem`), `0.82rem` font, `white-space: nowrap` (fixes phone number word-wrap).
+- **Row 2 — Main nav** (`.header-inner`): Logo + nav links + `SiteSearch` pill. Vertical padding reduced to `0.7rem` to keep combined header height reasonable.
+
+**Desktop CTAs (utility bar, Row 1):**
 - "Text/Call us: (847) 223-1400" (`tel:+18472231400`) — fires `call_click` GA event (`location: 'header_desktop'`)
 - "Directions" → Google Maps driving directions link
 
-**Scroll behavior:** Background + shadow animate in at 50px scroll via `useScroll` + `useMotionValueEvent`.
+**Scroll behavior:** Background + shadow animate in at 50px scroll via `useScroll` + `useMotionValueEvent`. Applies to the entire `motion.header` (both rows).
 
-**Mobile:** Hamburger at ≤768px. Slide-down menu with `AnimatePresence`. Body scroll locked when menu open. Mobile menu CTAs: "Text/Call us" + "Directions". A search icon button sits left of the hamburger — tapping it toggles the mobile search panel (mutually exclusive with the nav menu).
+**Mobile:** Utility bar hidden. Hamburger at ≤768px. Slide-down menu with `AnimatePresence`. Body scroll locked when menu open. Mobile menu CTAs: "Text/Call us" + "Directions". A search icon button sits left of the hamburger — tapping it toggles the mobile search panel (mutually exclusive with the nav menu).
 
 **Global Site Search** (`components/SiteSearch.tsx` — rendered in `Header.tsx`):
-- Desktop: compact pill input (175–215px), right-anchored in the header actions bar before `LanguageSwitcher`
+- Desktop: compact pill input (175–215px), sole item in `.header-actions` (Row 2, right side)
 - Mobile: icon button toggles a spring-animated slide-down search panel above the nav drawer
 - Static 30-item index covering all service, FAQ, about, patient, and contact routes
 - Weighted scoring: title = 4pt, category = 2pt, keywords = 1pt, description = 0.5pt; top 6 results shown
