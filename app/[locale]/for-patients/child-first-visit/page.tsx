@@ -2,6 +2,7 @@ import SubPageLayout from '@/components/SubPageLayout'
 import AnimatedSection from '@/components/AnimatedSection'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 
 export const metadata: Metadata = {
   title: "Your Child's First Dental Visit | Kids Dentist Grayslake, IL",
@@ -18,63 +19,31 @@ export const metadata: Metadata = {
   },
 }
 
-const STEPS = [
-  {
-    number: '01',
-    icon: '👋',
-    title: 'A Warm Welcome',
-    description:
-      "From the moment you walk in, both you and your child should feel at home. Our front desk team greets you by name, helps with any paperwork, and gives your child time to explore, meet the team, and feel comfortable - before we ever look at a tooth.",
-    gradientFrom: '#DBEAFE',
-    gradientTo: '#BAE6FD',
-    accentColor: '#4A90A4',
-  },
-  {
-    number: '02',
-    icon: '🔍',
-    title: 'A Gentle Exam',
-    description:
-      "We count teeth - and that is often the whole exam for very young patients. Our doctors use a tiny mirror, a gentle touch, and a lot of narration so your child always knows what is happening. We check growth patterns, bite, and look for very early signs of decay. No surprises.",
-    gradientFrom: '#D1FAE5',
-    gradientTo: '#A7F3D0',
-    accentColor: '#6BA899',
-  },
-  {
-    number: '03',
-    icon: '🪥',
-    title: 'Cleaning & Fluoride',
-    description:
-      "A gentle cleaning with a soft brush and a fun choice of flavors - strawberry, bubblegum, watermelon. Then a quick fluoride treatment that protects enamel for months. We teach brushing technique in a way that sticks long after the visit.",
-    gradientFrom: '#FEF3C7',
-    gradientTo: '#FDE68A',
-    accentColor: '#D97706',
-  },
-  {
-    number: '04',
-    icon: '🎁',
-    title: 'The Prize Box',
-    description:
-      "Every patient picks something from the prize box before they leave. Children leave associating the dentist with a reward and a good experience - not dread. That association, built early, is one of the most powerful tools in preventing lifelong dental anxiety.",
-    gradientFrom: '#EDE9FE',
-    gradientTo: '#DDD6FE',
-    accentColor: '#7C3AED',
-  },
+const STEP_META = [
+  { number: '01', icon: '👋', gradientFrom: '#DBEAFE', gradientTo: '#BAE6FD', accentColor: '#4A90A4' },
+  { number: '02', icon: '🔍', gradientFrom: '#D1FAE5', gradientTo: '#A7F3D0', accentColor: '#6BA899' },
+  { number: '03', icon: '🪥', gradientFrom: '#FEF3C7', gradientTo: '#FDE68A', accentColor: '#D97706' },
+  { number: '04', icon: '🎁', gradientFrom: '#EDE9FE', gradientTo: '#DDD6FE', accentColor: '#7C3AED' },
 ]
 
-const WHAT_TO_BRING = [
-  'Insurance card and any insurance information',
-  "Child's medical history - medications, allergies, prior hospitalizations",
-  'Prior dental records if this is not your child\'s very first dental visit',
-  'A comfort object - stuffed animal, blanket, or pacifier are all welcome here',
-  'A parent or legal guardian must be present for all first visits',
-]
+export default async function ChildFirstVisitPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  setRequestLocale(locale)
+  const t = await getTranslations('firstVisit')
 
-export default function ChildFirstVisitPage() {
+  const STEPS = STEP_META.map((meta, i) => ({
+    ...meta,
+    title: t(`step${i}Title`),
+    description: t(`step${i}Desc`),
+  }))
+
+  const WHAT_TO_BRING = [t('bring0'), t('bring1'), t('bring2'), t('bring3'), t('bring4')]
+
   return (
     <SubPageLayout
-      kicker="Welcome to Our Practice"
-      title="Your Child's First Visit"
-      subtitle="We make first visits something kids actually look forward to."
+      kicker={t('kicker')}
+      title={t('title')}
+      subtitle={t('subtitle')}
       gradient="blue"
     >
       <div className="mx-auto max-w-5xl px-4">
@@ -122,16 +91,14 @@ export default function ChildFirstVisitPage() {
                   lineHeight: 1.3,
                 }}
               >
-                The Age One Dental Visit - Why It Matters
+                {t('ageRuleHeading')}
               </h2>
               <p style={{ fontSize: '0.95rem', lineHeight: 1.75, color: '#6b7280', margin: 0, fontWeight: 500 }}>
-                The American Academy of Pediatric Dentistry recommends a first dental visit when the{' '}
+                {t('ageRuleBodyPrefix')}{' '}
                 <strong style={{ color: '#4A90A4' }}>
-                  first tooth appears, or by your child's first birthday
+                  {t('ageRuleBodyBold')}
                 </strong>{' '}
-                - whichever comes first. This is not about treatment. It is about building a relationship,
-                checking that development is on track, and giving you the guidance to protect your child's
-                smile from day one. The earlier we start, the healthier the long-term outcome.
+                {t('ageRuleBodySuffix')}
               </p>
             </div>
           </div>
@@ -153,7 +120,7 @@ export default function ChildFirstVisitPage() {
                   marginBottom: '0.35rem',
                 }}
               >
-                See It First
+                {t('videoKicker')}
               </span>
               <h2
                 style={{
@@ -164,7 +131,7 @@ export default function ChildFirstVisitPage() {
                   margin: 0,
                 }}
               >
-                Take a Tour Before You Arrive
+                {t('videoHeading')}
               </h2>
             </div>
             {/* 16:9 video block */}
@@ -224,7 +191,7 @@ export default function ChildFirstVisitPage() {
                       margin: '0 0 0.25rem',
                     }}
                   >
-                    Welcome Video &amp; Office Tour
+                    {t('videoTitle')}
                   </p>
                   <p
                     style={{
@@ -237,7 +204,7 @@ export default function ChildFirstVisitPage() {
                       textTransform: 'uppercase',
                     }}
                   >
-                    Video Coming Soon
+                    {t('videoComingSoon')}
                   </p>
                 </div>
               </div>
@@ -251,12 +218,12 @@ export default function ChildFirstVisitPage() {
                 fontWeight: 500,
               }}
             >
-              In the meantime,{' '}
+              {t('videoLinkPrefix')}{' '}
               <Link
                 href="/about/tour-our-office"
                 style={{ color: '#4A90A4', fontWeight: 700, textDecoration: 'none' }}
               >
-                explore our photo office tour →
+                {t('videoLink')}
               </Link>
             </p>
           </div>
@@ -277,7 +244,7 @@ export default function ChildFirstVisitPage() {
                 marginBottom: '0.4rem',
               }}
             >
-              What Happens During Your Visit
+              {t('stepsKicker')}
             </span>
             <h2
               style={{
@@ -288,7 +255,7 @@ export default function ChildFirstVisitPage() {
                 margin: 0,
               }}
             >
-              Four Steps to a Happy First Visit
+              {t('stepsHeading')}
             </h2>
           </div>
         </AnimatedSection>
@@ -379,7 +346,7 @@ export default function ChildFirstVisitPage() {
                 margin: '0 0 1.5rem',
               }}
             >
-              What to Bring to Your First Visit
+              {t('bringHeading')}
             </h2>
             <ul
               style={{
@@ -444,8 +411,7 @@ export default function ChildFirstVisitPage() {
                 margin: '0 0 1rem',
               }}
             >
-              "If your child leaves our office smiling and asking when they come back,
-              we have done our job exactly right."
+              &ldquo;{t('quote')}&rdquo;
             </p>
             <cite
               style={{
@@ -457,7 +423,7 @@ export default function ChildFirstVisitPage() {
                 textTransform: 'uppercase',
               }}
             >
-              - The Kids Dentist Team
+              {t('quoteCite')}
             </cite>
           </blockquote>
         </AnimatedSection>
@@ -474,7 +440,7 @@ export default function ChildFirstVisitPage() {
                 marginBottom: '1.25rem',
               }}
             >
-              Ready to schedule the visit that starts it all?
+              {t('ctaText')}
             </p>
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
               <Link
@@ -494,7 +460,7 @@ export default function ChildFirstVisitPage() {
                   boxShadow: '0 6px 22px rgba(232,147,79,0.35)',
                 }}
               >
-                Book Their First Visit
+                {t('ctaAppointment')}
               </Link>
               <Link
                 href="tel:+18472231400"
@@ -512,7 +478,7 @@ export default function ChildFirstVisitPage() {
                   border: '2px solid rgba(74,144,164,0.3)',
                 }}
               >
-                Text/Call us: (847) 223-1400
+                {t('ctaCall')}
               </Link>
             </div>
           </div>

@@ -3,6 +3,7 @@ import AnimatedSection from '@/components/AnimatedSection'
 import ReviewBubbles from '@/components/ReviewBubbles'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { client } from '@/sanity/lib/client'
 import { featuredReviewsQuery } from '@/sanity/lib/queries'
 import type { SanityReview } from '@/components/ReviewBubbles'
@@ -23,16 +24,10 @@ export const metadata: Metadata = {
   },
 }
 
-const STATS = [
-  { value: '30+', label: 'Years in Grayslake' },
-  { value: '4', label: 'Pediatric Specialists on Staff' },
-  { value: '650+', label: 'Google Reviews · 4.8 Stars' },
-]
+const STAT_VALUES = ['30+', '4', '650+']
 
-const OFFICE_SLIDES = [
+const OFFICE_SLIDE_META = [
   {
-    label: 'Waiting Room',
-    caption: 'Colorful, kid-scaled, and never clinical',
     gradient: 'linear-gradient(135deg, #DBEAFE 0%, #BAE6FD 100%)',
     icon: (
       <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="#4A90A4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -42,8 +37,6 @@ const OFFICE_SLIDES = [
     ),
   },
   {
-    label: 'Treatment Rooms',
-    caption: 'TVs in every operatory — kids choose what they watch',
     gradient: 'linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%)',
     icon: (
       <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="#6BA899" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -54,8 +47,6 @@ const OFFICE_SLIDES = [
     ),
   },
   {
-    label: 'Play Zone',
-    caption: 'A dedicated space to ease nerves before any appointment',
     gradient: 'linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%)',
     icon: (
       <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="#D97706" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -67,8 +58,6 @@ const OFFICE_SLIDES = [
     ),
   },
   {
-    label: 'Our Team',
-    caption: 'Hired for warmth as much as their clinical skill',
     gradient: 'linear-gradient(135deg, #EDE9FE 0%, #DDD6FE 100%)',
     icon: (
       <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="#7C3AED" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -81,7 +70,18 @@ const OFFICE_SLIDES = [
   },
 ]
 
-export default async function AboutPage() {
+export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  setRequestLocale(locale)
+  const t = await getTranslations('aboutPage')
+
+  const stats = STAT_VALUES.map((value, i) => ({ value, label: t(`stat${i}Label`) }))
+  const officeSlides = OFFICE_SLIDE_META.map((meta, i) => ({
+    ...meta,
+    label: t(`slide${i}Label`),
+    caption: t(`slide${i}Caption`),
+  }))
+
   const reviews = await client.fetch<SanityReview[]>(
     featuredReviewsQuery,
     {},
@@ -90,8 +90,8 @@ export default async function AboutPage() {
 
   return (
     <SubPageLayout
-      kicker="Since 1994 · Grayslake, IL"
-      title="Thirty Years of Taking Care of Lake County Kids"
+      kicker={t('kicker')}
+      title={t('title')}
       gradient="blue"
     >
 
@@ -116,7 +116,7 @@ export default async function AboutPage() {
                 marginBottom: '1rem',
               }}
             >
-              Who We Are
+              {t('whoWeAreKicker')}
             </span>
             <p
               style={{
@@ -129,9 +129,7 @@ export default async function AboutPage() {
                 margin: '0 auto',
               }}
             >
-              Kids Dentist opened in Grayslake in 1994. We&apos;ve watched this community grow up.
-              We&apos;ve treated kids who now bring their own kids in. Our four doctors have spent
-              their entire careers focused on one thing: pediatric dentistry.
+              {t('whoWeAreBody')}
             </p>
           </div>
         </AnimatedSection>
@@ -158,7 +156,7 @@ export default async function AboutPage() {
                 marginBottom: '0.85rem',
               }}
             >
-              The Team
+              {t('teamKicker')}
             </span>
             <h2
               style={{
@@ -171,7 +169,7 @@ export default async function AboutPage() {
                 maxWidth: '560px',
               }}
             >
-              Four Doctors. All Pediatric Specialists.
+              {t('teamHeading')}
             </h2>
             <p
               style={{
@@ -183,9 +181,7 @@ export default async function AboutPage() {
                 margin: '0 auto 1.75rem',
               }}
             >
-              Every doctor at Kids Dentist completed a pediatric dental residency after dental school,
-              which means extra training specifically in treating children, including kids with anxiety,
-              sensory sensitivities, and special needs.
+              {t('teamBody')}
             </p>
             <Link
               href="/about/meet-the-dentists"
@@ -204,7 +200,7 @@ export default async function AboutPage() {
                 boxShadow: '0 6px 20px rgba(255,107,24,0.35)',
               }}
             >
-              Meet the Dentists
+              {t('teamCta')}
               <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/>
               </svg>
@@ -222,7 +218,7 @@ export default async function AboutPage() {
           }}
           className="about-stat-grid"
         >
-          {STATS.map((stat, i) => (
+          {stats.map((stat, i) => (
             <AnimatedSection key={stat.label} delay={i * 0.1}>
               <div
                 style={{
@@ -285,7 +281,7 @@ export default async function AboutPage() {
                   marginBottom: '0.75rem',
                 }}
               >
-                Special Needs Dentistry
+                {t('specialNeedsKicker')}
               </span>
               <h2
                 style={{
@@ -298,7 +294,7 @@ export default async function AboutPage() {
                   maxWidth: '620px',
                 }}
               >
-                Experienced Care for Children with Special Needs
+                {t('specialNeedsHeading')}
               </h2>
               <p
                 style={{
@@ -310,11 +306,7 @@ export default async function AboutPage() {
                   margin: 0,
                 }}
               >
-                Some children need a little more time, a quieter environment, or a gentler approach.
-                Our team has been caring for children with special needs since 1994 and we know how
-                to adjust to meet each child where they are. If your child has had a hard time at
-                the dentist before, please reach out before scheduling. We would love the chance to
-                make this a better experience for them.
+                {t('specialNeedsBody')}
               </p>
               <Link
                 href="/services/special-needs"
@@ -332,7 +324,7 @@ export default async function AboutPage() {
                   paddingBottom: '2px',
                 }}
               >
-                Learn about our Special Needs program
+                {t('specialNeedsLink')}
                 <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/>
                 </svg>
@@ -364,7 +356,7 @@ export default async function AboutPage() {
                 marginBottom: '0.75rem',
               }}
             >
-              Comfort &amp; Sedation
+              {t('sedationKicker')}
             </span>
             <h2
               style={{
@@ -377,7 +369,7 @@ export default async function AboutPage() {
                 maxWidth: '600px',
               }}
             >
-              We Take Dental Anxiety Seriously
+              {t('sedationHeading')}
             </h2>
             <p
               style={{
@@ -390,11 +382,7 @@ export default async function AboutPage() {
                 opacity: 0.85,
               }}
             >
-              Many children feel nervous before a dental visit, and that is completely normal. Our
-              team is experienced in working with anxious patients and takes the time to build trust
-              before beginning any treatment. For children who need additional support, we offer
-              nitrous oxide and general anesthesia. We will always discuss the options with you
-              beforehand and recommend only what is appropriate for your child.
+              {t('sedationBody')}
             </p>
             <Link
               href="/services/sedation-dentistry"
@@ -412,7 +400,7 @@ export default async function AboutPage() {
                 paddingBottom: '2px',
               }}
             >
-              Learn about our sedation options
+              {t('sedationLink')}
               <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/>
               </svg>
@@ -435,7 +423,7 @@ export default async function AboutPage() {
                 marginBottom: '0.85rem',
               }}
             >
-              Insurance &amp; Payment
+              {t('insuranceKicker')}
             </span>
             <h2
               style={{
@@ -448,7 +436,7 @@ export default async function AboutPage() {
                 maxWidth: '580px',
               }}
             >
-              We Work with Your Insurance So You Don&apos;t Have To
+              {t('insuranceHeading')}
             </h2>
             <p
               style={{
@@ -460,9 +448,7 @@ export default async function AboutPage() {
                 margin: '0 0 1.25rem',
               }}
             >
-              We&apos;re in-network with most major PPOs. If you&apos;re not sure whether we take
-              your plan, call or text us. Our front desk handles the paperwork and will tell you
-              exactly what&apos;s covered before we start any treatment. No surprise bills.
+              {t('insuranceBody')}
             </p>
             <Link
               href="/for-patients/insurance-info"
@@ -479,7 +465,7 @@ export default async function AboutPage() {
                 paddingBottom: '2px',
               }}
             >
-              View accepted insurance plans
+              {t('insuranceLink')}
               <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/>
               </svg>
@@ -517,7 +503,7 @@ export default async function AboutPage() {
                 marginBottom: '0.85rem',
               }}
             >
-              Our Space
+              {t('spaceKicker')}
             </span>
             <h2
               style={{
@@ -529,7 +515,7 @@ export default async function AboutPage() {
                 margin: '0 0 0.75rem',
               }}
             >
-              An Office Built for Children
+              {t('spaceHeading')}
             </h2>
             <p
               style={{
@@ -541,8 +527,7 @@ export default async function AboutPage() {
                 margin: '0 0 2rem',
               }}
             >
-              Step inside and you will instantly feel the difference — warm, colorful, and designed
-              from the ground up with little ones in mind.
+              {t('spaceBody')}
             </p>
           </div>
         </AnimatedSection>
@@ -565,7 +550,7 @@ export default async function AboutPage() {
               paddingBottom: '0.25rem',
             }}
           >
-            {OFFICE_SLIDES.map((slide) => (
+            {officeSlides.map((slide) => (
               <div
                 key={slide.label}
                 style={{
@@ -631,13 +616,13 @@ export default async function AboutPage() {
                     marginTop: '0.25rem',
                   }}
                 >
-                  Photo coming soon
+                  {t('photoComingSoon')}
                 </div>
               </div>
             ))}
           </div>
           <p style={{ fontSize: '0.78rem', color: '#9ca3af', fontWeight: 600, textAlign: 'center', margin: 0 }}>
-            Swipe to explore &rsaquo;
+            {t('swipeToExplore')}
           </p>
         </AnimatedSection>
 
@@ -659,7 +644,7 @@ export default async function AboutPage() {
                 paddingBottom: '2px',
               }}
             >
-              Take a full office tour
+              {t('tourLink')}
               <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/>
               </svg>
@@ -682,7 +667,7 @@ export default async function AboutPage() {
                 marginBottom: '0.85rem',
               }}
             >
-              In the Community
+              {t('eventsKicker')}
             </span>
             <h2
               style={{
@@ -694,7 +679,7 @@ export default async function AboutPage() {
                 margin: '0 0 0.75rem',
               }}
             >
-              Recent Events &amp; Community Involvement
+              {t('eventsHeading')}
             </h2>
             <p
               style={{
@@ -706,8 +691,7 @@ export default async function AboutPage() {
                 margin: '0 0 2rem',
               }}
             >
-              We&apos;re proud to support Lake County families beyond the dental chair — through
-              school visits, sports sponsorships, and community events.
+              {t('eventsBody')}
             </p>
 
             <div className="events-placeholder-grid">
@@ -746,7 +730,7 @@ export default async function AboutPage() {
                       textTransform: 'uppercase',
                     }}
                   >
-                    Event Photo Coming Soon
+                    {t('eventPhotoComingSoon')}
                   </span>
                 </div>
               ))}
@@ -768,7 +752,7 @@ export default async function AboutPage() {
                   paddingBottom: '2px',
                 }}
               >
-                View all events
+                {t('eventsLink')}
                 <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/>
                 </svg>
@@ -809,7 +793,7 @@ export default async function AboutPage() {
                 marginBottom: '0.85rem',
               }}
             >
-              Ready to Visit?
+              {t('ctaKicker')}
             </p>
             <h2
               style={{
@@ -821,7 +805,7 @@ export default async function AboutPage() {
                 margin: '0 0 0.85rem',
               }}
             >
-              New patients are always welcome.
+              {t('ctaHeading')}
             </h2>
             <p
               style={{
@@ -833,7 +817,7 @@ export default async function AboutPage() {
                 lineHeight: 1.72,
               }}
             >
-              Request an appointment online and we&apos;ll call you within one business day to confirm.
+              {t('ctaBody')}
             </p>
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
               <Link
@@ -854,7 +838,7 @@ export default async function AboutPage() {
                   backdropFilter: 'blur(6px)',
                 }}
               >
-                Request Appointment
+                {t('ctaAppointment')}
               </Link>
               <Link
                 href="tel:+18472231400"

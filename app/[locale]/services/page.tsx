@@ -2,6 +2,7 @@ import SubPageLayout from '@/components/SubPageLayout'
 import AnimatedSection from '@/components/AnimatedSection'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 
 export const metadata: Metadata = {
   title: "Children's Dental Services | Pediatric Dentist Grayslake, IL",
@@ -19,57 +20,12 @@ export const metadata: Metadata = {
   },
 }
 
-const SERVICES = [
-  {
-    title: 'Preventive Dentistry',
-    tagline: 'Stop problems before they start.',
-    description:
-      'Routine cleanings, fluoride treatments, sealants, and digital X-rays form the foundation of a lifetime of healthy smiles. We recommend visits every six months starting at age one.',
-    href: '/services/preventive-dentistry',
-    gradient: 'linear-gradient(135deg, #DBEAFE, #BAE6FD)',
-    accentColor: '#4A90A4',
-    icon: '🦷',
-  },
-  {
-    title: 'Restorative Dentistry',
-    tagline: 'Fix it early - protect it for life.',
-    description:
-      'Tooth-colored fillings, pediatric crowns, pulp therapy, and extractions - all performed with the gentle approach and honest communication children and parents deserve.',
-    href: '/services/restorative',
-    gradient: 'linear-gradient(135deg, #D1FAE5, #A7F3D0)',
-    accentColor: '#6BA899',
-    icon: '✨',
-  },
-  {
-    title: 'Sedation Dentistry',
-    tagline: 'Calm, comfortable care for anxious kids.',
-    description:
-      'Nitrous oxide and in-office general anesthesiology — because no child should ever avoid necessary dental care due to fear or anxiety.',
-    href: '/services/sedation-dentistry',
-    gradient: 'linear-gradient(135deg, #FEF3C7, #FDE68A)',
-    accentColor: '#D97706',
-    icon: '😌',
-  },
-  {
-    title: 'Special Needs Dentistry',
-    tagline: 'Every child deserves excellent care.',
-    description:
-      'Specialized experience treating children with autism, Down syndrome, cerebral palsy, and sensory processing differences.',
-    href: '/services/special-needs',
-    gradient: 'linear-gradient(135deg, #EDE9FE, #DDD6FE)',
-    accentColor: '#7C3AED',
-    icon: '💜',
-  },
-  {
-    title: 'Emergency Dentistry',
-    tagline: 'Fast care when your child needs it most.',
-    description:
-      'Knocked-out tooth, sudden toothache, or dental trauma - call us immediately. Same-day emergency appointments are available for our patients and for new families in need.',
-    href: '/services/emergency',
-    gradient: 'linear-gradient(135deg, #FFE4E6, #FECDD3)',
-    accentColor: '#E97D63',
-    icon: '🚨',
-  },
+const SERVICE_META = [
+  { href: '/services/preventive-dentistry', gradient: 'linear-gradient(135deg, #DBEAFE, #BAE6FD)', accentColor: '#4A90A4', icon: '🦷' },
+  { href: '/services/restorative', gradient: 'linear-gradient(135deg, #D1FAE5, #A7F3D0)', accentColor: '#6BA899', icon: '✨' },
+  { href: '/services/sedation-dentistry', gradient: 'linear-gradient(135deg, #FEF3C7, #FDE68A)', accentColor: '#D97706', icon: '😌' },
+  { href: '/services/special-needs', gradient: 'linear-gradient(135deg, #EDE9FE, #DDD6FE)', accentColor: '#7C3AED', icon: '💜' },
+  { href: '/services/emergency', gradient: 'linear-gradient(135deg, #FFE4E6, #FECDD3)', accentColor: '#E97D63', icon: '🚨' },
 ]
 
 const INSURANCES = [
@@ -80,11 +36,22 @@ const INSURANCES = [
   'UnitedHealthcare Dental',
 ]
 
-export default function ServicesPage() {
+export default async function ServicesPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  setRequestLocale(locale)
+  const t = await getTranslations('servicesPage')
+
+  const SERVICES = SERVICE_META.map((meta, i) => ({
+    ...meta,
+    title: t(`service${i}Title`),
+    tagline: t(`service${i}Tagline`),
+    description: t(`service${i}Desc`),
+  }))
+
   return (
     <SubPageLayout
-      title="Our Services"
-      subtitle="100% pediatric dentistry - because children aren't just small adults."
+      title={t('title')}
+      subtitle={t('subtitle')}
       gradient="blue"
     >
       <div className="mx-auto max-w-6xl px-4">
@@ -167,7 +134,7 @@ export default function ServicesPage() {
                       marginTop: '0.5rem',
                     }}
                   >
-                    Learn More
+                    {t('learnMore')}
                     <svg
                       width="14"
                       height="14"
@@ -210,7 +177,7 @@ export default function ServicesPage() {
                 marginBottom: '0.6rem',
               }}
             >
-              Insurance &amp; Billing
+              {t('insuranceKicker')}
             </span>
             <h2
               style={{
@@ -221,7 +188,7 @@ export default function ServicesPage() {
                 margin: '0 0 0.75rem',
               }}
             >
-              In-Network with Most Major PPOs
+              {t('insuranceHeading')}
             </h2>
             <p
               style={{
@@ -233,8 +200,7 @@ export default function ServicesPage() {
                 fontWeight: 500,
               }}
             >
-              We are in-network with major PPO plans and also accept Medicaid and CHIP. Our team
-              handles the billing paperwork - you focus on your child.
+              {t('insuranceBody')}
             </p>
             <div
               style={{
@@ -279,7 +245,7 @@ export default function ServicesPage() {
                 border: '2px solid rgba(74,144,164,0.3)',
               }}
             >
-              View All Accepted Plans
+              {t('insuranceCta')}
             </Link>
           </div>
         </AnimatedSection>
@@ -296,7 +262,7 @@ export default function ServicesPage() {
                 marginBottom: '1.25rem',
               }}
             >
-              Not sure which service your child needs? We will help you figure it out.
+              {t('bottomCtaText')}
             </p>
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
               <Link
@@ -316,7 +282,7 @@ export default function ServicesPage() {
                   boxShadow: '0 6px 22px rgba(232,147,79,0.35)',
                 }}
               >
-                Request Appointment
+                {t('ctaAppointment')}
               </Link>
               <Link
                 href="tel:+18472231400"
@@ -334,7 +300,7 @@ export default function ServicesPage() {
                   border: '2px solid rgba(74,144,164,0.3)',
                 }}
               >
-                Text/Call us: (847) 223-1400
+                {t('ctaCall')}
               </Link>
             </div>
           </div>

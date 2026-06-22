@@ -2,6 +2,7 @@ import SubPageLayout from '@/components/SubPageLayout'
 import AnimatedSection from '@/components/AnimatedSection'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 
 const serviceSchema = {
   '@context': 'https://schema.org',
@@ -53,45 +54,36 @@ export const metadata: Metadata = {
   },
 }
 
-const EMERGENCIES = [
-  { icon: '🦷', label: 'Knocked-Out Tooth', urgent: true },
-  { icon: '😣', label: 'Severe Toothache', urgent: true },
-  { icon: '💥', label: 'Chipped or Broken Tooth', urgent: false },
-  { icon: '🩸', label: 'Dental Injury or Trauma', urgent: true },
-  { icon: '🦠', label: 'Swelling or Abscess', urgent: true },
-  { icon: '🧵', label: 'Lost Filling or Crown', urgent: false },
-  { icon: '😬', label: 'Broken Braces Wire', urgent: false },
-  { icon: '🤕', label: 'Jaw Pain or Injury', urgent: true },
+const EMERGENCY_META = [
+  { icon: '🦷', urgent: true },
+  { icon: '😣', urgent: true },
+  { icon: '💥', urgent: false },
+  { icon: '🩸', urgent: true },
+  { icon: '🦠', urgent: true },
+  { icon: '🧵', urgent: false },
+  { icon: '😬', urgent: false },
+  { icon: '🤕', urgent: true },
 ]
 
-const STEPS = [
-  {
-    step: '1',
-    title: 'Call Us',
-    body: "If your child has a dental emergency, call our office right away. We do our best to see emergency patients the same day so they don't have to stay in pain. Our team will also give you instructions on how to care for your child until you arrive.",
-    gradientFrom: '#FFE4E6',
-    gradientTo: '#FECDD3',
-    accentColor: '#E97D63',
-  },
-  {
-    step: '2',
-    title: 'Visit Our Office',
-    body: "When you arrive, we'll bring your child in as quickly as possible. One of our pediatric dentists will examine their teeth and gums, identify the problem, and explain the recommended treatment.",
-    gradientFrom: '#FEF3C7',
-    gradientTo: '#FDE68A',
-    accentColor: '#D97706',
-  },
-  {
-    step: '3',
-    title: 'Get Relief',
-    body: "Our goal is to relieve your child's discomfort and restore their oral health. If additional treatment is needed, we'll schedule any follow-up visits before you leave and make sure you know exactly what to expect.",
-    gradientFrom: '#D1FAE5',
-    gradientTo: '#A7F3D0',
-    accentColor: '#6BA899',
-  },
+const STEP_META = [
+  { step: '1', gradientFrom: '#FFE4E6', gradientTo: '#FECDD3', accentColor: '#E97D63' },
+  { step: '2', gradientFrom: '#FEF3C7', gradientTo: '#FDE68A', accentColor: '#D97706' },
+  { step: '3', gradientFrom: '#D1FAE5', gradientTo: '#A7F3D0', accentColor: '#6BA899' },
 ]
 
-export default function EmergencyDentalCarePage() {
+export default async function EmergencyDentalCarePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  setRequestLocale(locale)
+  const t = await getTranslations('emergencyPage')
+
+  const EMERGENCIES = EMERGENCY_META.map((meta, i) => ({ ...meta, label: t(`emergency${i}`) }))
+
+  const STEPS = STEP_META.map((meta, i) => ({
+    ...meta,
+    title: t(`step${i}Title`),
+    body: t(`step${i}Desc`),
+  }))
+
   return (
     <>
       <script
@@ -99,9 +91,9 @@ export default function EmergencyDentalCarePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
       <SubPageLayout
-      title="Emergency Dental Care"
-      subtitle="When your child is in pain or has had a dental injury, call us right away — we're here to help."
-      kicker="Call Us Right Away"
+      title={t('title')}
+      subtitle={t('subtitle')}
+      kicker={t('kicker')}
       gradient="blue"
     >
       <div className="max-w-6xl mx-auto px-4">
@@ -139,11 +131,11 @@ export default function EmergencyDentalCarePage() {
           </div>
           <p style={{ fontSize: '0.88rem', fontWeight: 600, color: '#4b5563', lineHeight: 1.65, margin: 0 }}>
             <strong style={{ color: 'rgba(185,28,28,0.88)', fontFamily: 'Nunito, sans-serif' }}>
-              Life-threatening emergency?
+              {t('alertBold')}
             </strong>{' '}
-            If your child is experiencing a life-threatening medical emergency, please{' '}
-            <strong style={{ color: 'rgba(185,28,28,0.88)' }}>call 911 immediately.</strong>{' '}
-            This page covers dental emergencies — we hold same-day dental slots, but we are not a substitute for emergency medical services.
+            {t('alertPrefix')}{' '}
+            <strong style={{ color: 'rgba(185,28,28,0.88)' }}>{t('alert911')}</strong>{' '}
+            {t('alertSuffix')}
           </p>
         </div>
 
@@ -165,10 +157,10 @@ export default function EmergencyDentalCarePage() {
           >
             <div>
               <p style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: '1.05rem', color: '#fff', margin: '0 0 0.2rem' }}>
-                Dental emergency? Don&apos;t wait.
+                {t('urgentHeading')}
               </p>
               <p style={{ fontFamily: 'Nunito, sans-serif', fontSize: '0.9rem', fontWeight: 600, color: 'rgba(255,255,255,0.88)', margin: 0 }}>
-                We do our best to see emergency patients the same day.
+                {t('urgentBody')}
               </p>
             </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
@@ -185,7 +177,7 @@ export default function EmergencyDentalCarePage() {
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 9.8 19.79 19.79 0 0 1 1 1.18 2 2 0 0 1 2.82 0h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L6.91 7.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/>
                 </svg>
-                Text/Call us: (847) 223-1400
+                {t('urgentCall')}
               </a>
               <Link
                 href="/ask-the-doctor"
@@ -201,7 +193,7 @@ export default function EmergencyDentalCarePage() {
                   <line x1="22" y1="2" x2="11" y2="13"/>
                   <polygon points="22 2 15 22 11 13 2 9 22 2"/>
                 </svg>
-                Send Doctor a Message
+                {t('urgentAsk')}
               </Link>
             </div>
           </div>
@@ -211,12 +203,12 @@ export default function EmergencyDentalCarePage() {
         <AnimatedSection delay={0.05}>
           <div style={{ marginBottom: '5rem' }}>
             <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-              <span className="section-kicker">Is This an Emergency?</span>
+              <span className="section-kicker">{t('isEmergencyKicker')}</span>
               <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.6rem, 3vw, 2.1rem)', color: 'var(--brand-600)', margin: '0.5rem 0 0.5rem', lineHeight: 1.2 }}>
-                When in Doubt, Call Us
+                {t('isEmergencyHeading')}
               </h2>
               <p style={{ color: '#6b7280', fontSize: '1rem', lineHeight: 1.7, fontWeight: 500, maxWidth: '520px', margin: '0 auto' }}>
-                If your child is in pain or something looks wrong, that is reason enough to call. We would rather hear from you and help over the phone than have you wait it out.
+                {t('isEmergencyBody')}
               </p>
             </div>
             <div
@@ -251,9 +243,9 @@ export default function EmergencyDentalCarePage() {
         {/* What to do - 3 steps alternating */}
         <AnimatedSection delay={0.05}>
           <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-            <span className="section-kicker">What to Expect</span>
+            <span className="section-kicker">{t('stepsKicker')}</span>
             <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.6rem, 3vw, 2.1rem)', color: 'var(--brand-600)', margin: '0.5rem 0 0', lineHeight: 1.2 }}>
-              How We Treat Dental Emergencies
+              {t('stepsHeading')}
             </h2>
           </div>
         </AnimatedSection>
@@ -343,10 +335,10 @@ export default function EmergencyDentalCarePage() {
             </div>
             <div>
               <h3 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: '1.1rem', color: '#E97D63', margin: '0 0 0.6rem' }}>
-                Knocked-Out Tooth: Act Within 30 Minutes
+                {t('tipHeading')}
               </h3>
               <p style={{ color: '#6b7280', fontSize: '0.925rem', lineHeight: 1.75, fontWeight: 500, margin: 0 }}>
-                Find the tooth and hold it by the crown — the top part, not the root. If possible, carefully reinsert it into the socket and have your child hold it gently in place. If you cannot reinsert it, place the tooth in a cup of cold milk and call us immediately. Time is critical — the sooner we see your child, the better the chance of saving the tooth.
+                {t('tipBody')}
               </p>
             </div>
           </div>
@@ -365,10 +357,10 @@ export default function EmergencyDentalCarePage() {
             }}
           >
             <h3 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.4rem, 3vw, 1.9rem)', color: '#fff', lineHeight: 1.2, margin: '0 0 0.85rem' }}>
-              New patients welcome for emergencies.
+              {t('ctaHeading')}
             </h3>
             <p style={{ fontSize: '1rem', fontWeight: 500, color: 'rgba(255,255,255,0.88)', maxWidth: '440px', margin: '0 auto 1.75rem', lineHeight: 1.7 }}>
-              You do not need to be an existing patient. If your child is in pain, call us and we will help.
+              {t('ctaBody')}
             </p>
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
               <a
@@ -381,7 +373,7 @@ export default function EmergencyDentalCarePage() {
                   boxShadow: '0 6px 22px rgba(232,147,79,0.45)',
                 }}
               >
-                Call Now: (847) 223-1400
+                {t('ctaCall')}
               </a>
               <Link
                 href="/request-appointment"
@@ -393,7 +385,7 @@ export default function EmergencyDentalCarePage() {
                   border: '1.5px solid rgba(255,255,255,0.4)',
                 }}
               >
-                Request an Appointment
+                {t('ctaAppointment')}
               </Link>
             </div>
           </div>

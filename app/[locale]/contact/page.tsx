@@ -1,6 +1,7 @@
 import SubPageLayout from '@/components/SubPageLayout'
 import ContactContent from './ContactContent'
 import type { Metadata } from 'next'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 
 export const metadata: Metadata = {
   title: 'Contact a Pediatric Dentist in Grayslake, IL | Kids Dentist',
@@ -18,12 +19,16 @@ export const metadata: Metadata = {
   },
 }
 
-export default function ContactPage() {
+export default async function ContactPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  setRequestLocale(locale)
+  const t = await getTranslations('contactPage')
+
   return (
     <SubPageLayout
-      kicker="We're Here for You"
-      title="Contact Our Office"
-      subtitle="Questions, comments, or ready to book - we would love to hear from you."
+      kicker={t('kicker')}
+      title={t('title')}
+      subtitle={t('subtitle')}
       gradient="blue"
     >
       <ContactContent />

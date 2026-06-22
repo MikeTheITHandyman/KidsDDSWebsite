@@ -3,6 +3,7 @@ import AnimatedSection from '@/components/AnimatedSection'
 import FaqAccordion, { type FaqItem } from '@/components/FaqAccordion'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 
 export const metadata: Metadata = {
   title: 'Frequently Asked Questions | Kids Dentist Grayslake, IL',
@@ -19,61 +20,33 @@ export const metadata: Metadata = {
   },
 }
 
-const GROUPS: { label: string; icon: string; accentColor: string; items: FaqItem[] }[] = [
-  {
-    label: 'General Practice & First Visit',
-    icon: '👋',
-    accentColor: '#4A90A4',
-    items: [
-      {
-        question: 'When should my child have their first dental visit?',
-        answer:
-          'The American Academy of Pediatric Dentistry recommends that a child go to the dentist by age 1, or within six months after their first tooth erupts. Starting early helps build trust and sets the foundation for a lifetime of healthy smiles.',
-      },
-      {
-        question: 'Can I stay with my child during their appointment?',
-        answer:
-          'Absolutely! We have an open-door policy. You are always welcome to accompany your child into the treatment area to help them feel secure and comfortable. We believe a relaxed parent makes for a relaxed child.',
-      },
-    ],
-  },
-  {
-    label: 'Safety & Treatments',
-    icon: '🛡️',
-    accentColor: '#6BA899',
-    items: [
-      {
-        question: 'Are dental X-rays safe for children?',
-        answer:
-          'Yes. We use state-of-the-art digital X-rays that reduce radiation exposure by up to 90% compared to traditional film X-rays. X-rays are an essential diagnostic tool for finding hidden cavities and monitoring the development of permanent teeth - and we only take them when clinically necessary.',
-      },
-      {
-        question: "Why fix a cavity in a baby tooth if it's going to fall out anyway?",
-        answer:
-          'Baby teeth are crucial for proper chewing, speech development, and saving space for permanent teeth. Untreated cavities can cause severe pain, lead to dangerous infections, and permanently damage the adult teeth growing underneath. "It will fall out anyway" is one of the most common misconceptions we address - and one of the most important to correct.',
-      },
-    ],
-  },
-  {
-    label: 'Dental Emergencies',
-    icon: '🚨',
-    accentColor: '#E97D63',
-    items: [
-      {
-        question: 'What should I do if my child knocks out a permanent tooth?',
-        answer:
-          'Find the tooth and hold it by the crown - the top part, not the root. Gently rinse it with cold water. If possible, carefully reinsert it into the socket and have your child hold it in place. If you cannot reinsert it, place the tooth in a cup of cold milk and call us immediately. Time is critical - the sooner we see your child, the better the chance of saving the tooth.',
-      },
-    ],
-  },
+const GROUP_META: { icon: string; accentColor: string; itemCount: number }[] = [
+  { icon: '👋', accentColor: '#4A90A4', itemCount: 2 },
+  { icon: '🛡️', accentColor: '#6BA899', itemCount: 2 },
+  { icon: '🚨', accentColor: '#E97D63', itemCount: 1 },
 ]
 
-export default function FaqPage() {
+export default async function FaqPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  setRequestLocale(locale)
+  const t = await getTranslations('faqPage')
+
+  const GROUPS: { label: string; icon: string; accentColor: string; items: FaqItem[] }[] =
+    GROUP_META.map((meta, gi) => ({
+      icon: meta.icon,
+      accentColor: meta.accentColor,
+      label: t(`group${gi}Label`),
+      items: Array.from({ length: meta.itemCount }, (_, ii) => ({
+        question: t(`group${gi}q${ii}`),
+        answer: t(`group${gi}a${ii}`),
+      })),
+    }))
+
   return (
     <SubPageLayout
-      kicker="Got Questions?"
-      title="Frequently Asked Questions"
-      subtitle="Everything parents ask - answered clearly and honestly."
+      kicker={t('kicker')}
+      title={t('title')}
+      subtitle={t('subtitle')}
       gradient="blue"
     >
       <div className="mx-auto max-w-3xl px-4">
@@ -104,10 +77,10 @@ export default function FaqPage() {
                   margin: '0 0 0.2rem',
                 }}
               >
-                Don&apos;t see your question?
+                {t('askPromptTitle')}
               </p>
               <p style={{ fontSize: '0.82rem', color: '#6b7280', fontWeight: 500, margin: 0 }}>
-                Send it directly to our doctors — we respond within one business day.
+                {t('askPromptBody')}
               </p>
             </div>
             <Link
@@ -133,7 +106,7 @@ export default function FaqPage() {
                 <line x1="22" y1="2" x2="11" y2="13"/>
                 <polygon points="22 2 15 22 11 13 2 9 22 2"/>
               </svg>
-              Send Doctor a Message
+              {t('askButton')}
             </Link>
           </div>
         </AnimatedSection>
@@ -207,7 +180,7 @@ export default function FaqPage() {
                 margin: '0 0 0.5rem',
               }}
             >
-              Still have questions?
+              {t('stillHaveTitle')}
             </p>
             <p
               style={{
@@ -218,7 +191,7 @@ export default function FaqPage() {
                 lineHeight: 1.65,
               }}
             >
-              Our friendly team is happy to chat. Give us a call or send us a message.
+              {t('stillHaveBody')}
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0.75rem' }}>
               <Link
@@ -238,7 +211,7 @@ export default function FaqPage() {
                   boxShadow: '0 6px 20px rgba(232,147,79,0.32)',
                 }}
               >
-                Text/Call us: (847) 223-1400
+                {t('ctaCall')}
               </Link>
               <Link
                 href="/ask-the-doctor"
@@ -261,7 +234,7 @@ export default function FaqPage() {
                   <line x1="22" y1="2" x2="11" y2="13"/>
                   <polygon points="22 2 15 22 11 13 2 9 22 2"/>
                 </svg>
-                Send Doctor a Message
+                {t('ctaAsk')}
               </Link>
             </div>
           </div>

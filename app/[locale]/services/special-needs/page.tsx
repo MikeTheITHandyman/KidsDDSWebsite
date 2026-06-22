@@ -2,6 +2,7 @@ import SubPageLayout from '@/components/SubPageLayout'
 import AnimatedSection from '@/components/AnimatedSection'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 
 const serviceSchema = {
   '@context': 'https://schema.org',
@@ -53,43 +54,27 @@ export const metadata: Metadata = {
   },
 }
 
-const WHO_WE_SERVE = [
-  { icon: '🧩', label: 'Autism Spectrum Disorder (ASD)' },
-  { icon: '🧠', label: 'Sensory Processing Differences' },
-  { icon: '💙', label: 'Down Syndrome' },
-  { icon: '🏃', label: 'Cerebral Palsy & Motor Differences' },
-  { icon: '⚡', label: 'ADHD & Behavioral Differences' },
-  { icon: '🩺', label: 'Complex Medical Histories' },
+const WHO_WE_SERVE_META = ['🧩', '🧠', '💙', '🏃', '⚡', '🩺']
+
+const APPROACH_META = [
+  { icon: '💬', gradientFrom: '#D1FAE5', gradientTo: '#A7F3D0', accentColor: '#6BA899' },
+  { icon: '😌', gradientFrom: '#DBEAFE', gradientTo: '#BAE6FD', accentColor: '#4A90A4' },
+  { icon: '🤝', gradientFrom: '#FEF3C7', gradientTo: '#FDE68A', accentColor: '#D97706' },
 ]
 
-const APPROACH = [
-  {
-    icon: '💬',
-    title: 'Tell-Show-Do Technique',
-    body: 'Every step of the appointment is narrated before it happens. We show your child each instrument, explain what it does in simple, friendly language, and only proceed when your child is ready. This approach removes the element of surprise and builds trust at every visit.',
-    gradientFrom: '#D1FAE5',
-    gradientTo: '#A7F3D0',
-    accentColor: '#6BA899',
-  },
-  {
-    icon: '😌',
-    title: 'Sedation Options When Needed',
-    body: 'When a child needs a higher level of support, Dr. Rutcosky is certified in general anesthesiology and can provide the full range of sedation options - from nitrous oxide through full in-office general anesthesia. No child is ever denied the care they need because of anxiety or behavioral differences.',
-    gradientFrom: '#DBEAFE',
-    gradientTo: '#BAE6FD',
-    accentColor: '#4A90A4',
-  },
-  {
-    icon: '🤝',
-    title: 'Communication with Caregivers',
-    body: 'We know that you are the expert on your child. Before every appointment, we ask about your child\'s specific triggers, preferences, and communication style. That information shapes everything we do from the moment you walk in the door.',
-    gradientFrom: '#FEF3C7',
-    gradientTo: '#FDE68A',
-    accentColor: '#D97706',
-  },
-]
+export default async function SpecialNeedsDentistryPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  setRequestLocale(locale)
+  const t = await getTranslations('specialNeedsPage')
 
-export default function SpecialNeedsDentistryPage() {
+  const WHO_WE_SERVE = WHO_WE_SERVE_META.map((icon, i) => ({ icon, label: t(`serve${i}`) }))
+
+  const APPROACH = APPROACH_META.map((meta, i) => ({
+    ...meta,
+    title: t(`approach${i}Title`),
+    body: t(`approach${i}Desc`),
+  }))
+
   return (
     <>
       <script
@@ -97,9 +82,9 @@ export default function SpecialNeedsDentistryPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
       <SubPageLayout
-      title="Special Needs Dentistry"
-      subtitle="Every child deserves excellent dental care - regardless of their needs, challenges, or history."
-      kicker="Specialized Care"
+      title={t('title')}
+      subtitle={t('subtitle')}
+      kicker={t('kicker')}
       gradient="green"
     >
       <div className="max-w-6xl mx-auto px-4">
@@ -117,10 +102,10 @@ export default function SpecialNeedsDentistryPage() {
           }}
         >
           <span style={{ display: 'block', fontFamily: 'Nunito, sans-serif', fontSize: '0.68rem', fontWeight: 900, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#6BA899', marginBottom: '0.4rem' }}>
-            Quick Answer
+            {t('quickAnswerLabel')}
           </span>
           <p style={{ fontFamily: 'Nunito, sans-serif', fontSize: '0.94rem', fontWeight: 600, color: '#4b5563', lineHeight: 1.68, margin: 0 }}>
-            Kids Dentist in Grayslake, IL provides specialized dental care for children with autism spectrum disorder (ASD), Down syndrome, cerebral palsy, ADHD, sensory processing differences, and complex medical histories. Our adapted environment, Tell-Show-Do communication, and in-office sedation options make quality dental care accessible for every child across Lake County.
+            {t('quickAnswerBody')}
           </p>
         </div>
 
@@ -133,7 +118,7 @@ export default function SpecialNeedsDentistryPage() {
             <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
-            Back to All Services
+            {t('backToServices')}
           </Link>
         </AnimatedSection>
 
@@ -141,9 +126,9 @@ export default function SpecialNeedsDentistryPage() {
         <AnimatedSection delay={0.05}>
           <div style={{ marginBottom: '4rem' }}>
             <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-              <span className="section-kicker">Who We Serve</span>
+              <span className="section-kicker">{t('serveKicker')}</span>
               <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.6rem, 3vw, 2.1rem)', color: 'var(--brand-600)', margin: '0.5rem 0 0', lineHeight: 1.2 }}>
-                Experience Across a Wide Range of Needs
+                {t('serveHeading')}
               </h2>
             </div>
             <div
@@ -178,9 +163,9 @@ export default function SpecialNeedsDentistryPage() {
         {/* Approach */}
         <AnimatedSection delay={0.05}>
           <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-            <span className="section-kicker">How We Work</span>
+            <span className="section-kicker">{t('approachKicker')}</span>
             <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.6rem, 3vw, 2.1rem)', color: 'var(--brand-600)', margin: '0.5rem 0 0', lineHeight: 1.2 }}>
-              Our Approach to Every Visit
+              {t('approachHeading')}
             </h2>
           </div>
         </AnimatedSection>
@@ -243,13 +228,13 @@ export default function SpecialNeedsDentistryPage() {
             }}
           >
             <p style={{ fontFamily: 'Nunito, sans-serif', fontSize: '0.78rem', fontWeight: 900, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.72)', marginBottom: '0.6rem' }}>
-              We Are Here for Your Family
+              {t('ctaKicker')}
             </p>
             <h3 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.4rem, 3vw, 1.9rem)', color: '#fff', lineHeight: 1.2, margin: '0 0 0.85rem' }}>
-              Ready to find out how we can help?
+              {t('ctaHeading')}
             </h3>
             <p style={{ fontSize: '1rem', fontWeight: 500, color: 'rgba(255,255,255,0.88)', maxWidth: '440px', margin: '0 auto 1.75rem', lineHeight: 1.7 }}>
-              Call us to talk through your child&apos;s specific needs before booking. We want to make sure your first visit is set up for success.
+              {t('ctaBody')}
             </p>
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
               <Link
@@ -262,7 +247,7 @@ export default function SpecialNeedsDentistryPage() {
                   boxShadow: '0 6px 22px rgba(232,147,79,0.45)',
                 }}
               >
-                Request an Appointment
+                {t('ctaAppointment')}
               </Link>
               <a
                 href="tel:+18472231400"
@@ -274,7 +259,7 @@ export default function SpecialNeedsDentistryPage() {
                   border: '1.5px solid rgba(255,255,255,0.4)',
                 }}
               >
-                Text/Call us: (847) 223-1400
+                {t('ctaCall')}
               </a>
             </div>
           </div>

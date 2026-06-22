@@ -3,6 +3,7 @@ import AnimatedSection from '@/components/AnimatedSection'
 import FaqAccordion, { type FaqItem } from '@/components/FaqAccordion'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 
 export const metadata: Metadata = {
   title: 'Sedation Dentistry for Kids | Pediatric Dentist Grayslake, IL',
@@ -20,62 +21,38 @@ export const metadata: Metadata = {
   },
 }
 
-const WHO_ITS_FOR = [
-  { icon: '😰', label: 'Children with significant dental anxiety or phobia' },
-  { icon: '🧠', label: 'Kids with autism, sensory processing differences, or ADHD' },
-  { icon: '🏥', label: 'Children with complex medical histories or special needs' },
-  { icon: '🦷', label: 'Patients who need extensive dental work in one visit' },
-  { icon: '👶', label: 'Very young children who are not yet developmentally ready to cooperate' },
-  { icon: '🩺', label: 'Children who have had a traumatic dental experience in the past' },
+const WHO_ITS_FOR_META = ['😰', '🧠', '🏥', '🦷', '👶', '🩺']
+
+const SEDATION_OPTION_META = [
+  { number: '01', accentColor: '#4A90A4', gradientFrom: '#DBEAFE', gradientTo: '#BAE6FD', icon: '😌' },
+  { number: '02', accentColor: '#7C3AED', gradientFrom: '#EDE9FE', gradientTo: '#DDD6FE', icon: '🏥' },
 ]
 
-const SEDATION_OPTIONS = [
-  {
-    number: '01',
-    title: 'Nitrous Oxide',
-    subtitle: 'Laughing Gas - Light Relaxation',
-    description:
-      'Nitrous oxide is a mild sedative inhaled through a small nose mask during treatment. It produces a pleasant, relaxed feeling - children often describe it as feeling "floaty" or "funny." It does not put your child to sleep; they remain awake and can respond to directions.',
-    howItWorks: 'Effects begin within minutes and wear off completely within 5 minutes of removing the mask. Children can eat normally beforehand and return to school or activities immediately after.',
-    ideal: 'Mild to moderate anxiety, short procedures, children who are cooperative but nervous.',
-    accentColor: '#4A90A4',
-    gradientFrom: '#DBEAFE',
-    gradientTo: '#BAE6FD',
-    icon: '😌',
-  },
-  {
-    number: '02',
-    title: 'General Anesthesiology',
-    subtitle: 'In-Office - Deepest Level of Care',
-    description:
-      'Our practice is one of the few in Lake County to offer in-office general anesthesiology - administered by Dr. Rutcosky, who holds advanced certification in general anesthesiology. This option allows children who require the deepest level of sedation support to receive comprehensive dental care safely, comfortably, and in a familiar environment.',
-    howItWorks: 'Performed in our office with full monitoring equipment. Children are completely asleep and have no awareness or memory of the procedure. A thorough pre-operative consultation is required to review medical history and determine candidacy.',
-    ideal: 'Children with severe anxiety, extensive treatment needs, special needs, complex medical backgrounds, or who have not responded to lighter sedation.',
-    accentColor: '#7C3AED',
-    gradientFrom: '#EDE9FE',
-    gradientTo: '#DDD6FE',
-    icon: '🏥',
-  },
-]
+export default async function SedationDentistryPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  setRequestLocale(locale)
+  const t = await getTranslations('sedationPage')
 
-const FAQ_ITEMS: FaqItem[] = [
-  {
-    question: 'Do you offer sedation for nervous kids?',
-    answer:
-      'Yes! We have safe, gentle options — including laughing gas (nitrous oxide) — to help kids feel completely relaxed and comfortable during their visit. For children who need a deeper level of support, we also offer in-office general anesthesiology. We will discuss all options with you and recommend the approach that best fits your child\'s needs.',
-  },
-  {
-    question: 'Is sedation safe for my child?',
-    answer:
-      'Absolutely. Our board-certified pediatric dentists are highly trained in safely administering and monitoring child-appropriate sedation. We follow strict American Academy of Pediatric Dentistry guidelines, conduct thorough pre-operative health screenings, use age- and weight-appropriate dosing, and monitor vital signs throughout every procedure. Safety is always our first priority.',
-  },
-]
+  const WHO_ITS_FOR = WHO_ITS_FOR_META.map((icon, i) => ({ icon, label: t(`who${i}`) }))
 
-export default function SedationDentistryPage() {
+  const SEDATION_OPTIONS = SEDATION_OPTION_META.map((meta, i) => ({
+    ...meta,
+    title: t(`option${i}Title`),
+    subtitle: t(`option${i}Subtitle`),
+    description: t(`option${i}Desc`),
+    howItWorks: t(`option${i}How`),
+    ideal: t(`option${i}Ideal`),
+  }))
+
+  const FAQ_ITEMS: FaqItem[] = [
+    { question: t('faq0q'), answer: t('faq0a') },
+    { question: t('faq1q'), answer: t('faq1a') },
+  ]
+
   return (
     <SubPageLayout
-      title="Sedation Dentistry"
-      subtitle="Because every child deserves dental care that is calm, safe, and completely manageable."
+      title={t('title')}
+      subtitle={t('subtitle')}
       gradient="amber"
     >
       <div className="mx-auto max-w-6xl px-4">
@@ -93,10 +70,10 @@ export default function SedationDentistryPage() {
           }}
         >
           <span style={{ display: 'block', fontFamily: 'Nunito, sans-serif', fontSize: '0.68rem', fontWeight: 900, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#D97706', marginBottom: '0.4rem' }}>
-            Quick Answer
+            {t('quickAnswerLabel')}
           </span>
           <p style={{ fontFamily: 'Nunito, sans-serif', fontSize: '0.94rem', fontWeight: 600, color: '#4b5563', lineHeight: 1.68, margin: 0 }}>
-            It&apos;s perfectly normal for children to feel nervous about visiting the dentist — and many adults feel the same way! At Kids Dentist, we do everything we can to help your child feel relaxed, comfortable, and at ease during their visit. However, some children experience anxiety that makes it difficult to safely complete treatment. In those situations, our pediatric dentists may recommend options such as nitrous oxide (&ldquo;laughing gas&rdquo;) or general anesthesia to help your child have a comfortable, stress-free experience. We&apos;ll discuss all of the options with you and recommend the approach that best fits your child&apos;s needs.
+            {t('quickAnswerBody')}
           </p>
         </div>
 
@@ -109,7 +86,7 @@ export default function SedationDentistryPage() {
             <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
-            Back to All Services
+            {t('backToServices')}
           </Link>
         </AnimatedSection>
 
@@ -126,10 +103,10 @@ export default function SedationDentistryPage() {
           >
             <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
               <span style={{ display: 'inline-block', fontFamily: 'Nunito, sans-serif', fontSize: '0.72rem', fontWeight: 900, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#D97706', marginBottom: '0.5rem' }}>
-                Is This Right for Your Child?
+                {t('whoKicker')}
               </span>
               <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.4rem, 3vw, 1.9rem)', color: '#4A90A4', margin: 0 }}>
-                Sedation May Be Appropriate If Your Child…
+                {t('whoHeading')}
               </h2>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem' }}>
@@ -158,10 +135,10 @@ export default function SedationDentistryPage() {
         <AnimatedSection>
           <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
             <span style={{ display: 'inline-block', fontFamily: 'Nunito, sans-serif', fontSize: '0.72rem', fontWeight: 900, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#D97706', marginBottom: '0.5rem' }}>
-              Sedation Options
+              {t('optionsKicker')}
             </span>
             <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.5rem, 3vw, 2rem)', color: '#3D3D3D', margin: 0 }}>
-              Two Sedation Options We Offer
+              {t('optionsHeading')}
             </h2>
           </div>
         </AnimatedSection>
@@ -191,7 +168,7 @@ export default function SedationDentistryPage() {
                   <div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                       <span style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: '0.7rem', color: opt.accentColor, letterSpacing: '0.06em' }}>
-                        Option {opt.number}
+                        {t('optionLabel')} {opt.number}
                       </span>
                     </div>
                     <h3 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: '1.2rem', color: opt.accentColor, margin: '0.1rem 0 0.1rem', lineHeight: 1.2 }}>
@@ -214,7 +191,7 @@ export default function SedationDentistryPage() {
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                       <p style={{ fontSize: '0.855rem', lineHeight: 1.6, color: '#6b7280', margin: 0 }}>
-                        <strong style={{ color: opt.accentColor }}>How it works: </strong>
+                        <strong style={{ color: opt.accentColor }}>{t('howItWorksLabel')} </strong>
                         {opt.howItWorks}
                       </p>
                     </div>
@@ -223,7 +200,7 @@ export default function SedationDentistryPage() {
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                       <p style={{ fontSize: '0.855rem', lineHeight: 1.6, color: '#6b7280', margin: 0 }}>
-                        <strong style={{ color: opt.accentColor }}>Ideal for: </strong>
+                        <strong style={{ color: opt.accentColor }}>{t('idealLabel')} </strong>
                         {opt.ideal}
                       </p>
                     </div>
@@ -239,10 +216,10 @@ export default function SedationDentistryPage() {
           <div style={{ marginBottom: '5rem' }}>
             <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
               <span style={{ display: 'inline-block', fontFamily: 'Nunito, sans-serif', fontSize: '0.72rem', fontWeight: 900, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#D97706', marginBottom: '0.5rem' }}>
-                Parent FAQ
+                {t('faqKicker')}
               </span>
               <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.4rem, 3vw, 1.9rem)', color: '#3D3D3D', margin: 0 }}>
-                Questions We Hear from Every Parent
+                {t('faqHeading')}
               </h2>
             </div>
             <FaqAccordion items={FAQ_ITEMS} accentColor="#D97706" />
@@ -269,16 +246,16 @@ export default function SedationDentistryPage() {
             </div>
             <div style={{ flex: 1, minWidth: '240px' }}>
               <h3 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: '1.05rem', color: '#6BA899', margin: '0 0 0.5rem' }}>
-                Led by Dr. Dave Rutcosky, DDS
+                {t('drHeading')}
               </h3>
               <p style={{ fontSize: '0.92rem', lineHeight: 1.72, color: '#6b7280', margin: '0 0 1rem' }}>
-                Dr. Rutcosky holds advanced certification in general anesthesiology and has over 20 years of experience treating children with complex needs. He leads our sedation program and personally oversees every general anesthesiology case performed in our office. Families throughout Lake County trust him to provide care that is truly impossible to access elsewhere.
+                {t('drBody')}
               </p>
               <Link
                 href="/about/meet-the-dentists/dr-dave-rutcosky"
                 style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', color: '#6BA899', fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '0.875rem', textDecoration: 'none' }}
               >
-                Meet Dr. Dave
+                {t('drLink')}
                 <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                 </svg>
@@ -291,20 +268,20 @@ export default function SedationDentistryPage() {
         <AnimatedSection>
           <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
             <p style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 700, fontSize: '1.1rem', color: '#4A90A4', marginBottom: '1.25rem' }}>
-              Not sure where to start? Let's talk through your child's situation together.
+              {t('ctaText')}
             </p>
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
               <Link
                 href="/request-appointment"
                 style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem', background: 'linear-gradient(135deg, #E8934F, #E97D63)', color: '#fff', fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '0.95rem', padding: '0.85rem 2rem', borderRadius: '100px', textDecoration: 'none', boxShadow: '0 6px 22px rgba(232,147,79,0.35)' }}
               >
-                Talk to Us About Sedation Options
+                {t('ctaAppointment')}
               </Link>
               <Link
                 href="tel:+18472231400"
                 style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem', color: '#4A90A4', fontFamily: 'Nunito, sans-serif', fontWeight: 700, fontSize: '0.95rem', padding: '0.85rem 2rem', borderRadius: '100px', textDecoration: 'none', border: '2px solid rgba(74,144,164,0.3)' }}
               >
-                Text/Call us: (847) 223-1400
+                {t('ctaCall')}
               </Link>
             </div>
           </div>

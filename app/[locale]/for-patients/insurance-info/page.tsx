@@ -2,6 +2,7 @@ import SubPageLayout from '@/components/SubPageLayout'
 import AnimatedSection from '@/components/AnimatedSection'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 
 export const metadata: Metadata = {
   title: 'Insurance & Financing | Kids Dentist Grayslake, IL',
@@ -26,19 +27,23 @@ const IN_NETWORK_PROVIDERS = [
   { name: 'UnitedHealthcare Dental' },
 ]
 
-const OUT_OF_NETWORK_POINTS = [
-  'We will file your claim directly to your insurance company on your behalf.',
-  'You pay only your estimated patient portion at the time of service.',
-  'Our team will work to maximize every dollar of your out-of-network benefits.',
-  'We provide a detailed treatment summary for any appeals you need to file.',
-]
+export default async function InsuranceInfoPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  setRequestLocale(locale)
+  const t = await getTranslations('insurancePage')
 
-export default function InsuranceInfoPage() {
+  const OUT_OF_NETWORK_POINTS = [
+    t('outOfNetwork0'),
+    t('outOfNetwork1'),
+    t('outOfNetwork2'),
+    t('outOfNetwork3'),
+  ]
+
   return (
     <SubPageLayout
-      kicker="Financial Peace of Mind"
-      title="Insurance & Financing"
-      subtitle="We handle the paperwork. You focus on your child."
+      kicker={t('kicker')}
+      title={t('title')}
+      subtitle={t('subtitle')}
       gradient="green"
     >
       <div className="mx-auto max-w-5xl px-4">
@@ -55,7 +60,7 @@ export default function InsuranceInfoPage() {
               margin: '0 0 1.75rem',
             }}
           >
-            In-Network Providers
+            {t('inNetworkHeading')}
           </h2>
           <div
             className="insurance-grid"
@@ -124,7 +129,7 @@ export default function InsuranceInfoPage() {
                     fontFamily: 'Nunito, sans-serif',
                   }}
                 >
-                  In-Network
+                  {t('inNetworkBadge')}
                 </span>
               </div>
             ))}
@@ -138,7 +143,7 @@ export default function InsuranceInfoPage() {
               fontWeight: 500,
             }}
           >
-            Don&apos;t see your plan? Call us - we likely accept it.{' '}
+            {t('dontSeePrefix')}{' '}
             <Link
               href="tel:+18472231400"
               style={{ color: '#4A90A4', fontWeight: 700, textDecoration: 'none' }}
@@ -179,12 +184,11 @@ export default function InsuranceInfoPage() {
                     margin: 0,
                   }}
                 >
-                  Out-of-Network Patients
+                  {t('outOfNetworkHeading')}
                 </h3>
               </div>
               <p style={{ fontSize: '0.9rem', lineHeight: 1.72, color: '#6b7280', marginBottom: '1.25rem' }}>
-                Even if we are not in your insurance network, we want to help you maximize your
-                benefits. Many families are surprised by how much their out-of-network plan covers.
+                {t('outOfNetworkBody')}
               </p>
               <ul
                 style={{
@@ -244,13 +248,11 @@ export default function InsuranceInfoPage() {
                     margin: 0,
                   }}
                 >
-                  Flexible Financing
+                  {t('financingHeading')}
                 </h3>
               </div>
               <p style={{ fontSize: '0.9rem', lineHeight: 1.72, color: '#6b7280', marginBottom: '1.5rem' }}>
-                We work with third-party financing providers to offer flexible payment plans for
-                treatment that insurance does not fully cover. Ask our team about available options
-                at your next visit.
+                {t('financingBody')}
               </p>
               <div
                 style={{
@@ -265,10 +267,10 @@ export default function InsuranceInfoPage() {
                 <span style={{ fontSize: '1.1rem' }} aria-hidden="true">✓</span>
                 <div>
                   <p style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '0.875rem', color: '#D97706', margin: 0 }}>
-                    CareCredit &amp; Financing Options
+                    {t('financingCardTitle')}
                   </p>
                   <p style={{ fontSize: '0.8rem', color: '#6b7280', margin: 0, fontWeight: 500 }}>
-                    Low- and no-interest plans available - ask us for details
+                    {t('financingCardBody')}
                   </p>
                 </div>
               </div>
@@ -301,13 +303,10 @@ export default function InsuranceInfoPage() {
                   margin: '0 0 0.5rem',
                 }}
               >
-                No Insurance? No Problem.
+                {t('uninsuredHeading')}
               </h3>
               <p style={{ fontSize: '0.9rem', lineHeight: 1.72, color: '#6b7280', margin: 0, fontWeight: 500 }}>
-                We never turn a child away based on insurance status. Our team will work with you on
-                payment arrangements and connect you with available state assistance programs if
-                needed. Every child in our community deserves excellent dental care - full stop.
-                Call us and let us figure it out together.
+                {t('uninsuredBody')}
               </p>
             </div>
           </div>
@@ -325,7 +324,7 @@ export default function InsuranceInfoPage() {
                 marginBottom: '1.25rem',
               }}
             >
-              Questions about your coverage? We love talking about this stuff.
+              {t('ctaText')}
             </p>
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
               <Link
@@ -345,7 +344,7 @@ export default function InsuranceInfoPage() {
                   boxShadow: '0 6px 22px rgba(232,147,79,0.35)',
                 }}
               >
-                Call Us with Insurance Questions
+                {t('ctaCall')}
               </Link>
               <Link
                 href="/for-patients/patient-forms"
@@ -363,7 +362,7 @@ export default function InsuranceInfoPage() {
                   border: '2px solid rgba(74,144,164,0.3)',
                 }}
               >
-                View Patient Forms
+                {t('ctaForms')}
               </Link>
             </div>
           </div>

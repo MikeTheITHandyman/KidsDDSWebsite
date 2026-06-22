@@ -2,17 +2,18 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 import AnimatedSection from '@/components/AnimatedSection'
 
 
-const HOURS = [
-  { day: 'Monday', time: '9:00 am – 5:00 pm', open: true },
-  { day: 'Tuesday', time: '9:00 am – 5:00 pm', open: true },
-  { day: 'Wednesday', time: '8:30 am – 5:00 pm', open: true },
-  { day: 'Thursday', time: '9:00 am – 5:00 pm', open: true },
-  { day: 'Friday', time: '8:00 am – 2:00 pm', open: true },
-  { day: 'Saturday', time: 'Closed', open: false },
-  { day: 'Sunday', time: 'Closed', open: false },
+const HOURS_META = [
+  { time: '9:00 am – 5:00 pm', open: true },
+  { time: '9:00 am – 5:00 pm', open: true },
+  { time: '8:30 am – 5:00 pm', open: true },
+  { time: '9:00 am – 5:00 pm', open: true },
+  { time: '8:00 am – 2:00 pm', open: true },
+  { time: null, open: false },
+  { time: null, open: false },
 ]
 
 const inputBase: React.CSSProperties = {
@@ -31,6 +32,12 @@ const inputBase: React.CSSProperties = {
 }
 
 export default function ContactContent() {
+  const t = useTranslations('contactPage')
+  const HOURS = HOURS_META.map((meta, i) => ({
+    day: t(`day${i}`),
+    time: meta.open ? meta.time : t('closed'),
+    open: meta.open,
+  }))
   const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -97,7 +104,7 @@ export default function ContactContent() {
                     marginBottom: '0.5rem',
                   }}
                 >
-                  Send Us a Message
+                  {t('formKicker')}
                 </span>
                 <h2
                   style={{
@@ -109,7 +116,7 @@ export default function ContactContent() {
                     lineHeight: 1.25,
                   }}
                 >
-                  We Would Love to Hear From You
+                  {t('formHeading')}
                 </h2>
                 <p
                   style={{
@@ -120,8 +127,7 @@ export default function ContactContent() {
                     lineHeight: 1.6,
                   }}
                 >
-                  Fill out the form below and our team will be in touch within one business day.
-                  For urgent matters, please call us directly.
+                  {t('formBody')}
                 </p>
 
                 <form onSubmit={handleSubmit} noValidate style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -130,14 +136,14 @@ export default function ContactContent() {
                       htmlFor="name"
                       style={{ display: 'block', fontFamily: 'Nunito, sans-serif', fontWeight: 700, fontSize: '0.82rem', color: '#6b7280', marginBottom: '0.4rem', letterSpacing: '0.02em' }}
                     >
-                      Your Name <span style={{ color: '#E97D63' }}>*</span>
+                      {t('labelName')} <span style={{ color: '#E97D63' }}>*</span>
                     </label>
                     <input
                       id="name"
                       name="name"
                       type="text"
                       required
-                      placeholder="Jane Smith"
+                      placeholder={t('placeholderName')}
                       value={form.name}
                       onChange={handleChange}
                       onFocus={() => setFocused('name')}
@@ -152,14 +158,14 @@ export default function ContactContent() {
                         htmlFor="email"
                         style={{ display: 'block', fontFamily: 'Nunito, sans-serif', fontWeight: 700, fontSize: '0.82rem', color: '#6b7280', marginBottom: '0.4rem' }}
                       >
-                        Email <span style={{ color: '#E97D63' }}>*</span>
+                        {t('labelEmail')} <span style={{ color: '#E97D63' }}>*</span>
                       </label>
                       <input
                         id="email"
                         name="email"
                         type="email"
                         required
-                        placeholder="jane@email.com"
+                        placeholder={t('placeholderEmail')}
                         value={form.email}
                         onChange={handleChange}
                         onFocus={() => setFocused('email')}
@@ -172,13 +178,13 @@ export default function ContactContent() {
                         htmlFor="phone"
                         style={{ display: 'block', fontFamily: 'Nunito, sans-serif', fontWeight: 700, fontSize: '0.82rem', color: '#6b7280', marginBottom: '0.4rem' }}
                       >
-                        Phone
+                        {t('labelPhone')}
                       </label>
                       <input
                         id="phone"
                         name="phone"
                         type="tel"
-                        placeholder="(847) 555-0100"
+                        placeholder={t('placeholderPhone')}
                         value={form.phone}
                         onChange={handleChange}
                         onFocus={() => setFocused('phone')}
@@ -193,14 +199,14 @@ export default function ContactContent() {
                       htmlFor="message"
                       style={{ display: 'block', fontFamily: 'Nunito, sans-serif', fontWeight: 700, fontSize: '0.82rem', color: '#6b7280', marginBottom: '0.4rem' }}
                     >
-                      Message <span style={{ color: '#E97D63' }}>*</span>
+                      {t('labelMessage')} <span style={{ color: '#E97D63' }}>*</span>
                     </label>
                     <textarea
                       id="message"
                       name="message"
                       required
                       rows={5}
-                      placeholder="How can we help you today?"
+                      placeholder={t('placeholderMessage')}
                       value={form.message}
                       onChange={handleChange}
                       onFocus={() => setFocused('message')}
@@ -234,11 +240,11 @@ export default function ContactContent() {
                       marginTop: '0.25rem',
                     }}
                   >
-                    {loading ? 'Sending…' : 'Send Message'}
+                    {loading ? t('sending') : t('sendMessage')}
                   </motion.button>
                   {error && (
                     <p style={{ fontSize: '0.85rem', color: '#E97D63', margin: '0.75rem 0 0', fontWeight: 600, textAlign: 'center' }}>
-                      Something went wrong - please call us at{' '}
+                      {t('errorPrefix')}{' '}
                       <a href="tel:+18472231400" style={{ color: '#E97D63' }}>(847) 223-1400</a>.
                     </p>
                   )}
@@ -283,7 +289,7 @@ export default function ContactContent() {
                     margin: '0 0 0.65rem',
                   }}
                 >
-                  Message Received!
+                  {t('successHeading')}
                 </h3>
                 <p
                   style={{
@@ -294,8 +300,7 @@ export default function ContactContent() {
                     fontWeight: 500,
                   }}
                 >
-                  Thank you, {form.name.split(' ')[0]}. Our team will be in touch within one
-                  business day. If you need to reach us sooner, please call{' '}
+                  {t('successBodyPrefix')} {form.name.split(' ')[0]}. {t('successBodySuffix')}{' '}
                   <a href="tel:+18472231400" style={{ color: '#4A90A4', fontWeight: 700 }}>
                     (847) 223-1400
                   </a>
@@ -315,7 +320,7 @@ export default function ContactContent() {
                     cursor: 'pointer',
                   }}
                 >
-                  Send Another Message
+                  {t('sendAnother')}
                 </button>
               </motion.div>
             )}
@@ -345,7 +350,7 @@ export default function ContactContent() {
                   margin: '0 0 1.5rem',
                 }}
               >
-                Office Information
+                {t('officeInfoHeading')}
               </h2>
 
               {/* Address */}
@@ -368,7 +373,7 @@ export default function ContactContent() {
                 </div>
                 <div>
                   <p style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '0.82rem', color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '0.06em', margin: '0 0 0.2rem' }}>
-                    Address
+                    {t('addressLabel')}
                   </p>
                   <a
                     href="https://maps.google.com/?q=160+Commerce+Dr+%23100+Grayslake+IL+60030"
@@ -401,13 +406,13 @@ export default function ContactContent() {
                 </div>
                 <div>
                   <p style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '0.82rem', color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '0.06em', margin: '0 0 0.2rem' }}>
-                    Phone
+                    {t('phoneLabel')}
                   </p>
                   <a
                     href="tel:+18472231400"
                     style={{ color: '#4A90A4', fontWeight: 700, fontSize: '1rem', textDecoration: 'none' }}
                   >
-                    Text/Call us: (847) 223-1400
+                    {t('phoneValue')}
                   </a>
                 </div>
               </div>
@@ -432,7 +437,7 @@ export default function ContactContent() {
                 </div>
                 <div>
                   <p style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '0.82rem', color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '0.06em', margin: '0 0 0.2rem' }}>
-                    Email
+                    {t('emailLabel')}
                   </p>
                   <a
                     href="mailto:info@kidsdds.com"
@@ -463,7 +468,7 @@ export default function ContactContent() {
                 </div>
                 <div>
                   <p style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '0.82rem', color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '0.06em', margin: '0 0 0.55rem' }}>
-                    Follow Us
+                    {t('followLabel')}
                   </p>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
                     <a
@@ -514,7 +519,7 @@ export default function ContactContent() {
                 </div>
                 <div style={{ flex: 1 }}>
                   <p style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '0.82rem', color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '0.06em', margin: '0 0 0.65rem' }}>
-                    Office Hours
+                    {t('hoursLabel')}
                   </p>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
                     {HOURS.map((h) => (
@@ -552,7 +557,7 @@ export default function ContactContent() {
                 loading="lazy"
                 allowFullScreen
                 src="https://maps.google.com/maps?q=160+Commerce+Dr+%23100,+Grayslake,+IL+60030&output=embed"
-                title="Kids Dentist Grayslake location map"
+                title={t('mapTitle')}
               />
             </div>
 

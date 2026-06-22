@@ -2,6 +2,7 @@ import SubPageLayout from '@/components/SubPageLayout'
 import AnimatedSection from '@/components/AnimatedSection'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 
 const serviceSchema = {
   '@context': 'https://schema.org',
@@ -53,42 +54,24 @@ export const metadata: Metadata = {
   },
 }
 
-const TREATMENTS = [
-  {
-    icon: '🦷',
-    title: 'Tooth-Colored Fillings',
-    body: 'When a cavity is caught early, a tooth-colored composite filling is all that\'s needed. We use composite resin that matches your child\'s natural tooth shade - no silver amalgam, no visible metal. The procedure is quick, gentle, and often surprises both kids and parents with how manageable it is.',
-    gradientFrom: '#DBEAFE',
-    gradientTo: '#BAE6FD',
-    accentColor: '#4A90A4',
-  },
-  {
-    icon: '👑',
-    title: 'Pediatric Crowns',
-    body: 'When decay is more advanced or a tooth is significantly weakened, a crown provides full coverage protection. We use tooth-colored zirconia crowns for front teeth and durable stainless steel crowns for back molars - both designed to last until the baby tooth naturally falls out.',
-    gradientFrom: '#D1FAE5',
-    gradientTo: '#A7F3D0',
-    accentColor: '#6BA899',
-  },
-  {
-    icon: '🩺',
-    title: 'Pulp Therapy',
-    body: 'When decay reaches the nerve of a baby tooth, pulp therapy removes the infected tissue to save the tooth. Preserving baby teeth is important: they hold space for permanent teeth and are essential for proper speech and chewing development. The procedure is gentler than it sounds.',
-    gradientFrom: '#FEF3C7',
-    gradientTo: '#FDE68A',
-    accentColor: '#D97706',
-  },
-  {
-    icon: '✂️',
-    title: 'Tooth Extractions',
-    body: 'Sometimes a tooth is too damaged to save, or a baby tooth needs to come out to make room for an erupting permanent tooth. When an extraction is necessary, we perform it with care, precision, and appropriate anesthesia - ensuring your child feels nothing beyond a light pressure sensation.',
-    gradientFrom: '#EDE9FE',
-    gradientTo: '#DDD6FE',
-    accentColor: '#7C3AED',
-  },
+const TREATMENT_META = [
+  { icon: '🦷', gradientFrom: '#DBEAFE', gradientTo: '#BAE6FD', accentColor: '#4A90A4' },
+  { icon: '👑', gradientFrom: '#D1FAE5', gradientTo: '#A7F3D0', accentColor: '#6BA899' },
+  { icon: '🩺', gradientFrom: '#FEF3C7', gradientTo: '#FDE68A', accentColor: '#D97706' },
+  { icon: '✂️', gradientFrom: '#EDE9FE', gradientTo: '#DDD6FE', accentColor: '#7C3AED' },
 ]
 
-export default function RestorativeDentistryPage() {
+export default async function RestorativeDentistryPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  setRequestLocale(locale)
+  const t = await getTranslations('restorativePage')
+
+  const TREATMENTS = TREATMENT_META.map((meta, i) => ({
+    ...meta,
+    title: t(`treatment${i}Title`),
+    body: t(`treatment${i}Desc`),
+  }))
+
   return (
     <>
       <script
@@ -96,9 +79,9 @@ export default function RestorativeDentistryPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
       <SubPageLayout
-      title="Restorative Dentistry"
-      subtitle="Gentle, precise treatment that repairs damage, relieves pain, and protects your child's smile for years to come."
-      kicker="Fix It Early"
+      title={t('title')}
+      subtitle={t('subtitle')}
+      kicker={t('kicker')}
       gradient="amber"
     >
       <div className="max-w-6xl mx-auto px-4">
@@ -112,16 +95,16 @@ export default function RestorativeDentistryPage() {
             <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
-            Back to All Services
+            {t('backToServices')}
           </Link>
         </AnimatedSection>
 
         {/* Treatment options */}
         <AnimatedSection delay={0.05}>
           <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-            <span className="section-kicker">Treatment Options</span>
+            <span className="section-kicker">{t('treatmentsKicker')}</span>
             <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.6rem, 3vw, 2.1rem)', color: 'var(--brand-600)', margin: '0.5rem 0 0', lineHeight: 1.2 }}>
-              The Right Treatment for Every Situation
+              {t('treatmentsHeading')}
             </h2>
           </div>
         </AnimatedSection>
@@ -184,13 +167,13 @@ export default function RestorativeDentistryPage() {
             }}
           >
             <p style={{ fontFamily: 'Nunito, sans-serif', fontSize: '0.78rem', fontWeight: 900, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.72)', marginBottom: '0.6rem' }}>
-              Don&apos;t Wait
+              {t('ctaKicker')}
             </p>
             <h3 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.4rem, 3vw, 1.9rem)', color: '#fff', lineHeight: 1.2, margin: '0 0 0.85rem' }}>
-              Cavities don&apos;t get smaller on their own.
+              {t('ctaHeading')}
             </h3>
             <p style={{ fontSize: '1rem', fontWeight: 500, color: 'rgba(255,255,255,0.88)', maxWidth: '440px', margin: '0 auto 1.75rem', lineHeight: 1.7 }}>
-              The sooner we see your child, the simpler the treatment. Book an appointment today and let us take a look.
+              {t('ctaBody')}
             </p>
             <Link
               href="/request-appointment"
@@ -202,7 +185,7 @@ export default function RestorativeDentistryPage() {
                 boxShadow: '0 6px 22px rgba(0,0,0,0.12)',
               }}
             >
-              Request an Appointment
+              {t('ctaButton')}
               <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
               </svg>
