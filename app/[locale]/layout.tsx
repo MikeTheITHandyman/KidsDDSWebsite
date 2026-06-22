@@ -10,6 +10,8 @@ import FloatingWidget from '../../components/FloatingWidget'
 import AnnouncementBanner from '../../components/AnnouncementBanner'
 import BannerWrapper from '../../components/BannerWrapper'
 import { locales } from '../../i18n.config'
+import { client } from '../../sanity/lib/client'
+import { latestPostQuery } from '../../sanity/lib/queries'
 import '../../styles/global.css'
 
 export const metadata: Metadata = {
@@ -86,6 +88,12 @@ export default async function LocaleLayout({
 
   const messages = await getMessages()
 
+  const latestPost = await client.fetch<{ title: string; slug: string } | null>(
+    latestPostQuery,
+    {},
+    { next: { revalidate: 300 } }
+  )
+
   return (
     <html lang={locale}>
       <head>
@@ -99,7 +107,7 @@ export default async function LocaleLayout({
           <BannerWrapper>
             <AnnouncementBanner />
           </BannerWrapper>
-          <Header />
+          <Header latestPostTitle={latestPost?.title} latestPostSlug={latestPost?.slug} />
           <main className="container main-content">{children}</main>
           <Footer />
           <FloatingWidget />

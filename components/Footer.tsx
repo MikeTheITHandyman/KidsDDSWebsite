@@ -27,6 +27,7 @@ export default function Footer() {
         background: 'linear-gradient(135deg, var(--brand-purple) 0%, var(--brand-600) 50%, var(--serene-mint) 100%)',
         color: '#fff',
         marginTop: '4rem',
+        paddingTop: 0,
         paddingBottom: 0,
       }}
     >
@@ -35,7 +36,7 @@ export default function Footer() {
         style={{
           maxWidth: '1200px',
           margin: '0 auto',
-          padding: '2.25rem 2rem 1.5rem',
+          padding: '2rem 2rem 1.5rem',
           display: 'grid',
           gridTemplateColumns: 'repeat(4, 1fr)',
           gap: '2.5rem',

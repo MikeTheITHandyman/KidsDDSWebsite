@@ -76,6 +76,13 @@ export const upcomingEventsQuery = groq`
   }
 `
 
+export const latestPostQuery = groq`
+  *[_type == "post" && defined(slug.current)] | order(publishedAt desc)[0] {
+    title,
+    "slug": slug.current,
+  }
+`
+
 export const featuredEventQuery = groq`
   *[_type == "event" && isFeatured == true] | order(_updatedAt desc)[0] {
     "title":     coalesce(title, name),
