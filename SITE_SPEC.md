@@ -2,7 +2,7 @@
 
 > **Purpose of this document:** A living reference for the current build state. Covers every route, component, design token, and content requirement so Claude Code can produce precise, context-rich work.
 
-**Last updated:** 2026-06-15 — reconciled against actual source files.
+**Last updated:** 2026-06-22 — added SiteSearch, Pay page, Patient Forms rewrite, Referral Portal, 301 redirect map.
 
 ---
 
@@ -182,7 +182,17 @@ Renders on every page in this order:
 
 **Scroll behavior:** Background + shadow animate in at 50px scroll via `useScroll` + `useMotionValueEvent`.
 
-**Mobile:** Hamburger at ≤768px. Slide-down menu with `AnimatePresence`. Body scroll locked when menu open. Mobile menu CTAs: "Text/Call us" + "Directions".
+**Mobile:** Hamburger at ≤768px. Slide-down menu with `AnimatePresence`. Body scroll locked when menu open. Mobile menu CTAs: "Text/Call us" + "Directions". A search icon button sits left of the hamburger — tapping it toggles the mobile search panel (mutually exclusive with the nav menu).
+
+**Global Site Search** (`components/SiteSearch.tsx` — rendered in `Header.tsx`):
+- Desktop: compact pill input (175–215px), right-anchored in the header actions bar before `LanguageSwitcher`
+- Mobile: icon button toggles a spring-animated slide-down search panel above the nav drawer
+- Static 30-item index covering all service, FAQ, about, patient, and contact routes
+- Weighted scoring: title = 4pt, category = 2pt, keywords = 1pt, description = 0.5pt; top 6 results shown
+- Framer Motion spring dropdown (`stiffness: 420, damping: 30`), `backdrop-filter: blur(18px)`, per-category SVG icons
+- Full keyboard navigation: ↑↓ navigate results, Enter navigates, Escape closes; ARIA `role="combobox"` / `role="listbox"`
+- `variant?: 'desktop' | 'mobile'`; `onNavigate?: () => void` callback to close parent panel
+- Empty/no-results state with "Contact us for help →" fallback link
 
 ### Full Navigation Structure (actual `Header.tsx`)
 
@@ -270,6 +280,8 @@ Mon–Fri schedule (see Section 1 table above)
 | `FloatingWidget` | `components/FloatingWidget.tsx` | Persistent bottom-screen CTA widget |
 | `InstagramFeed` | `components/InstagramFeed.tsx` | Instagram highlight grid (6 Story Highlight boxes) |
 | `ValueProposition` | `components/ValueProposition.tsx` | Modular value prop card (alternate/standalone variant) |
+| `SiteSearch` | `components/SiteSearch.tsx` | Global site search pill; `variant: 'desktop' \| 'mobile'`; 30-item static index with weighted scoring |
+| `PayNowForm` | `app/[locale]/pay/PayNowForm.tsx` | `'use client'` — HostedPayNow POST form button (Framer Motion, orange gradient) |
 
 ### SubPageLayout gradient variants
 - `'blue'` — teal/blue tones (default for most service + about pages)
@@ -415,7 +427,7 @@ Rotating testimonial carousel. Pulls featured reviews from Sanity via `featuredR
 | `/for-patients` | Exists | Hub page |
 | `/for-patients/child-first-visit` | Exists | Uses `FirstVisitTimeline`; reassure parents/kids |
 | `/for-patients/patient-info` | Exists | Patient info hub |
-| `/for-patients/patient-forms` | Exists | Downloadable/embedded forms |
+| `/for-patients/patient-forms` | **Built** | Express Check-In orange callout → Patient Manager portal; 4 PDF download cards (New Patient Reg, HIPAA, Dental History, School Form); 2-col grid; accessible `aria-label` + `download` attributes; PDFs expected at `public/forms/` |
 | `/for-patients/insurance-info` | Built | In-network providers, financing, Medicaid |
 | `/for-patients/dental-financing` | Exists | CareCredit / financing detail |
 
@@ -462,7 +474,8 @@ Rotating testimonial carousel. Pulls featured reviews from Sanity via `featuredR
 | `/request-appointment` | Exists | Uses `AppointmentForm.tsx`; primary conversion page |
 | `/faq` | Exists | Uses `FaqAccordion`; 10–15 questions, categorized |
 | `/ask-the-doctor` | Exists | AI-powered Q&A; uses `AskDoctorForm.tsx` |
-| `/pay` | Exists | Online bill payment page |
+| `/pay` | **Built** | Dedicated online payment page — `SubPageLayout`, `PayNowForm` (HostedPayNow POST), trust badges, phone fallback |
+| `/referral-portal` | **Built** | B2B partner referral portal — `ReferralForm.tsx` (client), HIPAA live-status indicator, Resend email, GA event `partner_referral_submitted` |
 | `/studio` | Built | Sanity Studio (hidden from Header when in Studio) |
 
 ---
@@ -474,6 +487,7 @@ Rotating testimonial carousel. Pulls featured reviews from Sanity via `featuredR
 | `POST /api/appointment` | `app/api/appointment/route.ts` | Appointment form handler |
 | `POST /api/contact` | `app/api/contact/route.ts` | Contact form handler |
 | `POST /api/ask-doctor` | `app/api/ask-doctor/route.ts` | Ask the Doctor AI endpoint |
+| `POST /api/referral` | `app/api/referral/route.ts` | Partner referral intake; subject `[Priority Partner Referral] from {providerName}`; HTML-escapes all inputs |
 
 ---
 
@@ -516,8 +530,21 @@ export const metadata: Metadata = {
 
 **Known SEO issues to address:**
 - Multiple duplicate doctor bio routes — needs canonical tags or 301 redirects in `next.config.ts`
-- Legacy top-level service routes — same
 - Schema.org hours vs Footer hours discrepancy
+
+### 12.1 Legacy → Modern 301 Redirect Map
+
+Implemented in both `netlify.toml` (CDN edge, `force = true`) and `next.config.ts` (`permanent: true` via `LEGACY_REDIRECTS` array). All destination routes carry matching `alternates.canonical` tags.
+
+| Legacy URL | Destination |
+|---|---|
+| `/services.html` | `/services` |
+| `/pediatric-dentistry.html` | `/services/preventive-dentistry` |
+| `/restorative-care.html` | `/services/restorative` |
+| `/emergency-dental.html` | `/services/emergency` |
+| `/sedation.html` | `/services/sedation-dentistry` |
+| `/meet-the-doctors.html` | `/about/meet-the-dentists` |
+| `/contact-us.html` | `/contact` |
 
 ---
 

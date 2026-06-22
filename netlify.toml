@@ -11,3 +11,48 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+# ── Legacy → Modern 301 redirect map ────────────────────────────────────────
+# Preserves Map Pack rankings and link equity from the pre-App-Router site.
+
+[[redirects]]
+  from   = "/services.html"
+  to     = "/services"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from   = "/pediatric-dentistry.html"
+  to     = "/services/preventive-dentistry"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from   = "/restorative-care.html"
+  to     = "/services/restorative"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from   = "/emergency-dental.html"
+  to     = "/services/emergency"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from   = "/sedation.html"
+  to     = "/services/sedation-dentistry"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from   = "/meet-the-doctors.html"
+  to     = "/about/meet-the-dentists"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from   = "/contact-us.html"
+  to     = "/contact"
+  status = 301
+  force  = true

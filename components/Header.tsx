@@ -8,6 +8,7 @@ import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-
 import { sendGAEvent } from '@next/third-parties/google'
 import { useTranslations } from 'next-intl'
 import LanguageSwitcher from '@/components/LanguageSwitcher'
+import SiteSearch from '@/components/SiteSearch'
 
 interface NavChild {
   label: string
@@ -112,11 +113,12 @@ export default function Header() {
   const isStudio = pathname?.startsWith('/studio')
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [searchOpen, setSearchOpen] = useState(false)
   const { scrollY } = useScroll()
   const t = useTranslations('nav')
 
   useMotionValueEvent(scrollY, 'change', (v) => setScrolled(v > 50))
-  useEffect(() => { setMenuOpen(false) }, [pathname])
+  useEffect(() => { setMenuOpen(false); setSearchOpen(false) }, [pathname])
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
@@ -215,6 +217,7 @@ export default function Header() {
 
           {/* Desktop CTA buttons */}
           <div className="header-actions">
+            <SiteSearch variant="desktop" />
             <LanguageSwitcher variant="header" />
             <motion.a
               href="tel:+18472231400"
@@ -241,19 +244,81 @@ export default function Header() {
             </motion.a>
           </div>
 
-          {/* Hamburger - mobile only */}
-          <button
-            className="mobile-menu-btn"
-            onClick={() => setMenuOpen((o) => !o)}
-            aria-label={menuOpen ? t('closeMenu') : t('openMenu')}
-            aria-expanded={menuOpen}
-            aria-controls="mobile-nav"
-          >
-            <span className={`hamburger-icon ${menuOpen ? 'is-open' : ''}`} aria-hidden="true">
-              <span /><span /><span />
-            </span>
-          </button>
+          {/* Mobile action buttons — search + hamburger */}
+          <div className="mobile-action-group">
+            <button
+              className="mobile-search-btn"
+              onClick={() => { setSearchOpen((o) => !o); setMenuOpen(false) }}
+              aria-label={searchOpen ? 'Close search' : 'Open search'}
+              aria-expanded={searchOpen}
+            >
+              <AnimatePresence mode="wait" initial={false}>
+                {searchOpen ? (
+                  <motion.span
+                    key="close"
+                    initial={{ opacity: 0, rotate: -45 }}
+                    animate={{ opacity: 1, rotate: 0 }}
+                    exit={{ opacity: 0, rotate: 45 }}
+                    transition={{ duration: 0.16 }}
+                    style={{ display: 'flex' }}
+                  >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round">
+                      <line x1="18" y1="6" x2="6" y2="18"/>
+                      <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                  </motion.span>
+                ) : (
+                  <motion.span
+                    key="search"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.16 }}
+                    style={{ display: 'flex' }}
+                  >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <circle cx="11" cy="11" r="8"/>
+                      <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </button>
+
+            <button
+              className="mobile-menu-btn"
+              onClick={() => { setMenuOpen((o) => !o); setSearchOpen(false) }}
+              aria-label={menuOpen ? t('closeMenu') : t('openMenu')}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-nav"
+            >
+              <span className={`hamburger-icon ${menuOpen ? 'is-open' : ''}`} aria-hidden="true">
+                <span /><span /><span />
+              </span>
+            </button>
+          </div>
         </div>
+
+        {/* Mobile search panel */}
+        <AnimatePresence>
+          {searchOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ type: 'spring', stiffness: 380, damping: 28 }}
+              style={{
+                borderTop: '1px solid rgba(74,144,164,0.12)',
+                position: 'relative',
+                zIndex: 1100,
+              }}
+            >
+              <div style={{ padding: '0.75rem 1.25rem 1rem' }}>
+                <SiteSearch variant="mobile" onNavigate={() => setSearchOpen(false)} />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Mobile nav */}
         <AnimatePresence>
@@ -318,7 +383,10 @@ export default function Header() {
       <style>{`
         .nav-link-hover:hover { color: var(--brand-600) !important; }
 
-        .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 8px; border-radius: 10px; transition: background 0.2s; flex-shrink: 0; margin-left: auto; }
+        .mobile-action-group { display: none; align-items: center; gap: 0.15rem; margin-left: auto; }
+        .mobile-search-btn { background: none; border: none; cursor: pointer; padding: 8px; border-radius: 10px; transition: background 0.2s; flex-shrink: 0; color: var(--muted-700); display: flex; align-items: center; justify-content: center; }
+        .mobile-search-btn:hover { background: rgba(74,144,164,0.08); }
+        .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 8px; border-radius: 10px; transition: background 0.2s; flex-shrink: 0; }
         .mobile-menu-btn:hover { background: rgba(74,144,164,0.08); }
         .hamburger-icon { display: flex; flex-direction: column; gap: 5px; width: 22px; }
         .hamburger-icon span { display: block; height: 2px; width: 22px; background: var(--muted-700); border-radius: 2px; transition: transform 0.25s ease, opacity 0.2s ease; transform-origin: center; }
@@ -340,6 +408,7 @@ export default function Header() {
         .mobile-nav-cta-call:hover, .mobile-nav-cta-directions:hover { opacity: 0.88; }
 
         @media (max-width: 768px) {
+          .mobile-action-group { display: flex; }
           .mobile-menu-btn { display: flex; align-items: center; justify-content: center; }
           .header-inner { flex-direction: row !important; justify-content: space-between; align-items: center; padding: 0.875rem 1.25rem !important; gap: 0 !important; }
           .site-nav { display: none !important; }
