@@ -1,17 +1,12 @@
 'use client'
 
 import { useState } from 'react'
-import { usePathname, useRouter } from 'next/navigation'
+import { useLocale } from 'next-intl'
+import { usePathname, useRouter } from '@/navigation'
 import { motion } from 'framer-motion'
 
 interface LanguageSwitcherProps {
   variant?: 'header' | 'hero'
-}
-
-function getToggledPath(pathname: string): string {
-  const isSpanish = pathname === '/es' || pathname.startsWith('/es/')
-  if (isSpanish) return pathname.replace(/^\/es/, '') || '/'
-  return `/es${pathname === '/' ? '' : pathname}`
 }
 
 function GlobeIcon({ size = 13, color = 'currentColor' }: { size?: number; color?: string }) {
@@ -30,18 +25,22 @@ function GlobeIcon({ size = 13, color = 'currentColor' }: { size?: number; color
 }
 
 export default function LanguageSwitcher({ variant = 'header' }: LanguageSwitcherProps) {
+  const locale = useLocale()
   const pathname = usePathname()
   const router = useRouter()
   const [hovered, setHovered] = useState(false)
 
-  const isSpanish = pathname === '/es' || pathname.startsWith('/es/')
+  const isSpanish = locale === 'es'
   const label = isSpanish ? 'Switch to English' : 'Cambiar a Español'
   const ariaLabel = isSpanish
     ? 'Switch this website to English'
     : 'Cambiar este sitio web al español'
 
   function handleSwitch() {
-    router.push(getToggledPath(pathname))
+    // next-intl's router.replace with { locale } correctly updates the
+    // NEXT_LOCALE cookie and navigates to the same page in the new locale,
+    // preventing the cookie from overriding the switch on subsequent clicks.
+    router.replace(pathname, { locale: isSpanish ? 'en' : 'es' })
   }
 
   if (variant === 'hero') {
@@ -84,7 +83,6 @@ export default function LanguageSwitcher({ variant = 'header' }: LanguageSwitche
     )
   }
 
-  // header variant — compact pill that fills solid on hover
   return (
     <motion.button
       onClick={handleSwitch}
