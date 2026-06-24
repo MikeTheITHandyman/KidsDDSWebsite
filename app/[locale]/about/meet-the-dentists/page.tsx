@@ -1,6 +1,7 @@
 import SubPageLayout from '@/components/SubPageLayout'
 import DoctorGrid from './DoctorGrid'
 import type { Metadata } from 'next'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 
 export const metadata: Metadata = {
   title: 'Meet Our Dentists | Kids Dentist Grayslake, IL',
@@ -18,12 +19,20 @@ export const metadata: Metadata = {
   },
 }
 
-export default function MeetTheDentistsPage() {
+export default async function MeetTheDentistsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  setRequestLocale(locale)
+  const t = await getTranslations('meetDentists')
+
   return (
     <SubPageLayout
-      kicker="Our Doctors"
-      title="Meet Our Dentists"
-      subtitle="Four pediatric specialists who genuinely love what they do. Click any card to learn more."
+      kicker={t('kicker')}
+      title={t('title')}
+      subtitle={t('subtitle')}
       gradient="blue"
     >
       <div className="mx-auto max-w-6xl px-4">
