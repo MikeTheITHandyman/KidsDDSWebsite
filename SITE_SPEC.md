@@ -2,7 +2,7 @@
 
 > **Purpose of this document:** A living reference for the current build state. Covers every route, component, design token, and content requirement so Claude Code can produce precise, context-rich work.
 
-**Last updated:** 2026-06-22 — added SiteSearch, Pay page, Patient Forms rewrite, Referral Portal, 301 redirect map, two-row header layout.
+**Last updated:** 2026-06-24 — full Spanish i18n (12 sub-pages, 10 namespaces), next-intl routing overhaul (routing.ts / navigation.ts / proxy.ts), language switcher cookie fix, nav left-justified, announcement bar shows blog post title, footer top padding reduced.
 
 ---
 
@@ -60,6 +60,7 @@ All four are board-certified pediatric specialists.
 | UI Library | React 19 |
 | Styling | Tailwind CSS v4 + custom global CSS (`styles/global.css`) |
 | Animation | Framer Motion (`motion`, `AnimatePresence`, `useScroll`, `useMotionValueEvent`) |
+| i18n | next-intl v4.13.0 — see §17 for full setup |
 | CMS | Sanity (Studio at `/studio`) |
 | Analytics | Google Analytics via `@next/third-parties/google` (`NEXT_PUBLIC_GA_ID` env var) |
 | Payments | HostedPayNow (POST form in Footer; dedicated `/pay` page) |
@@ -172,9 +173,11 @@ Renders on every page in this order:
 
 ## 5. Header (`components/Header.tsx`)
 
-**Announcement bar** (rendered by `Header.tsx` itself, *above* the sticky `<motion.header>` in the JSX return): orange gradient (`#E8853A` → `#F5A623`), "Check out our latest blog post ›" → `/blog`. Hidden when `isStudio` (i.e. `pathname.startsWith('/studio')`). This is **separate** from the purple Sanity event banner in §4 — both may appear stacked.
+**Announcement bar** (rendered by `Header.tsx` itself, *above* the sticky `<motion.header>` in the JSX return): orange gradient, "Check out our latest blog post · [post title] ›" → `/blog`. The latest post title is fetched from Sanity and injected into the bar so visitors know what they're clicking on. Hidden when `isStudio`. This is **separate** from the purple Sanity event banner in §4 — both may appear stacked.
 
 **Logo:** `/brand_assets/kids-dentist-logo.png` — 72px height, links to `/`.
+
+**Nav alignment:** Nav links are **left-justified** (immediately after the logo), with `SiteSearch` pushed to the far right via `header-actions`. `margin-left: auto` is on `.header-actions`, not on `.site-nav`.
 
 **Two-row desktop layout** (stacks inside `motion.header`):
 - **Row 1 — Utility bar** (`.header-utility-bar-track`): right-aligned, slim (`0.42rem` padding). Contains `LanguageSwitcher`, phone CTA, and Directions CTA. Separated from Row 2 by a `1px` teal hairline border. Hidden at ≤768px. Buttons use `.utility-btn` modifier — compact padding (`0.42rem 1.1rem`), `0.82rem` font, `white-space: nowrap` (fixes phone number word-wrap).
@@ -227,7 +230,7 @@ Contact                           /contact
 
 ## 6. Footer (`components/Footer.tsx`)
 
-Gradient background: `--brand-purple` → `--brand-600` → `--serene-mint`. White text throughout.
+Gradient background: `--brand-purple` → `--brand-600` → `--serene-mint`. White text throughout. Top padding on the footer main grid is `2.25rem` (reduced from previous `3rem` to tighten the gap between the gradient top edge and the first row of content).
 
 **4-column grid** (2-col @ 900px, 1-col @ 540px):
 
@@ -620,6 +623,91 @@ This page must include:
 SEO: export metadata with title "[Title] | Kids Dentist" and a 150-char description targeting [keywords].
 Include alternates.canonical for https://www.kidsdds.com/[route].
 ```
+
+---
+
+---
+
+## 17. Internationalization (i18n)
+
+**Library:** next-intl v4.13.0  
+**Locales:** `en` (default, no URL prefix) and `es` (`/es/*`)  
+**Strategy:** `localePrefix: 'as-needed'` — English routes have no locale segment in the URL (`/about`, `/services`), Spanish routes use `/es/` prefix (`/es/about`, `/es/services`).
+
+### Key Files
+
+| File | Purpose |
+|---|---|
+| `routing.ts` | `defineRouting({ locales, defaultLocale, localePrefix: 'as-needed' })` — single source of truth |
+| `navigation.ts` | `createNavigation(routing)` — exports locale-aware `useRouter`, `usePathname`, `Link`, `redirect` |
+| `proxy.ts` | `createMiddleware(routing)` — acts as Next.js middleware; matcher excludes `/api`, `/_next`, `/_vercel`, `/studio`, static files |
+| `i18n.ts` | `getRequestConfig` — loads `messages/{locale}.json` per request |
+| `i18n.config.ts` | Exports `locales` and `defaultLocale` constants |
+| `messages/en.json` | English translations (all namespaces) |
+| `messages/es.json` | Spanish translations (matching structure) |
+
+### Translation Namespaces
+
+| Namespace | Page |
+|---|---|
+| `nav` | Header navigation, CTAs, announcement bar |
+| `hero` | Homepage hero section |
+| `services` | Homepage services grid |
+| `insurance` | Homepage insurance strip |
+| `doctors` | Homepage doctor cards |
+| `valueProps` | Homepage value proposition cards |
+| `floating` | Floating CTA widget |
+| `quickActions` | Quick Actions bar |
+| `footer` | Footer text |
+| `common` | Shared strings (loading, error, learn more, etc.) |
+| `aboutPage` | `/about` |
+| `servicesPage` | `/services` overview |
+| `firstVisit` | `/for-patients/child-first-visit` |
+| `insurancePage` | `/for-patients/insurance-info` |
+| `faqPage` | `/faq` |
+| `contactPage` | `/contact` + `ContactContent.tsx` |
+| `preventivePage` | `/services/preventive-dentistry` |
+| `restorativePage` | `/services/restorative` |
+| `sedationPage` | `/services/sedation-dentistry` |
+| `specialNeedsPage` | `/services/special-needs` |
+| `emergencyPage` | `/services/emergency` |
+
+### Patterns
+
+**Server components** (most sub-pages):
+```tsx
+import { getTranslations, setRequestLocale } from 'next-intl/server'
+
+export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  setRequestLocale(locale)
+  const t = await getTranslations('namespaceName')
+  // t('key') replaces hardcoded strings
+}
+```
+
+**Client components** (`ContactContent.tsx`, etc.):
+```tsx
+import { useTranslations } from 'next-intl'
+const t = useTranslations('namespaceName')
+```
+
+**Locale-aware navigation** (import from `@/navigation`, not `next/navigation`):
+```tsx
+import { useRouter, usePathname } from '@/navigation'
+```
+
+**Language switcher** (`components/LanguageSwitcher.tsx`):
+- Uses `useLocale()` from `next-intl` to detect current locale (not pathname parsing)
+- Uses `router.replace(pathname, { locale: 'en' | 'es' })` from `@/navigation` — atomically navigates AND updates the `NEXT_LOCALE` cookie, preventing the cookie-stale intermittent bug
+
+**Data arrays in pages:** Non-translatable parts (icons, colors, gradients, hrefs, step numbers) stay in TypeScript `*_META` constants. Translatable text is pulled from `t()` via `.map()`:
+```tsx
+const STEP_META = [{ number: '01', icon: '👋', accentColor: '#4A90A4', ... }]
+const steps = STEP_META.map((meta, i) => ({ ...meta, title: t(`step${i}Title`), description: t(`step${i}Desc`) }))
+```
+
+**Not translated:** Insurance company proper nouns (Aetna, Cigna, Delta Dental, Guardian, UnitedHealthcare, CareCredit), phone number, address, URLs.
 
 ---
 
