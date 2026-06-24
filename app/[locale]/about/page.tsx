@@ -1,6 +1,8 @@
 import SubPageLayout from '@/components/SubPageLayout'
 import AnimatedSection from '@/components/AnimatedSection'
 import ReviewBubbles from '@/components/ReviewBubbles'
+import DoctorGrid from '@/components/DoctorGrid'
+import OfficeTourPreview from '@/components/OfficeTourPreview'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
@@ -11,7 +13,7 @@ import type { SanityReview } from '@/components/ReviewBubbles'
 export const metadata: Metadata = {
   title: 'About Our Pediatric Dental Practice | Kids Dentist Grayslake, IL',
   description:
-    "Kids Dentist has served Grayslake and Lake County families since 1994. Four board-certified pediatric specialists and a practice built entirely around children.",
+    'Kids Dentist has served Grayslake and Lake County families since 1994. Four board-certified pediatric specialists and a practice built entirely around children.',
   alternates: { canonical: 'https://www.kidsdds.com/about' },
   openGraph: {
     title: 'About Our Pediatric Dental Practice | Kids Dentist Grayslake, IL',
@@ -28,18 +30,18 @@ const STAT_VALUES = ['30+', '4', '650+']
 
 const OFFICE_SLIDE_META = [
   {
-    gradient: 'linear-gradient(135deg, #DBEAFE 0%, #BAE6FD 100%)',
+    gradient: 'linear-gradient(135deg, rgba(234,229,247,0.85) 0%, rgba(107,75,200,0.18) 100%)',
     icon: (
-      <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="#4A90A4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="var(--brand-purple)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
         <polyline points="9 22 9 12 15 12 15 22"/>
       </svg>
     ),
   },
   {
-    gradient: 'linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%)',
+    gradient: 'linear-gradient(135deg, rgba(230,246,246,0.85) 0%, rgba(61,189,189,0.28) 100%)',
     icon: (
-      <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="#6BA899" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="var(--brand-teal)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <rect x="2" y="3" width="20" height="14" rx="2"/>
         <line x1="8" y1="21" x2="16" y2="21"/>
         <line x1="12" y1="17" x2="12" y2="21"/>
@@ -47,9 +49,9 @@ const OFFICE_SLIDE_META = [
     ),
   },
   {
-    gradient: 'linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%)',
+    gradient: 'linear-gradient(135deg, rgba(245,200,66,0.15) 0%, rgba(239,108,26,0.18) 100%)',
     icon: (
-      <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="#D97706" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="var(--accent-500)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <circle cx="12" cy="12" r="10"/>
         <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
         <line x1="9" y1="9" x2="9.01" y2="9"/>
@@ -58,9 +60,9 @@ const OFFICE_SLIDE_META = [
     ),
   },
   {
-    gradient: 'linear-gradient(135deg, #EDE9FE 0%, #DDD6FE 100%)',
+    gradient: 'linear-gradient(135deg, rgba(234,229,247,0.65) 0%, rgba(255,107,138,0.18) 100%)',
     icon: (
-      <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="#7C3AED" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="var(--accent-pink)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
         <circle cx="9" cy="7" r="4"/>
         <path d="M23 21v-2a4 4 0 00-3-3.87"/>
@@ -73,13 +75,17 @@ const OFFICE_SLIDE_META = [
 export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
   setRequestLocale(locale)
-  const t = await getTranslations('aboutPage')
+  const t = await getTranslations('about')
+  const tPage = await getTranslations('aboutPage')
 
-  const stats = STAT_VALUES.map((value, i) => ({ value, label: t(`stat${i}Label`) }))
+  const stats = STAT_VALUES.map((value, i) => ({
+    value,
+    label: tPage(`stat${i}Label` as Parameters<typeof tPage>[0]),
+  }))
   const officeSlides = OFFICE_SLIDE_META.map((meta, i) => ({
     ...meta,
-    label: t(`slide${i}Label`),
-    caption: t(`slide${i}Caption`),
+    label: tPage(`slide${i}Label` as Parameters<typeof tPage>[0]),
+    caption: tPage(`slide${i}Caption` as Parameters<typeof tPage>[0]),
   }))
 
   const reviews = await client.fetch<SanityReview[]>(
@@ -98,113 +104,36 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
       {/* ── Inner container ─────────────────────────────────────── */}
       <div className="mx-auto max-w-5xl px-4">
 
-        {/* ── Who We Are ────────────────────────────────────────── */}
+        {/* ── Philosophy block ──────────────────────────────────── */}
         <AnimatedSection>
-          <div
-            style={{
-              marginBottom: '5rem',
-              textAlign: 'center',
-            }}
-          >
+          <div style={{ marginBottom: '4.5rem', textAlign: 'center' }}>
             <span
               style={{
                 display: 'inline-block',
                 fontFamily: 'Nunito, sans-serif',
-                fontSize: 'clamp(1.2rem, 2.5vw, 1.5rem)',
+                fontSize: '0.72rem',
                 fontWeight: 900,
-                color: 'var(--brand-purple)',
+                letterSpacing: '0.14em',
+                textTransform: 'uppercase',
+                color: 'var(--brand-teal)',
                 marginBottom: '1rem',
               }}
             >
-              {t('whoWeAreKicker')}
+              {t('philosophyKicker')}
             </span>
             <p
               style={{
                 fontFamily: 'Nunito, sans-serif',
-                fontSize: 'clamp(1.2rem, 2.5vw, 1.5rem)',
+                fontSize: 'clamp(1.1rem, 2.2vw, 1.35rem)',
                 fontWeight: 700,
                 color: '#374151',
-                lineHeight: 1.65,
-                maxWidth: '720px',
+                lineHeight: 1.75,
+                maxWidth: '700px',
                 margin: '0 auto',
               }}
             >
-              {t('whoWeAreBody')}
+              {t('philosophyBody')}
             </p>
-          </div>
-        </AnimatedSection>
-
-        {/* ── The Team ──────────────────────────────────────────── */}
-        <AnimatedSection>
-          <div
-            style={{
-              background: 'linear-gradient(135deg, #FDF9F4 0%, #FAF3E8 100%)',
-              border: '1.5px solid rgba(74,144,164,0.14)',
-              borderRadius: '2rem',
-              padding: 'clamp(2.5rem, 5vw, 3.5rem)',
-              marginBottom: '2rem',
-              textAlign: 'center',
-            }}
-          >
-            <span
-              style={{
-                display: 'inline-block',
-                fontFamily: 'Nunito, sans-serif',
-                fontSize: 'clamp(1.2rem, 2.5vw, 1.5rem)',
-                fontWeight: 900,
-                color: 'var(--brand-600)',
-                marginBottom: '0.85rem',
-              }}
-            >
-              {t('teamKicker')}
-            </span>
-            <h2
-              style={{
-                fontFamily: 'Nunito, sans-serif',
-                fontSize: 'clamp(1.65rem, 3vw, 2.2rem)',
-                fontWeight: 900,
-                color: '#1e3a5f',
-                lineHeight: 1.25,
-                margin: '0 auto 1.1rem',
-                maxWidth: '560px',
-              }}
-            >
-              {t('teamHeading')}
-            </h2>
-            <p
-              style={{
-                fontSize: '1rem',
-                fontWeight: 500,
-                color: '#4b5563',
-                lineHeight: 1.78,
-                maxWidth: '620px',
-                margin: '0 auto 1.75rem',
-              }}
-            >
-              {t('teamBody')}
-            </p>
-            <Link
-              href="/about/meet-the-dentists"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.45rem',
-                background: 'linear-gradient(135deg, #FF6B18, #FF4A2D)',
-                color: '#fff',
-                fontFamily: 'Nunito, sans-serif',
-                fontWeight: 800,
-                fontSize: '0.95rem',
-                padding: '0.75rem 1.85rem',
-                borderRadius: '100px',
-                textDecoration: 'none',
-                boxShadow: '0 6px 20px rgba(255,107,24,0.35)',
-              }}
-            >
-              {t('teamCta')}
-              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/>
-              </svg>
-            </Link>
           </div>
         </AnimatedSection>
 
@@ -223,11 +152,11 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
               <div
                 style={{
                   background: 'var(--bg)',
-                  border: '1.5px solid rgba(74,144,164,0.12)',
+                  border: '1.5px solid rgba(107,75,200,0.12)',
                   borderRadius: '1.5rem',
                   padding: '1.75rem 1.25rem',
                   textAlign: 'center',
-                  boxShadow: '0 2px 14px rgba(74,144,164,0.07)',
+                  boxShadow: '0 2px 14px rgba(107,75,200,0.07)',
                 }}
               >
                 <div
@@ -235,7 +164,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                     fontFamily: 'Nunito, sans-serif',
                     fontSize: 'clamp(2rem, 4vw, 2.75rem)',
                     fontWeight: 900,
-                    color: 'var(--brand-600)',
+                    color: 'var(--brand-purple)',
                     lineHeight: 1,
                     marginBottom: '0.4rem',
                     letterSpacing: '-0.02em',
@@ -250,7 +179,6 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                     fontWeight: 700,
                     color: '#6b7280',
                     lineHeight: 1.4,
-                    letterSpacing: '0.01em',
                   }}
                 >
                   {stat.label}
@@ -260,15 +188,23 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
           ))}
         </div>
 
+        {/* ── Doctor 2×2 Grid ───────────────────────────────────── */}
+        <div style={{ marginBottom: '4.5rem' }}>
+          <DoctorGrid />
+        </div>
+
+      </div>{/* end inner container */}
+
+      {/* ── Office Tour Preview — full-bleed teal-tint ────────── */}
+      <OfficeTourPreview />
+
+      {/* ── Inner container (continued) ─────────────────────────── */}
+      <div className="mx-auto max-w-5xl px-4">
+
         {/* ── Special Needs ─────────────────────────────────────── */}
         <AnimatedSection>
-          <div style={{ marginBottom: '4.5rem', display: 'grid', gap: '0', gridTemplateColumns: '1fr' }}>
-            <div
-              style={{
-                borderLeft: '4px solid #7C3AED',
-                paddingLeft: '1.75rem',
-              }}
-            >
+          <div style={{ marginTop: '5rem', marginBottom: '4.5rem' }}>
+            <div style={{ borderLeft: '4px solid var(--brand-purple)', paddingLeft: '1.75rem' }}>
               <span
                 style={{
                   display: 'inline-block',
@@ -277,11 +213,11 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                   fontWeight: 900,
                   letterSpacing: '0.14em',
                   textTransform: 'uppercase',
-                  color: '#7C3AED',
+                  color: 'var(--brand-purple)',
                   marginBottom: '0.75rem',
                 }}
               >
-                {t('specialNeedsKicker')}
+                {tPage('specialNeedsKicker')}
               </span>
               <h2
                 style={{
@@ -294,7 +230,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                   maxWidth: '620px',
                 }}
               >
-                {t('specialNeedsHeading')}
+                {tPage('specialNeedsHeading')}
               </h2>
               <p
                 style={{
@@ -306,7 +242,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                   margin: 0,
                 }}
               >
-                {t('specialNeedsBody')}
+                {tPage('specialNeedsBody')}
               </p>
               <Link
                 href="/services/special-needs"
@@ -314,17 +250,17 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '0.35rem',
-                  color: '#7C3AED',
+                  color: 'var(--brand-purple)',
                   fontFamily: 'Nunito, sans-serif',
                   fontWeight: 800,
                   fontSize: '0.88rem',
                   textDecoration: 'none',
                   marginTop: '1.25rem',
-                  borderBottom: '2px solid rgba(124,58,237,0.25)',
+                  borderBottom: '2px solid rgba(107,75,200,0.25)',
                   paddingBottom: '2px',
                 }}
               >
-                {t('specialNeedsLink')}
+                {tPage('specialNeedsLink')}
                 <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/>
                 </svg>
@@ -356,7 +292,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                 marginBottom: '0.75rem',
               }}
             >
-              {t('sedationKicker')}
+              {tPage('sedationKicker')}
             </span>
             <h2
               style={{
@@ -369,7 +305,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                 maxWidth: '600px',
               }}
             >
-              {t('sedationHeading')}
+              {tPage('sedationHeading')}
             </h2>
             <p
               style={{
@@ -382,7 +318,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                 opacity: 0.85,
               }}
             >
-              {t('sedationBody')}
+              {tPage('sedationBody')}
             </p>
             <Link
               href="/services/sedation-dentistry"
@@ -400,7 +336,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                 paddingBottom: '2px',
               }}
             >
-              {t('sedationLink')}
+              {tPage('sedationLink')}
               <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/>
               </svg>
@@ -419,11 +355,11 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                 fontWeight: 900,
                 letterSpacing: '0.14em',
                 textTransform: 'uppercase',
-                color: 'var(--serene-mint)',
+                color: 'var(--brand-teal)',
                 marginBottom: '0.85rem',
               }}
             >
-              {t('insuranceKicker')}
+              {tPage('insuranceKicker')}
             </span>
             <h2
               style={{
@@ -436,7 +372,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                 maxWidth: '580px',
               }}
             >
-              {t('insuranceHeading')}
+              {tPage('insuranceHeading')}
             </h2>
             <p
               style={{
@@ -448,7 +384,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                 margin: '0 0 1.25rem',
               }}
             >
-              {t('insuranceBody')}
+              {tPage('insuranceBody')}
             </p>
             <Link
               href="/for-patients/insurance-info"
@@ -456,16 +392,16 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.35rem',
-                color: 'var(--brand-600)',
+                color: 'var(--brand-purple)',
                 fontFamily: 'Nunito, sans-serif',
                 fontWeight: 800,
                 fontSize: '0.88rem',
                 textDecoration: 'none',
-                borderBottom: '2px solid rgba(74,144,164,0.3)',
+                borderBottom: '2px solid rgba(107,75,200,0.28)',
                 paddingBottom: '2px',
               }}
             >
-              {t('insuranceLink')}
+              {tPage('insuranceLink')}
               <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/>
               </svg>
@@ -485,7 +421,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         <ReviewBubbles sanityReviews={reviews} />
       </div>
 
-      {/* ── Office carousel + CTA ─────────────────────────────── */}
+      {/* ── Office carousel + Events + CTA ───────────────────────── */}
       <div className="mx-auto max-w-5xl px-4">
 
         {/* Office section */}
@@ -503,7 +439,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                 marginBottom: '0.85rem',
               }}
             >
-              {t('spaceKicker')}
+              {tPage('spaceKicker')}
             </span>
             <h2
               style={{
@@ -515,7 +451,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                 margin: '0 0 0.75rem',
               }}
             >
-              {t('spaceHeading')}
+              {tPage('spaceHeading')}
             </h2>
             <p
               style={{
@@ -527,7 +463,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                 margin: '0 0 2rem',
               }}
             >
-              {t('spaceBody')}
+              {tPage('spaceBody')}
             </p>
           </div>
         </AnimatedSection>
@@ -616,13 +552,13 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                     marginTop: '0.25rem',
                   }}
                 >
-                  {t('photoComingSoon')}
+                  {tPage('photoComingSoon')}
                 </div>
               </div>
             ))}
           </div>
           <p style={{ fontSize: '0.78rem', color: '#9ca3af', fontWeight: 600, textAlign: 'center', margin: 0 }}>
-            {t('swipeToExplore')}
+            {tPage('swipeToExplore')}
           </p>
         </AnimatedSection>
 
@@ -635,16 +571,16 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.35rem',
-                color: 'var(--brand-600)',
+                color: 'var(--brand-purple)',
                 fontFamily: 'Nunito, sans-serif',
                 fontWeight: 800,
                 fontSize: '0.9rem',
                 textDecoration: 'none',
-                borderBottom: '2px solid rgba(74,144,164,0.3)',
+                borderBottom: '2px solid rgba(107,75,200,0.28)',
                 paddingBottom: '2px',
               }}
             >
-              {t('tourLink')}
+              {tPage('tourLink')}
               <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/>
               </svg>
@@ -663,11 +599,11 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                 fontWeight: 900,
                 letterSpacing: '0.14em',
                 textTransform: 'uppercase',
-                color: 'var(--serene-mint)',
+                color: 'var(--brand-teal)',
                 marginBottom: '0.85rem',
               }}
             >
-              {t('eventsKicker')}
+              {tPage('eventsKicker')}
             </span>
             <h2
               style={{
@@ -679,7 +615,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                 margin: '0 0 0.75rem',
               }}
             >
-              {t('eventsHeading')}
+              {tPage('eventsHeading')}
             </h2>
             <p
               style={{
@@ -691,7 +627,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                 margin: '0 0 2rem',
               }}
             >
-              {t('eventsBody')}
+              {tPage('eventsBody')}
             </p>
 
             <div className="events-placeholder-grid">
@@ -700,7 +636,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                   key={n}
                   style={{
                     background: 'var(--bg)',
-                    border: '1.5px dashed rgba(74,144,164,0.25)',
+                    border: '1.5px dashed rgba(107,75,200,0.20)',
                     borderRadius: '1.5rem',
                     padding: '2.5rem 1.5rem',
                     display: 'flex',
@@ -712,7 +648,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                     textAlign: 'center',
                   }}
                 >
-                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(74,144,164,0.38)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(107,75,200,0.30)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <rect x="3" y="4" width="18" height="18" rx="2"/>
                     <line x1="16" y1="2" x2="16" y2="6"/>
                     <line x1="8" y1="2" x2="8" y2="6"/>
@@ -725,12 +661,12 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                       fontFamily: 'Nunito, sans-serif',
                       fontSize: '0.75rem',
                       fontWeight: 700,
-                      color: 'rgba(74,144,164,0.45)',
+                      color: 'rgba(107,75,200,0.38)',
                       letterSpacing: '0.08em',
                       textTransform: 'uppercase',
                     }}
                   >
-                    {t('eventPhotoComingSoon')}
+                    {tPage('eventPhotoComingSoon')}
                   </span>
                 </div>
               ))}
@@ -743,16 +679,16 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '0.35rem',
-                  color: 'var(--brand-600)',
+                  color: 'var(--brand-purple)',
                   fontFamily: 'Nunito, sans-serif',
                   fontWeight: 800,
                   fontSize: '0.88rem',
                   textDecoration: 'none',
-                  borderBottom: '2px solid rgba(74,144,164,0.3)',
+                  borderBottom: '2px solid rgba(107,75,200,0.28)',
                   paddingBottom: '2px',
                 }}
               >
-                {t('eventsLink')}
+                {tPage('eventsLink')}
                 <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/>
                 </svg>
@@ -765,7 +701,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         <AnimatedSection>
           <div
             style={{
-              background: 'linear-gradient(135deg, #4A90A4 0%, #6BA899 100%)',
+              background: 'linear-gradient(135deg, var(--brand-purple) 0%, #8B6BD8 50%, var(--brand-teal) 100%)',
               borderRadius: '2rem',
               padding: 'clamp(2.5rem, 5vw, 3.5rem) clamp(2rem, 5vw, 4rem)',
               textAlign: 'center',
@@ -793,7 +729,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                 marginBottom: '0.85rem',
               }}
             >
-              {t('ctaKicker')}
+              {tPage('ctaKicker')}
             </p>
             <h2
               style={{
@@ -805,7 +741,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                 margin: '0 0 0.85rem',
               }}
             >
-              {t('ctaHeading')}
+              {tPage('ctaHeading')}
             </h2>
             <p
               style={{
@@ -817,7 +753,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                 lineHeight: 1.72,
               }}
             >
-              {t('ctaBody')}
+              {tPage('ctaBody')}
             </p>
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
               <Link
@@ -838,7 +774,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                   backdropFilter: 'blur(6px)',
                 }}
               >
-                {t('ctaAppointment')}
+                {tPage('ctaAppointment')}
               </Link>
               <Link
                 href="tel:+18472231400"

@@ -59,7 +59,7 @@ export default function SubPageLayout({
           className="pointer-events-none absolute inset-0 opacity-[0.04]"
           style={{
             backgroundImage:
-              'radial-gradient(circle, #4A90A4 1px, transparent 1px)',
+              'radial-gradient(circle, #6B4BC8 1px, transparent 1px)',
             backgroundSize: '28px 28px',
           }}
         />
@@ -69,8 +69,8 @@ export default function SubPageLayout({
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
-            className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#4A90A4]/20 bg-white/60 px-4 py-1.5 text-xs font-800 uppercase tracking-widest text-[#4A90A4] backdrop-blur-sm"
-            style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800 }}
+            className="mb-4 inline-flex items-center gap-2 rounded-full bg-white/60 px-4 py-1.5 text-xs uppercase tracking-widest backdrop-blur-sm"
+            style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, color: 'var(--brand-purple)', border: '1px solid rgba(107,75,200,0.20)' }}
           >
             <span className="h-1.5 w-1.5 rounded-full bg-[#FF6B18]" />
             {kicker ?? 'Kids Dentist · Grayslake, IL'}
@@ -80,8 +80,8 @@ export default function SubPageLayout({
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.1, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
-            className="mb-4 text-5xl font-black leading-tight tracking-tight text-[#4A90A4] md:text-6xl text-center"
-            style={{ fontFamily: 'Nunito, sans-serif' }}
+            className="mb-4 text-5xl font-black leading-tight tracking-tight md:text-6xl text-center"
+            style={{ fontFamily: 'Nunito, sans-serif', color: 'var(--brand-purple)' }}
           >
             {title}
           </motion.h1>
