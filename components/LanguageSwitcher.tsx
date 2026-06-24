@@ -60,8 +60,8 @@ export default function LanguageSwitcher({ variant = 'header' }: LanguageSwitche
           alignItems: 'center',
           gap: '0.4rem',
           background: hovered
-            ? 'linear-gradient(135deg, #FF6B18, #FF4A2D)'
-            : 'linear-gradient(135deg, #4A90A4, #6BA899)',
+            ? 'linear-gradient(135deg, #EF6C1A, #E05210)'
+            : 'linear-gradient(135deg, #FF6B8A, #E8457A)',
           color: '#fff',
           borderRadius: '100px',
           padding: '0.38rem 1rem',
@@ -70,8 +70,8 @@ export default function LanguageSwitcher({ variant = 'header' }: LanguageSwitche
           fontFamily: 'Nunito, sans-serif',
           letterSpacing: '0.02em',
           boxShadow: hovered
-            ? '0 4px 16px rgba(255,107,24,0.35)'
-            : '0 4px 14px rgba(74,144,164,0.30)',
+            ? '0 4px 16px rgba(239,108,26,0.40)'
+            : '0 4px 14px rgba(255,107,138,0.35)',
           border: 'none',
           cursor: 'pointer',
           transition: 'background 0.22s ease, box-shadow 0.22s ease',
@@ -96,9 +96,9 @@ export default function LanguageSwitcher({ variant = 'header' }: LanguageSwitche
         display: 'inline-flex',
         alignItems: 'center',
         gap: '0.4rem',
-        background: hovered ? '#4A90A4' : 'rgba(74,144,164,0.10)',
-        color: hovered ? '#fff' : '#4A90A4',
-        border: `1.5px solid ${hovered ? '#4A90A4' : 'rgba(74,144,164,0.30)'}`,
+        background: hovered ? '#6B4BC8' : 'rgba(107,75,200,0.08)',
+        color: hovered ? '#fff' : '#6B4BC8',
+        border: `1.5px solid ${hovered ? '#6B4BC8' : 'rgba(107,75,200,0.28)'}`,
         borderRadius: '100px',
         padding: '0.5rem 1rem',
         fontSize: '0.8rem',
@@ -110,7 +110,7 @@ export default function LanguageSwitcher({ variant = 'header' }: LanguageSwitche
         transition: 'background 0.2s ease, color 0.2s ease, border-color 0.2s ease',
       }}
     >
-      <GlobeIcon size={13} color={hovered ? '#fff' : '#4A90A4'} />
+      <GlobeIcon size={13} color={hovered ? '#fff' : '#6B4BC8'} />
       {label}
     </motion.button>
   )

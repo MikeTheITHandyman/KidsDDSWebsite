@@ -55,15 +55,15 @@ export default function FloatingWidget() {
                   alignItems: 'center',
                   gap: '0.45rem',
                   background: 'white',
-                  color: 'var(--brand-600)',
-                  border: '1.5px solid rgba(74,144,164,0.25)',
+                  color: 'var(--brand-purple)',
+                  border: '1.5px solid rgba(107,75,200,0.25)',
                   borderRadius: '100px',
                   padding: '0.65rem 1.25rem',
                   fontFamily: 'Nunito, sans-serif',
                   fontWeight: 800,
                   fontSize: '0.9rem',
                   textDecoration: 'none',
-                  boxShadow: '0 4px 20px rgba(74,144,164,0.18)',
+                  boxShadow: '0 4px 20px rgba(107,75,200,0.15)',
                   whiteSpace: 'nowrap',
                 }}
               >
@@ -95,7 +95,7 @@ export default function FloatingWidget() {
                 fontWeight: 800,
                 fontSize: '0.95rem',
                 textDecoration: 'none',
-                boxShadow: '0 8px 28px rgba(255,107,24,0.50)',
+                boxShadow: '0 8px 28px rgba(239,108,26,0.52)',
                 whiteSpace: 'nowrap',
               }}
               aria-label={t('ariaAppointment')}

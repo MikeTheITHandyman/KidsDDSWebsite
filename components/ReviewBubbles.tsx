@@ -7,12 +7,12 @@ const INTERVAL_MS = 5000
 const GOOGLE_REVIEWS_URL = 'https://www.google.com/maps/place/Kids+Dentist/@42.3467,-88.0041,17z'
 
 const AVATAR_GRADIENTS = [
-  'linear-gradient(135deg, #E8934F, #E97D63)',
-  'linear-gradient(135deg, #4A90A4, #6BA899)',
-  'linear-gradient(135deg, #6BA899, #8BA596)',
-  'linear-gradient(135deg, #78509b, #4A90A4)',
-  'linear-gradient(135deg, #E8934F, #F4C77F)',
-  'linear-gradient(135deg, #7C3AED, #4A90A4)',
+  'linear-gradient(135deg, #EF6C1A, #E05210)',
+  'linear-gradient(135deg, #3DBDBD, #6BA899)',
+  'linear-gradient(135deg, #6B4BC8, #3DBDBD)',
+  'linear-gradient(135deg, #FF6B8A, #6B4BC8)',
+  'linear-gradient(135deg, #EF6C1A, #F5C842)',
+  'linear-gradient(135deg, #6B4BC8, #3DBDBD)',
 ]
 
 export interface SanityReview {
@@ -136,9 +136,9 @@ const STATIC_REVIEWS: ReviewItem[] = [
 ]
 
 const CATEGORY_COLORS: Record<string, { bg: string; text: string }> = {
-  'Anxious Child Success': { bg: 'rgba(124,58,237,0.1)', text: '#7C3AED' },
-  'Emergency Visit':       { bg: 'rgba(232,147,79,0.12)', text: '#C2621A' },
-  'Special Needs':         { bg: 'rgba(107,168,153,0.12)', text: '#4A7A6E' },
+  'Anxious Child Success': { bg: 'rgba(107,75,200,0.10)', text: '#6B4BC8' },
+  'Emergency Visit':       { bg: 'rgba(239,108,26,0.12)', text: '#C2540A' },
+  'Special Needs':         { bg: 'rgba(61,189,189,0.12)', text: '#2A9090' },
 }
 
 const slideVariants: Variants = {
@@ -210,7 +210,7 @@ export default function ReviewBubbles({ sanityReviews }: ReviewBubblesProps) {
     <section
       aria-labelledby="reviews-heading"
       style={{
-        background: 'linear-gradient(145deg, #2D6A7F 0%, #4A90A4 45%, #6BA899 100%)',
+        background: 'var(--bg-teal-tint)',
         padding: '3.5rem 0 3rem',
         position: 'relative',
         overflow: 'hidden',
@@ -221,16 +221,16 @@ export default function ReviewBubbles({ sanityReviews }: ReviewBubblesProps) {
         <div style={{
           position: 'absolute', top: '-120px', right: '-120px',
           width: '480px', height: '480px', borderRadius: '50%',
-          border: '1px solid rgba(255,255,255,0.06)',
+          border: '1px solid rgba(107,75,200,0.08)',
         }} />
         <div style={{
           position: 'absolute', bottom: '-80px', left: '-80px',
           width: '360px', height: '360px', borderRadius: '50%',
-          border: '1px solid rgba(255,255,255,0.06)',
+          border: '1px solid rgba(61,189,189,0.10)',
         }} />
         <div style={{
-          position: 'absolute', inset: 0, opacity: 0.04,
-          backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)',
+          position: 'absolute', inset: 0, opacity: 0.03,
+          backgroundImage: 'radial-gradient(circle, #6B4BC8 1px, transparent 1px)',
           backgroundSize: '28px 28px',
         }} />
       </div>
@@ -249,28 +249,28 @@ export default function ReviewBubbles({ sanityReviews }: ReviewBubblesProps) {
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', marginBottom: '1.4rem' }}>
             <div style={{
               display: 'inline-flex', alignItems: 'center', gap: '0.65rem',
-              background: 'rgba(255,255,255,0.18)',
-              backdropFilter: 'blur(10px)',
-              border: '1.5px solid rgba(255,255,255,0.32)',
+              background: 'white',
+              border: '1.5px solid rgba(107,75,200,0.18)',
               borderRadius: '1rem',
               padding: '0.65rem 1.5rem',
-              color: 'white',
+              color: 'var(--brand-purple)',
               fontFamily: 'Nunito, sans-serif',
+              boxShadow: '0 4px 20px rgba(107,75,200,0.10)',
             }}>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3px' }}>
-                <span style={{ fontSize: '2rem', fontWeight: 900, lineHeight: 1, letterSpacing: '-0.02em' }}>4.8</span>
+                <span style={{ fontSize: '2rem', fontWeight: 900, lineHeight: 1, letterSpacing: '-0.02em', color: 'var(--brand-purple)' }}>4.8</span>
                 <span style={{ display: 'flex', gap: '2px' }}>
                   {Array.from({ length: 5 }).map((_, i) => (
-                    <svg key={i} width="14" height="14" viewBox="0 0 24 24" fill="#F4C77F" stroke="none" aria-hidden="true">
+                    <svg key={i} width="14" height="14" viewBox="0 0 24 24" fill="var(--cta-yellow)" stroke="none" aria-hidden="true">
                       <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
                     </svg>
                   ))}
                 </span>
               </div>
-              <div style={{ width: '1px', height: '36px', background: 'rgba(255,255,255,0.3)' }} aria-hidden="true" />
+              <div style={{ width: '1px', height: '36px', background: 'rgba(107,75,200,0.18)' }} aria-hidden="true" />
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1px' }}>
-                <span style={{ fontSize: '1.55rem', fontWeight: 900, lineHeight: 1, letterSpacing: '-0.02em' }}>650+</span>
-                <span style={{ fontSize: '0.78rem', fontWeight: 700, opacity: 0.85, letterSpacing: '0.04em' }}>Google Reviews</span>
+                <span style={{ fontSize: '1.55rem', fontWeight: 900, lineHeight: 1, letterSpacing: '-0.02em', color: 'var(--brand-purple)' }}>650+</span>
+                <span style={{ fontSize: '0.78rem', fontWeight: 700, color: '#6b7280', letterSpacing: '0.04em' }}>Google Reviews</span>
               </div>
             </div>
           </div>
@@ -279,7 +279,7 @@ export default function ReviewBubbles({ sanityReviews }: ReviewBubblesProps) {
             display: 'block',
             fontSize: '0.78rem', fontWeight: 900,
             letterSpacing: '0.12em', textTransform: 'uppercase',
-            color: 'rgba(255,255,255,0.65)',
+            color: 'var(--brand-teal)',
             marginBottom: '0.6rem',
             fontFamily: 'Nunito, sans-serif',
           }}>
@@ -291,7 +291,7 @@ export default function ReviewBubbles({ sanityReviews }: ReviewBubblesProps) {
               fontFamily: 'Nunito, sans-serif',
               fontSize: 'clamp(1.9rem, 3.5vw, 2.6rem)',
               fontWeight: 900,
-              color: 'white',
+              color: 'var(--brand-purple)',
               letterSpacing: '-0.02em',
               margin: 0,
               lineHeight: 1.18,
@@ -412,7 +412,7 @@ export default function ReviewBubbles({ sanityReviews }: ReviewBubblesProps) {
                     height: '7px',
                     borderRadius: '100px',
                     border: 'none',
-                    background: i === index ? 'white' : 'rgba(255,255,255,0.35)',
+                    background: i === index ? 'var(--brand-purple)' : 'rgba(107,75,200,0.25)',
                     cursor: 'pointer',
                     padding: 0,
                     transition: 'all 0.3s ease',
@@ -444,8 +444,8 @@ export default function ReviewBubbles({ sanityReviews }: ReviewBubblesProps) {
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.5rem',
-              background: 'rgba(255,255,255,0.12)',
-              border: '1.5px solid rgba(255,255,255,0.35)',
+              background: 'linear-gradient(135deg, var(--accent-500), var(--cta-coral))',
+              border: 'none',
               color: 'white',
               fontFamily: 'Nunito, sans-serif',
               fontWeight: 800,
@@ -453,16 +453,14 @@ export default function ReviewBubbles({ sanityReviews }: ReviewBubblesProps) {
               padding: '0.75rem 1.75rem',
               borderRadius: '100px',
               textDecoration: 'none',
-              backdropFilter: 'blur(6px)',
-              transition: 'background 0.2s, border-color 0.2s',
+              boxShadow: '0 6px 22px rgba(239,108,26,0.40)',
+              transition: 'box-shadow 0.2s, transform 0.2s',
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(255,255,255,0.2)'
-              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.6)'
+              e.currentTarget.style.boxShadow = '0 10px 28px rgba(239,108,26,0.55)'
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'rgba(255,255,255,0.12)'
-              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.35)'
+              e.currentTarget.style.boxShadow = '0 6px 22px rgba(239,108,26,0.40)'
             }}
           >
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
@@ -491,19 +489,22 @@ function NavButton({ onClick, label, direction }: { onClick: () => void; label: 
       style={{
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         width: '40px', height: '40px', borderRadius: '50%',
-        border: '1.5px solid rgba(255,255,255,0.35)',
-        background: 'rgba(255,255,255,0.10)',
-        color: 'white', cursor: 'pointer',
-        flexShrink: 0, backdropFilter: 'blur(4px)',
-        transition: 'background 0.2s, border-color 0.2s',
+        border: '1.5px solid rgba(107,75,200,0.25)',
+        background: 'white',
+        color: 'var(--brand-purple)', cursor: 'pointer',
+        flexShrink: 0,
+        boxShadow: '0 2px 10px rgba(107,75,200,0.10)',
+        transition: 'background 0.2s, border-color 0.2s, box-shadow 0.2s',
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.background = 'rgba(255,255,255,0.25)'
-        e.currentTarget.style.borderColor = 'rgba(255,255,255,0.7)'
+        e.currentTarget.style.background = 'var(--bg-lavender)'
+        e.currentTarget.style.borderColor = 'rgba(107,75,200,0.45)'
+        e.currentTarget.style.boxShadow = '0 4px 14px rgba(107,75,200,0.20)'
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.background = 'rgba(255,255,255,0.10)'
-        e.currentTarget.style.borderColor = 'rgba(255,255,255,0.35)'
+        e.currentTarget.style.background = 'white'
+        e.currentTarget.style.borderColor = 'rgba(107,75,200,0.25)'
+        e.currentTarget.style.boxShadow = '0 2px 10px rgba(107,75,200,0.10)'
       }}
     >
       <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">

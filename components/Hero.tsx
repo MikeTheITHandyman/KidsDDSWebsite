@@ -58,8 +58,8 @@ export default function Hero() {
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.6rem',
-              background: 'rgba(74,144,164,0.08)',
-              border: '1.5px solid rgba(74,144,164,0.22)',
+              background: 'rgba(61,189,189,0.08)',
+              border: '1.5px solid rgba(61,189,189,0.28)',
               borderRadius: '16px',
               padding: '0.6rem 1.1rem',
               marginBottom: '1.5rem',
@@ -68,11 +68,11 @@ export default function Hero() {
               boxSizing: 'border-box',
             }}
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A90A4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-teal)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <circle cx="12" cy="8" r="6"/>
               <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
             </svg>
-            <span style={{ fontSize: '0.92rem', fontWeight: 800, color: 'var(--brand-600)' }}>
+            <span style={{ fontSize: '0.92rem', fontWeight: 800, color: 'var(--brand-teal)' }}>
               {t('trustBanner')}
             </span>
           </motion.div>

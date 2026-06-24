@@ -80,25 +80,33 @@ All four are board-certified pediatric specialists.
 
 ### Color Palette (CSS Variables — `styles/global.css`)
 
-| Variable | Hex | Usage |
+**Phase 1 overhaul 2026-06-24.** New high-energy pediatric palette. Old teal-primary replaced with purple-primary + teal-accent split.
+
+| Variable | Hex | Role |
 |---|---|---|
-| `--brand-600` | `#4A90A4` | Primary teal — headings, links, borders |
-| `--brand-purple` | `#78509B` | Secondary purple — badges, section kickers |
-| `--accent-500` | `#E8934F` | Primary CTA orange |
-| `--cta-coral` | `#E97D63` | Coral — button gradients, hover states |
-| `--cta-yellow` | `#F4C77F` | Warm yellow — decorative accents |
-| `--serene-mint` | `#6BA899` | Mint/sage — icons, card accents |
-| `--soft-sage` | `#8BA596` | Softer green — secondary accents |
-| `--light-blue` | `#80D2F5` | Sky blue — backgrounds, badges |
-| `--muted-700` | `#3D3D3D` | Primary body text |
-| `--bg` | `#FAFAF8` | Page background — warm off-white (not clinical white) |
+| `--brand-purple` | `#6B4BC8` | **Primary** — H1/H2 headings, global nav links, primary borders, footer background |
+| `--brand-600` | `#6B4BC8` | Alias for `--brand-purple` — all legacy heading/nav references auto-resolve |
+| `--brand-teal` | `#3DBDBD` | **Accent** — subheadings, interactive icons, service card borders, animated blobs |
+| `--accent-500` | `#EF6C1A` | **Orange CTA** — reserved for high-converting points: floating widget, hero CTA, emergency callouts |
+| `--cta-coral` | `#E05210` | Darker orange — gradient pair for `--accent-500` buttons |
+| `--cta-yellow` | `#F5C842` | **Energy** — uppercase section kickers (+ `text-shadow`), star ratings, micro-animations |
+| `--accent-pink` | `#FF6B8A` | **Playful** — "Hablamos Español" badge, nav hover states, decorative gradients |
+| `--bg-lavender` | `#EAE5F7` | Secondary card backgrounds |
+| `--bg-teal-tint` | `#E6F6F6` | Alternating full-width section backgrounds (ReviewBubbles, ValueProps green card) |
+| `--muted-700` | `#3D3D3D` | Body text — unchanged |
+| `--bg` | `#FDF8F2` | Page canvas — warm off-white, unchanged |
+| `--serene-mint` | `#6BA899` | Mint — footer gradient tail |
+| `--soft-sage` | `#8BA596` | Soft green — secondary accents |
+| `--light-blue` | `#80D2F5` | Sky blue — legacy references |
 | `--max-width` | `1440px` | Max container width |
+
+**Accessibility:** `--brand-teal` (2.9:1) and `--accent-pink` (2.3:1) are decorative/icon/hover only — not body text. `--cta-yellow` kickers get `text-shadow` globally. `--accent-500` on large button text passes at 3:1 large-text threshold.
 
 ### Typography
 - **Font:** Nunito, sans-serif (site-wide — no other font)
 - **Headings:** `font-weight: 900`, `letter-spacing: -0.02em`
 - **Body:** `font-weight: 500`, `line-height: 1.65–1.72`
-- **Section kickers** (small label above h2): `font-size: 0.78rem`, `font-weight: 900`, `letter-spacing: 0.10em`, `text-transform: uppercase`, `color: var(--brand-purple)`
+- **Section kickers** (small label above h2): `font-size: 0.78rem`, `font-weight: 900`, `letter-spacing: 0.10em`, `text-transform: uppercase`, `color: var(--cta-yellow)`, `text-shadow: 0 1px 3px rgba(0,0,0,0.16)`
 - **Responsive heading sizes:** `clamp()` — e.g., `clamp(1.9rem, 3.5vw, 2.6rem)`
 
 ### Button Variants (CSS classes in `global.css`)

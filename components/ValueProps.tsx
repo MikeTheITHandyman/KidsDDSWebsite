@@ -23,7 +23,7 @@ const CARD_CONFIG = [
     cardClass: 'vp-card--blue',
     iconClass: 'vp-icon--blue',
     icon: (
-      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#4A90A4" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#3DBDBD" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
         <polyline points="9 12 11 14 15 10"/>
       </svg>
@@ -34,7 +34,7 @@ const CARD_CONFIG = [
     cardClass: 'vp-card--green',
     iconClass: 'vp-icon--green',
     icon: (
-      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#6BA899" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#3DBDBD" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
         <polyline points="9,22 9,12 15,12 15,22"/>
       </svg>
@@ -45,7 +45,7 @@ const CARD_CONFIG = [
     cardClass: 'vp-card--mint',
     iconClass: 'vp-icon--mint',
     icon: (
-      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#8BA596" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#6B4BC8" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
         <line x1="9" y1="10" x2="15" y2="10"/>
         <line x1="9" y1="14" x2="13" y2="14"/>
@@ -80,7 +80,7 @@ export default function ValueProps() {
               variants={cardVariants}
               whileHover={{
                 y: -6,
-                boxShadow: '0 22px 52px rgba(74, 144, 164, 0.16)',
+                boxShadow: '0 22px 52px rgba(107, 75, 200, 0.18)',
                 transition: { type: 'spring', stiffness: 280, damping: 18 },
               }}
               whileTap={{ scale: 0.98 }}

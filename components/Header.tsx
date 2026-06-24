@@ -22,7 +22,7 @@ interface NavEntry {
 }
 
 const linkStyle: React.CSSProperties = {
-  color: 'var(--muted-700)',
+  color: 'var(--brand-purple)',
   fontWeight: 600,
   textDecoration: 'none',
   whiteSpace: 'nowrap',
@@ -95,7 +95,7 @@ function NavItem({ item }: { item: NavEntry }) {
                 key={child.href}
                 href={child.href}
                 style={{ display: 'block', padding: '11px 18px', fontSize: '0.875rem', fontWeight: 600, color: '#4b5563', textDecoration: 'none', fontFamily: 'Nunito, sans-serif', transition: 'background 0.15s, color 0.15s', whiteSpace: 'nowrap' }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(74,144,164,0.06)'; e.currentTarget.style.color = '#4A90A4' }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(107,75,200,0.06)'; e.currentTarget.style.color = 'var(--brand-purple)' }}
                 onMouseLeave={(e) => { e.currentTarget.style.background = ''; e.currentTarget.style.color = '#4b5563' }}
               >
                 {child.label}
@@ -398,10 +398,10 @@ export default function Header({ latestPostTitle, latestPostSlug }: HeaderProps)
       </motion.header>
 
       <style>{`
-        .nav-link-hover:hover { color: var(--brand-600) !important; }
+        .nav-link-hover:hover { color: var(--accent-pink) !important; }
 
         /* ── Utility bar ── */
-        .header-utility-bar-track { border-bottom: 1px solid rgba(74,144,164,0.11); }
+        .header-utility-bar-track { border-bottom: 1px solid rgba(107,75,200,0.12); }
         .header-utility-bar { display: flex; align-items: center; justify-content: flex-end; gap: 0.75rem; padding: 0.42rem 2rem; max-width: 1440px; margin: 0 auto; }
         .utility-btn { padding: 0.42rem 1.1rem !important; font-size: 0.82rem !important; white-space: nowrap; }
 
@@ -421,15 +421,15 @@ export default function Header({ latestPostTitle, latestPostSlug }: HeaderProps)
 
         .mobile-nav-inner { padding: 0.75rem 1.25rem 1.25rem; border-top: 1px solid rgba(74,144,164,0.12); display: flex; flex-direction: column; gap: 0.1rem; max-height: calc(100svh - 80px); overflow-y: auto; }
         .mobile-nav-group { display: flex; flex-direction: column; }
-        .mobile-nav-parent { font-family: Nunito, sans-serif; font-weight: 800; font-size: 1rem; color: var(--brand-600); text-decoration: none; padding: 0.65rem 0.5rem 0.35rem; }
-        .mobile-nav-parent:hover { color: var(--accent-500); }
-        .mobile-nav-children { display: flex; flex-direction: column; padding-left: 1rem; border-left: 2px solid rgba(74,144,164,0.15); margin-left: 0.5rem; margin-bottom: 0.4rem; }
+        .mobile-nav-parent { font-family: Nunito, sans-serif; font-weight: 800; font-size: 1rem; color: var(--brand-purple); text-decoration: none; padding: 0.65rem 0.5rem 0.35rem; }
+        .mobile-nav-parent:hover { color: var(--accent-pink); }
+        .mobile-nav-children { display: flex; flex-direction: column; padding-left: 1rem; border-left: 2px solid rgba(107,75,200,0.15); margin-left: 0.5rem; margin-bottom: 0.4rem; }
         .mobile-nav-child { font-family: Nunito, sans-serif; font-weight: 600; font-size: 0.9rem; color: #6b7280; text-decoration: none; padding: 0.45rem 0.75rem; }
-        .mobile-nav-child:hover { color: var(--brand-600); }
-        .mobile-nav-ctas { display: flex; flex-direction: column; gap: 0.65rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(74,144,164,0.12); }
+        .mobile-nav-child:hover { color: var(--brand-teal); }
+        .mobile-nav-ctas { display: flex; flex-direction: column; gap: 0.65rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(107,75,200,0.12); }
         .mobile-nav-cta-call, .mobile-nav-cta-directions { display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem; border-radius: 100px; padding: 0.85rem 1.5rem; font-family: Nunito, sans-serif; font-weight: 800; font-size: 0.95rem; text-decoration: none; transition: opacity 0.2s; width: 100%; }
-        .mobile-nav-cta-call { background: rgba(128,210,245,0.12); color: var(--brand-purple); border: 1.5px solid rgba(120,80,155,0.28); }
-        .mobile-nav-cta-directions { background: linear-gradient(135deg, var(--accent-500), #E97D63); color: white; border: none; }
+        .mobile-nav-cta-call { background: var(--bg-lavender); color: var(--brand-purple); border: 1.5px solid rgba(107,75,200,0.28); }
+        .mobile-nav-cta-directions { background: linear-gradient(135deg, var(--accent-500), var(--cta-coral)); color: white; border: none; }
         .mobile-nav-cta-call:hover, .mobile-nav-cta-directions:hover { opacity: 0.88; }
 
         @media (max-width: 768px) {
