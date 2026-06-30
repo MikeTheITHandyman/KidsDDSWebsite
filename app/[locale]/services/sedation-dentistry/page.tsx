@@ -8,12 +8,12 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 export const metadata: Metadata = {
   title: 'Sedation Dentistry for Kids | Pediatric Dentist Grayslake, IL',
   description:
-    "Lake County's only pediatric practice with in-office general anesthesiology. Nitrous oxide and general anesthesiology for anxious children and special needs patients. Serving Grayslake, Libertyville, Waukegan, Mundelein, Vernon Hills, and Lake Forest, IL.",
+    "We offer nitrous oxide and general anesthesia for anxious children and special needs patients. Serving Grayslake, Libertyville, Waukegan, Mundelein, Vernon Hills, and Lake Forest, IL.",
   alternates: { canonical: 'https://www.kidsdds.com/services/sedation-dentistry' },
   openGraph: {
     title: 'Sedation Dentistry for Kids | Pediatric Dentist Grayslake, IL',
     description:
-      "No child should avoid dental care because of fear. Kids Dentist Grayslake offers three levels of sedation — including in-office general anesthesiology — for Lake County children.",
+      "No child should avoid dental care because of fear. Kids Dentist Grayslake offers sedation options — including nitrous oxide and general anesthesia — for Lake County children.",
     url: 'https://www.kidsdds.com/services/sedation-dentistry',
     siteName: 'Kids Dentist',
     locale: 'en_US',

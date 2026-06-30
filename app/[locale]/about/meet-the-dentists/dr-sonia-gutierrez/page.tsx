@@ -6,11 +6,11 @@ import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 
 export const metadata: Metadata = {
-  title: 'Dr. Sonia Gutierrez, DDS | Kids Dentist Grayslake, IL',
+  title: 'Dr. Sonia Gutierrez, DDS, MS | Kids Dentist Grayslake, IL',
   description:
     'Meet Dr. Sonia Gutierrez — bilingual, board-certified pediatric dentist at Kids Dentist Grayslake. Specializing in gentle care and sedation dentistry for children.',
   openGraph: {
-    title: 'Dr. Sonia Gutierrez, DDS | Kids Dentist Grayslake, IL',
+    title: 'Dr. Sonia Gutierrez, DDS, MS | Kids Dentist Grayslake, IL',
     description: 'Board-certified pediatric dentist specializing in gentle care and sedation dentistry. Serving Grayslake, IL.',
     url: 'https://kidsdds.com/about/meet-the-dentists/dr-sonia-gutierrez',
     siteName: 'Kids Dentist',
@@ -34,7 +34,7 @@ export default async function DrSoniaPage({
 
   return (
     <SubPageLayout
-      title="Dr. Sonia Gutierrez, DDS"
+      title="Dr. Sonia Gutierrez, DDS, MS"
       gradient="blue"
     >
       <div className="mx-auto max-w-5xl px-4">
@@ -120,7 +120,7 @@ export default async function DrSoniaPage({
                 &ldquo;{t('sonia_quote')}&rdquo;
               </p>
               <cite style={{ fontSize: '0.82rem', fontWeight: 800, color: '#9ca3af', fontStyle: 'normal', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
-                — Dr. Sonia Gutierrez, DDS
+                — Dr. Sonia Gutierrez, DDS, MS
               </cite>
             </blockquote>
 

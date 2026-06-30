@@ -6,12 +6,12 @@ import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 
 export const metadata: Metadata = {
-  title: 'Dr. Dave Rutcosky, DDS | Kids Dentist Grayslake, IL',
+  title: 'Dr. Dave Rutcosky, DDS, MS | Kids Dentist Grayslake, IL',
   description:
-    'Meet Dr. Dave Rutcosky — board-certified pediatric dentist and general anesthesiologist specializing in special needs dentistry at Kids Dentist Grayslake, IL.',
+    'Meet Dr. Dave Rutcosky — board-certified pediatric dentist specializing in special needs dentistry at Kids Dentist Grayslake, IL.',
   openGraph: {
-    title: 'Dr. Dave Rutcosky, DDS | Kids Dentist Grayslake, IL',
-    description: 'Specialist in special needs dentistry and general anesthesiology for children. Serving Grayslake, IL.',
+    title: 'Dr. Dave Rutcosky, DDS, MS | Kids Dentist Grayslake, IL',
+    description: 'Specialist in special needs dentistry for children. Serving Grayslake, IL.',
     url: 'https://kidsdds.com/about/meet-the-dentists/dr-dave-rutcosky',
     siteName: 'Kids Dentist',
     locale: 'en_US',
@@ -34,7 +34,7 @@ export default async function DrDavePage({
 
   return (
     <SubPageLayout
-      title="Dr. Dave Rutcosky, DDS"
+      title="Dr. Dave Rutcosky, DDS, MS"
       gradient="green"
     >
       <div className="mx-auto max-w-5xl px-4">
@@ -68,7 +68,7 @@ export default async function DrDavePage({
               >
                 <Image
                   src="/brand_assets/index-dr-dave.jpg"
-                  alt="Dr. Dave Rutcosky, pediatric dentist and anesthesiologist at Kids Dentist Grayslake IL"
+                  alt="Dr. Dave Rutcosky, pediatric dentist at Kids Dentist Grayslake IL"
                   fill
                   sizes="(max-width: 768px) 100vw, 40vw"
                   style={{ objectFit: 'cover', objectPosition: 'top center' }}
@@ -120,7 +120,7 @@ export default async function DrDavePage({
                 &ldquo;{t('dave_quote')}&rdquo;
               </p>
               <cite style={{ fontSize: '0.82rem', fontWeight: 800, color: '#9ca3af', fontStyle: 'normal', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
-                — Dr. Dave Rutcosky, DDS
+                — Dr. Dave Rutcosky, DDS, MS
               </cite>
             </blockquote>
 

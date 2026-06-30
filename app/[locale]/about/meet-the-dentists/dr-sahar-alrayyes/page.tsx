@@ -6,11 +6,11 @@ import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 
 export const metadata: Metadata = {
-  title: 'Dr. Sahar Alrayyes, DDS | Kids Dentist Grayslake, IL',
+  title: 'Dr. Sahar Alrayyes, DDS, MS | Kids Dentist Grayslake, IL',
   description:
     'Meet Dr. Sahar Alrayyes — board-certified pediatric dentist specializing in preventive care and infant oral health at Kids Dentist Grayslake, IL.',
   openGraph: {
-    title: 'Dr. Sahar Alrayyes, DDS | Kids Dentist Grayslake, IL',
+    title: 'Dr. Sahar Alrayyes, DDS, MS | Kids Dentist Grayslake, IL',
     description: 'Preventive care and infant oral health specialist at Kids Dentist Grayslake, IL.',
     url: 'https://kidsdds.com/about/meet-the-dentists/dr-sahar-alrayyes',
     siteName: 'Kids Dentist',
@@ -34,7 +34,7 @@ export default async function DrSaharPage({
 
   return (
     <SubPageLayout
-      title="Dr. Sahar Alrayyes, DDS"
+      title="Dr. Sahar Alrayyes, DDS, MS"
       gradient="amber"
     >
       <div className="mx-auto max-w-5xl px-4">
@@ -120,7 +120,7 @@ export default async function DrSaharPage({
                 &ldquo;{t('sahar_quote')}&rdquo;
               </p>
               <cite style={{ fontSize: '0.82rem', fontWeight: 800, color: '#9ca3af', fontStyle: 'normal', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
-                — Dr. Sahar Alrayyes, DDS
+                — Dr. Sahar Alrayyes, DDS, MS
               </cite>
             </blockquote>
 

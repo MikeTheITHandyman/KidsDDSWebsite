@@ -54,24 +54,24 @@ export default function QuickActionsBar() {
             display: 'inline-flex',
             alignItems: 'center',
             gap: '0.35rem',
-            background: 'linear-gradient(135deg, #c81f1f 0%, #e53535 100%)',
-            color: '#fff',
+            background: 'rgba(255,255,255,0.55)',
+            backdropFilter: 'blur(10px)',
+            WebkitBackdropFilter: 'blur(10px)',
+            color: '#4b5563',
+            border: '1px solid rgba(209,213,219,0.5)',
             borderRadius: '100px',
             padding: '0.45rem 0.9rem',
             fontFamily: 'Nunito, sans-serif',
-            fontWeight: 900,
+            fontWeight: 600,
             fontSize: '0.78rem',
             textDecoration: 'none',
             letterSpacing: '0.01em',
-            boxShadow: '0 3px 12px rgba(220,38,38,0.28)',
             transition: 'all 0.2s cubic-bezier(0.25,0.46,0.45,0.94)',
             whiteSpace: 'nowrap',
           }}
         >
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
-            <line x1="12" y1="9" x2="12" y2="13"/>
-            <line x1="12" y1="17" x2="12.01" y2="17"/>
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 9.8 19.79 19.79 0 0 1 1 1.18 2 2 0 0 1 2.82 0h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L6.91 7.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/>
           </svg>
           {t('emergency')}
         </Link>
@@ -111,8 +111,9 @@ export default function QuickActionsBar() {
       <style>{`
         .qa-btn:hover { transform: translateY(-2px); }
         .qa-emergency:hover {
-          box-shadow: 0 8px 26px rgba(220,38,38,0.48) !important;
-          background: linear-gradient(135deg, #b91c1c 0%, #dc2626 100%) !important;
+          background: rgba(255,255,255,0.8) !important;
+          color: #374151 !important;
+          box-shadow: 0 4px 16px rgba(0,0,0,0.08) !important;
         }
         .qa-doctor:hover {
           background: rgba(255,255,255,0.8) !important;

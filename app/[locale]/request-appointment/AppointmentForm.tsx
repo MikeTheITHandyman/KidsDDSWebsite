@@ -16,10 +16,10 @@ const TRUST_SIGNALS = [
 
 const DENTIST_OPTIONS = [
   { value: '', label: 'No Preference' },
-  { value: 'dr-sonia-gutierrez', label: 'Dr. Sonia Gutierrez, DDS' },
-  { value: 'dr-dave-rutcosky', label: 'Dr. Dave Rutcosky, DDS' },
-  { value: 'dr-sahar-alrayyes', label: 'Dr. Sahar Alrayyes, DDS' },
-  { value: 'dr-anne-ashley-compton', label: 'Dr. Anne-Ashley Compton, DDS' },
+  { value: 'dr-sonia-gutierrez', label: 'Dr. Sonia Gutierrez, DDS, MS' },
+  { value: 'dr-dave-rutcosky', label: 'Dr. Dave Rutcosky, DDS, MS' },
+  { value: 'dr-sahar-alrayyes', label: 'Dr. Sahar Alrayyes, DDS, MS' },
+  { value: 'dr-anne-ashley-compton', label: 'Dr. Anne-Ashley Compton, DDS, MS' },
 ]
 
 const VISIT_REASONS = [

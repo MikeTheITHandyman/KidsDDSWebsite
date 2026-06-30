@@ -2,7 +2,7 @@
 
 > **Purpose of this document:** A living reference for the current build state. Covers every route, component, design token, and content requirement so Claude Code can produce precise, context-rich work.
 
-**Last updated:** 2026-06-24 — full Spanish i18n (12 sub-pages, 10 namespaces), next-intl routing overhaul (routing.ts / navigation.ts / proxy.ts), language switcher cookie fix, nav left-justified, announcement bar shows blog post title, footer top padding reduced.
+**Last updated:** 2026-06-30 — favicon added; Phase 2 About page (DoctorGrid + OfficeTourPreview components, refactored about/page.tsx); doctor taglines removed site-wide; meet-the-dentists + all 4 doctor profile pages fully i18n; 3 new translation namespaces (about, meetDentists, drProfiles); SubPageLayout H1/kicker updated to var(--brand-purple).
 
 ---
 
@@ -297,11 +297,15 @@ Mon–Fri schedule (see Section 1 table above)
 | `ValueProposition` | `components/ValueProposition.tsx` | Modular value prop card (alternate/standalone variant) |
 | `SiteSearch` | `components/SiteSearch.tsx` | Global site search pill; `variant: 'desktop' \| 'mobile'`; 30-item static index with weighted scoring |
 | `PayNowForm` | `app/[locale]/pay/PayNowForm.tsx` | `'use client'` — HostedPayNow POST form button (Framer Motion, orange gradient) |
+| `DoctorGrid` | `components/DoctorGrid.tsx` | `'use client'` — 2×2 Framer Motion stagger grid for About page; `--bg-lavender` cards, `--brand-purple` names, `--accent-pink` role badges, blob-radius headshot placeholders (`next/image` ready); i18n via `about` namespace |
+| `OfficeTourPreview` | `components/OfficeTourPreview.tsx` | `'use client'` — full-bleed `--bg-teal-tint` section with `--cta-yellow` kicker, two `whileInView` slide-up image placeholder blocks; links to `/about/tour-our-office` |
 
 ### SubPageLayout gradient variants
 - `'blue'` — teal/blue tones (default for most service + about pages)
 - `'green'` — mint/green tones (insurance, preventive pages)
 - `'amber'` — warm orange tones (emergency, urgent pages)
+
+> **Phase 2 update:** `SubPageLayout` H1 text, kicker text, and dot-grid decoration now use `var(--brand-purple)` instead of the old hardcoded `#4A90A4` teal — applies brand-wide to all sub-pages. The `subtitle` prop has been removed from all doctor profile pages (taglines eliminated).
 
 ### FirstVisitTimeline steps
 1. Welcome & Check-In
@@ -387,18 +391,20 @@ Rotating testimonial carousel. Pulls featured reviews from Sanity via `featuredR
 ### About Section
 | Route | Status | Notes |
 |---|---|---|
-| `/about` | Exists | Practice overview, history, mission |
-| `/about/meet-the-dentists` | Exists | Doctor listing grid |
-| `/about/meet-the-dentists/dr-sonia-gutierrez` | Exists | Individual bio |
-| `/about/meet-the-dentists/dr-dave-rutcosky` | Exists | Individual bio |
-| `/about/meet-the-dentists/dr-sahar-alrayyes` | Exists | Individual bio |
-| `/about/meet-the-dentists/dr-anne-ashley-compton` | Exists | Individual bio |
+| `/about` | **Built** | Philosophy block + `DoctorGrid` + `OfficeTourPreview`; i18n via `about` namespace |
+| `/about/meet-the-dentists` | **Built** | 4-card doctor listing; `DoctorGrid.tsx` (co-located client component); i18n via `meetDentists` + `about` namespaces; no taglines |
+| `/about/meet-the-dentists/dr-sonia-gutierrez` | **Built** | Async server component; full i18n via `drProfiles` + `about` namespaces; no subtitle |
+| `/about/meet-the-dentists/dr-dave-rutcosky` | **Built** | Async server component; full i18n via `drProfiles` + `about` namespaces; no subtitle |
+| `/about/meet-the-dentists/dr-sahar-alrayyes` | **Built** | Async server component; full i18n via `drProfiles` + `about` namespaces; no subtitle |
+| `/about/meet-the-dentists/dr-anne-ashley-compton` | **Built** | Async server component; full i18n via `drProfiles` + `about` namespaces; no subtitle |
 | `/about/meet-the-team` | Exists | Staff page |
 | `/about/tour-our-office` | Exists | Office photo tour |
 | `/about/recent-events` | Exists | Events grid (Sanity-powered) |
 | `/about/recent-events/[slug]` | Exists | Individual event detail |
 | `/about/community-involvement` | Exists | Community page |
 | `/about/why-choose-us` | Exists | Differentiators page |
+
+> **Note:** `app/[locale]/about/meet-the-dentists/DoctorGrid.tsx` is a **co-located** client component (not in `/components/`) that renders the 4-card expandable listing on the Meet the Dentists index page. It is distinct from `components/DoctorGrid.tsx` (the 2×2 grid on the About page). Doctor tagline/subtitle strings have been removed from all cards and profile pages.
 
 **Legacy / duplicate doctor bio paths (redirect candidates):**
 - `app/about/sonia-gutierrez-dds/` → `/about/meet-the-dentists/dr-sonia-gutierrez`
@@ -567,6 +573,7 @@ Implemented in both `netlify.toml` (CDN edge, `force = true`) and `next.config.t
 
 | File | Usage |
 |---|---|
+| `favicon.ico` | Browser tab icon — placed at `app/favicon.ico`; Next.js App Router serves it automatically site-wide |
 | `kids-dentist-logo.png` | Header logo (189×104px source, rendered 72px tall) |
 | `hero-video.mp4` | Hero looping background video |
 | `hero-photo.jpg` | Hero fallback image |
@@ -668,7 +675,10 @@ Include alternates.canonical for https://www.kidsdds.com/[route].
 | `quickActions` | Quick Actions bar |
 | `footer` | Footer text |
 | `common` | Shared strings (loading, error, learn more, etc.) |
-| `aboutPage` | `/about` |
+| `about` | `/about` (philosophy block, DoctorGrid bios, OfficeTourPreview copy) + `meet-the-dentists` page shared strings |
+| `aboutPage` | `/about` (legacy namespace — superseded by `about` for new components; retain if still referenced) |
+| `meetDentists` | `/about/meet-the-dentists` — page kicker/title/subtitle, Read Bio / Close / Request Appointment UI, CTA block, 12 doctor highlight bullets (3 per doctor) |
+| `drProfiles` | Individual doctor profile pages — back link, role label, credentials heading, book button, hero heading, 3 bio paragraphs, quote, 7 credential bullets per doctor |
 | `servicesPage` | `/services` overview |
 | `firstVisit` | `/for-patients/child-first-visit` |
 | `insurancePage` | `/for-patients/insurance-info` |

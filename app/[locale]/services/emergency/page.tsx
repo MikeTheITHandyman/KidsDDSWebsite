@@ -1,6 +1,6 @@
 import SubPageLayout from '@/components/SubPageLayout'
 import AnimatedSection from '@/components/AnimatedSection'
-import Link from 'next/link'
+import EmergencyTriage from '@/components/EmergencyTriage'
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 
@@ -139,64 +139,9 @@ export default async function EmergencyDentalCarePage({ params }: { params: Prom
           </p>
         </div>
 
-        {/* Urgent CTA at top */}
+        {/* After-hours patient triage */}
         <AnimatedSection>
-          <div
-            style={{
-              background: 'linear-gradient(135deg, #E97D63, #E8934F)',
-              borderRadius: '1.5rem',
-              padding: '1.75rem 2rem',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              gap: '1.5rem',
-              flexWrap: 'wrap',
-              marginBottom: '4rem',
-              boxShadow: '0 8px 32px rgba(233,125,99,0.35)',
-            }}
-          >
-            <div>
-              <p style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: '1.05rem', color: '#fff', margin: '0 0 0.2rem' }}>
-                {t('urgentHeading')}
-              </p>
-              <p style={{ fontFamily: 'Nunito, sans-serif', fontSize: '0.9rem', fontWeight: 600, color: 'rgba(255,255,255,0.88)', margin: 0 }}>
-                {t('urgentBody')}
-              </p>
-            </div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
-              <a
-                href="tel:+18472231400"
-                style={{
-                  display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-                  background: '#fff', color: '#E97D63', fontFamily: 'Nunito, sans-serif',
-                  fontWeight: 900, fontSize: '1.05rem', padding: '0.85rem 2rem',
-                  borderRadius: '100px', textDecoration: 'none', flexShrink: 0,
-                  boxShadow: '0 4px 16px rgba(0,0,0,0.12)',
-                }}
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 9.8 19.79 19.79 0 0 1 1 1.18 2 2 0 0 1 2.82 0h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L6.91 7.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/>
-                </svg>
-                {t('urgentCall')}
-              </a>
-              <Link
-                href="/ask-the-doctor"
-                style={{
-                  display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-                  background: 'rgba(255,255,255,0.15)', color: '#fff', fontFamily: 'Nunito, sans-serif',
-                  fontWeight: 800, fontSize: '0.95rem', padding: '0.85rem 1.75rem',
-                  borderRadius: '100px', textDecoration: 'none', flexShrink: 0,
-                  border: '1.5px solid rgba(255,255,255,0.55)',
-                }}
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <line x1="22" y1="2" x2="11" y2="13"/>
-                  <polygon points="22 2 15 22 11 13 2 9 22 2"/>
-                </svg>
-                {t('urgentAsk')}
-              </Link>
-            </div>
-          </div>
+          <EmergencyTriage />
         </AnimatedSection>
 
         {/* What counts as an emergency */}
@@ -375,18 +320,6 @@ export default async function EmergencyDentalCarePage({ params }: { params: Prom
               >
                 {t('ctaCall')}
               </a>
-              <Link
-                href="/request-appointment"
-                style={{
-                  display: 'inline-flex', alignItems: 'center', gap: '0.45rem',
-                  background: 'rgba(255,255,255,0.15)', color: '#fff',
-                  fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '0.95rem',
-                  padding: '0.9rem 2rem', borderRadius: '100px', textDecoration: 'none',
-                  border: '1.5px solid rgba(255,255,255,0.4)',
-                }}
-              >
-                {t('ctaAppointment')}
-              </Link>
             </div>
           </div>
         </AnimatedSection>

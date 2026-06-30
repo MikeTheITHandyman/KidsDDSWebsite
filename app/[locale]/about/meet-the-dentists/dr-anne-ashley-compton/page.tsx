@@ -6,11 +6,11 @@ import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 
 export const metadata: Metadata = {
-  title: 'Dr. Anne-Ashley Compton, DDS | Kids Dentist Grayslake, IL',
+  title: 'Dr. Anne-Ashley Compton, DDS, MS | Kids Dentist Grayslake, IL',
   description:
     'Meet Dr. Anne-Ashley Compton — board-certified pediatric dentist specializing in restorative dentistry for children at Kids Dentist Grayslake, IL.',
   openGraph: {
-    title: 'Dr. Anne-Ashley Compton, DDS | Kids Dentist Grayslake, IL',
+    title: 'Dr. Anne-Ashley Compton, DDS, MS | Kids Dentist Grayslake, IL',
     description: 'Restorative dentistry specialist with an exceptional bedside manner for children. Serving Grayslake, IL.',
     url: 'https://kidsdds.com/about/meet-the-dentists/dr-anne-ashley-compton',
     siteName: 'Kids Dentist',
@@ -34,7 +34,7 @@ export default async function DrAnneAshleyPage({
 
   return (
     <SubPageLayout
-      title="Dr. Anne-Ashley Compton, DDS"
+      title="Dr. Anne-Ashley Compton, DDS, MS"
       gradient="blue"
     >
       <div className="mx-auto max-w-5xl px-4">
@@ -120,7 +120,7 @@ export default async function DrAnneAshleyPage({
                 &ldquo;{t('anneAshley_quote')}&rdquo;
               </p>
               <cite style={{ fontSize: '0.82rem', fontWeight: 800, color: '#9ca3af', fontStyle: 'normal', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
-                — Dr. Anne-Ashley Compton, DDS
+                — Dr. Anne-Ashley Compton, DDS, MS
               </cite>
             </blockquote>
 
