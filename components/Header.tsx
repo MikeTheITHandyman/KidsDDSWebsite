@@ -182,18 +182,21 @@ export default function Header({ latestPostTitle, latestPostSlug }: HeaderProps)
         >
           <a
             href={latestPostSlug ? `/blog/${latestPostSlug}` : '/blog'}
+            className="announcement-link"
             style={{ color: 'white', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.4rem', opacity: 0.97 }}
           >
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style={{ flexShrink: 0 }}>
-              <path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm1 14.93V15a1 1 0 00-2 0v1.93A8.001 8.001 0 014.07 11H5a1 1 0 000-2h-.93A8.001 8.001 0 0111 4.07V5a1 1 0 002 0v-.93A8.001 8.001 0 0119.93 9H19a1 1 0 000 2h.93A8.001 8.001 0 0113 16.93z"/>
-            </svg>
-            {t('announcement')}
+            <span className="announcement-line1" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style={{ flexShrink: 0 }}>
+                <path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm1 14.93V15a1 1 0 00-2 0v1.93A8.001 8.001 0 014.07 11H5a1 1 0 000-2h-.93A8.001 8.001 0 0111 4.07V5a1 1 0 002 0v-.93A8.001 8.001 0 0119.93 9H19a1 1 0 000 2h.93A8.001 8.001 0 0113 16.93z"/>
+              </svg>
+              {t('announcement')}
+              {!latestPostTitle && <>{' '}&rsaquo;</>}
+            </span>
             {latestPostTitle && (
-              <span style={{ opacity: 0.9 }}>
-                {' — '}&ldquo;{latestPostTitle}&rdquo;
+              <span className="announcement-line2" style={{ opacity: 0.9 }}>
+                {' — '}&ldquo;{latestPostTitle}&rdquo;{' '}&rsaquo;
               </span>
             )}
-            {' '}&rsaquo;
           </a>
         </div>
       )}
