@@ -181,7 +181,7 @@ Renders on every page in this order:
 
 ## 5. Header (`components/Header.tsx`)
 
-**Announcement bar** (rendered by `Header.tsx` itself, *above* the sticky `<motion.header>` in the JSX return): orange gradient, "Check out our latest blog post · [post title] ›" → `/blog`. The latest post title is fetched from Sanity and injected into the bar so visitors know what they're clicking on. Hidden when `isStudio`. This is **separate** from the purple Sanity event banner in §4 — both may appear stacked.
+**Announcement bar** (rendered by `Header.tsx` itself, *above* the sticky `<motion.header>` in the JSX return): orange gradient, "Check out our latest blog post — "[post title]" ›" → `/blog`. The latest post title is fetched from Sanity and injected into the bar so visitors know what they're clicking on. Hidden when `isStudio`. This is **separate** from the purple Sanity event banner in §4 — both may appear stacked. On mobile (`≤768px`), the announcement text and the post title stack into two rows (`.announcement-link{flex-direction:column}` in `styles/global.css`) instead of the single-row layout used on desktop.
 
 **Logo:** `/brand_assets/kids-dentist-logo.png` — 72px height, links to `/`.
 
@@ -360,7 +360,7 @@ Auto-rotating carousel (4s interval, pauses on hover). Shows 3 of 5 cards at a t
 | Restorative Dentistry | `/services/restorative-dentistry` |
 | Special Needs Dentistry | `/services` |
 | Sedation Dentistry | `/services/sedation-dentistry` |
-| Emergency Pediatric Dentist | `/services` |
+| Emergency Pediatric Dentistry | `/services` |
 
 ### MeetOurDoctors (`components/MeetOurDoctors.tsx`)
 - 4-column doctor grid; each card: blob-shaped headshot, name, role, "Meet Dr. [FirstName] ›" link
