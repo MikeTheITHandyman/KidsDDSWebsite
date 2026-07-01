@@ -26,7 +26,7 @@ export default function TeamCard({ photoSrc, firstName, alt, accent }: TeamCardP
           alt={alt}
           fill
           sizes="(max-width: 580px) 45vw, (max-width: 900px) 30vw, 22vw"
-          style={{ objectFit: 'cover' }}
+          style={{ objectFit: 'cover', objectPosition: 'top' }}
         />
       </div>
 
