@@ -3,11 +3,12 @@ import Image from 'next/image'
 interface TeamCardProps {
   photoSrc: string
   firstName: string
+  role: string
   alt: string
   accent: string
 }
 
-export default function TeamCard({ photoSrc, firstName, alt, accent }: TeamCardProps) {
+export default function TeamCard({ photoSrc, firstName, role, alt, accent }: TeamCardProps) {
   return (
     <div style={{ textAlign: 'center', marginBottom: '0.85rem' }}>
       <div
@@ -50,6 +51,19 @@ export default function TeamCard({ photoSrc, firstName, alt, accent }: TeamCardP
       >
         {firstName}
       </span>
+
+      {/* Role */}
+      <p
+        style={{
+          margin: '-0.35rem 0 0',
+          fontFamily: 'Nunito, sans-serif',
+          fontSize: '0.82rem',
+          fontWeight: 500,
+          color: '#9ca3af',
+        }}
+      >
+        {role}
+      </p>
     </div>
   )
 }

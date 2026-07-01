@@ -27,20 +27,20 @@ const ACCENTS = [
   'var(--brand-purple)',
 ]
 
-// Alphabetical by first name. Roles/titles to be added once confirmed.
+// Alphabetical by first name.
 const TEAM_MEMBERS = [
-  { firstName: 'Cassie', photoSrc: '/brand_assets/team/headshot-cassie.jpeg' },
-  { firstName: 'Don', photoSrc: '/brand_assets/team/headshot-don.jpg' },
-  { firstName: 'Eva', photoSrc: '/brand_assets/team/headshot-eva.jpg' },
-  { firstName: 'Gabbie', photoSrc: '/brand_assets/team/headshot-gabbie.jpeg' },
-  { firstName: 'Jannet', photoSrc: '/brand_assets/team/headshot-jannet.jpg' },
-  { firstName: 'Maggie', photoSrc: '/brand_assets/team/headshot-maggie.jpeg' },
-  { firstName: 'Maria', photoSrc: '/brand_assets/team/headshot-maria.jpeg' },
-  { firstName: 'Michelle', photoSrc: '/brand_assets/team/headshot-michelle.jpeg' },
-  { firstName: 'Noemi', photoSrc: '/brand_assets/team/headshot-noemi.jpeg' },
-  { firstName: 'Olga', photoSrc: '/brand_assets/team/headshot-olga.jpeg' },
-  { firstName: 'Sema', photoSrc: '/brand_assets/team/headshot-sema.jpeg' },
-  { firstName: 'Stephenie', photoSrc: '/brand_assets/team/headshot-stephenie.jpeg' },
+  { firstName: 'Cassie', role: 'Hygienist', photoSrc: '/brand_assets/team/headshot-cassie.jpeg' },
+  { firstName: 'Don', role: 'Office Manager', photoSrc: '/brand_assets/team/headshot-don.jpg' },
+  { firstName: 'Eva', role: 'Assistant Manager', photoSrc: '/brand_assets/team/headshot-eva.jpg' },
+  { firstName: 'Gabbie', role: 'Treatment Coordinator', photoSrc: '/brand_assets/team/headshot-gabbie.jpeg' },
+  { firstName: 'Jannet', role: 'Scheduling Coordinator', photoSrc: '/brand_assets/team/headshot-jannet.jpg' },
+  { firstName: 'Maggie', role: 'Lead Dental Assistant', photoSrc: '/brand_assets/team/headshot-maggie.jpeg' },
+  { firstName: 'Maria', role: 'Dental Assistant', photoSrc: '/brand_assets/team/headshot-maria.jpeg' },
+  { firstName: 'Michelle', role: 'Scheduling Coordinator', photoSrc: '/brand_assets/team/headshot-michelle.jpeg' },
+  { firstName: 'Noemi', role: 'Dental Assistant', photoSrc: '/brand_assets/team/headshot-noemi.jpeg' },
+  { firstName: 'Olga', role: 'Dental Assistant', photoSrc: '/brand_assets/team/headshot-olga.jpeg' },
+  { firstName: 'Sema', role: 'Hygiene Assistant', photoSrc: '/brand_assets/team/headshot-sema.jpeg' },
+  { firstName: 'Stephenie', role: 'Hygienist', photoSrc: '/brand_assets/team/headshot-stephenie.jpeg' },
 ]
 
 export default function MeetTheTeamPage() {
@@ -59,7 +59,8 @@ export default function MeetTheTeamPage() {
               <TeamCard
                 photoSrc={member.photoSrc}
                 firstName={member.firstName}
-                alt={`Headshot of ${member.firstName}, a member of the Kids Dentist team in Grayslake, IL`}
+                role={member.role}
+                alt={`Headshot of ${member.firstName}, ${member.role} at Kids Dentist in Grayslake, IL`}
                 accent={ACCENTS[i % ACCENTS.length]}
               />
             </AnimatedSection>
