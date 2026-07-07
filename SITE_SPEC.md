@@ -2,7 +2,9 @@
 
 > **Purpose of this document:** A living reference for the current build state. Covers every route, component, design token, and content requirement so Claude Code can produce precise, context-rich work.
 
-**Last updated:** 2026-06-30 — favicon added; Phase 2 About page (DoctorGrid + OfficeTourPreview components, refactored about/page.tsx); doctor taglines removed site-wide; meet-the-dentists + all 4 doctor profile pages fully i18n; 3 new translation namespaces (about, meetDentists, drProfiles); SubPageLayout H1/kicker updated to var(--brand-purple).
+**Last updated:** 2026-07-07 — Doctor credentials corrected site-wide (all four doctors now carry "DDS, MS"); clinical accuracy pass (general anesthesia terminology corrected, removed fabricated Dr. Rutcosky anesthesia claim); "Dental Emergency" QuickActionsBar pill changed to neutral ghost style; `/services/emergency` page redesigned with `EmergencyTriage` (Yes/No patient triage widget revealing after-hours line `(847) 241-8886` for existing patients, or office hours + main number for non-patients); contact form removed from emergency page; `Footer.tsx` tagline "Dentistry" capitalized; all four doctor bios (`drProfiles` namespace) replaced with exact production text; `about` namespace short bios + `meetDentists` highlight bullets + `drProfiles` credential arrays rewritten to remove fabricated credentials (sedation certified, nitrous oxide certified, special needs fellowship, etc.) and replaced with verified facts from production bios (ABPD Diplomate, UIC residency, FAAPD Fellowship, etc.); in-network insurance list updated to 7 providers (Aetna, Cigna, Delta Dental Premier, Guardian, Lincoln Financial, Principal, United Healthcare) — Medicaid/CHIP removed from all patient-facing copy; restorative dentistry crown copy changed from "zirconia/stainless steel crowns" to "dental crowns"; FAQ expanded from 5 Qs (3 groups) to 10 Qs (4 groups) with new Orthodontics & Braces category; first-visit timeline updated to 4 steps (A Warm Welcome, A Gentle Exam, Teething & Home Care Tips, The Toy Tower Reward); Ask the Doctor "How it works" paragraph updated; all changes applied to both `en.json` and `es.json`.
+
+**Previously (2026-07-01):** `/about/meet-the-team` built out with real staff headshots (`TeamCard.tsx`, 12-person roster, nametag pills, job titles); real headshots replace all 4 doctor photos (home page + meet-the-dentists); homepage emergency-service title fixed to "Dentistry"; mobile announcement bar stacks into two rows.
 
 ---
 
@@ -13,6 +15,7 @@
 | Practice Name | Kids Dentist |
 | Address | 160 Commerce Dr #100, Grayslake, IL 60030 |
 | Phone | (847) 223-1400 (text/call) |
+| After-Hours Emergency | (847) 241-8886 — **existing patients only**; displayed via `EmergencyTriage` widget |
 | Email | info@kidsdds.com |
 | Website | kidsdds.com |
 | Instagram | @kidsddsgrayslake |
@@ -23,12 +26,12 @@
 ### Doctors
 | Doctor | Credential | Bio Slug |
 |---|---|---|
-| Dr. Sonia Gutierrez | DDS | `dr-sonia-gutierrez` |
-| Dr. Dave Rutcosky | DDS | `dr-dave-rutcosky` (leads Special Needs program) |
-| Dr. Sahar Alrayyes | DDS | `dr-sahar-alrayyes` |
-| Dr. Anne-Ashley Compton | DDS | `dr-anne-ashley-compton` |
+| Dr. Sonia Gutierrez | DDS, MS | `dr-sonia-gutierrez` |
+| Dr. Dave Rutcosky | DDS, MS | `dr-dave-rutcosky` |
+| Dr. Sahar Alrayyes | DDS, MS | `dr-sahar-alrayyes` |
+| Dr. Anne-Ashley Compton | DDS, MS | `dr-anne-ashley-compton` |
 
-All four are board-certified pediatric specialists.
+All four completed their pediatric dentistry specialty at the University of Illinois at Chicago and are Diplomates of the American Board of Pediatric Dentistry. Dr. Alrayyes additionally holds FAAPD (Fellow) status. All four hold a Master of Science in Oral Sciences.
 
 ### Office Hours
 | Day | Hours (Footer display) | Hours (Schema.org) |
@@ -45,7 +48,7 @@ All four are board-certified pediatric specialists.
 - 650+ five-star Google reviews (4.8★)
 - Same-day appointments available
 - Emergency pediatric visits accepted
-- In-network with Delta Dental and major PPOs + Medicaid/CHIP
+- In-network with Aetna, Cigna, Delta Dental Premier, Guardian, Lincoln Financial, Principal, and United Healthcare
 - Board-certified pediatric specialists only
 - Hablamos Español
 
@@ -279,7 +282,7 @@ Mon–Fri schedule (see Section 1 table above)
 | `Header` | `components/Header.tsx` | Sticky nav, mobile hamburger, scroll-reactive |
 | `Footer` | `components/Footer.tsx` | 4-col footer, social links, Pay Now form |
 | `Hero` | `components/Hero.tsx` | Homepage hero with headline + CTAs |
-| `QuickActionsBar` | `components/QuickActionsBar.tsx` | Fast-action strip (top of homepage, below hero) |
+| `QuickActionsBar` | `components/QuickActionsBar.tsx` | Fast-action strip (top of homepage, below hero); "Dental Emergency" pill is neutral ghost style (white/gray) matching "Ask the Doctor" — no red styling |
 | `ServicesGrid` | `components/ServicesGrid.tsx` | Auto-rotating services carousel (4s, pauses on hover) |
 | `MeetOurDoctors` | `components/MeetOurDoctors.tsx` | Homepage doctor cards (4-col grid) |
 | `ReviewBubbles` | `components/ReviewBubbles.tsx` | Rotating testimonial carousel (Sanity-fed) |
@@ -299,6 +302,8 @@ Mon–Fri schedule (see Section 1 table above)
 | `PayNowForm` | `app/[locale]/pay/PayNowForm.tsx` | `'use client'` — HostedPayNow POST form button (Framer Motion, orange gradient) |
 | `DoctorGrid` | `components/DoctorGrid.tsx` | `'use client'` — 2×2 Framer Motion stagger grid for About page; `--bg-lavender` cards, `--brand-purple` names, `--accent-pink` role badges, blob-radius headshot placeholders (`next/image` ready); i18n via `about` namespace |
 | `OfficeTourPreview` | `components/OfficeTourPreview.tsx` | `'use client'` — full-bleed `--bg-teal-tint` section with `--cta-yellow` kicker, two `whileInView` slide-up image placeholder blocks; links to `/about/tour-our-office` |
+| `TeamCard` | `components/TeamCard.tsx` | Staff roster card for `/about/meet-the-team`: uniform rounded-square `next/image` photo (`objectPosition: 'top'` to avoid cropping heads), nametag pill (accent color cycles per card), job title below |
+| `EmergencyTriage` | `components/EmergencyTriage.tsx` | `'use client'` — Yes/No patient triage widget on `/services/emergency`. Asks "Are you currently a patient of Kids Dentist?" — Yes reveals after-hours line `(847) 241-8886` (teal panel); No reveals apology + office hours table + main number `(847) 223-1400` (amber panel). `AnimatePresence mode="wait"` transitions. No contact forms. |
 
 ### SubPageLayout gradient variants
 - `'blue'` — teal/blue tones (default for most service + about pages)
@@ -307,13 +312,11 @@ Mon–Fri schedule (see Section 1 table above)
 
 > **Phase 2 update:** `SubPageLayout` H1 text, kicker text, and dot-grid decoration now use `var(--brand-purple)` instead of the old hardcoded `#4A90A4` teal — applies brand-wide to all sub-pages. The `subtitle` prop has been removed from all doctor profile pages (taglines eliminated).
 
-### FirstVisitTimeline steps
-1. Welcome & Check-In
-2. Meet the Team
-3. Initial Exam
-4. Fun Cleaning
-5. Treatment Plan
-6. Happy Goodbye
+### First Visit steps (`firstVisit` namespace — 4 steps)
+1. A Warm Welcome
+2. A Gentle Exam
+3. Teething & Home Care Tips
+4. The Toy Tower Reward
 
 ---
 
@@ -365,6 +368,13 @@ Auto-rotating carousel (4s interval, pauses on hover). Shows 3 of 5 cards at a t
 ### MeetOurDoctors (`components/MeetOurDoctors.tsx`)
 - 4-column doctor grid; each card: blob-shaped headshot, name, role, "Meet Dr. [FirstName] ›" link
 - Section CTAs: "Meet the Dentists" (orange) → `/about/meet-the-dentists` | "Meet the Team" (teal border) → `/about/meet-the-team`
+- Photos: real professional headshots (`index-dr-*.jpg`, see Image Assets), `objectPosition: 'top center'` cover-crop inside the blob container
+
+### Meet the Team (`app/[locale]/about/meet-the-team/page.tsx` + `TeamCard.tsx`)
+- 12-person staff roster, alphabetical by first name, real headshots (`public/brand_assets/team/headshot-*.jpg`)
+- Grid: 4 cols desktop / 3 tablet (≤900px) / 2 mobile (≤580px)
+- Each `TeamCard`: rounded-square photo (top-anchored crop), overlapping nametag pill (accent color cycles through 5 brand tokens), job title below
+- Two staff headshots were initially both labeled "Michelle" in the source files; confirmed as two different people and captioned "Michelle" and "Stephenie"
 
 **Doctor card CTA names:**
 | Doctor | CTA first name | Bio URL |
@@ -397,7 +407,7 @@ Rotating testimonial carousel. Pulls featured reviews from Sanity via `featuredR
 | `/about/meet-the-dentists/dr-dave-rutcosky` | **Built** | Async server component; full i18n via `drProfiles` + `about` namespaces; no subtitle |
 | `/about/meet-the-dentists/dr-sahar-alrayyes` | **Built** | Async server component; full i18n via `drProfiles` + `about` namespaces; no subtitle |
 | `/about/meet-the-dentists/dr-anne-ashley-compton` | **Built** | Async server component; full i18n via `drProfiles` + `about` namespaces; no subtitle |
-| `/about/meet-the-team` | Exists | Staff page |
+| `/about/meet-the-team` | **Built** | 12-person staff roster grid (`TeamCard.tsx`); real headshots + job titles, alphabetized by first name |
 | `/about/tour-our-office` | Exists | Office photo tour |
 | `/about/recent-events` | Exists | Events grid (Sanity-powered) |
 | `/about/recent-events/[slug]` | Exists | Individual event detail |
@@ -427,7 +437,7 @@ Rotating testimonial carousel. Pulls featured reviews from Sanity via `featuredR
 | `/services/restorative-dentistry` | Redirect | Duplicate of `/services/restorative` |
 | `/services/sedation-dentistry` | Exists | Nitrous, oral sedation, general anesthesia |
 | `/services/special-needs` | Exists | Autism, Down syndrome, CP, SPD |
-| `/services/emergency` | Exists | Same-day emergency visits |
+| `/services/emergency` | **Built** | `EmergencyTriage` widget (patient Yes/No triage → after-hours line or office hours); no contact forms; 8-chip emergency type grid; 3-step action guide; knocked-out tooth tip; bottom CTA (phone only, during-hours framing) |
 | `/services/checkups-and-cleanings` | Exists | Preventive detail |
 | `/services/orthodontics` | Exists | Orthodontics |
 | `/services/general-anesthesiology` | Exists | General anesthesia detail |
@@ -449,11 +459,11 @@ Rotating testimonial carousel. Pulls featured reviews from Sanity via `featuredR
 | `/for-patients/child-first-visit` | Exists | Uses `FirstVisitTimeline`; reassure parents/kids |
 | `/for-patients/patient-info` | Exists | Patient info hub |
 | `/for-patients/patient-forms` | **Built** | Express Check-In orange callout → Patient Manager portal; 4 PDF download cards (New Patient Reg, HIPAA, Dental History, School Form); 2-col grid; accessible `aria-label` + `download` attributes; PDFs expected at `public/forms/` |
-| `/for-patients/insurance-info` | Built | In-network providers, financing, Medicaid |
+| `/for-patients/insurance-info` | Built | In-network providers, financing |
 | `/for-patients/dental-financing` | Exists | CareCredit / financing detail |
 
 **Insurance page (Built) details:**
-- In-network: Aetna, Cigna, Delta Dental, Guardian, UnitedHealthcare + Medicaid/CHIP
+- In-network (7 providers): Aetna, Cigna, Delta Dental Premier, Guardian, Lincoln Financial, Principal, United Healthcare — **no Medicaid/CHIP**
 - Out-of-network and CareCredit sections
 - "No Insurance? No Problem." callout
 - CTA: Call + View Patient Forms
@@ -493,7 +503,7 @@ Rotating testimonial carousel. Pulls featured reviews from Sanity via `featuredR
 | `/contact` | Exists | Uses `ContactContent.tsx`; split contact info + form |
 | `/contact/office-info` | Exists | Office detail page |
 | `/request-appointment` | Exists | Uses `AppointmentForm.tsx`; primary conversion page |
-| `/faq` | Exists | Uses `FaqAccordion`; 10–15 questions, categorized |
+| `/faq` | **Built** | Uses `FaqAccordion`; 10 Qs across 4 groups: General Practice & First Visit (3), Safety & Treatments (3), Orthodontics & Braces (2), Dental Emergencies (2) |
 | `/ask-the-doctor` | Exists | AI-powered Q&A; uses `AskDoctorForm.tsx` |
 | `/pay` | **Built** | Dedicated online payment page — `SubPageLayout`, `PayNowForm` (HostedPayNow POST), trust badges, phone fallback |
 | `/referral-portal` | **Built** | B2B partner referral portal — `ReferralForm.tsx` (client), HIPAA live-status indicator, Resend email, GA event `partner_referral_submitted` |
@@ -577,12 +587,15 @@ Implemented in both `netlify.toml` (CDN edge, `force = true`) and `next.config.t
 | `kids-dentist-logo.png` | Header logo (189×104px source, rendered 72px tall) |
 | `hero-video.mp4` | Hero looping background video |
 | `hero-photo.jpg` | Hero fallback image |
-| `index-dr-sonia.jpg` | Dr. Sonia Gutierrez headshot |
-| `index-dr-dave.jpg` | Dr. Dave Rutcosky headshot |
-| `index-dr-alrayyes.jpg` | Dr. Sahar Alrayyes headshot |
-| `index-dr-ashley.jpg` | Dr. Anne-Ashley Compton headshot |
+| `index-dr-sonia.jpg` | Dr. Sonia Gutierrez headshot — real photo, resized to 900px wide / ~85KB via `sharp` |
+| `index-dr-dave.jpg` | Dr. Dave Rutcosky headshot — real photo, resized to 900px wide / ~88KB via `sharp` |
+| `index-dr-alrayyes.jpg` | Dr. Sahar Alrayyes headshot — real photo, resized to 900px wide / ~111KB via `sharp` |
+| `index-dr-ashley.jpg` | Dr. Anne-Ashley Compton headshot — real photo, resized to 900px wide / ~89KB via `sharp` |
+| `team/headshot-<firstname>.jpg` | 12 staff headshots for `/about/meet-the-team` (see §5's Meet the Team notes for the full roster) |
 
-Additional office photos, team photos, and service illustrations go into `/public/brand_assets/` as available. Use descriptive `next/image` placeholders when assets aren't yet ready.
+Source doctor/staff photos land in repo-root `brand_assets/New Headshots - Doctors/` and `brand_assets/New Headshots - Staff/` (last-name-keyed filenames, full-resolution, **not served publicly**). When promoting one to `public/brand_assets/`, resize/compress first (originals have been 18–24MB) — see the `sharp` one-liner pattern used for the doctor headshots.
+
+Additional office photos and service illustrations go into `/public/brand_assets/` as available. Use descriptive `next/image` placeholders when assets aren't yet ready.
 
 ---
 
@@ -677,8 +690,8 @@ Include alternates.canonical for https://www.kidsdds.com/[route].
 | `common` | Shared strings (loading, error, learn more, etc.) |
 | `about` | `/about` (philosophy block, DoctorGrid bios, OfficeTourPreview copy) + `meet-the-dentists` page shared strings |
 | `aboutPage` | `/about` (legacy namespace — superseded by `about` for new components; retain if still referenced) |
-| `meetDentists` | `/about/meet-the-dentists` — page kicker/title/subtitle, Read Bio / Close / Request Appointment UI, CTA block, 12 doctor highlight bullets (3 per doctor) |
-| `drProfiles` | Individual doctor profile pages — back link, role label, credentials heading, book button, hero heading, 3 bio paragraphs, quote, 7 credential bullets per doctor |
+| `meetDentists` | `/about/meet-the-dentists` — page kicker/title/subtitle, Read Bio / Close / Request Appointment UI, CTA block, 12 doctor highlight bullets (3 per doctor); highlights use verified facts only (ABPD Diplomate, UIC residency, FAAPD, UofM, etc.) — no fabricated clinical certifications |
+| `drProfiles` | Individual doctor profile pages — back link, role label, credentials heading, book button, hero heading, 3 bio paragraphs (bio0/bio1/bio2), quote, 7 credential bullets per doctor (cred0–cred6); all content is production-accurate per doctor-provided bios — no fabricated credentials |
 | `servicesPage` | `/services` overview |
 | `firstVisit` | `/for-patients/child-first-visit` |
 | `insurancePage` | `/for-patients/insurance-info` |
@@ -725,7 +738,7 @@ const STEP_META = [{ number: '01', icon: '👋', accentColor: '#4A90A4', ... }]
 const steps = STEP_META.map((meta, i) => ({ ...meta, title: t(`step${i}Title`), description: t(`step${i}Desc`) }))
 ```
 
-**Not translated:** Insurance company proper nouns (Aetna, Cigna, Delta Dental, Guardian, UnitedHealthcare, CareCredit), phone number, address, URLs.
+**Not translated:** Insurance company proper nouns (Aetna, Cigna, Delta Dental Premier, Guardian, Lincoln Financial, Principal, United Healthcare, CareCredit), phone number, address, URLs.
 
 ---
 
