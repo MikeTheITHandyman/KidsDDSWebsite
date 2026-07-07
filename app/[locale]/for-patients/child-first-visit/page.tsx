@@ -38,6 +38,7 @@ export default async function ChildFirstVisitPage({ params }: { params: Promise<
   }))
 
   const WHAT_TO_BRING = [t('bring0'), t('bring1'), t('bring2'), t('bring3'), t('bring4')]
+  const PREP_TIPS = [t('prep0'), t('prep1'), t('prep2'), t('prep3')]
 
   return (
     <SubPageLayout
@@ -101,6 +102,82 @@ export default async function ChildFirstVisitPage({ params }: { params: Promise<
                 {t('ageRuleBodySuffix')}
               </p>
             </div>
+          </div>
+        </AnimatedSection>
+
+        {/* Preparation tips */}
+        <AnimatedSection>
+          <div
+            style={{
+              background: 'linear-gradient(135deg, rgba(107,75,200,0.05), rgba(74,144,164,0.06))',
+              border: '1.5px solid rgba(107,75,200,0.12)',
+              borderRadius: '2rem',
+              padding: '2.25rem 2rem',
+              marginBottom: '4rem',
+            }}
+          >
+            <span
+              style={{
+                display: 'inline-block',
+                fontFamily: 'Nunito, sans-serif',
+                fontSize: '0.72rem',
+                fontWeight: 900,
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                color: 'var(--brand-purple)',
+                marginBottom: '0.5rem',
+              }}
+            >
+              {t('prepKicker')}
+            </span>
+            <h2
+              style={{
+                fontFamily: 'Nunito, sans-serif',
+                fontWeight: 900,
+                fontSize: 'clamp(1.1rem, 2.2vw, 1.35rem)',
+                color: 'var(--brand-purple)',
+                margin: '0 0 1.25rem',
+              }}
+            >
+              {t('prepHeading')}
+            </h2>
+            <ul
+              style={{
+                listStyle: 'none',
+                margin: 0,
+                padding: 0,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '0.85rem',
+              }}
+            >
+              {PREP_TIPS.map((tip) => (
+                <li
+                  key={tip}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    gap: '0.75rem',
+                    fontSize: '0.92rem',
+                    color: '#6b7280',
+                  }}
+                >
+                  <svg
+                    width="18"
+                    height="18"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="var(--brand-teal)"
+                    strokeWidth="2.5"
+                    style={{ flexShrink: 0, marginTop: '2px' }}
+                    aria-hidden="true"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  <span style={{ lineHeight: 1.65, fontWeight: 500 }}>{tip}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </AnimatedSection>
 
