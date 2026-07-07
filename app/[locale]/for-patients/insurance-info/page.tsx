@@ -7,11 +7,11 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 export const metadata: Metadata = {
   title: 'Insurance & Financing | Kids Dentist Grayslake, IL',
   description:
-    'Kids Dentist Grayslake is in-network with Aetna, Cigna, Delta Dental, Guardian, and UnitedHealthcare. We also accept Medicaid, CHIP, and out-of-network plans. Learn about financing options.',
+    'Kids Dentist Grayslake is in-network with Aetna, Cigna, Delta Dental Premier, Guardian, Lincoln Financial, Principal, and United Healthcare. Out-of-network plans welcome. Learn about financing options.',
   openGraph: {
     title: 'Insurance & Financing | Kids Dentist Grayslake, IL',
     description:
-      'We accept most major PPO plans and Medicaid. Our team handles the paperwork - you focus on your child.',
+      'We accept most major PPO plans. Our team handles the paperwork - you focus on your child.',
     url: 'https://kidsdds.com/for-patients/insurance-info',
     siteName: 'Kids Dentist',
     locale: 'en_US',
@@ -22,9 +22,11 @@ export const metadata: Metadata = {
 const IN_NETWORK_PROVIDERS = [
   { name: 'Aetna Dental' },
   { name: 'Cigna Dental' },
-  { name: 'Delta Dental' },
+  { name: 'Delta Dental Premier' },
   { name: 'Guardian Dental' },
-  { name: 'UnitedHealthcare Dental' },
+  { name: 'Lincoln Financial' },
+  { name: 'Principal Dental' },
+  { name: 'United Healthcare Dental' },
 ]
 
 export default async function InsuranceInfoPage({ params }: { params: Promise<{ locale: string }> }) {

@@ -153,12 +153,11 @@ export default function AskTheDoctorPage() {
                   How it works
                 </p>
                 <p style={{ fontSize: '0.875rem', fontWeight: 500, color: '#6b7280', lineHeight: 1.68, margin: 0 }}>
-                  Fill out the form below and your question goes directly to our doctors. We aim
-                  to respond within one business day. For scheduling, please use the{' '}
+                  Fill out the secure form below. Your question goes directly to our clinical specialists, and we aim to respond within one business day. For appointment scheduling or insurance questions, please use the{' '}
                   <Link href="/request-appointment" style={{ color: '#4A90A4', fontWeight: 700 }}>
                     appointment request form
                   </Link>
-                  {' '}instead.
+                  {' '}or contact the front desk directly.
                 </p>
               </div>
             </div>

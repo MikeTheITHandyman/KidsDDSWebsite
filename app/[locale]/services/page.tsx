@@ -31,9 +31,11 @@ const SERVICE_META = [
 const INSURANCES = [
   'Aetna Dental',
   'Cigna Dental',
-  'Delta Dental',
+  'Delta Dental Premier',
   'Guardian Dental',
-  'UnitedHealthcare Dental',
+  'Lincoln Financial',
+  'Principal Dental',
+  'United Healthcare Dental',
 ]
 
 export default async function ServicesPage({ params }: { params: Promise<{ locale: string }> }) {

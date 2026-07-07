@@ -35,7 +35,7 @@ const TREATMENTS = [
     number: '02',
     title: 'Pediatric Crowns',
     description:
-      'When decay is more advanced or a tooth is significantly weakened, a crown provides full coverage protection. We use tooth-colored zirconia crowns for front teeth and durable stainless steel crowns for back molars - both designed to last until the baby tooth naturally falls out.',
+      'When decay is more advanced or a tooth is significantly weakened, a crown provides full coverage protection. Dental crowns are designed to last until the baby tooth naturally falls out.',
     whatToExpect: 'Usually completed in one appointment. We prioritize making the experience as comfortable as possible - children are often surprised by how manageable it is.',
     accentColor: '#4A90A4',
     gradientFrom: '#DBEAFE',
@@ -271,7 +271,7 @@ export default function RestorativeDentistryPage() {
                 Baby teeth have several layers, and the center of the tooth contains the nerve. When a cavity is caught early, it only affects the outer layers of the tooth. However, if it becomes very deep and reaches the nerve, your child may need a pulpotomy or pulpectomy, often called a baby root canal.
               </p>
               <p style={{ fontSize: '0.95rem', lineHeight: 1.8, color: '#6b7280', margin: '0.85rem 0 0', fontWeight: 500 }}>
-                A pulpotomy removes the infected portion of the nerve inside the crown of the tooth. The tooth is then sealed with a special material and protected with a dental crown. If the infection has spread deeper into the roots or caused an abscess, a pulpectomy may be needed. Similar to an adult root canal, the infected tissue is removed, the inside of the tooth is cleaned, and the tooth is restored with a filling and a stainless steel crown.
+                A pulpotomy removes the infected portion of the nerve inside the crown of the tooth. The tooth is then sealed with a special material and protected with a dental crown. If the infection has spread deeper into the roots or caused an abscess, a pulpectomy may be needed. Similar to an adult root canal, the infected tissue is removed, the inside of the tooth is cleaned, and the tooth is restored with a filling and a dental crown.
               </p>
               <p style={{ fontSize: '0.95rem', lineHeight: 1.8, color: '#6b7280', margin: '0.85rem 0 0', fontWeight: 500 }}>
                 Both procedures are usually completed in a single visit. With modern techniques and sedation options, treatment is often comfortable and pain-free. These procedures not only relieve toothaches but also help save your child&apos;s tooth and maintain a healthy smile.
