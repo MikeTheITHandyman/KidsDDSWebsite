@@ -1,12 +1,12 @@
-# TODO: Staff Roster — Executive Review Required
+# Staff Roster — RESOLVED
 
-> **Status:** HOLD — Do not publish or act on this file until the CEO / attending dentist provides written sign-off on the final staffing transition.
+> **Status:** CLOSED — Executive (CEO/attending dentist) has confirmed in writing that the 12-person roster currently on the website is 100% correct and reflects real-world retirements and promotions. No changes required.
 
-This file documents discrepancies between the **staging site roster** (currently live on the website) and the **legacy payroll/records**. It must be reviewed and resolved before the staff page is considered production-accurate.
+The previous discrepancies noted below have been resolved by executive decision and require no further action.
 
 ---
 
-## Current Staging Roster (12 people)
+## Confirmed Final Roster (12 people)
 
 | Name | Role |
 |---|---|
@@ -25,26 +25,12 @@ This file documents discrepancies between the **staging site roster** (currently
 
 ---
 
-## Discrepancies vs. Legacy Payroll
+## Previously Noted Discrepancies — Now Resolved
 
-### Omitted from staging — need confirmation
-- **Cathy R.** — Clinic Manager and 23-year Hygienist. Absent from the staging roster with no explanation. Requires explicit confirmation of current employment status before the site goes live.
-- **Natalie F.** — Dental Assistant. No legacy documentation for removal.
-- **Cheryl** — Dental Assistant. No legacy documentation for removal.
+- **Cathy R.** — Retired. Her omission from the website is intentional.
+- **Natalie F.** — No longer with the practice. Omission is intentional.
+- **Cheryl** — No longer with the practice. Omission is intentional.
+- **Eva C.** — Promoted to Assistant Manager. Title on website is correct.
+- **Noemi & Sema** — Active employees. Their inclusion is confirmed.
 
-### Role discrepancy
-- **Eva C.** — Listed as **Assistant Manager** in the staging roster. Legacy records designate her role as **Dental Assistant**. Requires clarification before the title is published.
-
-### New additions with no legacy documentation
-- **Noemi** — Dental Assistant. No prior record found.
-- **Sema** — Hygiene Assistant. No prior record found.
-
----
-
-## Action Required
-
-1. CEO or attending dentist must confirm the final headcount and roles in writing.
-2. Resolve Cathy R., Natalie F., and Cheryl omissions.
-3. Confirm Eva C.'s correct title.
-4. Verify Noemi and Sema are active employees.
-5. Once confirmed, update `app/[locale]/about/meet-the-team/page.tsx` → `TEAM_MEMBERS` array and remove this file.
+This file is retained for audit trail purposes only.

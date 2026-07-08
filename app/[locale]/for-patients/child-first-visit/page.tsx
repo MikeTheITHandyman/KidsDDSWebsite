@@ -38,7 +38,7 @@ export default async function ChildFirstVisitPage({ params }: { params: Promise<
   }))
 
   const WHAT_TO_BRING = [t('bring0'), t('bring1'), t('bring2'), t('bring3'), t('bring4')]
-  const PREP_TIPS = [t('prep0'), t('prep1'), t('prep2'), t('prep3')]
+  const PREP_TIPS = [t('prep0'), t('prep1'), t('prep2'), t('prep3'), t('prep4')]
 
   return (
     <SubPageLayout

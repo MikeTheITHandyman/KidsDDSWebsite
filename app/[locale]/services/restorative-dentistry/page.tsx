@@ -35,7 +35,7 @@ const TREATMENTS = [
     number: '02',
     title: 'Pediatric Crowns',
     description:
-      'When decay is more advanced or a tooth is significantly weakened, a crown provides full coverage protection. Dental crowns are designed to last until the baby tooth naturally falls out.',
+      'If one of your child\'s teeth develops a large cavity or fractures, rather than removing it, we can largely replace the upper portion using a dental crown. This fits directly over the tooth to protect the remaining enamel while also bringing back its original appearance and function.',
     whatToExpect: 'Usually completed in one appointment. We prioritize making the experience as comfortable as possible - children are often surprised by how manageable it is.',
     accentColor: '#4A90A4',
     gradientFrom: '#DBEAFE',
