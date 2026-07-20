@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, type TargetAndTransition } from 'framer-motion'
 import React from 'react'
 
 interface AnimatedSectionProps {
@@ -9,6 +9,7 @@ interface AnimatedSectionProps {
   className?: string
   style?: React.CSSProperties
   direction?: 'up' | 'left' | 'right'
+  whileHover?: TargetAndTransition
 }
 
 export default function AnimatedSection({
@@ -17,6 +18,7 @@ export default function AnimatedSection({
   className = '',
   style,
   direction = 'up',
+  whileHover,
 }: AnimatedSectionProps) {
   const initial =
     direction === 'left'
@@ -35,6 +37,7 @@ export default function AnimatedSection({
         delay,
         ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
       }}
+      whileHover={whileHover}
       className={className}
       style={style}
     >

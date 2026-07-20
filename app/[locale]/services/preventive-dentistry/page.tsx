@@ -137,31 +137,6 @@ export default async function PreventiveDentistryPage({ params }: { params: Prom
           ))}
         </div>
 
-        {/* Space Maintainer section */}
-        <AnimatedSection>
-          <div
-            style={{
-              background: 'linear-gradient(135deg, rgba(74,144,164,0.06), rgba(107,168,153,0.08))',
-              border: '1.5px solid rgba(74,144,164,0.14)',
-              borderRadius: '2rem',
-              padding: 'clamp(2rem, 4vw, 3rem)',
-              marginBottom: '5rem',
-            }}
-          >
-            <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-              <span style={{ display: 'inline-block', fontFamily: 'Nunito, sans-serif', fontSize: '0.72rem', fontWeight: 900, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#D97706', marginBottom: '0.5rem' }}>
-                {t('spaceKicker')}
-              </span>
-              <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.4rem, 3vw, 1.9rem)', color: '#4A90A4', margin: 0 }}>
-                {t('spaceHeading')}
-              </h2>
-            </div>
-            <p style={{ fontSize: '0.95rem', lineHeight: 1.8, color: '#6b7280', margin: '0 auto', maxWidth: '760px', fontWeight: 500 }}>
-              {t('spaceBody')}
-            </p>
-          </div>
-        </AnimatedSection>
-
         {/* Age stages */}
         <AnimatedSection>
           <div

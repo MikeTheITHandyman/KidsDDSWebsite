@@ -185,7 +185,7 @@ export default async function EmergencyDentalCarePage({ params }: { params: Prom
           </div>
         </AnimatedSection>
 
-        {/* What to do - 3 steps alternating */}
+        {/* What to do - consolidated action guide */}
         <AnimatedSection delay={0.05}>
           <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
             <span className="section-kicker">{t('stepsKicker')}</span>
@@ -195,64 +195,41 @@ export default async function EmergencyDentalCarePage({ params }: { params: Prom
           </div>
         </AnimatedSection>
 
-        {STEPS.map((step, i) => (
-          <AnimatedSection key={step.step} delay={i * 0.07}>
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: i % 2 === 0 ? '1fr 1fr' : '1fr 1fr',
-                gap: '3rem',
-                alignItems: 'center',
-                marginBottom: '3.5rem',
-              }}
-              className="service-detail-grid"
-            >
-              {i % 2 !== 0 && (
-                <div
-                  style={{
-                    width: '100%',
-                    aspectRatio: '4 / 3',
-                    borderRadius: '1.5rem',
-                    background: `linear-gradient(135deg, ${step.gradientFrom}, ${step.gradientTo})`,
-                    flexShrink: 0,
-                  }}
-                  aria-hidden="true"
-                />
-              )}
-              <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', marginBottom: '0.85rem' }}>
-                  <div style={{
-                    width: '44px', height: '44px', borderRadius: '50%',
-                    background: `linear-gradient(135deg, ${step.gradientFrom}, ${step.gradientTo})`,
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: '1rem',
-                    color: step.accentColor, flexShrink: 0,
-                  }}>
-                    {step.step}
+        <AnimatedSection delay={0.07}>
+          <div
+            style={{
+              background: 'linear-gradient(135deg, rgba(245,200,66,0.16), rgba(245,200,66,0.08))',
+              border: '1.5px solid rgba(217,119,6,0.28)',
+              borderRadius: '1.75rem',
+              padding: '2.25rem 2rem',
+              marginBottom: '3.5rem',
+            }}
+          >
+            <div className="emergency-steps-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)' }}>
+              {STEPS.map((step) => (
+                <div key={step.step} className="emergency-step-item">
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', marginBottom: '0.85rem' }}>
+                    <div style={{
+                      width: '44px', height: '44px', borderRadius: '50%',
+                      background: `linear-gradient(135deg, ${step.gradientFrom}, ${step.gradientTo})`,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: '1rem',
+                      color: step.accentColor, flexShrink: 0,
+                    }}>
+                      {step.step}
+                    </div>
+                    <h3 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: '1.1rem', color: 'var(--brand-600)', margin: 0 }}>
+                      {step.title}
+                    </h3>
                   </div>
-                  <h3 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: '1.2rem', color: 'var(--brand-600)', margin: 0 }}>
-                    {step.title}
-                  </h3>
+                  <p style={{ color: '#4b5563', fontSize: '0.925rem', lineHeight: 1.72, fontWeight: 500, margin: 0 }}>
+                    {step.body}
+                  </p>
                 </div>
-                <p style={{ color: '#6b7280', fontSize: '0.975rem', lineHeight: 1.78, fontWeight: 500, margin: 0 }}>
-                  {step.body}
-                </p>
-              </div>
-              {i % 2 === 0 && (
-                <div
-                  style={{
-                    width: '100%',
-                    aspectRatio: '4 / 3',
-                    borderRadius: '1.5rem',
-                    background: `linear-gradient(135deg, ${step.gradientFrom}, ${step.gradientTo})`,
-                    flexShrink: 0,
-                  }}
-                  aria-hidden="true"
-                />
-              )}
+              ))}
             </div>
-          </AnimatedSection>
-        ))}
+          </div>
+        </AnimatedSection>
 
         {/* Knocked-out tooth tip */}
         <AnimatedSection delay={0.08}>
@@ -327,10 +304,14 @@ export default async function EmergencyDentalCarePage({ params }: { params: Prom
       </div>
 
       <style>{`
+        .emergency-step-item { padding: 0 1.5rem; }
+        .emergency-step-item:not(:first-child) { border-left: 1.5px solid rgba(217,119,6,0.25); }
         @media (max-width: 768px) {
-          .service-detail-grid { grid-template-columns: 1fr !important; }
           .emergency-chips-grid { grid-template-columns: repeat(2, 1fr) !important; }
           .tip-grid { grid-template-columns: 1fr !important; }
+          .emergency-steps-grid { grid-template-columns: 1fr !important; gap: 1.75rem; }
+          .emergency-step-item { padding: 0; }
+          .emergency-step-item:not(:first-child) { border-left: none; border-top: 1.5px solid rgba(217,119,6,0.25); padding-top: 1.75rem; }
         }
         @media (max-width: 480px) {
           .emergency-chips-grid { grid-template-columns: repeat(2, 1fr) !important; }

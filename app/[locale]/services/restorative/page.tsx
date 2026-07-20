@@ -59,6 +59,7 @@ const TREATMENT_META = [
   { icon: '👑', gradientFrom: '#D1FAE5', gradientTo: '#A7F3D0', accentColor: '#6BA899' },
   { icon: '🩺', gradientFrom: '#FEF3C7', gradientTo: '#FDE68A', accentColor: '#D97706' },
   { icon: '✂️', gradientFrom: '#EDE9FE', gradientTo: '#DDD6FE', accentColor: '#7C3AED' },
+  { icon: '🔗', gradientFrom: '#FFE4E6', gradientTo: '#FECDD3', accentColor: '#E97D63' },
 ]
 
 export default async function RestorativeDentistryPage({ params }: { params: Promise<{ locale: string }> }) {
@@ -111,7 +112,20 @@ export default async function RestorativeDentistryPage({ params }: { params: Pro
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', marginBottom: '5rem' }}>
           {TREATMENTS.map((t, i) => (
-            <AnimatedSection key={t.title} delay={i * 0.06}>
+            <AnimatedSection
+              key={t.title}
+              delay={i * 0.06}
+              whileHover={
+                i === TREATMENTS.length - 1
+                  ? {
+                      y: -5,
+                      scale: 1.02,
+                      boxShadow: '0 12px 32px rgba(0,0,0,0.08)',
+                      transition: { type: 'spring', stiffness: 300, damping: 18 },
+                    }
+                  : undefined
+              }
+            >
               <div
                 style={{
                   display: 'grid',

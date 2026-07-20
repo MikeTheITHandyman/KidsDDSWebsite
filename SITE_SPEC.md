@@ -2,7 +2,9 @@
 
 > **Purpose of this document:** A living reference for the current build state. Covers every route, component, design token, and content requirement so Claude Code can produce precise, context-rich work.
 
-**Last updated:** 2026-07-07 — Doctor credentials corrected site-wide (all four doctors now carry "DDS, MS"); clinical accuracy pass (general anesthesia terminology corrected, removed fabricated Dr. Rutcosky anesthesia claim); "Dental Emergency" QuickActionsBar pill changed to neutral ghost style; `/services/emergency` page redesigned with `EmergencyTriage` (Yes/No patient triage widget revealing after-hours line `(847) 241-8886` for existing patients, or office hours + main number for non-patients); contact form removed from emergency page; `Footer.tsx` tagline "Dentistry" capitalized; all four doctor bios (`drProfiles` namespace) replaced with exact production text; `about` namespace short bios + `meetDentists` highlight bullets + `drProfiles` credential arrays rewritten to remove fabricated credentials (sedation certified, nitrous oxide certified, special needs fellowship, etc.) and replaced with verified facts from production bios (ABPD Diplomate, UIC residency, FAAPD Fellowship, etc.); in-network insurance list updated to 7 providers (Aetna, Cigna, Delta Dental Premier, Guardian, Lincoln Financial, Principal, United Healthcare) — Medicaid/CHIP removed from all patient-facing copy; restorative dentistry crown copy changed from "zirconia/stainless steel crowns" to "dental crowns"; FAQ expanded from 5 Qs (3 groups) to 10 Qs (4 groups) with new Orthodontics & Braces category; first-visit timeline updated to 4 steps (A Warm Welcome, A Gentle Exam, Teething & Home Care Tips, The Toy Tower Reward); Ask the Doctor "How it works" paragraph updated; all changes applied to both `en.json` and `es.json`.
+**Last updated:** 2026-07-07 (v3 certified content remediation) — Two-pass clinical content audit against doctor-provided/CEO-confirmed source facts, closing out `TODO-roster-review.md` as RESOLVED. Dr. Sonia: bio1 corrected to CES Colombia (top of class) → UIC pediatric residency → UIC MS Oral Sciences narrative; all "Chief Resident" references removed (not in certified record). Dr. Sahar: added Northwestern University Dental School DDS (1998) and UIC specialty/MS completion date (2002). Dr. Anne-Ashley: removed "Michigan Wolverines" / University of Michigan hallucination; corrected to BS North Carolina State University + DDS Virginia Commonwealth University; credential fixed to "Board Member, Illinois Society of Pediatric Dentistry" (was mis-stated as AAPD membership). All four doctors' `drProfiles` credential arrays restructured (cred0–cred6) to remove ABPD duplicates and add AAPD/ADA/ISDS/CDS professional-affiliation bullets; all bio paragraphs replaced with full certified legacy text (personality, family, education narratives) in both `en.json` and `es.json`. First Visit page: AAPD age-rule paragraph updated ("...and the team at Kids Dentist" / "the earlier we start" closing); step 3 renamed "Cleaning & Fluoride" (prophylaxis + fluoride varnish, introduced ~age two); step 4 renamed "The Toy Tower & Prize Box"; preparation-tips section added (5 tips, `prep0`–`prep4`: positive language, books, photos, explaining the visit, role-play at home). Insurance page: Aetna Dental in-network entry now carries a "DMO under age 7 only" note (hardcoded in `insurance-info/page.tsx`'s `IN_NETWORK_PROVIDERS` array, not in the `en`/`es` JSON). Restorative dentistry crown description updated to certified patient-facing language.
+
+**Previously (2026-07-07, earlier pass):** Doctor credentials corrected site-wide (all four doctors now carry "DDS, MS"); clinical accuracy pass (general anesthesia terminology corrected, removed fabricated Dr. Rutcosky anesthesia claim); "Dental Emergency" QuickActionsBar pill changed to neutral ghost style; `/services/emergency` page redesigned with `EmergencyTriage` (Yes/No patient triage widget revealing after-hours line `(847) 241-8886` for existing patients, or office hours + main number for non-patients); contact form removed from emergency page; `Footer.tsx` tagline "Dentistry" capitalized; all four doctor bios (`drProfiles` namespace) replaced with exact production text; `about` namespace short bios + `meetDentists` highlight bullets + `drProfiles` credential arrays rewritten to remove fabricated credentials (sedation certified, nitrous oxide certified, special needs fellowship, etc.) and replaced with verified facts from production bios (ABPD Diplomate, UIC residency, FAAPD Fellowship, etc.); in-network insurance list updated to 7 providers (Aetna, Cigna, Delta Dental Premier, Guardian, Lincoln Financial, Principal, United Healthcare) — Medicaid/CHIP removed from all patient-facing copy; FAQ expanded from 5 Qs (3 groups) to 10 Qs (4 groups) with new Orthodontics & Braces category; Ask the Doctor "How it works" paragraph updated.
 
 **Previously (2026-07-01):** `/about/meet-the-team` built out with real staff headshots (`TeamCard.tsx`, 12-person roster, nametag pills, job titles); real headshots replace all 4 doctor photos (home page + meet-the-dentists); homepage emergency-service title fixed to "Dentistry"; mobile announcement bar stacks into two rows.
 
@@ -48,7 +50,7 @@ All four completed their pediatric dentistry specialty at the University of Illi
 - 650+ five-star Google reviews (4.8★)
 - Same-day appointments available
 - Emergency pediatric visits accepted
-- In-network with Aetna, Cigna, Delta Dental Premier, Guardian, Lincoln Financial, Principal, and United Healthcare
+- In-network with Aetna, Cigna, Delta Dental Premier, Guardian, Lincoln Financial, Principal, and United Healthcare (Aetna is DMO-only under age 7 — noted on `/for-patients/insurance-info`)
 - Board-certified pediatric specialists only
 - Hablamos Español
 
@@ -315,8 +317,10 @@ Mon–Fri schedule (see Section 1 table above)
 ### First Visit steps (`firstVisit` namespace — 4 steps)
 1. A Warm Welcome
 2. A Gentle Exam
-3. Teething & Home Care Tips
-4. The Toy Tower Reward
+3. Cleaning & Fluoride
+4. The Toy Tower & Prize Box
+
+Also includes a 5-item preparation-tips section (`prepHeading` + `prep0`–`prep4`) shown before the CTA.
 
 ---
 
@@ -690,7 +694,7 @@ Include alternates.canonical for https://www.kidsdds.com/[route].
 | `common` | Shared strings (loading, error, learn more, etc.) |
 | `about` | `/about` (philosophy block, DoctorGrid bios, OfficeTourPreview copy) + `meet-the-dentists` page shared strings |
 | `aboutPage` | `/about` (legacy namespace — superseded by `about` for new components; retain if still referenced) |
-| `meetDentists` | `/about/meet-the-dentists` — page kicker/title/subtitle, Read Bio / Close / Request Appointment UI, CTA block, 12 doctor highlight bullets (3 per doctor); highlights use verified facts only (ABPD Diplomate, UIC residency, FAAPD, UofM, etc.) — no fabricated clinical certifications |
+| `meetDentists` | `/about/meet-the-dentists` — page kicker/title/subtitle, Read Bio / Close / Request Appointment UI, CTA block, 12 doctor highlight bullets (3 per doctor); highlights use verified facts only (ABPD Diplomate, UIC residency, FAAPD, VCU, etc.) — no fabricated clinical certifications |
 | `drProfiles` | Individual doctor profile pages — back link, role label, credentials heading, book button, hero heading, 3 bio paragraphs (bio0/bio1/bio2), quote, 7 credential bullets per doctor (cred0–cred6); all content is production-accurate per doctor-provided bios — no fabricated credentials |
 | `servicesPage` | `/services` overview |
 | `firstVisit` | `/for-patients/child-first-visit` |
