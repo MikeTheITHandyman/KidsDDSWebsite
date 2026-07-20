@@ -1,5 +1,6 @@
 import React from 'react'
 import type { Metadata } from 'next'
+import { Lilita_One } from 'next/font/google'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
@@ -13,6 +14,13 @@ import { locales } from '../../i18n.config'
 import { client } from '../../sanity/lib/client'
 import { latestPostQuery } from '../../sanity/lib/queries'
 import '../../styles/global.css'
+
+const lilitaOne = Lilita_One({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-heading',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.kidsdds.com'),
@@ -95,7 +103,7 @@ export default async function LocaleLayout({
   )
 
   return (
-    <html lang={locale}>
+    <html lang={locale} className={lilitaOne.variable}>
       <head>
         <script
           type="application/ld+json"
