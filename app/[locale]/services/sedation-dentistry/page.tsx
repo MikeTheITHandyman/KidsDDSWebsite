@@ -1,6 +1,5 @@
 import SubPageLayout from '@/components/SubPageLayout'
 import AnimatedSection from '@/components/AnimatedSection'
-import FaqAccordion, { type FaqItem } from '@/components/FaqAccordion'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
@@ -43,11 +42,6 @@ export default async function SedationDentistryPage({ params }: { params: Promis
     howItWorks: t(`option${i}How`),
     ideal: t(`option${i}Ideal`),
   }))
-
-  const FAQ_ITEMS: FaqItem[] = [
-    { question: t('faq0q'), answer: t('faq0a') },
-    { question: t('faq1q'), answer: t('faq1a') },
-  ]
 
   return (
     <SubPageLayout
@@ -210,59 +204,6 @@ export default async function SedationDentistryPage({ params }: { params: Promis
             </AnimatedSection>
           ))}
         </div>
-
-        {/* Parent FAQ */}
-        <AnimatedSection>
-          <div style={{ marginBottom: '5rem' }}>
-            <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-              <span style={{ display: 'inline-block', fontFamily: 'Nunito, sans-serif', fontSize: '0.72rem', fontWeight: 900, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#D97706', marginBottom: '0.5rem' }}>
-                {t('faqKicker')}
-              </span>
-              <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.4rem, 3vw, 1.9rem)', color: '#3D3D3D', margin: 0 }}>
-                {t('faqHeading')}
-              </h2>
-            </div>
-            <FaqAccordion items={FAQ_ITEMS} accentColor="#D97706" />
-          </div>
-        </AnimatedSection>
-
-        {/* Dr. Dave callout */}
-        <AnimatedSection>
-          <div
-            style={{
-              background: 'linear-gradient(135deg, rgba(107,168,153,0.07), rgba(74,144,164,0.07))',
-              border: '1.5px solid rgba(107,168,153,0.18)',
-              borderRadius: '2rem',
-              padding: '2.5rem',
-              marginBottom: '4rem',
-              display: 'flex',
-              alignItems: 'flex-start',
-              gap: '1.5rem',
-              flexWrap: 'wrap',
-            }}
-          >
-            <div style={{ flexShrink: 0, width: '56px', height: '56px', borderRadius: '50%', background: 'linear-gradient(135deg, #D1FAE5, #A7F3D0)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.75rem' }} aria-hidden="true">
-              🩺
-            </div>
-            <div style={{ flex: 1, minWidth: '240px' }}>
-              <h3 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: '1.05rem', color: '#6BA899', margin: '0 0 0.5rem' }}>
-                {t('drHeading')}
-              </h3>
-              <p style={{ fontSize: '0.92rem', lineHeight: 1.72, color: '#6b7280', margin: '0 0 1rem' }}>
-                {t('drBody')}
-              </p>
-              <Link
-                href="/about/meet-the-dentists/dr-dave-rutcosky"
-                style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', color: '#6BA899', fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '0.875rem', textDecoration: 'none' }}
-              >
-                {t('drLink')}
-                <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </Link>
-            </div>
-          </div>
-        </AnimatedSection>
 
         {/* CTA */}
         <AnimatedSection>

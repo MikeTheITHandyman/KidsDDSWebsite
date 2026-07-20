@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 }
 
 const GROUP_META: { icon: string; accentColor: string; itemCount: number }[] = [
-  { icon: '👋', accentColor: '#4A90A4', itemCount: 3 },
+  { icon: '👋', accentColor: '#4A90A4', itemCount: 2 },
   { icon: '🛡️', accentColor: '#6BA899', itemCount: 3 },
   { icon: '🦷', accentColor: '#6B4BC8', itemCount: 2 },
   { icon: '🚨', accentColor: '#E97D63', itemCount: 2 },
