@@ -1,6 +1,6 @@
 'use client'
 
-import Link from 'next/link'
+import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import LanguageSwitcher from '@/components/LanguageSwitcher'
@@ -9,13 +9,67 @@ const springBtn = { type: 'spring', stiffness: 400, damping: 20 } as const
 
 export default function Hero() {
   const t = useTranslations('hero')
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  // Autoplaying background video is a motion effect — honor prefers-reduced-motion
+  // by pausing on mount rather than never loading it (poster frame still shows).
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      videoRef.current?.pause()
+    }
+  }, [])
 
   return (
-    <section className="hero overflow-x-hidden">
-      <div className="hero-outer">
+    <section className="hero relative isolate overflow-hidden">
+
+      {/*
+        NOTE: This project's `className` Tailwind strings do not currently compile —
+        there is no tailwindcss dependency, postcss.config, or @tailwind/@import
+        directive wired into the build, so utility classes like `absolute`/`-z-20`
+        render as inert no-ops. The classNames below are kept (in case Tailwind is
+        ever properly configured) but every layout-critical property also has an
+        inline `style` fallback so this actually renders correctly today.
+      */}
+
+      {/* ── Full-bleed background video ── */}
+      <video
+        ref={videoRef}
+        src="/brand_assets/KD%20Hero%20HD.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+        aria-hidden="true"
+        className="absolute inset-0 w-full h-full object-cover -z-20"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          zIndex: -20,
+        }}
+      />
+
+      {/* ── Readability overlay ── */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-black/50 -z-10"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: -10,
+          backgroundColor: 'rgba(0,0,0,0.5)',
+        }}
+      />
+
+      <div
+        className="hero-outer relative z-10 w-full container mx-auto"
+        style={{ position: 'relative', zIndex: 10, width: '100%' }}
+      >
       <div className="hero-inner">
 
-        {/* ── Left: Text Content ── */}
+        {/* ── Text Content (overlaid on the video) ── */}
         <div className="hero-content">
 
           {/* Badges row: location + language switcher */}
@@ -48,103 +102,133 @@ export default function Hero() {
             {t('tagline')}
           </motion.p>
 
-          {/* Trusted 30 years banner */}
-          <motion.div
-            initial={{ opacity: 0, x: -16 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.32 }}
-            className="hero-trust-banner"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.6rem',
-              background: 'rgba(61,189,189,0.08)',
-              border: '1.5px solid rgba(61,189,189,0.28)',
-              borderRadius: '16px',
-              padding: '0.6rem 1.1rem',
-              marginBottom: '1.5rem',
-              fontFamily: 'Nunito, sans-serif',
-              maxWidth: '100%',
-              boxSizing: 'border-box',
-            }}
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-teal)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <circle cx="12" cy="8" r="6"/>
-              <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
-            </svg>
-            <span style={{ fontSize: '0.92rem', fontWeight: 800, color: 'var(--brand-teal)' }}>
-              {t('trustBanner')}
-            </span>
-          </motion.div>
-
-          {/* CTAs */}
-          <div className="hero-ctas flex flex-col sm:flex-row gap-4 items-start">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={springBtn}
-              style={{ display: 'inline-flex' }}
-            >
-              <Link href="/request-appointment" className="btn-hero-primary">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <rect x="3" y="4" width="18" height="18" rx="3"/>
-                  <line x1="16" y1="2" x2="16" y2="6"/>
-                  <line x1="8" y1="2" x2="8" y2="6"/>
-                  <line x1="3" y1="10" x2="21" y2="10"/>
-                </svg>
-                {t('ctaAppointment')}
-              </Link>
-            </motion.div>
-            <motion.a
-              href="tel:+18472231400"
-              className="btn-hero-call"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={springBtn}
-            >
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 9.8 19.79 19.79 0 0 1 1 1.18 2 2 0 0 1 2.82 0h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L6.91 7.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/>
-              </svg>
-              {t('ctaCall')}
-            </motion.a>
-          </div>
-
-        </div>
-
-        {/* ── Right: Video ── */}
-        <div className="hero-right-col">
-          <div className="hero-visual" aria-hidden="true">
-            <div className="hero-image-blob">
-              <video autoPlay loop muted playsInline className="hero-video" aria-hidden="true">
-                <source src="/brand_assets/hero-video.mp4" type="video/mp4" />
-              </video>
-            </div>
-            <div className="hero-deco-1 hidden md:block"/>
-            <div className="hero-deco-2 hidden md:block"/>
-            <div className="hero-deco-3 hidden md:block"/>
-          </div>
         </div>
 
       </div>
       </div>{/* end hero-outer */}
 
+      {/* ── Top-right corner group: trust banner + call CTA (bottom, full-width on mobile) ── */}
+      <div className="hero-corner">
+        <motion.div
+          initial={{ opacity: 0, x: 16 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.32 }}
+          className="hero-trust-banner"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.6rem',
+            background: 'rgba(255,255,255,0.12)',
+            border: '1.5px solid rgba(255,255,255,0.32)',
+            borderRadius: '16px',
+            padding: '0.6rem 1.1rem',
+            fontFamily: 'Nunito, sans-serif',
+            maxWidth: '100%',
+            boxSizing: 'border-box',
+            backdropFilter: 'blur(6px)',
+            WebkitBackdropFilter: 'blur(6px)',
+          }}
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--cta-yellow)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <circle cx="12" cy="8" r="6"/>
+            <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
+          </svg>
+          <span style={{ fontSize: '0.92rem', fontWeight: 800, color: 'var(--cta-yellow)' }}>
+            {t('trustBanner')}
+          </span>
+        </motion.div>
+
+        <motion.a
+          href="tel:+18472231400"
+          className="btn-hero-call"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          transition={springBtn}
+        >
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 9.8 19.79 19.79 0 0 1 1 1.18 2 2 0 0 1 2.82 0h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L6.91 7.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/>
+          </svg>
+          {t('ctaCall')}
+        </motion.a>
+      </div>
+
       <style>{`
-        .hero { padding-top: 0.25in; padding-bottom: 2.5rem; }
-        .hero .hero-ctas { flex-wrap: wrap; margin-bottom: 0; }
-        @media (max-width: 639px) {
-          .hero .hero-ctas { flex-direction: column; align-items: flex-start; }
-          .hero .btn-hero-primary, .hero .btn-hero-call { white-space: normal; text-align: left; }
-          .hero .hero-trust-banner { display: flex; width: 100%; }
+        .hero {
+          padding-top: 0;
+          padding-bottom: 0;
+          min-height: 74vh;
+          background: #140C28;
+          position: relative;
+          isolation: isolate;
+          overflow: hidden;
+        }
+        @media (min-width: 768px) {
+          .hero { min-height: 90vh; }
+        }
+        .hero-corner {
+          position: absolute;
+          top: 4rem;
+          right: 2.5rem;
+          z-index: 10;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          gap: 0.75rem;
+          max-width: 320px;
+        }
+        @media (max-width: 768px) {
+          /* Below this width, hero-corner drops out of absolute positioning and
+             flows in-document right after the text column — pinning it to the
+             hero's bottom edge would collide with FloatingWidget.tsx's fixed
+             bottom-right CTA pill on initial page load. */
+          .hero { flex-direction: column; align-items: stretch; }
+          .hero-corner {
+            position: static;
+            max-width: none;
+            align-items: stretch;
+            margin: 0 1.5rem 2rem;
+          }
+          .hero .btn-hero-call { white-space: normal; text-align: left; justify-content: center; }
+          .hero .hero-trust-banner { display: flex; width: 100%; box-sizing: border-box; }
           .hero .hero-trust-banner span { white-space: normal; }
         }
-        @media (min-width: 640px) {
-          .hero .hero-ctas { flex-direction: row; align-items: center; }
+        .hero-outer { display: flex; flex-direction: column; width: 100%; overflow-x: hidden; position: relative; z-index: 10; }
+        .hero .hero-inner {
+          display: block;
+          max-width: 680px;
+          width: 100%;
+          margin: 0;
+          padding: 4rem 2.5rem;
+          text-align: left;
         }
-        .hero-outer { display: flex; flex-direction: column; width: 100%; max-width: 100%; overflow-x: hidden; position: relative; z-index: 2; }
-        .hero-right-col { display: flex; flex-direction: column; min-width: 0; max-width: 100%; }
-        .hero-image-blob { max-width: 100%; }
-        @media (min-width: 1024px) {
-          .hero-visual { transform: scale(1.25); transform-origin: center center; }
+        @media (max-width: 768px) {
+          .hero .hero-inner { padding: 3.5rem 1.5rem; }
+        }
+        .hero .hero-badge {
+          color: #fff;
+          background: rgba(255,255,255,0.14);
+          border-color: rgba(255,255,255,0.35);
+          backdrop-filter: blur(6px);
+          -webkit-backdrop-filter: blur(6px);
+        }
+        .hero .hero-content h1 {
+          color: #fff;
+          text-shadow: 0 2px 20px rgba(0,0,0,0.35);
+        }
+        .hero .hero-sub {
+          color: rgba(255,255,255,0.92);
+          text-shadow: 0 1px 14px rgba(0,0,0,0.30);
+        }
+        .hero .btn-hero-call {
+          color: #fff;
+          background: rgba(255,255,255,0.12);
+          border-color: rgba(255,255,255,0.55);
+          backdrop-filter: blur(6px);
+          -webkit-backdrop-filter: blur(6px);
+        }
+        .hero .btn-hero-call:hover {
+          background: rgba(255,255,255,0.22);
+          border-color: #fff;
         }
       `}</style>
     </section>
