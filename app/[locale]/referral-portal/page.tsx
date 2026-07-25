@@ -1,6 +1,7 @@
 import ReferralForm from './ReferralForm'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { getTranslations } from 'next-intl/server'
 
 export const metadata: Metadata = {
   title: 'Doctor & School Referral Portal | Kids Dentist Grayslake, IL',
@@ -21,24 +22,13 @@ export const metadata: Metadata = {
 }
 
 const NEXT_STEPS = [
-  {
-    n: '1',
-    heading: 'Referral received within minutes',
-    body: 'Your submission is transmitted securely and enters our scheduling queue immediately.',
-  },
-  {
-    n: '2',
-    heading: 'Family contacted within one business day',
-    body: 'Our scheduling coordinator reaches out to confirm the appointment and gather insurance information.',
-  },
-  {
-    n: '3',
-    heading: 'Consultation summary available on request',
-    body: 'We can send a post-visit summary back to your practice for continuity of care.',
-  },
+  { n: '1', headingKey: 'step0Heading', bodyKey: 'step0Body' },
+  { n: '2', headingKey: 'step1Heading', bodyKey: 'step1Body' },
+  { n: '3', headingKey: 'step2Heading', bodyKey: 'step2Body' },
 ]
 
-export default function ReferralPortalPage() {
+export default async function ReferralPortalPage() {
+  const t = await getTranslations('referralPortal')
   return (
     <div
       style={{
@@ -92,7 +82,7 @@ export default function ReferralPortalPage() {
                 color: '#78509b',
               }}
             >
-              For Healthcare Providers
+              {t('providerBadge')}
             </span>
           </div>
 
@@ -107,7 +97,7 @@ export default function ReferralPortalPage() {
               letterSpacing: '-0.025em',
             }}
           >
-            Doctor &amp; School Referral Portal
+            {t('title')}
           </h1>
 
           <p
@@ -120,8 +110,7 @@ export default function ReferralPortalPage() {
               maxWidth: '560px',
             }}
           >
-            Secure, zero-friction pediatric dental referrals for Lake County healthcare
-            providers, orthodontists, and educational partners.
+            {t('subtitle')}
           </p>
         </div>
 
@@ -160,7 +149,7 @@ export default function ReferralPortalPage() {
                   lineHeight: 1.3,
                 }}
               >
-                What happens next
+                {t('nextStepsHeading')}
               </h2>
               <p
                 style={{
@@ -171,7 +160,7 @@ export default function ReferralPortalPage() {
                   lineHeight: 1.55,
                 }}
               >
-                Our process from submission to scheduled visit.
+                {t('nextStepsSub')}
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
                 {NEXT_STEPS.map((step) => (
@@ -213,7 +202,7 @@ export default function ReferralPortalPage() {
                           lineHeight: 1.3,
                         }}
                       >
-                        {step.heading}
+                        {t(step.headingKey)}
                       </p>
                       <p
                         style={{
@@ -224,7 +213,7 @@ export default function ReferralPortalPage() {
                           lineHeight: 1.55,
                         }}
                       >
-                        {step.body}
+                        {t(step.bodyKey)}
                       </p>
                     </div>
                   </div>
@@ -251,7 +240,7 @@ export default function ReferralPortalPage() {
                   margin: '0 0 0.5rem',
                 }}
               >
-                Need to speak with us directly?
+                {t('needHelpHeading')}
               </p>
               <p
                 style={{
@@ -262,8 +251,7 @@ export default function ReferralPortalPage() {
                   lineHeight: 1.6,
                 }}
               >
-                Call our office and mention you are a referring provider. We will connect
-                you with our scheduling coordinator.
+                {t('needHelpBody')}
               </p>
               <a
                 href="tel:+18472231400"
@@ -302,7 +290,7 @@ export default function ReferralPortalPage() {
                   fontWeight: 500,
                 }}
               >
-                Mon–Thu 9 am–5 pm · Fri 8 am–2 pm
+                {t('officeHoursShort')}
               </p>
             </div>
 
@@ -329,10 +317,10 @@ export default function ReferralPortalPage() {
                   lineHeight: 1.5,
                 }}
               >
-                Sending a family our way?
+                {t('sendingFamily')}
                 <br />
                 <span style={{ fontWeight: 500, color: '#9ca3af' }}>
-                  Share our appointment page.
+                  {t('shareAppointment')}
                 </span>
               </p>
               <Link
@@ -351,9 +339,9 @@ export default function ReferralPortalPage() {
                   padding: '0.45rem 0.9rem',
                   borderRadius: '100px',
                 }}
-                aria-label="Go to patient appointment request page"
+                aria-label={t('bookNowAria')}
               >
-                Book now →
+                {t('bookNow')}
               </Link>
             </div>
           </div>

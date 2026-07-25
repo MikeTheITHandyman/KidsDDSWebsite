@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl'
 
 const DOCTORS = [
   {
-    name: 'Dr. Sonia Gutierrez',
+    nameKey: 'soniaName',
     firstName: 'Sonia',
     bioHref: '/about/meet-the-dentists/dr-sonia-gutierrez',
     blobRadius: '60% 40% 30% 70% / 60% 30% 70% 40%',
@@ -16,7 +16,7 @@ const DOCTORS = [
     delay: 0,
   },
   {
-    name: 'Dr. Dave Rutcosky',
+    nameKey: 'daveName',
     firstName: 'Dave',
     bioHref: '/about/meet-the-dentists/dr-dave-rutcosky',
     blobRadius: '40% 60% 70% 30% / 40% 70% 30% 60%',
@@ -26,7 +26,7 @@ const DOCTORS = [
     delay: 0.1,
   },
   {
-    name: 'Dr. Sahar Alrayyes',
+    nameKey: 'saharName',
     firstName: 'Sahar',
     bioHref: '/about/meet-the-dentists/dr-sahar-alrayyes',
     blobRadius: '50% 50% 30% 70% / 60% 40% 70% 30%',
@@ -36,7 +36,7 @@ const DOCTORS = [
     delay: 0.2,
   },
   {
-    name: 'Dr. Anne-Ashley Compton',
+    nameKey: 'anneAshleyName',
     firstName: 'Ashley',
     bioHref: '/about/meet-the-dentists/dr-anne-ashley-compton',
     blobRadius: '70% 30% 50% 50% / 40% 60% 40% 60%',
@@ -49,6 +49,7 @@ const DOCTORS = [
 
 export default function MeetOurDoctors() {
   const t = useTranslations('doctors')
+  const tAbout = useTranslations('about')
 
   return (
     <section
@@ -90,7 +91,7 @@ export default function MeetOurDoctors() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.75rem' }} className="doctors-grid">
           {DOCTORS.map((doc) => (
             <motion.div
-              key={doc.name}
+              key={doc.nameKey}
               initial={{ opacity: 0, y: 36 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
@@ -104,7 +105,7 @@ export default function MeetOurDoctors() {
               >
                 <Image
                   src={doc.photo}
-                  alt={`Headshot of ${doc.name}`}
+                  alt={t('headshotAlt', { name: tAbout(doc.nameKey) })}
                   fill
                   sizes="(max-width: 540px) 80vw, (max-width: 900px) 35vw, 18vw"
                   style={{ objectFit: 'cover', objectPosition: 'top center' }}
@@ -113,7 +114,7 @@ export default function MeetOurDoctors() {
 
               {/* Name & role */}
               <h3 style={{ fontFamily: 'Nunito, sans-serif', fontSize: '1rem', fontWeight: 800, color: 'var(--brand-600)', margin: '0 0 0.35rem', lineHeight: 1.3 }}>
-                {doc.name}
+                {tAbout(doc.nameKey)}
               </h3>
               <p style={{ fontSize: '0.8rem', fontWeight: 600, color: '#9ca3af', margin: 0, letterSpacing: '0.03em' }}>
                 {t('role')}

@@ -3,6 +3,7 @@ import SubPageLayout from '@/components/SubPageLayout'
 import { client } from '@/sanity/lib/client'
 import { allPostsQuery } from '@/sanity/lib/queries'
 import BlogGrid from './BlogGrid'
+import { getTranslations } from 'next-intl/server'
 
 export const metadata: Metadata = {
   title: 'Pediatric Dental Blog | Kids Dentist Grayslake, IL',
@@ -20,13 +21,14 @@ export const metadata: Metadata = {
 }
 
 export default async function BlogPage() {
+  const t = await getTranslations('blogPage')
   const posts = await client.fetch(allPostsQuery, {}, { next: { revalidate: 60 } })
 
   return (
     <SubPageLayout
-      kicker="Practice News & Advice"
-      title="Pediatric Dental Blog"
-      subtitle="Real advice on children's oral health from our board-certified pediatric dentists."
+      kicker={t('kicker')}
+      title={t('title')}
+      subtitle={t('subtitle')}
       gradient="green"
     >
       <BlogGrid posts={posts} />

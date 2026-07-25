@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion, type Variants } from 'framer-motion'
 import { urlFor } from '@/sanity/lib/image'
+import { useTranslations, useLocale } from 'next-intl'
 
 interface SanityPost {
   _id: string
@@ -33,9 +34,9 @@ const cardVariants: Variants = {
   show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 55, damping: 14 } },
 }
 
-function formatDate(iso?: string) {
+function formatDate(iso: string | undefined, locale: string) {
   if (!iso) return ''
-  return new Date(iso).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
+  return new Date(iso).toLocaleDateString(locale === 'es' ? 'es' : 'en-US', { month: 'long', day: 'numeric', year: 'numeric' })
 }
 
 function CategoryChip({ label }: { label?: string }) {
@@ -53,6 +54,7 @@ interface BlogGridProps {
 }
 
 function EmptyState() {
+  const t = useTranslations('blogGrid')
   return (
     <section className="blog-empty">
       <div className="blog-empty-inner">
@@ -64,14 +66,13 @@ function EmptyState() {
             <path d="M44 38h4M46 36v4" stroke="#E8934F" strokeWidth="2" strokeLinecap="round"/>
           </svg>
         </div>
-        <h2 className="blog-empty-title">First post coming soon!</h2>
+        <h2 className="blog-empty-title">{t('firstPostComingSoon')}</h2>
         <p className="blog-empty-sub">
-          Our doctors are writing expert tips and guides for Grayslake families.
-          Check back soon - or visit the Studio at{' '}
-          <a href="/studio" className="blog-empty-link">/studio</a> to publish the first post.
+          {t('emptyBodyPrefix')}{' '}
+          <a href="/studio" className="blog-empty-link">/studio</a> {t('emptyBodySuffix')}
         </p>
         <Link href="/request-appointment" className="btn-hero-primary" style={{ marginTop: '1.5rem', display: 'inline-flex' }}>
-          Schedule an Appointment Instead
+          {t('scheduleInstead')}
         </Link>
       </div>
     </section>
@@ -79,6 +80,7 @@ function EmptyState() {
 }
 
 export default function BlogGrid({ posts }: BlogGridProps) {
+  const locale = useLocale()
   if (posts.length === 0) return <EmptyState />
 
   const [featured, ...rest] = posts
@@ -119,7 +121,7 @@ export default function BlogGrid({ posts }: BlogGridProps) {
                 <div className="blog-card-author-row">
                   <span className="blog-card-author">{featured.author}</span>
                   {featured.publishedAt && (
-                    <span className="blog-card-date">{formatDate(featured.publishedAt)}</span>
+                    <span className="blog-card-date">{formatDate(featured.publishedAt, locale)}</span>
                   )}
                 </div>
               </div>
@@ -165,7 +167,7 @@ export default function BlogGrid({ posts }: BlogGridProps) {
                     <div className="blog-card-author-row">
                       <span className="blog-card-author">{post.author}</span>
                       {post.publishedAt && (
-                        <span className="blog-card-date">{formatDate(post.publishedAt)}</span>
+                        <span className="blog-card-date">{formatDate(post.publishedAt, locale)}</span>
                       )}
                     </div>
                   </div>

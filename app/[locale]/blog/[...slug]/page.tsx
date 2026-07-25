@@ -6,6 +6,7 @@ import { PortableText, type PortableTextComponents } from '@portabletext/react'
 import { client } from '@/sanity/lib/client'
 import { postBySlugQuery } from '@/sanity/lib/queries'
 import { urlFor } from '@/sanity/lib/image'
+import { getTranslations } from 'next-intl/server'
 
 interface Post {
   _id: string
@@ -20,7 +21,7 @@ interface Post {
 }
 
 interface Props {
-  params: Promise<{ slug: string[] }>
+  params: Promise<{ slug: string[]; locale: string }>
 }
 
 export async function generateStaticParams() {
@@ -112,15 +113,16 @@ const portableTextComponents: PortableTextComponents = {
   },
 }
 
-function formatDate(iso?: string) {
+function formatDate(iso: string | undefined, locale: string) {
   if (!iso) return ''
-  return new Date(iso).toLocaleDateString('en-US', {
+  return new Date(iso).toLocaleDateString(locale === 'es' ? 'es' : 'en-US', {
     month: 'long', day: 'numeric', year: 'numeric',
   })
 }
 
 export default async function BlogPost({ params }: Props) {
-  const { slug } = await params
+  const { slug, locale } = await params
+  const t = await getTranslations('blogPostPage')
   const post: Post | null = await client.fetch(
     postBySlugQuery,
     { slug: slug[0] },
@@ -138,7 +140,7 @@ export default async function BlogPost({ params }: Props) {
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <polyline points="15 18 9 12 15 6"/>
           </svg>
-          Back to Blog
+          {t('backToBlog')}
         </Link>
       </div>
 
@@ -151,7 +153,7 @@ export default async function BlogPost({ params }: Props) {
         <div className="blog-post-meta">
           <span className="blog-card-author">{post.author}</span>
           {post.publishedAt && (
-            <span className="blog-card-date">{formatDate(post.publishedAt)}</span>
+            <span className="blog-card-date">{formatDate(post.publishedAt, locale)}</span>
           )}
         </div>
       </header>
@@ -178,8 +180,8 @@ export default async function BlogPost({ params }: Props) {
           <PortableText value={post.body as any} components={portableTextComponents} />
         ) : (
           <p className="blog-post-coming-soon">
-            No body content yet.{' '}
-            <a href="/studio" className="blog-empty-link">Add it in the Studio</a>.
+            {t('noBodyYet')}{' '}
+            <a href="/studio" className="blog-empty-link">{t('addItStudio')}</a>.
           </p>
         )}
       </div>

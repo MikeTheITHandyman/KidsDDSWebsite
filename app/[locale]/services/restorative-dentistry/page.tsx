@@ -3,6 +3,7 @@ import AnimatedSection from '@/components/AnimatedSection'
 import FaqAccordion, { type FaqItem } from '@/components/FaqAccordion'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { getTranslations } from 'next-intl/server'
 
 export const metadata: Metadata = {
   title: 'Restorative Dentistry for Kids | Kids Dentist Grayslake, IL',
@@ -19,71 +20,33 @@ export const metadata: Metadata = {
   },
 }
 
-const TREATMENTS = [
-  {
-    number: '01',
-    title: 'Tooth-Colored Fillings',
-    description:
-      'When a cavity is caught early, a tooth-colored composite filling is all that\'s needed. We use composite resin that matches your child\'s natural tooth shade - no silver amalgam, no visible metal. The procedure is quick, gentle, and often surprises both kids and parents with how easy it is.',
-    whatToExpect: 'Typically completed in a single visit. Mild numbing, quick cleanup of decay, and a perfectly matched restoration. Most kids leave ready for lunch.',
-    accentColor: '#6BA899',
-    gradientFrom: '#D1FAE5',
-    gradientTo: '#A7F3D0',
-    icon: '✨',
-  },
-  {
-    number: '02',
-    title: 'Pediatric Crowns',
-    description:
-      'If one of your child\'s teeth develops a large cavity or fractures, rather than removing it, we can largely replace the upper portion using a dental crown. This fits directly over the tooth to protect the remaining enamel while also bringing back its original appearance and function.',
-    whatToExpect: 'Usually completed in one appointment. We prioritize making the experience as comfortable as possible - children are often surprised by how manageable it is.',
-    accentColor: '#4A90A4',
-    gradientFrom: '#DBEAFE',
-    gradientTo: '#BAE6FD',
-    icon: '👑',
-  },
-  {
-    number: '03',
-    title: 'Pulp Therapy (Pediatric Root Canal)',
-    description:
-      'When decay reaches the nerve of a baby tooth, pulp therapy - sometimes called a pediatric root canal - removes the infected tissue to save the tooth. Preserving baby teeth is important: they hold space for permanent teeth and are essential for proper speech and chewing development.',
-    whatToExpect: 'The term "root canal" sounds intimidating, but pediatric pulp therapy is far simpler than an adult procedure. We perform it with gentle technique and appropriate anesthesia to keep your child comfortable throughout.',
-    accentColor: '#D97706',
-    gradientFrom: '#FEF3C7',
-    gradientTo: '#FDE68A',
-    icon: '🩺',
-  },
-  {
-    number: '04',
-    title: 'Tooth Extractions',
-    description:
-      'Sometimes a tooth is too damaged to save, or a baby tooth needs to be removed to make room for an erupting permanent tooth. When an extraction is necessary, we perform it with care, precision, and appropriate anesthesia - ensuring your child feels nothing beyond a pressure sensation.',
-    whatToExpect: 'We will walk you and your child through exactly what to expect before, during, and after. Space maintainers are discussed when needed to protect alignment for the incoming permanent tooth.',
-    accentColor: '#7C3AED',
-    gradientFrom: '#EDE9FE',
-    gradientTo: '#DDD6FE',
-    icon: '🫧',
-  },
+const TREATMENT_META = [
+  { titleKey: 'treatment0Title', descKey: 'treatment0Desc', expectKey: 'treatment0Expect', accentColor: '#6BA899', gradientFrom: '#D1FAE5', gradientTo: '#A7F3D0', icon: '✨' },
+  { titleKey: 'treatment1Title', descKey: 'treatment1Desc', expectKey: 'treatment1Expect', accentColor: '#4A90A4', gradientFrom: '#DBEAFE', gradientTo: '#BAE6FD', icon: '👑' },
+  { titleKey: 'treatment2Title', descKey: 'treatment2Desc', expectKey: 'treatment2Expect', accentColor: '#D97706', gradientFrom: '#FEF3C7', gradientTo: '#FDE68A', icon: '🩺' },
+  { titleKey: 'treatment3Title', descKey: 'treatment3Desc', expectKey: 'treatment3Expect', accentColor: '#7C3AED', gradientFrom: '#EDE9FE', gradientTo: '#DDD6FE', icon: '🫧' },
 ]
 
-const FAQ_ITEMS: FaqItem[] = [
-  {
-    question: 'Why fill a cavity in a baby tooth if it\'s going to fall out anyway?',
-    answer:
-      'Untreated cavities in baby teeth can cause severe pain, lead to dangerous infections, and directly affect the development and spacing of the permanent teeth growing underneath. Baby teeth are not just placeholders - they support speech, nutrition, and jaw development. Leaving a cavity untreated is never the safe choice.',
-  },
-  {
-    question: 'Are your fillings and crowns safe?',
-    answer:
-      'Yes. We use safe, mercury-free, tooth-colored composite fillings and high-quality crowns to restore your child\'s smile safely and beautifully. Our restorative materials are chosen specifically for pediatric patients - durable, biocompatible, and virtually invisible in your child\'s smile.',
-  },
-]
+export default async function RestorativeDentistryPage() {
+  const t = await getTranslations('restorativeDentistryPage')
 
-export default function RestorativeDentistryPage() {
+  const TREATMENTS = TREATMENT_META.map((meta, i) => ({
+    ...meta,
+    number: String(i + 1).padStart(2, '0'),
+    title: t(meta.titleKey),
+    description: t(meta.descKey),
+    whatToExpect: t(meta.expectKey),
+  }))
+
+  const FAQ_ITEMS: FaqItem[] = [
+    { question: t('faq0Question'), answer: t('faq0Answer') },
+    { question: t('faq1Question'), answer: t('faq1Answer') },
+  ]
+
   return (
     <SubPageLayout
-      title="Restorative Dentistry"
-      subtitle="Gentle, precise care that repairs damage and protects your child's long-term dental health."
+      title={t('title')}
+      subtitle={t('subtitle')}
       gradient="green"
     >
       <div className="mx-auto max-w-5xl px-4">
@@ -97,14 +60,14 @@ export default function RestorativeDentistryPage() {
             <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
-            Back to All Services
+            {t('backToServices')}
           </Link>
         </AnimatedSection>
 
         {/* Intro */}
         <AnimatedSection>
           <p style={{ textAlign: 'center', fontSize: '1.05rem', fontWeight: 500, color: '#6b7280', maxWidth: '620px', margin: '0 auto 4rem', lineHeight: 1.78 }}>
-            When decay or damage reaches a tooth, early treatment is always the right call. A small cavity treated today is a filling. A cavity ignored for six months becomes a crown. A crown ignored becomes an extraction. We will always be honest about where your child stands - and we treat problems at the earliest possible stage.
+            {t('introText')}
           </p>
         </AnimatedSection>
 
@@ -125,10 +88,10 @@ export default function RestorativeDentistryPage() {
             <span style={{ fontSize: '2rem', lineHeight: 1, flexShrink: 0 }} aria-hidden="true">⚠️</span>
             <div>
               <h3 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: '1.1rem', color: '#E97D63', margin: '0 0 0.5rem' }}>
-                Don't Wait - Cavities Grow
+                {t('urgencyHeading')}
               </h3>
               <p style={{ fontSize: '0.92rem', lineHeight: 1.7, color: '#6b7280', margin: 0 }}>
-                Tooth decay does not pause between appointments. What starts as a minor cavity in enamel can reach the nerve within months, turning a quick filling into a much more involved procedure. If your child has been overdue for a visit, or if you have noticed sensitivity, discoloration, or visible spots, now is the time to schedule.
+                {t('urgencyBody')}
               </p>
             </div>
           </div>
@@ -138,10 +101,10 @@ export default function RestorativeDentistryPage() {
         <AnimatedSection>
           <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
             <span style={{ display: 'inline-block', fontFamily: 'Nunito, sans-serif', fontSize: '0.72rem', fontWeight: 900, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#6BA899', marginBottom: '0.5rem' }}>
-              Treatments We Provide
+              {t('treatmentsKicker')}
             </span>
             <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.5rem, 3vw, 2rem)', color: '#3D3D3D', margin: 0 }}>
-              Four Restorative Solutions
+              {t('treatmentsHeading')}
             </h2>
           </div>
         </AnimatedSection>
@@ -220,7 +183,7 @@ export default function RestorativeDentistryPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     <p style={{ fontSize: '0.855rem', lineHeight: 1.6, color: '#6b7280', margin: 0, fontStyle: 'italic' }}>
-                      <strong style={{ color: tx.accentColor, fontStyle: 'normal' }}>What to expect: </strong>
+                      <strong style={{ color: tx.accentColor, fontStyle: 'normal' }}>{t('whatToExpectLabel')}</strong>
                       {tx.whatToExpect}
                     </p>
                   </div>
@@ -265,16 +228,16 @@ export default function RestorativeDentistryPage() {
             </div>
             <div>
               <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.3rem, 3vw, 1.75rem)', color: '#D97706', margin: '0 0 1rem', lineHeight: 1.25 }}>
-                Pulp Therapy
+                {t('pulpHeading')}
               </h2>
               <p style={{ fontSize: '0.95rem', lineHeight: 1.8, color: '#6b7280', margin: 0, fontWeight: 500 }}>
-                Baby teeth have several layers, and the center of the tooth contains the nerve. When a cavity is caught early, it only affects the outer layers of the tooth. However, if it becomes very deep and reaches the nerve, your child may need a pulpotomy or pulpectomy, often called a baby root canal.
+                {t('pulpBody1')}
               </p>
               <p style={{ fontSize: '0.95rem', lineHeight: 1.8, color: '#6b7280', margin: '0.85rem 0 0', fontWeight: 500 }}>
-                A pulpotomy removes the infected portion of the nerve inside the crown of the tooth. The tooth is then sealed with a special material and protected with a dental crown. If the infection has spread deeper into the roots or caused an abscess, a pulpectomy may be needed. Similar to an adult root canal, the infected tissue is removed, the inside of the tooth is cleaned, and the tooth is restored with a filling and a dental crown.
+                {t('pulpBody2')}
               </p>
               <p style={{ fontSize: '0.95rem', lineHeight: 1.8, color: '#6b7280', margin: '0.85rem 0 0', fontWeight: 500 }}>
-                Both procedures are usually completed in a single visit. With modern techniques and sedation options, treatment is often comfortable and pain-free. These procedures not only relieve toothaches but also help save your child&apos;s tooth and maintain a healthy smile.
+                {t('pulpBody3')}
               </p>
             </div>
           </div>
@@ -285,10 +248,10 @@ export default function RestorativeDentistryPage() {
           <div style={{ marginBottom: '5rem' }}>
             <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
               <span style={{ display: 'inline-block', fontFamily: 'Nunito, sans-serif', fontSize: '0.72rem', fontWeight: 900, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#6BA899', marginBottom: '0.5rem' }}>
-                Common Questions
+                {t('faqKicker')}
               </span>
               <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.4rem, 3vw, 1.9rem)', color: '#3D3D3D', margin: 0 }}>
-                What Parents Want to Know
+                {t('faqHeading')}
               </h2>
             </div>
             <FaqAccordion items={FAQ_ITEMS} accentColor="#6BA899" />
@@ -299,20 +262,20 @@ export default function RestorativeDentistryPage() {
         <AnimatedSection>
           <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
             <p style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 700, fontSize: '1.1rem', color: '#4A90A4', marginBottom: '1.25rem' }}>
-              Early treatment is simpler, faster, and far less costly. Let us take a look.
+              {t('ctaText')}
             </p>
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
               <Link
                 href="/request-appointment"
                 style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem', background: 'linear-gradient(135deg, #E8934F, #E97D63)', color: '#fff', fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '0.95rem', padding: '0.85rem 2rem', borderRadius: '100px', textDecoration: 'none', boxShadow: '0 6px 22px rgba(232,147,79,0.35)' }}
               >
-                Book an Appointment
+                {t('bookAppointment')}
               </Link>
               <Link
                 href="tel:+18472231400"
                 style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem', color: '#4A90A4', fontFamily: 'Nunito, sans-serif', fontWeight: 700, fontSize: '0.95rem', padding: '0.85rem 2rem', borderRadius: '100px', textDecoration: 'none', border: '2px solid rgba(74,144,164,0.3)' }}
               >
-                Text/Call us: (847) 223-1400
+                {t('callUs')}
               </Link>
             </div>
           </div>

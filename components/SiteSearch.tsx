@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 
 interface SearchItem {
   title: string
@@ -10,9 +11,20 @@ interface SearchItem {
   href: string
   category: string
   keywords: string
+  idx: number
 }
 
-const SEARCH_INDEX: SearchItem[] = [
+const CATEGORY_KEYS: Record<string, string> = {
+  Services: 'catServices',
+  'For Patients': 'catForPatients',
+  About: 'catAbout',
+  FAQ: 'catFAQ',
+  Appointments: 'catAppointments',
+  Contact: 'catContact',
+  Blog: 'catBlog',
+}
+
+const RAW_SEARCH_INDEX: Omit<SearchItem, 'idx'>[] = [
   // Services
   { title: 'Preventive Dentistry', description: 'Cleanings, fluoride, sealants, and digital X-rays every six months.', href: '/services/preventive-dentistry', category: 'Services', keywords: 'cleaning checkup xray fluoride sealant cavity prevention routine exam' },
   { title: 'Restorative Dentistry', description: 'Tooth-colored fillings, crowns, pulp therapy, and extractions.', href: '/services/restorative', category: 'Services', keywords: 'filling crown cavity extraction pulp therapy repair broken tooth restoration' },
@@ -50,6 +62,8 @@ const SEARCH_INDEX: SearchItem[] = [
   { title: 'Patient Reviews', description: "Read what Grayslake families say about Kids Dentist's care.", href: '/reviews', category: 'About', keywords: 'reviews testimonials google patients experience rating 5 star feedback' },
   { title: 'Same-Day Emergency Care', description: 'Dental emergencies seen same day. Call (847) 223-1400 immediately.', href: '/emergency-dentistry', category: 'Services', keywords: 'emergency dental urgent toothache trauma knocked tooth 847 call same day' },
 ]
+
+const SEARCH_INDEX: SearchItem[] = RAW_SEARCH_INDEX.map((item, idx) => ({ ...item, idx }))
 
 function scoreItem(item: SearchItem, terms: string[]): number {
   let score = 0
@@ -142,6 +156,7 @@ interface SiteSearchProps {
 }
 
 export default function SiteSearch({ variant = 'desktop', onNavigate }: SiteSearchProps) {
+  const t = useTranslations('siteSearch')
   const [query, setQuery] = useState('')
   const [isOpen, setIsOpen] = useState(false)
   const [focusedIndex, setFocusedIndex] = useState(-1)
@@ -227,7 +242,7 @@ export default function SiteSearch({ variant = 'desktop', onNavigate }: SiteSear
           onChange={(e) => { setQuery(e.target.value); setIsOpen(true) }}
           onFocus={() => setIsOpen(true)}
           onKeyDown={handleKeyDown}
-          placeholder={isMobile ? 'Search services, FAQs, pages…' : 'Search…'}
+          placeholder={isMobile ? t('placeholderMobile') : t('placeholderDesktop')}
           style={{
             border: 'none',
             outline: 'none',
@@ -238,7 +253,7 @@ export default function SiteSearch({ variant = 'desktop', onNavigate }: SiteSear
             color: '#3D3D3D',
             width: '100%',
           }}
-          aria-label="Search site content"
+          aria-label={t('ariaInput')}
           aria-expanded={isOpen && results.length > 0}
           aria-autocomplete="list"
           role="combobox"
@@ -251,7 +266,7 @@ export default function SiteSearch({ variant = 'desktop', onNavigate }: SiteSear
               padding: '2px', color: '#9ca3af', display: 'flex', flexShrink: 0,
               borderRadius: '50%',
             }}
-            aria-label="Clear search"
+            aria-label={t('ariaClear')}
           >
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
               <line x1="18" y1="6" x2="6" y2="18"/>
@@ -285,7 +300,7 @@ export default function SiteSearch({ variant = 'desktop', onNavigate }: SiteSear
               overflow: 'hidden',
             }}
             role="listbox"
-            aria-label="Search results"
+            aria-label={t('ariaResults')}
           >
             {results.map((result, i) => (
               <a
@@ -325,14 +340,14 @@ export default function SiteSearch({ variant = 'desktop', onNavigate }: SiteSear
                     marginBottom: '0.15rem', lineHeight: 1.3,
                     whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
                   }}>
-                    {result.title}
+                    {t(`item${result.idx}Title`)}
                   </div>
                   <div style={{
                     fontSize: '0.77rem', color: '#6b7280',
                     fontWeight: 500, lineHeight: 1.4,
                     overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
                   }}>
-                    {result.description}
+                    {t(`item${result.idx}Desc`)}
                   </div>
                 </div>
                 <span style={{
@@ -341,7 +356,7 @@ export default function SiteSearch({ variant = 'desktop', onNavigate }: SiteSear
                   flexShrink: 0, paddingTop: '2px', opacity: 0.72,
                   whiteSpace: 'nowrap',
                 }}>
-                  {result.category}
+                  {t(CATEGORY_KEYS[result.category])}
                 </span>
               </a>
             ))}
@@ -352,14 +367,14 @@ export default function SiteSearch({ variant = 'desktop', onNavigate }: SiteSear
               borderTop: '1px solid rgba(74,144,164,0.07)',
               display: 'flex', alignItems: 'center', gap: '0.35rem', flexWrap: 'wrap',
             }}>
-              {([['↑↓', 'navigate'], ['↵', 'go'], ['Esc', 'close']] as const).map(([key, label]) => (
+              {([['↑↓', 'kbdNavigate'], ['↵', 'kbdGo'], ['Esc', 'kbdClose']] as const).map(([key, labelKey]) => (
                 <React.Fragment key={key}>
                   <kbd style={{
                     fontSize: '0.62rem', color: '#9ca3af',
                     background: 'rgba(0,0,0,0.06)', borderRadius: '4px',
                     padding: '1px 5px', fontFamily: 'monospace', fontWeight: 600,
                   }}>{key}</kbd>
-                  <span style={{ fontSize: '0.7rem', color: '#9ca3af', fontWeight: 500, marginRight: '0.3rem' }}>{label}</span>
+                  <span style={{ fontSize: '0.7rem', color: '#9ca3af', fontWeight: 500, marginRight: '0.3rem' }}>{t(labelKey)}</span>
                 </React.Fragment>
               ))}
             </div>
@@ -392,14 +407,14 @@ export default function SiteSearch({ variant = 'desktop', onNavigate }: SiteSear
               fontFamily: 'Nunito, sans-serif', fontWeight: 700,
               fontSize: '0.875rem', color: '#6b7280', margin: '0 0 0.6rem',
             }}>
-              No results for &ldquo;{query}&rdquo;
+              {t('noResults', { query })}
             </p>
             <a
               href="/contact"
               onClick={() => { setIsOpen(false); setQuery(''); onNavigate?.() }}
               style={{ fontSize: '0.82rem', color: '#4A90A4', fontWeight: 700, textDecoration: 'none' }}
             >
-              Contact us for help →
+              {t('contactCta')}
             </a>
           </motion.div>
         )}

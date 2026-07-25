@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 
 type FormState = {
   parentName: string
@@ -63,6 +64,7 @@ const EMPTY: FormState = {
 }
 
 export default function AskDoctorForm() {
+  const t = useTranslations('askDoctorForm')
   const [form, setForm] = useState<FormState>(EMPTY)
   const [focused, setFocused] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
@@ -82,13 +84,13 @@ export default function AskDoctorForm() {
 
   function validate(): boolean {
     const errs: Partial<Record<keyof FormState, string>> = {}
-    if (!form.parentName.trim()) errs.parentName = 'Please enter your name.'
+    if (!form.parentName.trim()) errs.parentName = t('errParentName')
     if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
-      errs.email = 'Please enter a valid email address.'
-    if (!form.childName.trim()) errs.childName = "Please enter your child's name."
-    if (!form.childAge.trim()) errs.childAge = "Please enter your child's age."
-    if (!form.childDob.trim()) errs.childDob = "Please enter your child's date of birth."
-    if (!form.question.trim()) errs.question = 'Please enter your question.'
+      errs.email = t('errEmail')
+    if (!form.childName.trim()) errs.childName = t('errChildName')
+    if (!form.childAge.trim()) errs.childAge = t('errChildAge')
+    if (!form.childDob.trim()) errs.childDob = t('errChildDob')
+    if (!form.question.trim()) errs.question = t('errQuestion')
     setFieldErrors(errs)
     return Object.keys(errs).length === 0
   }
@@ -136,19 +138,19 @@ export default function AskDoctorForm() {
         >
 
           {/* ── Parent / Guardian ── */}
-          <span style={sectionKicker}>Parent / Guardian</span>
+          <span style={sectionKicker}>{t('sectionParentGuardian')}</span>
 
           {/* Full Name */}
           <div>
             <label htmlFor="parentName" style={labelStyle}>
-              Full Name {req}
+              {t('fullName')} {req}
             </label>
             <input
               id="parentName"
               name="parentName"
               type="text"
               required
-              placeholder="Jane Smith"
+              placeholder={t('placeholderName')}
               value={form.parentName}
               onChange={handleChange}
               onFocus={() => setFocused('parentName')}
@@ -164,14 +166,14 @@ export default function AskDoctorForm() {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.9rem' }} className="ask-two-col">
             <div>
               <label htmlFor="email" style={labelStyle}>
-                Email {req}
+                {t('emailLabel')} {req}
               </label>
               <input
                 id="email"
                 name="email"
                 type="email"
                 required
-                placeholder="jane@email.com"
+                placeholder={t('placeholderEmail')}
                 value={form.email}
                 onChange={handleChange}
                 onFocus={() => setFocused('email')}
@@ -184,13 +186,13 @@ export default function AskDoctorForm() {
             </div>
             <div>
               <label htmlFor="phone" style={labelStyle}>
-                Phone Number
+                {t('phoneNumber')}
               </label>
               <input
                 id="phone"
                 name="phone"
                 type="tel"
-                placeholder="(847) 555-0100"
+                placeholder={t('placeholderPhone')}
                 value={form.phone}
                 onChange={handleChange}
                 onFocus={() => setFocused('phone')}
@@ -201,20 +203,20 @@ export default function AskDoctorForm() {
           </div>
 
           {/* ── Child's Info ── */}
-          <span style={{ ...sectionKicker, color: '#4A90A4' }}>Child&apos;s Info</span>
+          <span style={{ ...sectionKicker, color: '#4A90A4' }}>{t('sectionChildInfo')}</span>
 
           {/* Child Name + Age row */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.9rem' }} className="ask-two-col">
             <div>
               <label htmlFor="childName" style={labelStyle}>
-                Child&apos;s Name {req}
+                {t('childName')} {req}
               </label>
               <input
                 id="childName"
                 name="childName"
                 type="text"
                 required
-                placeholder="Alex"
+                placeholder={t('placeholderChildName')}
                 value={form.childName}
                 onChange={handleChange}
                 onFocus={() => setFocused('childName')}
@@ -227,14 +229,14 @@ export default function AskDoctorForm() {
             </div>
             <div>
               <label htmlFor="childAge" style={labelStyle}>
-                Age {req}
+                {t('age')} {req}
               </label>
               <input
                 id="childAge"
                 name="childAge"
                 type="text"
                 required
-                placeholder="e.g. 7"
+                placeholder={t('placeholderChildAge')}
                 value={form.childAge}
                 onChange={handleChange}
                 onFocus={() => setFocused('childAge')}
@@ -250,7 +252,7 @@ export default function AskDoctorForm() {
           {/* Date of Birth */}
           <div>
             <label htmlFor="childDob" style={labelStyle}>
-              Date of Birth {req}
+              {t('dob')} {req}
             </label>
             <input
               id="childDob"
@@ -269,12 +271,12 @@ export default function AskDoctorForm() {
           </div>
 
           {/* ── Routing ── */}
-          <span style={{ ...sectionKicker, color: '#D97706' }}>Routing</span>
+          <span style={{ ...sectionKicker, color: '#D97706' }}>{t('sectionRouting')}</span>
 
           {/* Preferred Dentist */}
           <div>
             <label htmlFor="preferredDentist" style={labelStyle}>
-              Specific Dentist <span style={{ color: '#9ca3af', fontWeight: 500 }}>(optional)</span>
+              {t('specificDentist')} <span style={{ color: '#9ca3af', fontWeight: 500 }}>{t('optional')}</span>
             </label>
             <select
               id="preferredDentist"
@@ -294,27 +296,27 @@ export default function AskDoctorForm() {
                 cursor: 'pointer',
               }}
             >
-              <option value="no-preference">No Preference</option>
-              <option value="dr-gutierrez">Dr. Gutierrez</option>
-              <option value="dr-rutcosky">Dr. Rutcosky</option>
-              <option value="dr-alrayyes">Dr. Alrayyes</option>
-              <option value="dr-compton">Dr. Compton</option>
+              <option value="no-preference">{t('noPreference')}</option>
+              <option value="dr-gutierrez">{t('optSonia')}</option>
+              <option value="dr-rutcosky">{t('optDave')}</option>
+              <option value="dr-alrayyes">{t('optSahar')}</option>
+              <option value="dr-compton">{t('optAnne')}</option>
             </select>
           </div>
 
           {/* ── Message ── */}
-          <span style={{ ...sectionKicker, color: '#6BA899' }}>Your Question</span>
+          <span style={{ ...sectionKicker, color: '#6BA899' }}>{t('sectionYourQuestion')}</span>
 
           <div>
             <label htmlFor="question" style={labelStyle}>
-              Question {req}
+              {t('questionLabel')} {req}
             </label>
             <textarea
               id="question"
               name="question"
               required
               rows={5}
-              placeholder="What would you like to ask our doctors today?"
+              placeholder={t('placeholderQuestion')}
               value={form.question}
               onChange={handleChange}
               onFocus={() => setFocused('question')}
@@ -362,7 +364,7 @@ export default function AskDoctorForm() {
                   <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" strokeOpacity="0.25"/>
                   <path d="M21 12a9 9 0 00-9-9"/>
                 </svg>
-                Sending…
+                {t('sending')}
               </>
             ) : (
               <>
@@ -370,23 +372,23 @@ export default function AskDoctorForm() {
                   <line x1="22" y1="2" x2="11" y2="13"/>
                   <polygon points="22 2 15 22 11 13 2 9 22 2"/>
                 </svg>
-                Send My Question
+                {t('sendQuestion')}
               </>
             )}
           </motion.button>
 
           {error && (
             <p style={{ fontSize: '0.85rem', color: '#E97D63', margin: '0.5rem 0 0', fontWeight: 600, textAlign: 'center' }}>
-              Something went wrong — please{' '}
-              <a href="tel:+18472231400" style={{ color: '#E97D63' }}>call us at (847) 223-1400</a>{' '}
-              or email{' '}
+              {t('errorPrefix')}{' '}
+              <a href="tel:+18472231400" style={{ color: '#E97D63' }}>{t('callUsAt')}</a>{' '}
+              {t('orEmail')}{' '}
               <a href="mailto:info@kidsdds.com" style={{ color: '#E97D63' }}>info@kidsdds.com</a>.
             </p>
           )}
 
           <p style={{ fontSize: '0.75rem', color: '#9ca3af', textAlign: 'center', margin: '0.25rem 0 0', fontWeight: 500 }}>
-            Fields marked <span style={{ color: '#E97D63' }}>*</span> are required.
-            Our team typically responds within one business day.
+            {t('requiredNotePrefix')} <span style={{ color: '#E97D63' }}>*</span>
+            {' '}{t('requiredNoteSuffix')}
           </p>
 
           <style>{`@keyframes spin { to { transform: rotate(360deg); } } @media (max-width: 540px) { .ask-two-col { grid-template-columns: 1fr !important; } }`}</style>
@@ -430,7 +432,7 @@ export default function AskDoctorForm() {
               margin: '0 0 0.65rem',
             }}
           >
-            Question Sent!
+            {t('questionSent')}
           </h3>
           <p
             style={{
@@ -444,10 +446,9 @@ export default function AskDoctorForm() {
               marginRight: 'auto',
             }}
           >
-            Thank you, {form.parentName.split(' ')[0]}. Our team will review your question and get
-            back to you within one business day. If your child needs urgent care, please{' '}
+            {t('successBodyPrefix', { firstName: form.parentName.split(' ')[0] })}{' '}
             <a href="tel:+18472231400" style={{ color: '#4A90A4', fontWeight: 700 }}>
-              call (847) 223-1400
+              {t('callPhone')}
             </a>
             .
           </p>
@@ -465,7 +466,7 @@ export default function AskDoctorForm() {
               cursor: 'pointer',
             }}
           >
-            Ask Another Question
+            {t('askAnother')}
           </button>
         </motion.div>
       )}

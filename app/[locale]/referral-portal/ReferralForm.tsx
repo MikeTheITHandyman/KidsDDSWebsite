@@ -4,16 +4,17 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { sendGAEvent } from '@next/third-parties/google'
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 
 // ─── Field definitions ────────────────────────────────────────────────────────
 
 const REFERRAL_REASONS = [
-  'Orthodontic Clearance',
-  'Caries / Restorative',
-  'Special Needs Environment',
-  'Sedation / General Anesthesia',
-  'Dental Emergency',
-  'Other / General Evaluation',
+  { value: 'Orthodontic Clearance', key: 'reason0' },
+  { value: 'Caries / Restorative', key: 'reason1' },
+  { value: 'Special Needs Environment', key: 'reason2' },
+  { value: 'Sedation / General Anesthesia', key: 'reason3' },
+  { value: 'Dental Emergency', key: 'reason4' },
+  { value: 'Other / General Evaluation', key: 'reason5' },
 ]
 
 // ─── Shared style factories ───────────────────────────────────────────────────
@@ -148,16 +149,17 @@ const EMPTY_FORM: FormState = {
 
 function validate(form: FormState): Record<string, string> {
   const e: Record<string, string> = {}
-  if (!form.providerName.trim()) e.providerName = 'Practice or provider name is required'
+  if (!form.providerName.trim()) e.providerName = 'validationProviderName'
   if (!form.contactEmail.trim() || !form.contactEmail.includes('@'))
-    e.contactEmail = 'A valid email address is required'
-  if (!form.guardianName.trim()) e.guardianName = 'Guardian name is required'
-  if (!form.patientDob) e.patientDob = 'Patient date of birth is required'
-  if (!form.reason) e.reason = 'Please select a reason for referral'
+    e.contactEmail = 'validationEmail'
+  if (!form.guardianName.trim()) e.guardianName = 'validationGuardianName'
+  if (!form.patientDob) e.patientDob = 'validationDob'
+  if (!form.reason) e.reason = 'validationReason'
   return e
 }
 
 export default function ReferralForm() {
+  const t = useTranslations('referralForm')
   const [form, setForm] = useState<FormState>(EMPTY_FORM)
   const [focused, setFocused] = useState<string | null>(null)
   const [touched, setTouched] = useState<Record<string, boolean>>({})
@@ -262,7 +264,7 @@ export default function ReferralForm() {
                 margin: '0 0 0.75rem',
               }}
             >
-              Referral Received
+              {t('successHeading')}
             </h2>
             <p
               style={{
@@ -276,10 +278,9 @@ export default function ReferralForm() {
                 marginRight: 'auto',
               }}
             >
-              We have received your referral from{' '}
-              <strong style={{ color: '#4A90A4' }}>{form.providerName}</strong>. Our scheduling
-              team will contact {form.guardianName} within one business day to confirm the
-              appointment.
+              {t('successBodyPrefix')}{' '}
+              <strong style={{ color: '#4A90A4' }}>{form.providerName}</strong>{t('successBodyMiddle')}{' '}
+              {form.guardianName} {t('successBodySuffix')}
             </p>
             <div style={{ display: 'flex', gap: '0.875rem', justifyContent: 'center', flexWrap: 'wrap' }}>
               <button
@@ -300,7 +301,7 @@ export default function ReferralForm() {
                   boxShadow: '0 6px 20px rgba(232,147,79,0.32)',
                 }}
               >
-                Send Another Referral
+                {t('sendAnother')}
               </button>
               <Link
                 href="/"
@@ -317,7 +318,7 @@ export default function ReferralForm() {
                   border: '1.5px solid rgba(74,144,164,0.28)',
                 }}
               >
-                Back to Home
+                {t('backToHome')}
               </Link>
             </div>
           </motion.div>
@@ -351,7 +352,7 @@ export default function ReferralForm() {
                   padding: '0.7rem 1.25rem',
                   marginBottom: '2.25rem',
                 }}
-                aria-label="Form security status: HIPAA-compliant secure channel active"
+                aria-label={t('formSecurityAria')}
               >
                 <div
                   style={{
@@ -383,7 +384,7 @@ export default function ReferralForm() {
                       whiteSpace: 'nowrap',
                     }}
                   >
-                    Secure channel active
+                    {t('secureChannelActive')}
                   </span>
                 </div>
 
@@ -429,7 +430,7 @@ export default function ReferralForm() {
                       whiteSpace: 'nowrap',
                     }}
                   >
-                    HIPAA Compliant Transmission
+                    {t('hipaaCompliant')}
                   </span>
                 </div>
 
@@ -475,14 +476,14 @@ export default function ReferralForm() {
                       whiteSpace: 'nowrap',
                     }}
                   >
-                    Fast Track Scheduling
+                    {t('fastTrackScheduling')}
                   </span>
                 </div>
               </div>
 
               <form onSubmit={handleSubmit} noValidate>
                 {/* ── Section 1: Referring Provider ──────────────────────── */}
-                <SectionTag color="#78509b">Referring Provider</SectionTag>
+                <SectionTag color="#78509b">{t('sectionProviderTag')}</SectionTag>
 
                 <div
                   style={{
@@ -494,7 +495,7 @@ export default function ReferralForm() {
                 >
                   <div>
                     <label htmlFor="providerName" style={labelStyle}>
-                      Practice / Provider Name <span style={{ color: '#E97D63' }}>*</span>
+                      {t('practiceProviderName')} <span style={{ color: '#E97D63' }}>*</span>
                     </label>
                     <input
                       id="providerName"
@@ -502,14 +503,14 @@ export default function ReferralForm() {
                       type="text"
                       required
                       autoComplete="organization"
-                      placeholder="Lakeview Pediatrics, Dr. Kim"
+                      placeholder={t('placeholderProviderName')}
                       value={form.providerName}
                       onChange={change}
                       onFocus={() => setFocused('providerName')}
                       onBlur={() => blur('providerName')}
                       style={gs('providerName')}
                     />
-                    <FieldError msg={touched.providerName ? errors.providerName : undefined} />
+                    <FieldError msg={touched.providerName && errors.providerName ? t(errors.providerName) : undefined} />
                   </div>
 
                   <div
@@ -522,7 +523,7 @@ export default function ReferralForm() {
                   >
                     <div>
                       <label htmlFor="contactEmail" style={labelStyle}>
-                        Contact Email <span style={{ color: '#E97D63' }}>*</span>
+                        {t('contactEmail')} <span style={{ color: '#E97D63' }}>*</span>
                       </label>
                       <input
                         id="contactEmail"
@@ -530,26 +531,26 @@ export default function ReferralForm() {
                         type="email"
                         required
                         autoComplete="email"
-                        placeholder="referrals@practice.com"
+                        placeholder={t('placeholderContactEmail')}
                         value={form.contactEmail}
                         onChange={change}
                         onFocus={() => setFocused('contactEmail')}
                         onBlur={() => blur('contactEmail')}
                         style={gs('contactEmail')}
                       />
-                      <FieldError msg={touched.contactEmail ? errors.contactEmail : undefined} />
+                      <FieldError msg={touched.contactEmail && errors.contactEmail ? t(errors.contactEmail) : undefined} />
                     </div>
 
                     <div>
                       <label htmlFor="contactPhone" style={labelStyle}>
-                        Contact Phone
+                        {t('contactPhone')}
                       </label>
                       <input
                         id="contactPhone"
                         name="contactPhone"
                         type="tel"
                         autoComplete="tel"
-                        placeholder="(847) 555-0100"
+                        placeholder={t('placeholderContactPhone')}
                         value={form.contactPhone}
                         onChange={change}
                         onFocus={() => setFocused('contactPhone')}
@@ -563,7 +564,7 @@ export default function ReferralForm() {
                 {divider}
 
                 {/* ── Section 2: Patient Information ──────────────────────── */}
-                <SectionTag color="#4A90A4">Patient Information</SectionTag>
+                <SectionTag color="#4A90A4">{t('sectionPatientTag')}</SectionTag>
 
                 <div
                   style={{
@@ -576,7 +577,7 @@ export default function ReferralForm() {
                 >
                   <div>
                     <label htmlFor="guardianName" style={labelStyle}>
-                      Patient Guardian Name <span style={{ color: '#E97D63' }}>*</span>
+                      {t('guardianName')} <span style={{ color: '#E97D63' }}>*</span>
                     </label>
                     <input
                       id="guardianName"
@@ -584,19 +585,19 @@ export default function ReferralForm() {
                       type="text"
                       required
                       autoComplete="off"
-                      placeholder="Parent or legal guardian"
+                      placeholder={t('placeholderGuardianName')}
                       value={form.guardianName}
                       onChange={change}
                       onFocus={() => setFocused('guardianName')}
                       onBlur={() => blur('guardianName')}
                       style={gs('guardianName')}
                     />
-                    <FieldError msg={touched.guardianName ? errors.guardianName : undefined} />
+                    <FieldError msg={touched.guardianName && errors.guardianName ? t(errors.guardianName) : undefined} />
                   </div>
 
                   <div>
                     <label htmlFor="patientDob" style={labelStyle}>
-                      Patient Date of Birth <span style={{ color: '#E97D63' }}>*</span>
+                      {t('patientDob')} <span style={{ color: '#E97D63' }}>*</span>
                     </label>
                     <input
                       id="patientDob"
@@ -613,18 +614,18 @@ export default function ReferralForm() {
                         colorScheme: 'light',
                       }}
                     />
-                    <FieldError msg={touched.patientDob ? errors.patientDob : undefined} />
+                    <FieldError msg={touched.patientDob && errors.patientDob ? t(errors.patientDob) : undefined} />
                   </div>
                 </div>
 
                 {divider}
 
                 {/* ── Section 3: Referral Details ─────────────────────────── */}
-                <SectionTag color="#6BA899">Referral Details</SectionTag>
+                <SectionTag color="#6BA899">{t('sectionReferralTag')}</SectionTag>
 
                 <div style={{ marginBottom: '1rem' }}>
                   <label htmlFor="reason" style={labelStyle}>
-                    Reason for Referral <span style={{ color: '#E97D63' }}>*</span>
+                    {t('reasonForReferral')} <span style={{ color: '#E97D63' }}>*</span>
                   </label>
                   <select
                     id="reason"
@@ -645,27 +646,27 @@ export default function ReferralForm() {
                     }}
                   >
                     <option value="" disabled>
-                      Select a clinical reason…
+                      {t('selectClinicalReason')}
                     </option>
                     {REFERRAL_REASONS.map((r) => (
-                      <option key={r} value={r}>
-                        {r}
+                      <option key={r.value} value={r.value}>
+                        {t(r.key)}
                       </option>
                     ))}
                   </select>
-                  <FieldError msg={touched.reason ? errors.reason : undefined} />
+                  <FieldError msg={touched.reason && errors.reason ? t(errors.reason) : undefined} />
                 </div>
 
                 <div>
                   <label htmlFor="clinicalNotes" style={labelStyle}>
-                    Supporting Clinical Notes{' '}
-                    <span style={{ color: '#9ca3af', fontWeight: 600 }}>(optional)</span>
+                    {t('supportingNotes')}{' '}
+                    <span style={{ color: '#9ca3af', fontWeight: 600 }}>{t('optional')}</span>
                   </label>
                   <textarea
                     id="clinicalNotes"
                     name="clinicalNotes"
                     rows={4}
-                    placeholder="Relevant findings, treatment history, or anything that will help our team prepare for this patient…"
+                    placeholder={t('notesPlaceholder')}
                     value={form.clinicalNotes}
                     onChange={change}
                     onFocus={() => setFocused('clinicalNotes')}
@@ -707,10 +708,10 @@ export default function ReferralForm() {
                     }}
                   >
                     {status === 'loading' ? (
-                      'Sending…'
+                      t('sending')
                     ) : (
                       <>
-                        Send Referral
+                        {t('sendReferral')}
                         <svg
                           width="16"
                           height="16"
@@ -740,7 +741,7 @@ export default function ReferralForm() {
                       }}
                       role="alert"
                     >
-                      Submission failed — please call us directly at{' '}
+                      {t('submitError')}{' '}
                       <a href="tel:+18472231400" style={{ color: '#E97D63' }}>
                         (847) 223-1400
                       </a>
@@ -757,7 +758,7 @@ export default function ReferralForm() {
                       lineHeight: 1.6,
                     }}
                   >
-                    Referral is transmitted securely. We respond within one business day.
+                    {t('secureNote')}
                   </p>
                 </div>
               </form>

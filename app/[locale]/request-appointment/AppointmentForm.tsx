@@ -4,32 +4,33 @@ import { useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 
 const TRUST_SIGNALS = [
-  { icon: '🏆', label: '30+ Years', detail: 'Serving Grayslake families since 1994' },
-  { icon: '⭐', label: '4.8 Stars', detail: '650+ verified Google reviews' },
-  { icon: '📅', label: 'Same-Day Available', detail: 'Call for urgent appointment needs' },
-  { icon: '🚨', label: 'Emergency Visits', detail: 'Accepted for patients in pain' },
-  { icon: '🦷', label: 'Board-Certified Only', detail: 'All four doctors are pediatric specialists' },
-  { icon: '💜', label: 'Hablamos Español', detail: 'Spanish-speaking staff available' },
+  { icon: '🏆', labelKey: 'trust0Label', detailKey: 'trust0Detail' },
+  { icon: '⭐', labelKey: 'trust1Label', detailKey: 'trust1Detail' },
+  { icon: '📅', labelKey: 'trust2Label', detailKey: 'trust2Detail' },
+  { icon: '🚨', labelKey: 'trust3Label', detailKey: 'trust3Detail' },
+  { icon: '🦷', labelKey: 'trust4Label', detailKey: 'trust4Detail' },
+  { icon: '💜', labelKey: 'trust5Label', detailKey: 'trust5Detail' },
 ]
 
 const DENTIST_OPTIONS = [
-  { value: '', label: 'No Preference' },
-  { value: 'dr-sonia-gutierrez', label: 'Dr. Sonia Gutierrez, DDS, MS' },
-  { value: 'dr-dave-rutcosky', label: 'Dr. Dave Rutcosky, DDS, MS' },
-  { value: 'dr-sahar-alrayyes', label: 'Dr. Sahar Alrayyes, DDS, MS' },
-  { value: 'dr-anne-ashley-compton', label: 'Dr. Anne-Ashley Compton, DDS, MS' },
-]
+  { value: '', nameKey: null },
+  { value: 'dr-sonia-gutierrez', nameKey: 'soniaName' },
+  { value: 'dr-dave-rutcosky', nameKey: 'daveName' },
+  { value: 'dr-sahar-alrayyes', nameKey: 'saharName' },
+  { value: 'dr-anne-ashley-compton', nameKey: 'anneAshleyName' },
+] as const
 
 const VISIT_REASONS = [
-  'First Visit (New Patient)',
-  'Routine Cleaning & Exam',
-  'Toothache or Pain',
-  'Dental Injury or Emergency',
-  'Follow-up / Ongoing Treatment',
-  'Consultation (Sedation or Special Needs)',
-  'Other',
+  { value: 'First Visit (New Patient)', key: 'reason0' },
+  { value: 'Routine Cleaning & Exam', key: 'reason1' },
+  { value: 'Toothache or Pain', key: 'reason2' },
+  { value: 'Dental Injury or Emergency', key: 'reason3' },
+  { value: 'Follow-up / Ongoing Treatment', key: 'reason4' },
+  { value: 'Consultation (Sedation or Special Needs)', key: 'reason5' },
+  { value: 'Other', key: 'reason6' },
 ]
 
 const inputStyle: React.CSSProperties = {
@@ -64,6 +65,8 @@ const labelStyle: React.CSSProperties = {
 }
 
 export default function AppointmentForm() {
+  const t = useTranslations('appointmentForm')
+  const tAbout = useTranslations('about')
   const searchParams = useSearchParams()
   const [focused, setFocused] = useState<string | null>(null)
   const [submitted, setSubmitted] = useState(false)
@@ -199,7 +202,7 @@ export default function AppointmentForm() {
                 color: '#4A90A4',
               }}
             >
-              Schedule Your Visit
+              {t('kicker')}
             </span>
           </div>
           <h1
@@ -212,7 +215,7 @@ export default function AppointmentForm() {
               lineHeight: 1.15,
             }}
           >
-            Request an Appointment
+            {t('title')}
           </h1>
           <p
             style={{
@@ -223,7 +226,7 @@ export default function AppointmentForm() {
               lineHeight: 1.65,
             }}
           >
-            Complete the form below and our team will call to confirm within one business day.
+            {t('subtitle')}
           </p>
         </div>
 
@@ -258,18 +261,18 @@ export default function AppointmentForm() {
                   <form onSubmit={handleSubmit} noValidate>
 
                     {/* Section 1 - Parent info */}
-                    {sectionHead('1', 'Parent / Guardian Info', 'We use this to confirm your appointment')}
+                    {sectionHead('1', t('section1Title'), t('section1Sub'))}
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem' }}>
                       <div style={{ gridColumn: '1 / -1' }}>
                         <label htmlFor="parentName" style={labelStyle}>
-                          Full Name <span style={{ color: '#E97D63' }}>*</span>
+                          {t('fullName')} <span style={{ color: '#E97D63' }}>*</span>
                         </label>
                         <input
                           id="parentName"
                           name="parentName"
                           type="text"
                           required
-                          placeholder="Jane Smith"
+                          placeholder={t('placeholderName')}
                           value={form.parentName}
                           onChange={change}
                           onFocus={() => setFocused('parentName')}
@@ -279,14 +282,14 @@ export default function AppointmentForm() {
                       </div>
                       <div>
                         <label htmlFor="email" style={labelStyle}>
-                          Email Address <span style={{ color: '#E97D63' }}>*</span>
+                          {t('emailAddress')} <span style={{ color: '#E97D63' }}>*</span>
                         </label>
                         <input
                           id="email"
                           name="email"
                           type="email"
                           required
-                          placeholder="jane@email.com"
+                          placeholder={t('placeholderEmail')}
                           value={form.email}
                           onChange={change}
                           onFocus={() => setFocused('email')}
@@ -296,14 +299,14 @@ export default function AppointmentForm() {
                       </div>
                       <div>
                         <label htmlFor="phone" style={labelStyle}>
-                          Phone Number <span style={{ color: '#E97D63' }}>*</span>
+                          {t('phoneNumber')} <span style={{ color: '#E97D63' }}>*</span>
                         </label>
                         <input
                           id="phone"
                           name="phone"
                           type="tel"
                           required
-                          placeholder="(847) 555-0100"
+                          placeholder={t('placeholderPhone')}
                           value={form.phone}
                           onChange={change}
                           onFocus={() => setFocused('phone')}
@@ -316,18 +319,18 @@ export default function AppointmentForm() {
                     {divider}
 
                     {/* Section 2 - Child info */}
-                    {sectionHead('2', "Your Child's Information", "Tell us a little about who we'll be seeing")}
+                    {sectionHead('2', t('section2Title'), t('section2Sub'))}
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem' }}>
                       <div>
                         <label htmlFor="childName" style={labelStyle}>
-                          Child's Name <span style={{ color: '#E97D63' }}>*</span>
+                          {t('childName')} <span style={{ color: '#E97D63' }}>*</span>
                         </label>
                         <input
                           id="childName"
                           name="childName"
                           type="text"
                           required
-                          placeholder="Emma Smith"
+                          placeholder={t('placeholderChildName')}
                           value={form.childName}
                           onChange={change}
                           onFocus={() => setFocused('childName')}
@@ -337,7 +340,7 @@ export default function AppointmentForm() {
                       </div>
                       <div>
                         <label htmlFor="childAge" style={labelStyle}>
-                          Child's Age <span style={{ color: '#E97D63' }}>*</span>
+                          {t('childAge')} <span style={{ color: '#E97D63' }}>*</span>
                         </label>
                         <input
                           id="childAge"
@@ -346,7 +349,7 @@ export default function AppointmentForm() {
                           required
                           min="0"
                           max="18"
-                          placeholder="e.g. 6"
+                          placeholder={t('placeholderChildAge')}
                           value={form.childAge}
                           onChange={change}
                           onFocus={() => setFocused('childAge')}
@@ -359,10 +362,10 @@ export default function AppointmentForm() {
                     {divider}
 
                     {/* Section 3 - Reason for visit */}
-                    {sectionHead('3', 'Reason for Visit', 'Helps us prepare the right care for your child')}
+                    {sectionHead('3', t('section3Title'), t('section3Sub'))}
                     <div style={{ marginBottom: '1rem' }}>
                       <label htmlFor="reason" style={labelStyle}>
-                        What brings you in? <span style={{ color: '#E97D63' }}>*</span>
+                        {t('reasonQuestion')} <span style={{ color: '#E97D63' }}>*</span>
                       </label>
                       <select
                         id="reason"
@@ -382,15 +385,15 @@ export default function AppointmentForm() {
                           color: form.reason ? '#3D3D3D' : '#9ca3af',
                         }}
                       >
-                        <option value="" disabled>Select a reason…</option>
+                        <option value="" disabled>{t('selectReason')}</option>
                         {VISIT_REASONS.map((r) => (
-                          <option key={r} value={r}>{r}</option>
+                          <option key={r.value} value={r.value}>{t(r.key)}</option>
                         ))}
                       </select>
                     </div>
                     <div style={{ marginBottom: '1rem' }}>
                       <label htmlFor="preferredDentist" style={labelStyle}>
-                        Preferred Dentist
+                        {t('preferredDentist')}
                       </label>
                       <select
                         id="preferredDentist"
@@ -410,19 +413,21 @@ export default function AppointmentForm() {
                         }}
                       >
                         {DENTIST_OPTIONS.map((opt) => (
-                          <option key={opt.value} value={opt.value}>{opt.label}</option>
+                          <option key={opt.value} value={opt.value}>
+                            {opt.nameKey ? tAbout(opt.nameKey) : t('noPreferenceDentist')}
+                          </option>
                         ))}
                       </select>
                     </div>
                     <div>
                       <label htmlFor="notes" style={labelStyle}>
-                        Additional Notes (optional)
+                        {t('additionalNotes')}
                       </label>
                       <textarea
                         id="notes"
                         name="notes"
                         rows={3}
-                        placeholder="Any details that would help us prepare for your visit…"
+                        placeholder={t('notesPlaceholder')}
                         value={form.notes}
                         onChange={change}
                         onFocus={() => setFocused('notes')}
@@ -438,11 +443,11 @@ export default function AppointmentForm() {
                     {divider}
 
                     {/* Section 4 - Preferred timing */}
-                    {sectionHead('4', 'Preferred Timing', "We'll do our best to accommodate you")}
+                    {sectionHead('4', t('section4Title'), t('section4Sub'))}
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem' }}>
                       <div>
                         <label htmlFor="preferredDay" style={labelStyle}>
-                          Preferred Day
+                          {t('preferredDay')}
                         </label>
                         <select
                           id="preferredDay"
@@ -461,15 +466,15 @@ export default function AppointmentForm() {
                             color: form.preferredDay ? '#3D3D3D' : '#9ca3af',
                           }}
                         >
-                          <option value="">No preference</option>
-                          {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'].map((d) => (
-                            <option key={d} value={d}>{d}</option>
+                          <option value="">{t('noPreference')}</option>
+                          {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'].map((d, i) => (
+                            <option key={d} value={d}>{t(`day${i}`)}</option>
                           ))}
                         </select>
                       </div>
                       <div>
                         <label htmlFor="preferredTime" style={labelStyle}>
-                          Preferred Time
+                          {t('preferredTime')}
                         </label>
                         <select
                           id="preferredTime"
@@ -488,9 +493,9 @@ export default function AppointmentForm() {
                             color: form.preferredTime ? '#3D3D3D' : '#9ca3af',
                           }}
                         >
-                          <option value="">No preference</option>
-                          <option value="Morning (8am – 12pm)">Morning (8am – 12pm)</option>
-                          <option value="Afternoon (12pm – 5pm)">Afternoon (12pm – 5pm)</option>
+                          <option value="">{t('noPreference')}</option>
+                          <option value="Morning (8am – 12pm)">{t('morningOption')}</option>
+                          <option value="Afternoon (12pm – 5pm)">{t('afternoonOption')}</option>
                         </select>
                       </div>
                     </div>
@@ -518,11 +523,11 @@ export default function AppointmentForm() {
                           boxShadow: '0 8px 26px rgba(232,147,79,0.38)',
                         }}
                       >
-                        {loading ? 'Submitting…' : 'Submit Appointment Request'}
+                        {loading ? t('submitting') : t('submitButton')}
                       </motion.button>
                       {error && (
                         <p style={{ textAlign: 'center', fontSize: '0.85rem', color: '#E97D63', margin: '0.75rem 0 0', fontWeight: 600 }}>
-                          Something went wrong - please call us at{' '}
+                          {t('errorPrefix')}{' '}
                           <a href="tel:+18472231400" style={{ color: '#E97D63' }}>(847) 223-1400</a>.
                         </p>
                       )}
@@ -535,8 +540,7 @@ export default function AppointmentForm() {
                           fontWeight: 500,
                         }}
                       >
-                        We will call you within one business day to confirm.
-                        For same-day needs, call{' '}
+                        {t('confirmNote')}{' '}
                         <a href="tel:+18472231400" style={{ color: '#4A90A4', fontWeight: 700 }}>
                           (847) 223-1400
                         </a>
@@ -586,7 +590,7 @@ export default function AppointmentForm() {
                     margin: '0 0 0.75rem',
                   }}
                 >
-                  Request Received!
+                  {t('successHeading')}
                 </h2>
                 <p
                   style={{
@@ -600,10 +604,8 @@ export default function AppointmentForm() {
                     marginRight: 'auto',
                   }}
                 >
-                  Thank you, {form.parentName.split(' ')[0]}! We have received your appointment
-                  request for {form.childName} and our team will call you at{' '}
-                  <strong style={{ color: '#4A90A4' }}>{form.phone}</strong> within one business
-                  day to confirm your appointment.
+                  {t('successBodyPrefix', { firstName: form.parentName.split(' ')[0], childName: form.childName })}{' '}
+                  <strong style={{ color: '#4A90A4' }}>{form.phone}</strong> {t('successBodySuffix')}
                 </p>
                 <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
                   <Link
@@ -623,7 +625,7 @@ export default function AppointmentForm() {
                       boxShadow: '0 6px 20px rgba(232,147,79,0.32)',
                     }}
                   >
-                    Back to Home
+                    {t('backToHome')}
                   </Link>
                   <Link
                     href="/for-patients/child-first-visit"
@@ -641,7 +643,7 @@ export default function AppointmentForm() {
                       border: '1.5px solid rgba(74,144,164,0.28)',
                     }}
                   >
-                    What to Expect →
+                    {t('whatToExpect')}
                   </Link>
                 </div>
               </motion.div>
@@ -669,15 +671,15 @@ export default function AppointmentForm() {
                   lineHeight: 1.3,
                 }}
               >
-                Why Families Choose Us
+                {t('whyChooseHeading')}
               </h2>
               <p style={{ fontSize: '0.8rem', opacity: 0.8, margin: '0 0 1.5rem', fontWeight: 500, lineHeight: 1.55 }}>
-                You are in good hands - here is why.
+                {t('whyChooseSub')}
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
                 {TRUST_SIGNALS.map((signal) => (
                   <div
-                    key={signal.label}
+                    key={signal.labelKey}
                     style={{
                       display: 'flex',
                       alignItems: 'flex-start',
@@ -692,10 +694,10 @@ export default function AppointmentForm() {
                     </span>
                     <div>
                       <p style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: '0.88rem', margin: '0 0 0.15rem', lineHeight: 1.2 }}>
-                        {signal.label}
+                        {t(signal.labelKey)}
                       </p>
                       <p style={{ fontSize: '0.78rem', opacity: 0.82, margin: 0, fontWeight: 500, lineHeight: 1.4 }}>
-                        {signal.detail}
+                        {t(signal.detailKey)}
                       </p>
                     </div>
                   </div>
@@ -723,7 +725,7 @@ export default function AppointmentForm() {
                   margin: '0 0 0.4rem',
                 }}
               >
-                Prefer to call?
+                {t('preferCall')}
               </p>
               <a
                 href="tel:+18472231400"
@@ -747,7 +749,7 @@ export default function AppointmentForm() {
                   fontWeight: 500,
                 }}
               >
-                Mon–Thu 9 am–5 pm · Fri 8 am–2 pm
+                {t('officeHoursShort')}
               </p>
             </div>
           </div>

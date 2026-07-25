@@ -19,8 +19,8 @@ export const metadata: Metadata = {
   },
 }
 
-const IN_NETWORK_PROVIDERS: { name: string; note?: string }[] = [
-  { name: 'Aetna Dental', note: 'DMO under age 7 only' },
+const IN_NETWORK_PROVIDERS: { name: string; noteKey?: string }[] = [
+  { name: 'Aetna Dental', noteKey: 'aetnaNote' },
   { name: 'Cigna Dental' },
   { name: 'Delta Dental Premier' },
   { name: 'Guardian Dental' },
@@ -133,7 +133,7 @@ export default async function InsuranceInfoPage({ params }: { params: Promise<{ 
                 >
                   {t('inNetworkBadge')}
                 </span>
-                {provider.note && (
+                {provider.noteKey && (
                   <p
                     style={{
                       fontFamily: 'Nunito, sans-serif',
@@ -144,7 +144,7 @@ export default async function InsuranceInfoPage({ params }: { params: Promise<{ 
                       lineHeight: 1.4,
                     }}
                   >
-                    {provider.note}
+                    {t(provider.noteKey)}
                   </p>
                 )}
               </div>

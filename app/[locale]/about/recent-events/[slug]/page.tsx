@@ -6,6 +6,7 @@ import { PortableText, type PortableTextComponents } from '@portabletext/react'
 import { client } from '@/sanity/lib/client'
 import { eventBySlugQuery } from '@/sanity/lib/queries'
 import { urlFor } from '@/sanity/lib/image'
+import { getTranslations } from 'next-intl/server'
 
 interface SanityEvent {
   _id: string
@@ -23,7 +24,7 @@ export const dynamicParams = true
 export const revalidate = 60
 
 interface Props {
-  params: Promise<{ slug: string }>
+  params: Promise<{ slug: string; locale: string }>
 }
 
 export async function generateStaticParams() {
@@ -113,15 +114,16 @@ const portableTextComponents: PortableTextComponents = {
   },
 }
 
-function formatDate(iso?: string) {
+function formatDate(iso: string | undefined, locale: string) {
   if (!iso) return ''
-  return new Date(iso).toLocaleDateString('en-US', {
+  return new Date(iso).toLocaleDateString(locale === 'es' ? 'es' : 'en-US', {
     weekday: 'long', month: 'long', day: 'numeric', year: 'numeric',
   })
 }
 
 export default async function EventDetailPage({ params }: Props) {
-  const { slug } = await params
+  const { slug, locale } = await params
+  const t = await getTranslations('eventDetailPage')
   const event: SanityEvent | null = await client.fetch(
     eventBySlugQuery,
     { slug },
@@ -139,7 +141,7 @@ export default async function EventDetailPage({ params }: Props) {
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <polyline points="15 18 9 12 15 6"/>
           </svg>
-          Back to Events
+          {t('backToEvents')}
         </Link>
       </div>
 
@@ -149,12 +151,12 @@ export default async function EventDetailPage({ params }: Props) {
           className="blog-post-category"
           style={{ background: 'rgba(120,80,155,0.10)', color: '#78509b' }}
         >
-          Practice Event
+          {t('practiceEvent')}
         </span>
         <h1 className="blog-post-title">{event.title}</h1>
         <div className="blog-post-meta">
           {event.eventDate && (
-            <span className="blog-card-date">{formatDate(event.eventDate)}</span>
+            <span className="blog-card-date">{formatDate(event.eventDate, locale)}</span>
           )}
           {event.location && (
             <span className="blog-card-author" style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
@@ -189,8 +191,8 @@ export default async function EventDetailPage({ params }: Props) {
           <PortableText value={event.body as any} components={portableTextComponents} />
         ) : (
           <p className="blog-post-coming-soon">
-            Details coming soon.{' '}
-            <a href="/studio" className="blog-empty-link">Add content in the Studio</a>.
+            {t('detailsComingSoon')}{' '}
+            <a href="/studio" className="blog-empty-link">{t('addContentStudio')}</a>.
           </p>
         )}
 
@@ -211,7 +213,7 @@ export default async function EventDetailPage({ params }: Props) {
                 boxShadow: '0 6px 22px rgba(120,80,155,0.30)',
               }}
             >
-              Register / Learn More →
+              {t('registerLearnMore')}
             </a>
           </div>
         )}

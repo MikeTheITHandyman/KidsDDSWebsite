@@ -1,25 +1,28 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 
 const QUICK_LINKS = [
-  { label: 'Our Services', href: '/services' },
-  { label: 'Meet the Dentists', href: '/about/meet-the-dentists' },
-  { label: 'My First Visit', href: '/for-patients/child-first-visit' },
-  { label: 'Patient Forms', href: '/for-patients/patient-forms' },
-  { label: 'Insurance Info', href: '/for-patients/insurance-info' },
-  { label: 'Blog', href: '/blog' },
-]
+  { key: 'linkServices', href: '/services' },
+  { key: 'linkMeetDentists', href: '/about/meet-the-dentists' },
+  { key: 'linkFirstVisit', href: '/for-patients/child-first-visit' },
+  { key: 'linkPatientForms', href: '/for-patients/patient-forms' },
+  { key: 'linkInsurance', href: '/for-patients/insurance-info' },
+  { key: 'linkBlog', href: '/blog' },
+] as const
 
-const HOURS = [
-  { day: 'Monday', time: '9:00 am – 5:00 pm' },
-  { day: 'Tuesday', time: '9:00 am – 5:00 pm' },
-  { day: 'Wednesday', time: '8:30 am – 5:00 pm' },
-  { day: 'Thursday', time: '9:00 am – 5:00 pm' },
-  { day: 'Friday', time: '8:00 am – 2:00 pm' },
+const HOURS: { dayKey: string; time: string }[] = [
+  { dayKey: 'day0', time: '9:00 am – 5:00 pm' },
+  { dayKey: 'day1', time: '9:00 am – 5:00 pm' },
+  { dayKey: 'day2', time: '8:30 am – 5:00 pm' },
+  { dayKey: 'day3', time: '9:00 am – 5:00 pm' },
+  { dayKey: 'day4', time: '8:00 am – 2:00 pm' },
 ]
 
 export default function Footer() {
+  const t = useTranslations('footer')
+
   return (
     <footer
       className="site-footer"
@@ -66,7 +69,7 @@ export default function Footer() {
               margin: '0 0 1.25rem',
             }}
           >
-            Pediatric Dentistry in Grayslake, IL - where every visit ends with a smile.
+            {t('tagline')}
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
             <a
@@ -108,7 +111,7 @@ export default function Footer() {
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .01h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/>
               </svg>
-              Text/Call us: (847) 223-1400
+              {t('phoneCta')}
             </a>
             <a
               href="mailto:info@kidsdds.com"
@@ -146,7 +149,7 @@ export default function Footer() {
               color: 'white',
             }}
           >
-            Explore
+            {t('exploreHeading')}
           </h4>
           <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '0.55rem' }}>
             {QUICK_LINKS.map((link) => (
@@ -167,7 +170,7 @@ export default function Footer() {
                   <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d="M9 18l6-6-6-6"/>
                   </svg>
-                  {link.label}
+                  {t(link.key)}
                 </a>
               </li>
             ))}
@@ -188,12 +191,12 @@ export default function Footer() {
               color: 'white',
             }}
           >
-            Office Hours
+            {t('hoursHeading')}
           </h4>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.42rem' }}>
-            {HOURS.map(({ day, time }) => (
+            {HOURS.map(({ dayKey, time }) => (
               <div
-                key={day}
+                key={dayKey}
                 style={{
                   display: 'flex',
                   justifyContent: 'space-between',
@@ -203,7 +206,7 @@ export default function Footer() {
                   opacity: time === 'Closed' ? 0.5 : 0.85,
                 }}
               >
-                <span style={{ fontWeight: 600 }}>{day}</span>
+                <span style={{ fontWeight: 600 }}>{t(dayKey)}</span>
                 <span
                   style={{
                     color: time === 'Closed' ? 'rgba(255,255,255,0.55)' : 'rgba(255,255,255,0.9)',
@@ -232,7 +235,7 @@ export default function Footer() {
               color: 'white',
             }}
           >
-            Stay Connected
+            {t('connectHeading')}
           </h4>
 
           {/* Social icon buttons — with labels */}
@@ -241,7 +244,7 @@ export default function Footer() {
               href="https://www.facebook.com/kidsddsgrayslake"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Kids Dentist on Facebook"
+              aria-label={t('facebookAria')}
               whileHover={{ scale: 1.03, x: 2 }}
               whileTap={{ scale: 0.96 }}
               style={{
@@ -271,7 +274,7 @@ export default function Footer() {
               href="https://www.instagram.com/kidsddsgrayslake/"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Kids Dentist on Instagram"
+              aria-label={t('instagramAria')}
               whileHover={{ scale: 1.03, x: 2 }}
               whileTap={{ scale: 0.96 }}
               style={{
@@ -335,7 +338,7 @@ export default function Footer() {
                   <line x1="12" y1="1" x2="12" y2="23"/>
                   <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
                 </svg>
-                Pay Now
+                {t('payNow')}
               </motion.button>
             </form>
           </div>
@@ -361,11 +364,11 @@ export default function Footer() {
         className="footer-bottom-bar"
       >
         <span style={{ opacity: 0.65, fontSize: '0.82rem', fontWeight: 500 }}>
-          © {new Date().getFullYear()} Kids Dentist · Grayslake, IL · All rights reserved
+          {t('copyright', { year: new Date().getFullYear() })}
         </span>
         <div style={{ display: 'flex', gap: '1.25rem', opacity: 0.65 }}>
-          <a href="/privacy" style={{ color: 'white', fontSize: '0.82rem', fontWeight: 500, textDecoration: 'none' }}>Privacy Policy</a>
-          <a href="/sitemap" style={{ color: 'white', fontSize: '0.82rem', fontWeight: 500, textDecoration: 'none' }}>Sitemap</a>
+          <a href="/privacy" style={{ color: 'white', fontSize: '0.82rem', fontWeight: 500, textDecoration: 'none' }}>{t('privacyPolicy')}</a>
+          <a href="/sitemap" style={{ color: 'white', fontSize: '0.82rem', fontWeight: 500, textDecoration: 'none' }}>{t('sitemap')}</a>
         </div>
       </div>
 

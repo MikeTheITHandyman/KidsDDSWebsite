@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence, type Variants } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 
 const INTERVAL_MS = 5000
 const GOOGLE_REVIEWS_URL = 'https://www.google.com/maps/place/Kids+Dentist/@42.3467,-88.0041,17z'
@@ -158,9 +159,9 @@ const slideVariants: Variants = {
   }),
 }
 
-function Stars({ count }: { count: number }) {
+function Stars({ count, ariaLabel }: { count: number; ariaLabel: string }) {
   return (
-    <div aria-label={`${count} out of 5 stars`} style={{ display: 'flex', gap: '2px', marginBottom: '0.75rem' }}>
+    <div aria-label={ariaLabel} style={{ display: 'flex', gap: '2px', marginBottom: '0.75rem' }}>
       {Array.from({ length: 5 }).map((_, i) => (
         <svg
           key={i}
@@ -182,6 +183,7 @@ interface ReviewBubblesProps {
 }
 
 export default function ReviewBubbles({ sanityReviews }: ReviewBubblesProps) {
+  const t = useTranslations('reviewBubbles')
   const reviews: ReviewItem[] =
     sanityReviews && sanityReviews.length > 0
       ? mapSanityReviews(sanityReviews)
@@ -270,7 +272,7 @@ export default function ReviewBubbles({ sanityReviews }: ReviewBubblesProps) {
               <div style={{ width: '1px', height: '36px', background: 'rgba(107,75,200,0.18)' }} aria-hidden="true" />
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1px' }}>
                 <span style={{ fontSize: '1.55rem', fontWeight: 900, lineHeight: 1, letterSpacing: '-0.02em', color: 'var(--brand-purple)' }}>650+</span>
-                <span style={{ fontSize: '0.78rem', fontWeight: 700, color: '#6b7280', letterSpacing: '0.04em' }}>Google Reviews</span>
+                <span style={{ fontSize: '0.78rem', fontWeight: 700, color: '#6b7280', letterSpacing: '0.04em' }}>{t('ratingLabel')}</span>
               </div>
             </div>
           </div>
@@ -283,7 +285,7 @@ export default function ReviewBubbles({ sanityReviews }: ReviewBubblesProps) {
             marginBottom: '0.6rem',
             fontFamily: 'Nunito, sans-serif',
           }}>
-            What Lake County Parents Say
+            {t('kicker')}
           </span>
           <h2
             id="reviews-heading"
@@ -297,7 +299,7 @@ export default function ReviewBubbles({ sanityReviews }: ReviewBubblesProps) {
               lineHeight: 1.18,
             }}
           >
-            Families Trust Kids Dentist
+            {t('heading')}
           </h2>
         </motion.div>
 
@@ -351,7 +353,7 @@ export default function ReviewBubbles({ sanityReviews }: ReviewBubblesProps) {
                       </span>
                     </div>
                   )}
-                  <Stars count={review.stars} />
+                  <Stars count={review.stars} ariaLabel={t('starsAria', { count: review.stars })} />
                   <blockquote
                     style={{
                       margin: '0 0 1.1rem',
@@ -399,14 +401,14 @@ export default function ReviewBubbles({ sanityReviews }: ReviewBubblesProps) {
 
           {/* Controls */}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', marginTop: '1.25rem' }}>
-            <NavButton onClick={() => paginate(-1)} label="Previous review" direction="left" />
+            <NavButton onClick={() => paginate(-1)} label={t('prevReview')} direction="left" />
 
             <div style={{ display: 'flex', gap: '0.45rem', alignItems: 'center' }}>
               {reviews.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setPage([i, i > index ? 1 : -1])}
-                  aria-label={`Go to review ${i + 1}`}
+                  aria-label={t('goToReview', { number: i + 1 })}
                   style={{
                     width: i === index ? '22px' : '7px',
                     height: '7px',
@@ -421,7 +423,7 @@ export default function ReviewBubbles({ sanityReviews }: ReviewBubblesProps) {
               ))}
             </div>
 
-            <NavButton onClick={() => paginate(1)} label="Next review" direction="right" />
+            <NavButton onClick={() => paginate(1)} label={t('nextReview')} direction="right" />
           </div>
         </div>
 
@@ -466,7 +468,7 @@ export default function ReviewBubbles({ sanityReviews }: ReviewBubblesProps) {
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
             </svg>
-            Share Your Experience With Us!
+            {t('shareCta')}
           </motion.a>
         </motion.div>
 

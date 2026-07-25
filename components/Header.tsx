@@ -242,10 +242,10 @@ export default function Header({ latestPostTitle, latestPostSlug }: HeaderProps)
         </div>
 
         <div className="header-inner">
-          <Link href="/" className="brand-logo" aria-label="Kids Dentist - go to homepage">
+          <Link href="/" className="brand-logo" aria-label={t('ariaHome')}>
             <Image
               src="/brand_assets/kids-dentist-logo.png"
-              alt="Kids Dentist Grayslake IL logo"
+              alt={t('logoAlt')}
               width={189} height={104}
               style={{ width: 'auto', height: '72px' }}
               unoptimized priority
@@ -253,7 +253,7 @@ export default function Header({ latestPostTitle, latestPostSlug }: HeaderProps)
           </Link>
 
           {/* Desktop nav */}
-          <nav className="site-nav" aria-label="Main navigation">
+          <nav className="site-nav" aria-label={t('ariaMainNav')}>
             {NAV.map((item) => (
               <NavItem key={item.href} item={item} />
             ))}
@@ -269,7 +269,7 @@ export default function Header({ latestPostTitle, latestPostSlug }: HeaderProps)
             <button
               className="mobile-search-btn"
               onClick={() => { setSearchOpen((o) => !o); setMenuOpen(false) }}
-              aria-label={searchOpen ? 'Close search' : 'Open search'}
+              aria-label={searchOpen ? t('ariaCloseSearch') : t('ariaOpenSearch')}
               aria-expanded={searchOpen}
             >
               <AnimatePresence mode="wait" initial={false}>
@@ -350,7 +350,7 @@ export default function Header({ latestPostTitle, latestPostSlug }: HeaderProps)
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
               style={{ overflow: 'hidden' }}
-              aria-label="Mobile navigation"
+              aria-label={t('ariaMobileNav')}
             >
               <div className="mobile-nav-inner">
                 {NAV.map((item) => (

@@ -3,6 +3,7 @@ import AnimatedSection from '@/components/AnimatedSection'
 import AskDoctorForm from './AskDoctorForm'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { getTranslations } from 'next-intl/server'
 
 export const metadata: Metadata = {
   title: 'Ask the Doctor | Kids Dentist Grayslake, IL',
@@ -20,12 +21,13 @@ export const metadata: Metadata = {
   },
 }
 
-export default function AskTheDoctorPage() {
+export default async function AskTheDoctorPage() {
+  const t = await getTranslations('askDoctorPage')
   return (
     <SubPageLayout
-      title="Ask the Doctor"
-      subtitle="Have a specific question about your child's dental health? Send our pediatric dentists a direct message."
-      kicker="Direct Doctor Access"
+      title={t('title')}
+      subtitle={t('subtitle')}
+      kicker={t('kicker')}
       gradient="blue"
     >
       <div className="mx-auto max-w-2xl px-4">
@@ -73,14 +75,14 @@ export default function AskTheDoctorPage() {
                 margin: '0 0 0.3rem',
               }}
             >
-              Medical Disclaimer
+              {t('disclaimerHeading')}
             </p>
             <p style={{ fontSize: '0.88rem', fontWeight: 600, color: '#4b5563', lineHeight: 1.65, margin: 0 }}>
-              This form is for general dental inquiries only and is not monitored in real time.{' '}
+              {t('disclaimerBody1')}{' '}
               <strong style={{ color: 'rgba(185,28,28,0.85)' }}>
-                If your child is experiencing a life-threatening medical emergency, please call 911 immediately.
+                {t('disclaimerBold')}
               </strong>{' '}
-              For urgent dental concerns, call us directly at{' '}
+              {t('disclaimerBody2')}{' '}
               <a href="tel:+18472231400" style={{ color: '#4A90A4', fontWeight: 800 }}>
                 (847) 223-1400
               </a>
@@ -108,7 +110,7 @@ export default function AskTheDoctorPage() {
             <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
-            Back to FAQ
+            {t('backToFaq')}
           </Link>
         </AnimatedSection>
 
@@ -150,14 +152,14 @@ export default function AskTheDoctorPage() {
                     margin: '0 0 0.4rem',
                   }}
                 >
-                  How it works
+                  {t('howItWorksHeading')}
                 </p>
                 <p style={{ fontSize: '0.875rem', fontWeight: 500, color: '#6b7280', lineHeight: 1.68, margin: 0 }}>
-                  Fill out the secure form below. Your question goes directly to our clinical specialists, and we aim to respond within one business day. For appointment scheduling or insurance questions, please use the{' '}
+                  {t('howItWorksPrefix')}{' '}
                   <Link href="/request-appointment" style={{ color: '#4A90A4', fontWeight: 700 }}>
-                    appointment request form
+                    {t('appointmentRequestFormLink')}
                   </Link>
-                  {' '}or contact the front desk directly.
+                  {' '}{t('howItWorksSuffix')}
                 </p>
               </div>
             </div>

@@ -113,7 +113,7 @@ export default function DoctorGrid() {
               >
                 <Image
                   src={doc.photo}
-                  alt={`Headshot of ${doc.name}, pediatric dentist at Kids Dentist Grayslake IL`}
+                  alt={tMeet('headshotAlt', { name: doc.name })}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   style={{ objectFit: 'cover', objectPosition: 'top center' }}

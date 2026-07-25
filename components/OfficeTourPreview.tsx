@@ -85,7 +85,7 @@ function TourImageCard({
             <polyline points="21 15 16 10 5 21"/>
           </svg>
           <span style={{ fontFamily: 'Nunito, sans-serif', fontSize: '0.68rem', fontWeight: 700, color: 'rgba(107,75,200,0.45)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-            Photo Coming Soon
+            {t('photoComingSoon')}
           </span>
         </div>
       </div>

@@ -2,6 +2,7 @@ import SubPageLayout from '@/components/SubPageLayout'
 import AnimatedSection from '@/components/AnimatedSection'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { getTranslations } from 'next-intl/server'
 
 export const metadata: Metadata = {
   title: 'Patient Forms & Pre-Visit Portals | Kids Dentist Grayslake, IL',
@@ -20,65 +21,61 @@ export const metadata: Metadata = {
 
 // ─── Form cards data ──────────────────────────────────────────────────────────
 
-const DOWNLOAD_FORMS = [
+const DOWNLOAD_FORMS_META = [
   {
     id: 'new-patient',
-    title: 'New Patient Registration',
-    description:
-      'Patient demographics, emergency contacts, guardian information, and insurance details for first-time patients.',
+    titleKey: 'form0Title',
+    descKey: 'form0Desc',
     href: '/forms/new-patient-registration.pdf',
-    fileLabel: 'PDF · 3 pages',
+    fileLabelKey: 'form0FileLabel',
+    ariaKey: 'form0Aria',
     accentColor: '#4A90A4',
     iconBg: 'rgba(74,144,164,0.10)',
     borderColor: 'rgba(74,144,164,0.16)',
     action: 'download' as const,
-    ariaLabel: 'Download New Patient Registration form — PDF, 3 pages',
   },
   {
     id: 'hipaa',
-    title: 'HIPAA Consent & Disclosures',
-    description:
-      "Required authorization for us to use and share your child's protected health information, as mandated by federal law.",
+    titleKey: 'form1Title',
+    descKey: 'form1Desc',
     href: '/forms/hipaa-consent-disclosures.pdf',
-    fileLabel: 'PDF · 1 page',
+    fileLabelKey: 'form1FileLabel',
+    ariaKey: 'form1Aria',
     accentColor: '#6BA899',
     iconBg: 'rgba(107,168,153,0.10)',
     borderColor: 'rgba(107,168,153,0.18)',
     action: 'download' as const,
-    ariaLabel: 'Download HIPAA Consent and Disclosures form — PDF, 1 page',
   },
   {
     id: 'dental-history',
-    title: 'Dental History Questionnaire',
-    description:
-      "Medical conditions, current medications, known allergies, and your child's complete past dental treatment history.",
+    titleKey: 'form2Title',
+    descKey: 'form2Desc',
     href: '/forms/dental-history-questionnaire.pdf',
-    fileLabel: 'PDF · 2 pages',
+    fileLabelKey: 'form2FileLabel',
+    ariaKey: 'form2Aria',
     accentColor: '#4A90A4',
     iconBg: 'rgba(74,144,164,0.10)',
     borderColor: 'rgba(74,144,164,0.16)',
     action: 'download' as const,
-    ariaLabel: 'Download Dental History Questionnaire form — PDF, 2 pages',
   },
   {
     id: 'school-form',
-    title: 'School / Daycare Dental Form',
-    description:
-      'We complete school enrollment, camp, and daycare health forms for our patients. Contact us and our team handles the rest.',
+    titleKey: 'form3Title',
+    descKey: 'form3Desc',
     href: '/contact?subject=School+Form+Request',
-    fileLabel: null,
+    fileLabelKey: null,
+    ariaKey: 'form3Aria',
     accentColor: '#78509b',
     iconBg: 'rgba(120,80,155,0.10)',
     borderColor: 'rgba(120,80,155,0.16)',
     action: 'request' as const,
-    ariaLabel: 'Request a school or daycare dental form — opens contact page',
   },
 ]
 
-const CHECKIN_FEATURES = [
+const CHECKIN_FEATURES_META = [
   {
-    label: 'Secure & encrypted',
-    sub: 'HIPAA-compliant portal',
+    labelKey: 'checkin0Label',
+    subKey: 'checkin0Sub',
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
@@ -87,8 +84,8 @@ const CHECKIN_FEATURES = [
     ),
   },
   {
-    label: 'Any device, any time',
-    sub: 'Phone, tablet, or laptop',
+    labelKey: 'checkin1Label',
+    subKey: 'checkin1Sub',
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
@@ -97,8 +94,8 @@ const CHECKIN_FEATURES = [
     ),
   },
   {
-    label: 'Received instantly',
-    sub: 'Our team is notified',
+    labelKey: 'checkin2Label',
+    subKey: 'checkin2Sub',
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <polyline points="20 6 9 17 4 12"/>
@@ -107,12 +104,7 @@ const CHECKIN_FEATURES = [
   },
 ]
 
-const TIPS = [
-  "Complete forms at home so you can reference your child's medical records",
-  'Bring your insurance card to every appointment',
-  'Arrive 10 minutes early if you complete paper forms at the office',
-  'Forms completed online are securely transmitted directly to our team',
-]
+const TIP_KEYS = ['tip0', 'tip1', 'tip2', 'tip3']
 
 // ─── Per-form SVG icons ────────────────────────────────────────────────────────
 
@@ -150,12 +142,30 @@ function FormIcon({ id, color }: { id: string; color: string }) {
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
-export default function PatientFormsPage() {
+export default async function PatientFormsPage() {
+  const t = await getTranslations('patientFormsPage')
+
+  const DOWNLOAD_FORMS = DOWNLOAD_FORMS_META.map((meta) => ({
+    ...meta,
+    title: t(meta.titleKey),
+    description: t(meta.descKey),
+    fileLabel: meta.fileLabelKey ? t(meta.fileLabelKey) : null,
+    ariaLabel: t(meta.ariaKey),
+  }))
+
+  const CHECKIN_FEATURES = CHECKIN_FEATURES_META.map((meta) => ({
+    ...meta,
+    label: t(meta.labelKey),
+    sub: t(meta.subKey),
+  }))
+
+  const TIPS = TIP_KEYS.map((k) => t(k))
+
   return (
     <SubPageLayout
-      kicker="Pre-Visit Prep"
-      title="Patient Forms & Pre-Visit Portals"
-      subtitle="Spend less time in the waiting room. Download your required forms or securely complete them online before your appointment."
+      kicker={t('kicker')}
+      title={t('title')}
+      subtitle={t('subtitle')}
       gradient="blue"
     >
       <div className="mx-auto max-w-5xl px-4">
@@ -224,7 +234,7 @@ export default function PatientFormsPage() {
               <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
               </svg>
-              Fastest Way · Recommended
+              {t('badgeFastest')}
             </div>
 
             {/* Headline */}
@@ -238,7 +248,7 @@ export default function PatientFormsPage() {
                 letterSpacing: '-0.02em',
               }}
             >
-              Express Check-In
+              {t('expressCheckin')}
             </h2>
             <p
               style={{
@@ -251,9 +261,7 @@ export default function PatientFormsPage() {
                 maxWidth: '560px',
               }}
             >
-              Fill out every required form online before your appointment. Takes about
-              five minutes — and you walk straight in when you arrive. No clipboard,
-              no pen, no waiting.
+              {t('expressBody')}
             </p>
 
             {/* 3-feature horizontal strip */}
@@ -320,7 +328,7 @@ export default function PatientFormsPage() {
             <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '1.25rem' }}>
               <a
                 href="#patient-portal"
-                aria-label="Open Patient Manager portal to complete forms online"
+                aria-label={t('openPortalAria')}
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -341,7 +349,7 @@ export default function PatientFormsPage() {
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                 </svg>
-                Open Patient Manager Portal
+                {t('openPortal')}
               </a>
               <span
                 style={{
@@ -351,7 +359,7 @@ export default function PatientFormsPage() {
                   fontFamily: 'Nunito, sans-serif',
                 }}
               >
-                Secure portal · Opens in new window
+                {t('securePortalNote')}
               </span>
             </div>
           </div>
@@ -383,7 +391,7 @@ export default function PatientFormsPage() {
                   borderRadius: '2px',
                 }}
               />
-              Prefer paper? Download & print
+              {t('preferPaper')}
               <span
                 style={{
                   display: 'inline-block',
@@ -404,7 +412,7 @@ export default function PatientFormsPage() {
                 lineHeight: 1.3,
               }}
             >
-              Download PDF Forms
+              {t('downloadPdfForms')}
             </h2>
           </div>
         </AnimatedSection>
@@ -434,7 +442,7 @@ export default function PatientFormsPage() {
                   height: '100%',
                   transition: 'transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease',
                 }}
-                aria-label={`${form.title} — ${form.action === 'download' ? form.fileLabel : 'request form'}`}
+                aria-label={`${form.title} — ${form.action === 'download' ? form.fileLabel : t('requestFormWord')}`}
               >
                 {/* Icon + file-type badge row */}
                 <div
@@ -493,7 +501,7 @@ export default function PatientFormsPage() {
                         border: '1px solid rgba(120,80,155,0.16)',
                       }}
                     >
-                      Request
+                      {t('requestBadge')}
                     </span>
                   )}
                 </div>
@@ -555,7 +563,7 @@ export default function PatientFormsPage() {
                       <polyline points="7 10 12 15 17 10"/>
                       <line x1="12" y1="15" x2="12" y2="3"/>
                     </svg>
-                    Download Form
+                    {t('downloadForm')}
                   </a>
                 ) : (
                   <Link
@@ -583,7 +591,7 @@ export default function PatientFormsPage() {
                       <line x1="22" y1="2" x2="11" y2="13"/>
                       <polygon points="22 2 15 22 11 13 2 9 22 2"/>
                     </svg>
-                    Request This Form
+                    {t('requestThisForm')}
                   </Link>
                 )}
               </article>
@@ -619,7 +627,7 @@ export default function PatientFormsPage() {
                 <line x1="12" y1="8" x2="12" y2="12"/>
                 <line x1="12" y1="16" x2="12.01" y2="16"/>
               </svg>
-              Tips for a smooth check-in
+              {t('tipsHeading')}
             </h3>
             <ul
               style={{
@@ -673,7 +681,7 @@ export default function PatientFormsPage() {
                 marginBottom: '1.25rem',
               }}
             >
-              Have questions about which forms to complete? We are happy to help.
+              {t('bottomCtaText')}
             </p>
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
               <Link
@@ -693,7 +701,7 @@ export default function PatientFormsPage() {
                   boxShadow: '0 6px 22px rgba(232,147,79,0.35)',
                 }}
               >
-                Request Appointment
+                {t('requestAppointment')}
               </Link>
               <Link
                 href="tel:+18472231400"
@@ -711,7 +719,7 @@ export default function PatientFormsPage() {
                   border: '2px solid rgba(74,144,164,0.3)',
                 }}
               >
-                Text/Call us: (847) 223-1400
+                {t('callUs')}
               </Link>
             </div>
           </div>

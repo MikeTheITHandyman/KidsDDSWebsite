@@ -1,11 +1,13 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 
 const HOSTEDPAYNOW_URL = 'https://hostedpaynow.com/v2/paynowapp/processpayment'
 const TOKEN = '9ec06785636346c290a5a30375d1d3af@=1328f97b14f431bdea8caaaf4f1da76f8a2bb1fe691be4d69503d020bd502c3e'
 
 export default function PayNowForm() {
+  const t = useTranslations('payPage')
   return (
     <form
       action={HOSTEDPAYNOW_URL}
@@ -47,7 +49,7 @@ export default function PayNowForm() {
           <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
           <line x1="1" y1="10" x2="23" y2="10"/>
         </svg>
-        Pay My Bill Securely
+        {t('payButton')}
         <svg
           width="15" height="15" viewBox="0 0 24 24" fill="none"
           stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"

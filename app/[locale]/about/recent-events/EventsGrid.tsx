@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion, type Variants } from 'framer-motion'
 import { urlFor } from '@/sanity/lib/image'
+import { useTranslations, useLocale } from 'next-intl'
 
 export interface SanityEvent {
   _id: string
@@ -23,14 +24,15 @@ const cardVariants: Variants = {
   show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 55, damping: 14 } },
 }
 
-function formatDate(iso?: string) {
+function formatDate(iso: string | undefined, locale: string) {
   if (!iso) return ''
-  return new Date(iso).toLocaleDateString('en-US', {
+  return new Date(iso).toLocaleDateString(locale === 'es' ? 'es' : 'en-US', {
     weekday: 'short', month: 'long', day: 'numeric', year: 'numeric',
   })
 }
 
 function EmptyState() {
+  const t = useTranslations('eventsGrid')
   return (
     <div style={{ textAlign: 'center', padding: '4rem 1rem' }}>
       <div style={{
@@ -43,17 +45,19 @@ function EmptyState() {
         </svg>
       </div>
       <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: '1.25rem', color: '#78509b', margin: '0 0 0.5rem' }}>
-        No events yet
+        {t('noEventsYet')}
       </h2>
       <p style={{ color: '#9ca3af', fontFamily: 'Nunito, sans-serif', fontWeight: 600, fontSize: '0.9rem', maxWidth: '380px', margin: '0 auto 1.5rem' }}>
-        Check back soon - or add your first event in the{' '}
-        <a href="/studio" style={{ color: '#4A90A4', textDecoration: 'underline' }}>Studio</a>.
+        {t('checkBackPrefix')}{' '}
+        <a href="/studio" style={{ color: '#4A90A4', textDecoration: 'underline' }}>{t('studioLink')}</a>.
       </p>
     </div>
   )
 }
 
 export default function EventsGrid({ events }: { events: SanityEvent[] }) {
+  const t = useTranslations('eventsGrid')
+  const locale = useLocale()
   if (events.length === 0) return <EmptyState />
 
   return (
@@ -115,7 +119,7 @@ export default function EventsGrid({ events }: { events: SanityEvent[] }) {
                     textTransform: 'uppercase', color: '#78509b',
                     margin: '0 0 0.5rem',
                   }}>
-                    {formatDate(event.eventDate)}
+                    {formatDate(event.eventDate, locale)}
                   </p>
                 )}
                 <h2 style={{
@@ -140,7 +144,7 @@ export default function EventsGrid({ events }: { events: SanityEvent[] }) {
                   fontFamily: 'Nunito, sans-serif', fontWeight: 800,
                   fontSize: '0.82rem', color: '#78509b',
                 }}>
-                  View Details
+                  {t('viewDetails')}
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <polyline points="9 18 15 12 9 6"/>
                   </svg>

@@ -3,6 +3,7 @@ import SubPageLayout from '@/components/SubPageLayout'
 import { client } from '@/sanity/lib/client'
 import { allEventsQuery } from '@/sanity/lib/queries'
 import EventsGrid, { type SanityEvent } from './EventsGrid'
+import { getTranslations } from 'next-intl/server'
 
 export const metadata: Metadata = {
   title: 'Recent Events | Kids Dentist Grayslake, IL',
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
 }
 
 export default async function RecentEventsPage() {
+  const t = await getTranslations('recentEventsPage')
   const events = await client.fetch<SanityEvent[]>(
     allEventsQuery,
     {},
@@ -27,9 +29,9 @@ export default async function RecentEventsPage() {
 
   return (
     <SubPageLayout
-      kicker="Community & Updates"
-      title="Recent Events"
-      subtitle="Practice news, community programs, and everything happening at Kids Dentist."
+      kicker={t('kicker')}
+      title={t('title')}
+      subtitle={t('subtitle')}
       gradient="blue"
     >
       <EventsGrid events={events} />

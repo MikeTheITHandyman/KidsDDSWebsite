@@ -3,6 +3,7 @@ import AnimatedSection from '@/components/AnimatedSection'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { getTranslations } from 'next-intl/server'
 
 export const metadata: Metadata = {
   title: 'Tour Our Office | Kids Dentist Grayslake, IL',
@@ -18,24 +19,23 @@ export const metadata: Metadata = {
   },
 }
 
-const COMFORT_FEATURES = [
-  { icon: '📺', label: 'TVs in every treatment room - kids choose what they watch' },
-  { icon: '🌿', label: 'HEPA air purification throughout all clinical spaces' },
-  { icon: '💡', label: 'Sensory-friendly, adjustable lighting in treatment areas' },
-  { icon: '🧸', label: 'Child-scaled furnishings - nothing feels too big or scary' },
-  { icon: '🎮', label: 'Dedicated kids play zone in the waiting area' },
-  { icon: '🔬', label: 'Sterilization standards exceeding ADA guidelines' },
+const COMFORT_META = [
+  { icon: '📺', labelKey: 'comfort0Label' },
+  { icon: '🌿', labelKey: 'comfort1Label' },
+  { icon: '💡', labelKey: 'comfort2Label' },
+  { icon: '🧸', labelKey: 'comfort3Label' },
+  { icon: '🎮', labelKey: 'comfort4Label' },
+  { icon: '🔬', labelKey: 'comfort5Label' },
 ]
 
-const SPACES = [
+const SPACE_META = [
   {
     number: '01',
-    name: 'The Welcome Lobby',
-    description:
-      'The first thing you will notice is that it does not feel like a dentist\'s office at all. Our lobby is designed to be warm, bright, and immediately reassuring - a space where kids want to explore and parents can finally exhale. Colorful artwork, comfortable seating, and a dedicated children\'s play area make every wait feel short.',
-    features: ['Children\'s play zone with age-appropriate activities', 'Comfortable seating for parents and guardians', 'Bright, warm color palette - no cold clinical whites'],
+    nameKey: 'space0Name',
+    descKey: 'space0Desc',
+    featureKeys: ['space0Feature0', 'space0Feature1', 'space0Feature2'],
     imagePath: '/brand_assets/office-tour-lobby.jpg',
-    imageAlt: 'Welcoming lobby of Kids Dentist Grayslake - bright, colorful, and child-friendly',
+    altKey: 'space0Alt',
     gradientFrom: '#DBEAFE',
     gradientTo: '#BAE6FD',
     accentColor: '#4A90A4',
@@ -44,12 +44,11 @@ const SPACES = [
   },
   {
     number: '02',
-    name: 'Treatment Rooms',
-    description:
-      'Each treatment room is child-sized, child-scaled, and child-tested. Chairs that feel comfortable to a 4-year-old. Overhead TVs so they can watch their favorite show during cleanings. No intimidating equipment in plain sight - we have been intentional about every detail so the environment itself helps children relax before we even begin.',
-    features: ['Overhead TVs with patient-controlled viewing', 'Child-sized, contoured dental chairs', 'Equipment stored out of sight until needed'],
+    nameKey: 'space1Name',
+    descKey: 'space1Desc',
+    featureKeys: ['space1Feature0', 'space1Feature1', 'space1Feature2'],
     imagePath: '/brand_assets/office-tour-treatment.jpg',
-    imageAlt: 'Child-friendly treatment room at Kids Dentist Grayslake with overhead TV and comfortable chair',
+    altKey: 'space1Alt',
     gradientFrom: '#D1FAE5',
     gradientTo: '#A7F3D0',
     accentColor: '#6BA899',
@@ -58,12 +57,11 @@ const SPACES = [
   },
   {
     number: '03',
-    name: 'Kids Play & Waiting Area',
-    description:
-      'For patients still waiting for their appointment - and their siblings who came along - we have a dedicated play zone stocked with age-appropriate entertainment. We believe the time before the appointment matters just as much as the appointment itself. A child who arrives relaxed and happy is a child who leaves the same way.',
-    features: ['Age-segmented play areas for toddlers and older kids', 'Seating for parents with a clear sightline to children', 'Entertainment options for siblings during appointments'],
+    nameKey: 'space2Name',
+    descKey: 'space2Desc',
+    featureKeys: ['space2Feature0', 'space2Feature1', 'space2Feature2'],
     imagePath: '/brand_assets/office-tour-play.jpg',
-    imageAlt: 'Kids play and waiting area at Kids Dentist Grayslake - designed to make waiting fun',
+    altKey: 'space2Alt',
     gradientFrom: '#FEF3C7',
     gradientTo: '#FDE68A',
     accentColor: '#D97706',
@@ -72,12 +70,11 @@ const SPACES = [
   },
   {
     number: '04',
-    name: 'Digital Technology Suite',
-    description:
-      'We invest in the latest digital X-ray and imaging technology because it directly benefits your child - faster diagnosis, significantly lower radiation exposure than traditional X-rays, and less time sitting still in the chair. Our digital workflow also means your records are always current and easily shared with your pediatrician when needed.',
-    features: ['Digital X-rays with up to 90% less radiation', 'Instant imaging - results available during your visit', 'Secure digital record-keeping and easy specialist referrals'],
+    nameKey: 'space3Name',
+    descKey: 'space3Desc',
+    featureKeys: ['space3Feature0', 'space3Feature1', 'space3Feature2'],
     imagePath: '/brand_assets/office-tour-tech.jpg',
-    imageAlt: 'Digital X-ray and imaging technology suite at Kids Dentist Grayslake pediatric dental office',
+    altKey: 'space3Alt',
     gradientFrom: '#EDE9FE',
     gradientTo: '#DDD6FE',
     accentColor: '#7C3AED',
@@ -86,11 +83,23 @@ const SPACES = [
   },
 ]
 
-export default function TourOurOfficePage() {
+export default async function TourOurOfficePage() {
+  const t = await getTranslations('tourOurOfficePage')
+
+  const COMFORT_FEATURES = COMFORT_META.map((meta) => ({ ...meta, label: t(meta.labelKey) }))
+
+  const SPACES = SPACE_META.map((meta) => ({
+    ...meta,
+    name: t(meta.nameKey),
+    description: t(meta.descKey),
+    features: meta.featureKeys.map((k) => t(k)),
+    imageAlt: t(meta.altKey),
+  }))
+
   return (
     <SubPageLayout
-      title="Tour Our Office"
-      subtitle="Designed from the ground up for curious kids and reassured parents."
+      title={t('title')}
+      subtitle={t('subtitle')}
       gradient="green"
     >
       <div className="mx-auto max-w-5xl px-4">
@@ -98,7 +107,7 @@ export default function TourOurOfficePage() {
         {/* Intro */}
         <AnimatedSection>
           <p style={{ textAlign: 'center', fontSize: '1.05rem', fontWeight: 500, color: '#6b7280', maxWidth: '620px', margin: '0 auto 2.5rem', lineHeight: 1.75 }}>
-            We believe the environment is part of the treatment. Every room, every corner, and every detail of our Grayslake office was chosen with one question in mind: <em style={{ color: '#4A90A4', fontStyle: 'normal', fontWeight: 700 }}>will this make a child feel safe?</em>
+            {t('introPrefix')} <em style={{ color: '#4A90A4', fontStyle: 'normal', fontWeight: 700 }}>{t('introEmphasis')}</em>
           </p>
         </AnimatedSection>
 
@@ -238,7 +247,7 @@ export default function TourOurOfficePage() {
                   >
                     <span style={{ fontSize: '2.75rem', lineHeight: 1 }} aria-hidden="true">{space.icon}</span>
                     <span style={{ fontFamily: 'Nunito, sans-serif', fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#6b7280' }}>
-                      Photo Coming Soon
+                      {t('photoComingSoon')}
                     </span>
                   </div>
                   {/* Room number badge */}
@@ -269,7 +278,7 @@ export default function TourOurOfficePage() {
               {/* Text content */}
               <AnimatedSection direction={space.flip ? 'left' : 'right'} delay={0.14}>
                 <span style={{ display: 'inline-block', fontFamily: 'Nunito, sans-serif', fontSize: '0.72rem', fontWeight: 900, letterSpacing: '0.12em', textTransform: 'uppercase', color: space.accentColor, marginBottom: '0.6rem' }}>
-                  Space {space.number}
+                  {t('spaceLabel', { number: space.number })}
                 </span>
                 <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.5rem, 2.5vw, 1.9rem)', color: '#4A90A4', lineHeight: 1.25, margin: '0 0 1rem' }}>
                   {space.name}
@@ -303,10 +312,10 @@ export default function TourOurOfficePage() {
           >
             <div style={{ textAlign: 'center', marginBottom: '2.25rem' }}>
               <span style={{ display: 'inline-block', fontFamily: 'Nunito, sans-serif', fontSize: '0.72rem', fontWeight: 900, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#78509b', marginBottom: '0.5rem' }}>
-                Built for Comfort
+                {t('builtForComfort')}
               </span>
               <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.5rem, 3vw, 2rem)', color: '#4A90A4', margin: '0', lineHeight: 1.2 }}>
-                Every Detail, Thoughtfully Chosen
+                {t('everyDetail')}
               </h2>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.1rem' }}>
@@ -335,20 +344,20 @@ export default function TourOurOfficePage() {
         <AnimatedSection>
           <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
             <p style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 700, fontSize: '1.1rem', color: '#4A90A4', marginBottom: '1.25rem' }}>
-              See it for yourself - schedule your first visit today.
+              {t('ctaText')}
             </p>
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
               <Link
                 href="/request-appointment"
                 style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem', background: 'linear-gradient(135deg, #E8934F, #E97D63)', color: '#fff', fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '0.95rem', padding: '0.85rem 2rem', borderRadius: '100px', textDecoration: 'none', boxShadow: '0 6px 22px rgba(232,147,79,0.35)' }}
               >
-                Schedule Your Visit
+                {t('scheduleVisit')}
               </Link>
               <Link
                 href="/contact"
                 style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem', color: '#4A90A4', fontFamily: 'Nunito, sans-serif', fontWeight: 700, fontSize: '0.95rem', padding: '0.85rem 2rem', borderRadius: '100px', textDecoration: 'none', border: '2px solid rgba(74,144,164,0.3)' }}
               >
-                Get Directions
+                {t('getDirections')}
               </Link>
             </div>
           </div>

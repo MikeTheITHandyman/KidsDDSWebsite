@@ -27,6 +27,8 @@ export default async function DrDavePage({
   const { locale } = await params
   setRequestLocale(locale)
   const t = await getTranslations('drProfiles')
+  const tAbout = await getTranslations('about')
+  const tMeet = await getTranslations('meetDentists')
 
   const credentials = Array.from({ length: 7 }, (_, i) =>
     t(`dave_cred${i}` as Parameters<typeof t>[0])
@@ -34,7 +36,7 @@ export default async function DrDavePage({
 
   return (
     <SubPageLayout
-      title="Dr. Dave Rutcosky, DDS, MS"
+      title={tAbout('daveName')}
       gradient="green"
     >
       <div className="mx-auto max-w-5xl px-4">
@@ -68,7 +70,7 @@ export default async function DrDavePage({
               >
                 <Image
                   src="/brand_assets/index-dr-dave.jpg"
-                  alt="Dr. Dave Rutcosky, pediatric dentist at Kids Dentist Grayslake IL"
+                  alt={tMeet('headshotAlt', { name: tAbout('daveName') })}
                   fill
                   sizes="(max-width: 768px) 100vw, 40vw"
                   style={{ objectFit: 'cover', objectPosition: 'top center' }}
@@ -120,7 +122,7 @@ export default async function DrDavePage({
                 &ldquo;{t('dave_quote')}&rdquo;
               </p>
               <cite style={{ fontSize: '0.82rem', fontWeight: 800, color: '#9ca3af', fontStyle: 'normal', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
-                — Dr. Dave Rutcosky, DDS, MS
+                — {tAbout('daveName')}
               </cite>
             </blockquote>
 

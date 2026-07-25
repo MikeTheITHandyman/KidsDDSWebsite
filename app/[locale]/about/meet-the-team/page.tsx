@@ -2,6 +2,7 @@ import SubPageLayout from '@/components/SubPageLayout'
 import AnimatedSection from '@/components/AnimatedSection'
 import TeamCard from '@/components/TeamCard'
 import type { Metadata } from 'next'
+import { getTranslations } from 'next-intl/server'
 
 export const metadata: Metadata = {
   title: 'Meet Our Team | Kids Dentist Grayslake, IL',
@@ -28,27 +29,31 @@ const ACCENTS = [
 ]
 
 // Alphabetical by first name.
-const TEAM_MEMBERS = [
-  { firstName: 'Cassie', role: 'Hygienist', photoSrc: '/brand_assets/team/headshot-cassie.jpeg' },
-  { firstName: 'Don', role: 'Office Manager', photoSrc: '/brand_assets/team/headshot-don.jpg' },
-  { firstName: 'Eva', role: 'Assistant Manager', photoSrc: '/brand_assets/team/headshot-eva.jpg' },
-  { firstName: 'Gabbie', role: 'Treatment Coordinator', photoSrc: '/brand_assets/team/headshot-gabbie.jpeg' },
-  { firstName: 'Jannet', role: 'Scheduling Coordinator', photoSrc: '/brand_assets/team/headshot-jannet.jpg' },
-  { firstName: 'Maggie', role: 'Lead Dental Assistant', photoSrc: '/brand_assets/team/headshot-maggie.jpeg' },
-  { firstName: 'Maria', role: 'Dental Assistant', photoSrc: '/brand_assets/team/headshot-maria.jpeg' },
-  { firstName: 'Michelle', role: 'Scheduling Coordinator', photoSrc: '/brand_assets/team/headshot-michelle.jpeg' },
-  { firstName: 'Noemi', role: 'Dental Assistant', photoSrc: '/brand_assets/team/headshot-noemi.jpeg' },
-  { firstName: 'Olga', role: 'Dental Assistant', photoSrc: '/brand_assets/team/headshot-olga.jpeg' },
-  { firstName: 'Sema', role: 'Hygiene Assistant', photoSrc: '/brand_assets/team/headshot-sema.jpeg' },
-  { firstName: 'Stephenie', role: 'Hygienist', photoSrc: '/brand_assets/team/headshot-stephenie.jpeg' },
+const TEAM_MEMBERS_META = [
+  { firstName: 'Cassie', roleKey: 'roleHygienist', photoSrc: '/brand_assets/team/headshot-cassie.jpeg' },
+  { firstName: 'Don', roleKey: 'roleOfficeManager', photoSrc: '/brand_assets/team/headshot-don.jpg' },
+  { firstName: 'Eva', roleKey: 'roleAssistantManager', photoSrc: '/brand_assets/team/headshot-eva.jpg' },
+  { firstName: 'Gabbie', roleKey: 'roleTreatmentCoordinator', photoSrc: '/brand_assets/team/headshot-gabbie.jpeg' },
+  { firstName: 'Jannet', roleKey: 'roleSchedulingCoordinator', photoSrc: '/brand_assets/team/headshot-jannet.jpg' },
+  { firstName: 'Maggie', roleKey: 'roleLeadDentalAssistant', photoSrc: '/brand_assets/team/headshot-maggie.jpeg' },
+  { firstName: 'Maria', roleKey: 'roleDentalAssistant', photoSrc: '/brand_assets/team/headshot-maria.jpeg' },
+  { firstName: 'Michelle', roleKey: 'roleSchedulingCoordinator', photoSrc: '/brand_assets/team/headshot-michelle.jpeg' },
+  { firstName: 'Noemi', roleKey: 'roleDentalAssistant', photoSrc: '/brand_assets/team/headshot-noemi.jpeg' },
+  { firstName: 'Olga', roleKey: 'roleDentalAssistant', photoSrc: '/brand_assets/team/headshot-olga.jpeg' },
+  { firstName: 'Sema', roleKey: 'roleHygieneAssistant', photoSrc: '/brand_assets/team/headshot-sema.jpeg' },
+  { firstName: 'Stephenie', roleKey: 'roleHygienist', photoSrc: '/brand_assets/team/headshot-stephenie.jpeg' },
 ]
 
-export default function MeetTheTeamPage() {
+export default async function MeetTheTeamPage() {
+  const t = await getTranslations('meetTeamPage')
+
+  const TEAM_MEMBERS = TEAM_MEMBERS_META.map((member) => ({ ...member, role: t(member.roleKey) }))
+
   return (
     <SubPageLayout
-      title="Meet Our Team"
-      subtitle="Warm, skilled, and genuinely passionate about making dental visits great for kids."
-      kicker="Our People"
+      title={t('title')}
+      subtitle={t('subtitle')}
+      kicker={t('kicker')}
     >
       <div className="max-w-5xl mx-auto px-4" style={{ marginBottom: '4rem' }}>
 
@@ -60,7 +65,7 @@ export default function MeetTheTeamPage() {
                 photoSrc={member.photoSrc}
                 firstName={member.firstName}
                 role={member.role}
-                alt={`Headshot of ${member.firstName}, ${member.role} at Kids Dentist in Grayslake, IL`}
+                alt={t('headshotAlt', { firstName: member.firstName, role: member.role })}
                 accent={ACCENTS[i % ACCENTS.length]}
               />
             </AnimatedSection>

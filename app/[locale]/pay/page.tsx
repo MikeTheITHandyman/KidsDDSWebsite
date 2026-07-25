@@ -2,6 +2,7 @@ import SubPageLayout from '@/components/SubPageLayout'
 import AnimatedSection from '@/components/AnimatedSection'
 import PayNowForm from './PayNowForm'
 import type { Metadata } from 'next'
+import { getTranslations } from 'next-intl/server'
 
 export const metadata: Metadata = {
   title: 'Pay Online | Kids Dentist Grayslake, IL',
@@ -26,8 +27,8 @@ const TRUST_BADGES = [
         <path d="M7 11V7a5 5 0 0110 0v4"/>
       </svg>
     ),
-    label: 'Secure & Encrypted',
-    detail: 'All payments use 256-bit SSL encryption',
+    labelKey: 'badge0Label',
+    detailKey: 'badge0Detail',
     color: '#4A90A4',
   },
   {
@@ -36,8 +37,8 @@ const TRUST_BADGES = [
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
       </svg>
     ),
-    label: 'HIPAA Compliant',
-    detail: 'Your health and billing data is always protected',
+    labelKey: 'badge1Label',
+    detailKey: 'badge1Detail',
     color: '#6BA899',
   },
   {
@@ -49,18 +50,19 @@ const TRUST_BADGES = [
         <line x1="16" y1="17" x2="8" y2="17"/>
       </svg>
     ),
-    label: 'Receipt Emailed',
-    detail: 'A confirmation is sent to your email on file',
+    labelKey: 'badge2Label',
+    detailKey: 'badge2Detail',
     color: '#78509b',
   },
 ]
 
-export default function PayPage() {
+export default async function PayPage() {
+  const t = await getTranslations('payPage')
   return (
     <SubPageLayout
-      kicker="Secure Payment"
-      title="Pay Your Bill Online"
-      subtitle="Fast, secure, and private — just like the care we provide."
+      kicker={t('kicker')}
+      title={t('title')}
+      subtitle={t('subtitle')}
       gradient="blue"
     >
       <div className="mx-auto max-w-2xl px-4">
@@ -110,7 +112,7 @@ export default function PayPage() {
                 lineHeight: 1.25,
               }}
             >
-              Secure Online Payment
+              {t('cardHeading')}
             </h2>
             <p
               style={{
@@ -122,8 +124,7 @@ export default function PayPage() {
                 margin: '0 auto 2.25rem',
               }}
             >
-              Click below to be directed to our secure payment processor. You&apos;ll be able
-              to enter your payment amount and billing information on the next screen.
+              {t('cardBody')}
             </p>
 
             <PayNowForm />
@@ -144,7 +145,7 @@ export default function PayPage() {
                 <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
                 <path d="M7 11V7a5 5 0 0110 0v4"/>
               </svg>
-              Powered by HostedPayNow · 256-bit SSL encryption
+              {t('poweredBy')}
             </p>
           </div>
         </AnimatedSection>
@@ -162,7 +163,7 @@ export default function PayPage() {
           >
             {TRUST_BADGES.map((badge) => (
               <div
-                key={badge.label}
+                key={badge.labelKey}
                 style={{
                   background: `linear-gradient(135deg, ${badge.color}0D, ${badge.color}0A)`,
                   border: `1.5px solid ${badge.color}22`,
@@ -185,7 +186,7 @@ export default function PayPage() {
                     margin: '0 0 0.25rem',
                   }}
                 >
-                  {badge.label}
+                  {t(badge.labelKey)}
                 </p>
                 <p
                   style={{
@@ -196,7 +197,7 @@ export default function PayPage() {
                     lineHeight: 1.45,
                   }}
                 >
-                  {badge.detail}
+                  {t(badge.detailKey)}
                 </p>
               </div>
             ))}
@@ -208,7 +209,7 @@ export default function PayPage() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', margin: '0 0 1.5rem' }}>
             <div style={{ flex: 1, height: '1px', background: 'rgba(74,144,164,0.12)' }} />
             <span style={{ fontSize: '0.8rem', color: '#9ca3af', fontWeight: 600, whiteSpace: 'nowrap' }}>
-              or pay by phone
+              {t('orPayByPhone')}
             </span>
             <div style={{ flex: 1, height: '1px', background: 'rgba(74,144,164,0.12)' }} />
           </div>
@@ -235,10 +236,10 @@ export default function PayPage() {
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .01h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
               </svg>
-              Call Office · (847) 223-1400
+              {t('callOffice')}
             </a>
             <p style={{ fontSize: '0.78rem', color: '#9ca3af', fontWeight: 500, margin: '0.6rem 0 0' }}>
-              Mon–Thu 9 am–5 pm · Fri 8 am–2 pm
+              {t('officeHoursShort')}
             </p>
           </div>
         </AnimatedSection>
@@ -272,13 +273,12 @@ export default function PayPage() {
                   margin: '0 0 0.3rem',
                 }}
               >
-                Questions about your bill?
+                {t('questionsHeading')}
               </p>
               <p style={{ fontSize: '0.875rem', color: '#6b7280', margin: 0, fontWeight: 500, lineHeight: 1.6 }}>
-                Our team is happy to explain any charges, walk through your EOB, or set up a
-                payment plan.{' '}
+                {t('questionsBody')}{' '}
                 <a href="/contact" style={{ color: '#4A90A4', fontWeight: 700, textDecoration: 'none' }}>
-                  Send us a message →
+                  {t('sendMessage')}
                 </a>
               </p>
             </div>
