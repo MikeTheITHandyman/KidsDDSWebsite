@@ -34,7 +34,7 @@ export default function Hero() {
       {/* ── Full-bleed background video ── */}
       <video
         ref={videoRef}
-        src="/brand_assets/KD%20Hero%20HD.mp4"
+        src="/brand_assets/hero-video.mp4"
         autoPlay
         loop
         muted
