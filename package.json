@@ -23,9 +23,12 @@
   },
   "devDependencies": {
     "@netlify/plugin-nextjs": "^5.15.9",
+    "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "latest",
     "@types/react": "latest",
     "heic-convert": "^2.1.0",
+    "postcss": "^8.5.23",
+    "tailwindcss": "^4.3.3",
     "typescript": "5.9.3"
   }
 }

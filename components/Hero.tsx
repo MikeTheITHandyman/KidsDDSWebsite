@@ -23,12 +23,10 @@ export default function Hero() {
     <section className="hero relative isolate overflow-hidden">
 
       {/*
-        NOTE: This project's `className` Tailwind strings do not currently compile —
-        there is no tailwindcss dependency, postcss.config, or @tailwind/@import
-        directive wired into the build, so utility classes like `absolute`/`-z-20`
-        render as inert no-ops. The classNames below are kept (in case Tailwind is
-        ever properly configured) but every layout-critical property also has an
-        inline `style` fallback so this actually renders correctly today.
+        NOTE: Tailwind v4 is now installed and compiling (see styles/global.css),
+        so the `className` utility strings below are live. The inline `style`
+        fallbacks are kept anyway — they were added when Tailwind wasn't wired up
+        and removing them isn't necessary for this to render correctly.
       */}
 
       {/* ── Full-bleed background video ──
