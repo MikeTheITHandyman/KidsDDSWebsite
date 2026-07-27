@@ -31,10 +31,22 @@ export default function Hero() {
         inline `style` fallback so this actually renders correctly today.
       */}
 
-      {/* ── Full-bleed background video ── */}
+      {/* ── Full-bleed background video ──
+          Source comes from NEXT_PUBLIC_HERO_VIDEO_URL, which resolves
+          differently per environment: netlify.toml sets it to a Cloudinary
+          URL for production (proper video CDN — adaptive quality, real
+          Range-request/streaming support), while .env.local overrides it to
+          the local /brand_assets/hero-video.mp4 for dev. Do not hardcode a
+          local path here — this exact class of bug (video unreliable for
+          some visitors when served as a plain Netlify static asset) already
+          happened once in this project's history (see commit 2819701) and
+          was fixed the same way. */}
       <video
         ref={videoRef}
-        src="/brand_assets/hero-video.mp4"
+        src={
+          process.env.NEXT_PUBLIC_HERO_VIDEO_URL ||
+          'https://res.cloudinary.com/dkrbvqzlw/video/upload/q_auto:low,w_1280/v1777343603/hero-video_oznoe1.mp4'
+        }
         autoPlay
         loop
         muted
