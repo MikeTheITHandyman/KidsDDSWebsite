@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import LanguageSwitcher from '@/components/LanguageSwitcher'
@@ -10,19 +10,6 @@ const springBtn = { type: 'spring', stiffness: 400, damping: 20 } as const
 export default function Hero() {
   const t = useTranslations('hero')
   const videoRef = useRef<HTMLVideoElement>(null)
-
-  // Autoplaying background video is a motion effect — honor prefers-reduced-motion
-  // by never starting playback (the poster frame shows instead). Playback is
-  // started manually here rather than via the `autoPlay` attribute so there's
-  // no race where the browser starts playing and then immediately pauses on a
-  // not-yet-decoded frame, which renders as a solid black video (this actually
-  // happened to a real user — no poster was wired in, so a mid-mount pause on
-  // reduced-motion had nothing to fall back to but black).
-  useEffect(() => {
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      videoRef.current?.play().catch(() => {})
-    }
-  }, [])
 
   return (
     <section className="hero relative isolate overflow-hidden">
@@ -51,6 +38,7 @@ export default function Hero() {
           'https://res.cloudinary.com/dkrbvqzlw/video/upload/q_auto:low,w_1280/v1777343603/hero-video_oznoe1.mp4'
         }
         poster="/brand_assets/hero-photo.jpg"
+        autoPlay
         loop
         muted
         playsInline
@@ -69,12 +57,12 @@ export default function Hero() {
       {/* ── Readability overlay ── */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-black/30 -z-10"
+        className="absolute inset-0 bg-black/20 -z-10"
         style={{
           position: 'absolute',
           inset: 0,
           zIndex: -10,
-          backgroundColor: 'rgba(0,0,0,0.3)',
+          backgroundColor: 'rgba(0,0,0,0.2)',
         }}
       />
 
