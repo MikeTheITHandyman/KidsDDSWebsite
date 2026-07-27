@@ -12,10 +12,15 @@ export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null)
 
   // Autoplaying background video is a motion effect — honor prefers-reduced-motion
-  // by pausing on mount rather than never loading it (poster frame still shows).
+  // by never starting playback (the poster frame shows instead). Playback is
+  // started manually here rather than via the `autoPlay` attribute so there's
+  // no race where the browser starts playing and then immediately pauses on a
+  // not-yet-decoded frame, which renders as a solid black video (this actually
+  // happened to a real user — no poster was wired in, so a mid-mount pause on
+  // reduced-motion had nothing to fall back to but black).
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      videoRef.current?.pause()
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      videoRef.current?.play().catch(() => {})
     }
   }, [])
 
@@ -45,7 +50,7 @@ export default function Hero() {
           process.env.NEXT_PUBLIC_HERO_VIDEO_URL ||
           'https://res.cloudinary.com/dkrbvqzlw/video/upload/q_auto:low,w_1280/v1777343603/hero-video_oznoe1.mp4'
         }
-        autoPlay
+        poster="/brand_assets/hero-photo.jpg"
         loop
         muted
         playsInline
@@ -64,12 +69,12 @@ export default function Hero() {
       {/* ── Readability overlay ── */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-black/50 -z-10"
+        className="absolute inset-0 bg-black/30 -z-10"
         style={{
           position: 'absolute',
           inset: 0,
           zIndex: -10,
-          backgroundColor: 'rgba(0,0,0,0.5)',
+          backgroundColor: 'rgba(0,0,0,0.3)',
         }}
       />
 
