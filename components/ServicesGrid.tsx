@@ -69,6 +69,21 @@ const SERVICE_CONFIG = [
       </svg>
     ),
   },
+  {
+    key: 'orthodontics' as const,
+    href: '/services/orthodontics',
+    iconBg: 'linear-gradient(135deg, #dbeafe, #bae6fd)',
+    featured: false,
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4A90A4" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M3 7V5a2 2 0 012-2h2"/>
+        <path d="M17 3h2a2 2 0 012 2v2"/>
+        <path d="M21 17v2a2 2 0 01-2 2h-2"/>
+        <path d="M7 21H5a2 2 0 01-2-2v-2"/>
+        <path d="M9 12l2 2 4-4"/>
+      </svg>
+    ),
+  },
 ]
 
 export default function ServicesGrid() {
@@ -115,7 +130,7 @@ export default function ServicesGrid() {
       </div>
 
       <style>{`
-        .services-all-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.25rem; }
+        .services-all-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1.25rem; }
         @media (max-width: 1100px) { .services-all-grid { grid-template-columns: repeat(3, 1fr); } }
         @media (max-width: 700px) { .services-all-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 440px) { .services-all-grid { grid-template-columns: 1fr; } }

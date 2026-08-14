@@ -2,6 +2,8 @@
 
 > **Purpose of this document:** A living reference for the current build state. Covers every route, component, design token, and content requirement so Claude Code can produce precise, context-rich work.
 
+**Last updated:** 2026-08-14 (Orthodontic Evaluations surfaced in global nav + homepage services grid) — Added "Orthodontic Evaluations" (→ `/services/orthodontics`) as a 6th item in `Header.tsx`'s Services dropdown (desktop + mobile share the same `NAV` array) and as a 6th card in `ServicesGrid.tsx`'s `SERVICE_CONFIG`, using a new scan-corners-with-checkmark icon (`stroke="#4A90A4"`, `iconBg: linear-gradient(135deg, #dbeafe, #bae6fd)` — blue, not yet used elsewhere in that component) to represent ongoing monitoring/evaluation. `services-all-grid`'s default column count changed from `repeat(5, 1fr)` to `repeat(6, 1fr)` — the only CSS change needed, since 6 now divides evenly at every existing breakpoint (6 → 3 → 2 → 1) where 5 previously did not. New `nav.orthodontics` and `services.orthodontics.{title,description,button}` keys added to both `en.json`/`es.json`, reusing the same "Orthodontic Evaluations" / "Evaluaciones de Ortodoncia" phrasing already established by `orthodonticsPage.title` (2026-08-14, same day). **While in this file:** corrected long-stale documentation in §7/§8 claiming `ServicesGrid` was an "auto-rotating carousel (4s, pauses on hover)" with "prev/next arrows + dot indicators" — the actual component has never had any of that in its current form; it's a static grid. Also fixed three service `href`s in the §8 table that no longer matched `SERVICE_CONFIG` (`restorative-dentistry` → `restorative`, and `special-needs`/`emergency` pointing at the bare `/services` page instead of their own routes).
+
 **Last updated:** 2026-08-14 (AI-optimized FAQ rollout + Orthodontics page built out) — Added a short, answer-first FAQ block (reusing the existing `FaqAccordion` component) to the bottom of four service pages, written for AI answer-engine/snippet extraction rather than as a replacement for existing on-page FAQ content. `/services/preventive-dentistry` already had a 3-question FAQ mid-page (`faq0`–`faq2`); the new block is a second, distinct section using `moreFaq0`–`moreFaq2` keys placed after the page's CTA so it doesn't collide with or duplicate the original. `/services/restorative`, `/services/sedation-dentistry`, and `/services/emergency` had no FAQ section before this pass — each gets a new `faq0`–`faq2` block (new keys, no prior collisions), also placed as the last section on the page, after the CTA. All four blocks are wrapped in `AnimatedSection` and follow each page's existing visual convention (either the inline-style kicker pattern used by `preventivePage`/`sedationPage`, or the `className="section-kicker"` + `var(--brand-600)` pattern used by `restorativePage`/`emergencyPage`) — no new design patterns introduced. **`/services/orthodontics` was one of the 23 "Under Construction" placeholder pages** (a client-only `PlaceholderPage` component with no i18n, no metadata, no real content) — it has been fully built out as a server component matching its sibling service pages: `SubPageLayout` (`gradient="blue"`), full `metadata` block + `Service` JSON-LD, a "How It Works" section, and a two-column "What We Do" / "What We Don't Do" comparison that explicitly states Kids Dentist performs orthodontic **evaluations and referrals only** — it does not place braces or provide Invisalign treatment in-house, and instead partners with local orthodontic specialists. Ends with its own 3-question FAQ block (new `orthodonticsPage` namespace) and a standard appointment/call CTA. All new copy (English + Spanish) was supplied by the practice, not generated — Spanish translations use the project's established terminology (`odontólogo/odontóloga` rather than `dentista`, per the 2026-07-25 i18n pass).
 
 **Previously (2026-07-27, hero video reliability fixes) — Two follow-on fixes to the `Hero.tsx` full-bleed video introduced 2026-07-25. **Fix 1 — black-frame bug:** the video autoplayed, then was immediately paused on mount for `prefers-reduced-motion` users with no `poster` attribute set; if that pause landed before the first frame decoded, the video rendered solid black. Reproduced by a client across both Chrome and Edge, unaffected by cache-clearing, consistent with an OS-level reduce-motion setting. Fixed by only starting playback via a manual `.play()` call when reduced motion is not preferred, and adding `poster="/brand_assets/hero-photo.jpg"` (an existing but previously-unused fallback image) to cover any paused/blocked/slow-loading state. Overlay also dropped from 50% to 30% black opacity per client feedback that the hero read too dark. **Fix 2 — ignore `prefers-reduced-motion` entirely:** the client reported the video never playing on Windows 10 with "Show animations in Windows" disabled, and since a competitor's site autoplays regardless of that setting, and the video is muted/decorative rather than essential motion, the reduce-motion check was removed — the video now always autoplays via the `autoPlay` attribute, with the `poster` fallback still in place for genuine load failures. Overlay lowered again, 30% → 20% black, per further brightness feedback. **Current state:** `Hero.tsx` has no reduce-motion branching at all; `videoRef` is unused for playback control. See also the two related fixes below this video already went through — Netlify deploy (2026-07-25) and Cloudinary CDN sourcing (2026-07-26) — neither of which had been logged here until now; §8's Hero subsection has been corrected to match the actual full-bleed redesign (it still described the older blob-shaped layout).
@@ -243,6 +245,7 @@ Services ▼
   Special Needs Dentistry         /services/special-needs
   Sedation Dentistry              /services/sedation-dentistry
   Emergency Dental Care           /services/emergency
+  Orthodontic Evaluations         /services/orthodontics
 For Patients ▼
   Child's First Visit             /for-patients/child-first-visit
   Insurance & Financing           /for-patients/insurance-info
@@ -297,7 +300,7 @@ Mon–Fri schedule (see Section 1 table above)
 | `Footer` | `components/Footer.tsx` | 4-col footer, social links, Pay Now form |
 | `Hero` | `components/Hero.tsx` | Homepage hero with headline + CTAs |
 | `QuickActionsBar` | `components/QuickActionsBar.tsx` | Fast-action strip (top of homepage, below hero); "Dental Emergency" pill is neutral ghost style (white/gray) matching "Ask the Doctor" — no red styling |
-| `ServicesGrid` | `components/ServicesGrid.tsx` | Auto-rotating services carousel (4s, pauses on hover) |
+| `ServicesGrid` | `components/ServicesGrid.tsx` | Responsive 6-card services grid (not an auto-rotating carousel despite the name/older docs — see §8) |
 | `MeetOurDoctors` | `components/MeetOurDoctors.tsx` | Homepage doctor cards (4-col grid) |
 | `ReviewBubbles` | `components/ReviewBubbles.tsx` | Rotating testimonial carousel (Sanity-fed) |
 | `ValueProps` | `components/ValueProps.tsx` | Homepage differentiator cards |
@@ -343,7 +346,7 @@ Renders these sections **in order**:
 ```
 <QuickActionsBar />       ← fast-access action strip
 <Hero />                  ← main hero + CTAs
-<ServicesGrid />          ← rotating services carousel
+<ServicesGrid />          ← services grid (see §8 — not actually a rotating carousel)
 <InsuranceBanner />       ← insurance highlight strip
 <MeetOurDoctors />        ← doctor cards
 <ReviewBubbles />         ← Sanity-fetched reviews (ISR 60s)
@@ -374,16 +377,17 @@ Renders these sections **in order**:
 - ~~Animated radial gradient blobs~~ — **removed**; background is now the video itself
 
 ### ServicesGrid (`components/ServicesGrid.tsx`)
-Auto-rotating carousel (4s interval, pauses on hover). Shows 3 of 5 cards at a time. Prev/next arrows + dot indicators.
+**Correction (2026-08-14):** despite the "carousel" name and older docs here, this is — and, per its own git history, has been for some time — a static, responsive CSS grid (`SERVICE_CONFIG.map(...)` over a `grid-template-columns` layout with breakpoints), not an auto-rotating carousel. There is no interval timer, no hover-to-pause, no prev/next arrows, and no dot indicators anywhere in the component. All cards render at once; only the column count changes per breakpoint (6 → 3 → 2 → 1, chosen so 6 items divide evenly at every tier).
 
-**5 Services:**
+**6 Services:**
 | Title | href |
 |---|---|
 | Preventive Dentistry | `/services/preventive-dentistry` |
-| Restorative Dentistry | `/services/restorative-dentistry` |
-| Special Needs Dentistry | `/services` |
+| Restorative Dentistry | `/services/restorative` |
 | Sedation Dentistry | `/services/sedation-dentistry` |
-| Emergency Pediatric Dentistry | `/services` |
+| Special Needs Dentistry | `/services/special-needs` (`featured: true` — purple ring/glow styling) |
+| Emergency Pediatric Dentistry | `/services/emergency` |
+| Orthodontic Evaluations | `/services/orthodontics` — added 2026-08-14; evaluation/referral framing, not in-house treatment |
 
 ### MeetOurDoctors (`components/MeetOurDoctors.tsx`)
 - 4-column doctor grid; each card: blob-shaped headshot, name, role, "Meet Dr. [FirstName] ›" link

@@ -152,6 +152,7 @@ export default function Header({ latestPostTitle, latestPostSlug }: HeaderProps)
         { label: t('specialNeeds'), href: '/services/special-needs' },
         { label: t('sedation'), href: '/services/sedation-dentistry' },
         { label: t('emergency'), href: '/services/emergency' },
+        { label: t('orthodontics'), href: '/services/orthodontics' },
       ],
     },
     {

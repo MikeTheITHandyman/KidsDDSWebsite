@@ -14,6 +14,7 @@
     "specialNeeds": "Special Needs Dentistry",
     "sedation": "Sedation Dentistry",
     "emergency": "Emergency Dental Care",
+    "orthodontics": "Orthodontic Evaluations",
     "forPatients": "For Patients",
     "firstVisit": "Child's First Visit",
     "insurance": "Insurance & Financing",
@@ -72,6 +73,11 @@
       "title": "Emergency Pediatric Dentistry",
       "description": "When your child has a toothache, knocked-out tooth, or dental injury, we'll get them in as soon as possible.",
       "button": "Emergency Dental Care"
+    },
+    "orthodontics": {
+      "title": "Orthodontic Evaluations",
+      "description": "We monitor jaw and tooth development closely, providing expert referrals for braces and Invisalign at the exact moment intervention is needed.",
+      "button": "Orthodontic Evaluations"
     }
   },
   "insurance": {

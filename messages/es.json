@@ -14,6 +14,7 @@
     "specialNeeds": "Odontología para Necesidades Especiales",
     "sedation": "Odontología con Sedación",
     "emergency": "Atención Dental de Emergencia",
+    "orthodontics": "Evaluaciones de Ortodoncia",
     "forPatients": "Para Pacientes",
     "firstVisit": "Primera Visita del Niño",
     "insurance": "Seguro y Financiamiento",
@@ -72,6 +73,11 @@
       "title": "Atención de Urgencias Odontológicas",
       "description": "Cuando su hijo(a) tiene un dolor de muela, un diente caído o una lesión dental, lo atenderemos lo antes posible.",
       "button": "Atención Dental de Emergencia"
+    },
+    "orthodontics": {
+      "title": "Evaluaciones de Ortodoncia",
+      "description": "Supervisamos de cerca el desarrollo de la mandíbula y los dientes, brindando referencias a especialistas de confianza para frenos e Invisalign en el momento exacto en que se necesita intervención.",
+      "button": "Evaluaciones de Ortodoncia"
     }
   },
   "insurance": {
