@@ -493,7 +493,15 @@
     "faq2a": "The American Academy of Pediatric Dentistry recommends a routine checkup and cleaning every 6 months to maintain optimal oral health. Some children with higher cavity risk may benefit from more frequent visits - we will give you a personalized recommendation at your child's first exam.",
     "ctaText": "Ready to set your child up for a lifetime of healthy smiles?",
     "ctaAppointment": "Schedule a Cleaning",
-    "ctaCall": "Text/Call us: (847) 223-1400"
+    "ctaCall": "Text/Call us: (847) 223-1400",
+    "moreFaqKicker": "More Answers",
+    "moreFaqHeading": "Quick Answers on Preventing Cavities",
+    "moreFaq0q": "How can I prevent cavities in my child's teeth?",
+    "moreFaq0a": "The best prevention starts at home with brushing twice a day using fluoride toothpaste and flossing. Limiting sugary snacks and maintaining regular checkups every six months allows us to apply fluoride treatments and dental sealants to stop problems before they start.",
+    "moreFaq1q": "Is fluoride safe for children?",
+    "moreFaq1a": "Yes, when used correctly, fluoride is completely safe and is one of the most effective ways to strengthen your child's enamel and prevent decay. We use safe, concentrated fluoride varnish at the end of cleaning appointments.",
+    "moreFaq2q": "What age should my child see a dentist for the first time?",
+    "moreFaq2a": "We recommend the first visit when their first tooth appears, or no later than their first birthday. The earlier we start, the easier it is to ensure healthy development."
   },
   "restorativePage": {
     "title": "Restorative Dentistry",
@@ -515,7 +523,15 @@
     "ctaKicker": "Don't Wait",
     "ctaHeading": "Cavities don't get smaller on their own.",
     "ctaBody": "The sooner we see your child, the simpler the treatment. Book an appointment today and let us take a look.",
-    "ctaButton": "Request an Appointment"
+    "ctaButton": "Request an Appointment",
+    "faqKicker": "Common Questions",
+    "faqHeading": "Parents Ask, We Answer",
+    "faq0q": "My child has a cavity. Does it really need a filling?",
+    "faq0a": "Yes. Cavities are infections that do not heal on their own. Treating a cavity early with a gentle filling prevents the infection from growing, causing pain, or requiring more extensive treatments.",
+    "faq1q": "Why fill a baby tooth if it falls out anyway?",
+    "faq1a": "Baby teeth are critical for helping your child chew, speak clearly, and hold the proper space for permanent teeth. Losing a baby tooth too early to decay can cause severe orthodontic problems down the road.",
+    "faq2q": "What happens if you don't fill a baby tooth?",
+    "faq2a": "Left untreated, decay can spread to the nerve of the tooth, causing severe pain, abscesses (infections), and potentially damaging the developing permanent tooth underneath the gums."
   },
   "sedationPage": {
     "title": "Sedation Dentistry",
@@ -548,7 +564,15 @@
     "option1Ideal": "Children with severe anxiety, extensive treatment needs, special needs, complex medical backgrounds, or who have not responded to lighter sedation.",
     "ctaText": "Not sure where to start? Let's talk through your child's situation together.",
     "ctaAppointment": "Talk to Us About Sedation Options",
-    "ctaCall": "Text/Call us: (847) 223-1400"
+    "ctaCall": "Text/Call us: (847) 223-1400",
+    "faqKicker": "Common Questions",
+    "faqHeading": "Easing Your Child's Nerves",
+    "faq0q": "Is it safe to use laughing gas for children?",
+    "faq0a": "Yes, nitrous oxide (laughing gas) is an extremely safe and mild sedation option. It helps nervous children relax during their treatment, and its effects wear off completely within minutes of breathing normal oxygen at the end of the visit.",
+    "faq1q": "How do pediatric dentists help anxious children?",
+    "faq1a": "We use child-friendly language, tell-show-do techniques, and work at their pace. Our primary goal is to make them feel safe. If anxiety is high, we will discuss safe sedation options so their experience is stress-free.",
+    "faq2q": "My child is scared of the dentist. What should I do?",
+    "faq2a": "It is completely normal! Keep a positive attitude when talking about the visit at home. Avoid using scary words (like \"needle\" or \"pain\") and trust our pediatric experts to guide your child through a fun, gentle visit."
   },
   "specialNeedsPage": {
     "title": "Special Needs Dentistry",
@@ -628,7 +652,15 @@
     "ctaHeading": "Dental emergency? Call us right away.",
     "ctaBody": "During office hours, we do our best to see emergency patients the same day — new and existing patients welcome.",
     "ctaCall": "Call Now: (847) 223-1400",
-    "ctaAppointment": "Request an Appointment"
+    "ctaAppointment": "Request an Appointment",
+    "faqKicker": "Common Questions",
+    "faqHeading": "What Parents Ask During an Emergency",
+    "faq0q": "My child's tooth is loose after a fall - what should I do?",
+    "faq0a": "Call us right away. A tooth knocked loose by trauma needs to be evaluated quickly to ensure there is no damage to the root or the permanent tooth underneath. We will give you instructions on what to do while you head to the office.",
+    "faq1q": "What to do for a knocked-out baby tooth?",
+    "faq1a": "Find the tooth, apply gentle pressure with clean gauze if there is bleeding, and call us immediately. Unlike permanent teeth, we never attempt to put a baby tooth back in place, as it could damage the developing adult tooth.",
+    "faq2q": "How to handle a child's toothache or swollen gums?",
+    "faq2a": "Gently clean the affected area with warm water, use dental floss to ensure no food is trapped, and apply a cold compress to the cheek if there is swelling. Call us as soon as possible; a toothache is usually a sign that dental attention is needed."
   },
   "about": {
     "kicker": "Since 1994 · Grayslake, IL",
@@ -1133,5 +1165,34 @@
     "anneAshley_cred4": "Board-Certified Pediatric Dentist & Diplomate, American Board of Pediatric Dentistry (ABPD)",
     "anneAshley_cred5": "Board Member, Illinois Society of Pediatric Dentistry",
     "anneAshley_cred6": "Member — American Academy of Pediatric Dentistry (AAPD) & American Dental Association (ADA)"
+  },
+  "orthodonticsPage": {
+    "kicker": "Growth & Alignment",
+    "title": "Orthodontic Evaluations",
+    "subtitle": "We monitor your child's bite and jaw growth at every visit — and refer to a trusted specialist the moment treatment is needed.",
+    "backToServices": "Back to All Services",
+    "howKicker": "How It Works",
+    "howHeading": "Evaluation & Referral, Not In-House Treatment",
+    "howBody": "As pediatric dentists, we watch your child's bite, jaw growth, and emerging teeth at every routine checkup. If we notice signs that braces or Invisalign may be needed, we'll walk you through the timeline and refer you to one of the trusted local orthodontic specialists we partner with. We do not place braces or provide Invisalign treatment ourselves — our role is to catch problems early and connect you with the right specialist at the right time.",
+    "weDoTitle": "What We Do",
+    "weDo0": "Screen your child's bite, jaw growth, and tooth alignment at every routine checkup",
+    "weDo1": "Recommend an initial orthodontic evaluation around age 7, per American Association of Orthodontists guidelines",
+    "weDo2": "Track how permanent teeth are coming in and flag crowding or spacing issues early",
+    "weDo3": "Refer you to a trusted local orthodontist for braces or Invisalign when the time is right",
+    "weDontTitle": "What We Don't Do",
+    "weDont0": "We do not place braces or brackets in our office",
+    "weDont1": "We do not provide Invisalign treatment ourselves",
+    "weDont2": "We do not perform orthodontic adjustments or manage active orthodontic treatment",
+    "faqKicker": "Common Questions",
+    "faqHeading": "Braces, Invisalign & Your Child",
+    "faq0q": "Does my child need braces or Invisalign?",
+    "faq0a": "We evaluate your child's bite and jaw development at every routine checkup. If we notice alignment or spacing issues, we will discuss the ideal timeline for a comprehensive orthodontic evaluation with you.",
+    "faq1q": "When should my child see an orthodontist?",
+    "faq1a": "We recommend an initial orthodontic evaluation around age 7. At this stage, we can spot subtle problems with jaw growth and emerging teeth while some baby teeth are still present.",
+    "faq2q": "Teeth coming in crooked - what should I do?",
+    "faq2a": "Do not worry immediately — it is common for new teeth to come in slightly crooked. However, we will monitor the growth closely. While we do not provide braces or Invisalign directly in our clinic, we partner with the best local specialists and will refer you at the exact moment intervention is needed.",
+    "ctaText": "Wondering if your child needs an orthodontic evaluation? We'll take a look at their next checkup.",
+    "ctaAppointment": "Schedule a Checkup",
+    "ctaCall": "Text/Call us: (847) 223-1400"
   }
 }

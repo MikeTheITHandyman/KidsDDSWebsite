@@ -1,5 +1,6 @@
 import SubPageLayout from '@/components/SubPageLayout'
 import AnimatedSection from '@/components/AnimatedSection'
+import FaqAccordion, { type FaqItem } from '@/components/FaqAccordion'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
@@ -42,6 +43,12 @@ export default async function SedationDentistryPage({ params }: { params: Promis
     howItWorks: t(`option${i}How`),
     ideal: t(`option${i}Ideal`),
   }))
+
+  const FAQ_ITEMS: FaqItem[] = [
+    { question: t('faq0q'), answer: t('faq0a') },
+    { question: t('faq1q'), answer: t('faq1a') },
+    { question: t('faq2q'), answer: t('faq2a') },
+  ]
 
   return (
     <SubPageLayout
@@ -225,6 +232,21 @@ export default async function SedationDentistryPage({ params }: { params: Promis
                 {t('ctaCall')}
               </Link>
             </div>
+          </div>
+        </AnimatedSection>
+
+        {/* FAQ */}
+        <AnimatedSection>
+          <div style={{ marginBottom: '2rem' }}>
+            <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+              <span style={{ display: 'inline-block', fontFamily: 'Nunito, sans-serif', fontSize: '0.72rem', fontWeight: 900, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#D97706', marginBottom: '0.5rem' }}>
+                {t('faqKicker')}
+              </span>
+              <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.4rem, 3vw, 1.9rem)', color: '#3D3D3D', margin: 0 }}>
+                {t('faqHeading')}
+              </h2>
+            </div>
+            <FaqAccordion items={FAQ_ITEMS} accentColor="#D97706" />
           </div>
         </AnimatedSection>
 

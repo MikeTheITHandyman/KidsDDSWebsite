@@ -59,6 +59,12 @@ export default async function PreventiveDentistryPage({ params }: { params: Prom
     { question: t('faq2q'), answer: t('faq2a') },
   ]
 
+  const MORE_FAQ_ITEMS: FaqItem[] = [
+    { question: t('moreFaq0q'), answer: t('moreFaq0a') },
+    { question: t('moreFaq1q'), answer: t('moreFaq1a') },
+    { question: t('moreFaq2q'), answer: t('moreFaq2a') },
+  ]
+
   return (
     <SubPageLayout
       title={t('title')}
@@ -227,6 +233,21 @@ export default async function PreventiveDentistryPage({ params }: { params: Prom
                 {t('ctaCall')}
               </Link>
             </div>
+          </div>
+        </AnimatedSection>
+
+        {/* More Quick Answers — AI-optimized FAQ block */}
+        <AnimatedSection>
+          <div style={{ marginBottom: '2rem' }}>
+            <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+              <span style={{ display: 'inline-block', fontFamily: 'Nunito, sans-serif', fontSize: '0.72rem', fontWeight: 900, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#4A90A4', marginBottom: '0.5rem' }}>
+                {t('moreFaqKicker')}
+              </span>
+              <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: 'clamp(1.4rem, 3vw, 1.9rem)', color: '#3D3D3D', margin: 0 }}>
+                {t('moreFaqHeading')}
+              </h2>
+            </div>
+            <FaqAccordion items={MORE_FAQ_ITEMS} accentColor="#4A90A4" />
           </div>
         </AnimatedSection>
 

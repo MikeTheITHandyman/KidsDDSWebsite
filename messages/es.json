@@ -493,7 +493,15 @@
     "faq2a": "La American Academy of Pediatric Dentistry recomienda un chequeo de rutina y una limpieza cada 6 meses para mantener una salud bucal óptima. Algunos niños con mayor riesgo de caries pueden beneficiarse de visitas más frecuentes - le daremos una recomendación personalizada en el primer examen de su hijo.",
     "ctaText": "¿Listo para preparar a su hijo para toda una vida de sonrisas saludables?",
     "ctaAppointment": "Programar una Limpieza",
-    "ctaCall": "Texto/Llamada: (847) 223-1400"
+    "ctaCall": "Texto/Llamada: (847) 223-1400",
+    "moreFaqKicker": "Más Respuestas",
+    "moreFaqHeading": "Respuestas Rápidas Sobre la Prevención de Caries",
+    "moreFaq0q": "¿Cómo puedo prevenir las caries en los dientes de mi hijo?",
+    "moreFaq0a": "La mejor prevención comienza en casa: cepillado dos veces al día con pasta dental con flúor y uso de hilo dental. Limitar los bocadillos azucarados y mantener chequeos regulares cada seis meses nos permite aplicar tratamientos de flúor y selladores dentales para detener los problemas antes de que comiencen.",
+    "moreFaq1q": "¿Es seguro el flúor para los niños?",
+    "moreFaq1a": "Sí, cuando se usa correctamente, el flúor es completamente seguro y es una de las formas más efectivas de fortalecer el esmalte de su hijo y prevenir la caries. Usamos barniz de flúor concentrado y seguro al final de las citas de limpieza.",
+    "moreFaq2q": "¿A qué edad debe mi hijo visitar al odontólogo por primera vez?",
+    "moreFaq2a": "Recomendamos la primera visita cuando aparece el primer diente, o a más tardar en su primer cumpleaños. Cuanto antes comencemos, más fácil será asegurar un desarrollo saludable."
   },
   "restorativePage": {
     "title": "Odontología Restaurativa",
@@ -515,7 +523,15 @@
     "ctaKicker": "No Espere",
     "ctaHeading": "Las caries no se hacen más pequeñas por sí solas.",
     "ctaBody": "Cuanto antes veamos a su hijo, más simple será el tratamiento. Reserve una cita hoy y permítanos echar un vistazo.",
-    "ctaButton": "Solicitar una Cita"
+    "ctaButton": "Solicitar una Cita",
+    "faqKicker": "Preguntas Comunes",
+    "faqHeading": "Los Padres Preguntan, Nosotros Respondemos",
+    "faq0q": "Mi hijo tiene una caries. ¿De verdad necesita un empaste?",
+    "faq0a": "Sí. Las caries son infecciones que no sanan por sí solas. Tratar una caries a tiempo con un empaste suave evita que la infección crezca, cause dolor o requiera tratamientos más extensos.",
+    "faq1q": "¿Por qué empastar un diente de leche si de todas formas se va a caer?",
+    "faq1a": "Los dientes de leche son fundamentales para ayudar a su hijo a masticar, hablar con claridad y mantener el espacio adecuado para los dientes permanentes. Perder un diente de leche demasiado pronto por caries puede causar problemas de ortodoncia graves más adelante.",
+    "faq2q": "¿Qué pasa si no se empasta un diente de leche?",
+    "faq2a": "Si no se trata, la caries puede extenderse hasta el nervio del diente, causando dolor severo, abscesos (infecciones) y posiblemente dañando el diente permanente que se está desarrollando debajo de la encía."
   },
   "sedationPage": {
     "title": "Odontología con Sedación",
@@ -548,7 +564,15 @@
     "option1Ideal": "Niños con ansiedad severa, necesidades de tratamiento extensas, necesidades especiales, antecedentes médicos complejos, o que no han respondido a una sedación más ligera.",
     "ctaText": "¿No está seguro de por dónde empezar? Hablemos juntos sobre la situación de su hijo.",
     "ctaAppointment": "Hable con Nosotros sobre las Opciones de Sedación",
-    "ctaCall": "Texto/Llamada: (847) 223-1400"
+    "ctaCall": "Texto/Llamada: (847) 223-1400",
+    "faqKicker": "Preguntas Comunes",
+    "faqHeading": "Calmando los Nervios de Su Hijo",
+    "faq0q": "¿Es seguro usar gas de la risa en niños?",
+    "faq0a": "Sí, el óxido nitroso (gas de la risa) es una opción de sedación extremadamente segura y suave. Ayuda a los niños nerviosos a relajarse durante su tratamiento, y sus efectos desaparecen por completo pocos minutos después de respirar oxígeno normal al final de la visita.",
+    "faq1q": "¿Cómo ayudan los odontólogos pediátricos a los niños ansiosos?",
+    "faq1a": "Usamos un lenguaje adecuado para niños, la técnica de \"decir-mostrar-hacer\" y trabajamos a su propio ritmo. Nuestro objetivo principal es que se sientan seguros. Si la ansiedad es alta, hablaremos sobre opciones de sedación seguras para que su experiencia sea libre de estrés.",
+    "faq2q": "Mi hijo le tiene miedo al odontólogo. ¿Qué debo hacer?",
+    "faq2a": "¡Es completamente normal! Mantenga una actitud positiva al hablar de la visita en casa. Evite usar palabras que puedan asustar (como \"aguja\" o \"dolor\") y confíe en nuestros expertos pediátricos para guiar a su hijo a través de una visita divertida y suave."
   },
   "specialNeedsPage": {
     "title": "Odontología para Necesidades Especiales",
@@ -628,7 +652,15 @@
     "ctaHeading": "¿Emergencia dental? Llámenos de inmediato.",
     "ctaBody": "Durante el horario de oficina, hacemos todo lo posible para atender a los pacientes de emergencia el mismo día — pacientes nuevos y existentes son bienvenidos.",
     "ctaCall": "Llame Ahora: (847) 223-1400",
-    "ctaAppointment": "Solicitar una Cita"
+    "ctaAppointment": "Solicitar una Cita",
+    "faqKicker": "Preguntas Comunes",
+    "faqHeading": "Lo Que Preguntan los Padres Durante una Emergencia",
+    "faq0q": "El diente de mi hijo quedó flojo después de una caída, ¿qué debo hacer?",
+    "faq0a": "Llámenos de inmediato. Un diente aflojado por un golpe debe evaluarse rápidamente para asegurarse de que no haya daño en la raíz ni en el diente permanente debajo de él. Le daremos instrucciones sobre qué hacer mientras se dirige a nuestra oficina.",
+    "faq1q": "¿Qué hacer si se le cae un diente de leche por un golpe?",
+    "faq1a": "Encuentre el diente, aplique presión suave con gasa limpia si hay sangrado, y llámenos de inmediato. A diferencia de los dientes permanentes, nunca intentamos volver a colocar un diente de leche en su lugar, ya que podría dañar el diente adulto en desarrollo.",
+    "faq2q": "¿Cómo manejar el dolor de muelas o las encías inflamadas de un niño?",
+    "faq2a": "Limpie suavemente la zona afectada con agua tibia, use hilo dental para asegurarse de que no haya comida atrapada, y aplique una compresa fría en la mejilla si hay hinchazón. Llámenos lo antes posible; un dolor de muelas suele ser señal de que se necesita atención dental."
   },
   "about": {
     "kicker": "Desde 1994 · Grayslake, IL",
@@ -1133,5 +1165,34 @@
     "anneAshley_cred4": "Odontopediatra Certificada y Diplomada de la Junta Americana de Odontología Pediátrica (ABPD)",
     "anneAshley_cred5": "Miembro del Consejo, Sociedad de Odontopediatría de Illinois",
     "anneAshley_cred6": "Miembro — Academia Americana de Odontología Pediátrica (AAPD) y Asociación Dental Americana (ADA)"
+  },
+  "orthodonticsPage": {
+    "kicker": "Crecimiento y Alineación",
+    "title": "Evaluaciones de Ortodoncia",
+    "subtitle": "Supervisamos la mordida y el crecimiento de la mandíbula de su hijo en cada visita — y lo referimos con un especialista de confianza en el momento en que se necesite tratamiento.",
+    "backToServices": "Volver a Todos los Servicios",
+    "howKicker": "Cómo Funciona",
+    "howHeading": "Evaluación y Referencia, No Tratamiento en Nuestra Clínica",
+    "howBody": "Como odontólogos pediátricos, observamos la mordida, el crecimiento de la mandíbula y la aparición de los dientes de su hijo en cada chequeo de rutina. Si notamos señales de que podría necesitar frenos (brackets) o Invisalign, le explicaremos el momento adecuado y lo referimos a uno de los especialistas en ortodoncia locales de confianza con quienes colaboramos. No colocamos frenos ni ofrecemos tratamiento con Invisalign en nuestra clínica — nuestro papel es detectar los problemas a tiempo y conectarlo con el especialista adecuado en el momento adecuado.",
+    "weDoTitle": "Lo Que Sí Hacemos",
+    "weDo0": "Evaluamos la mordida, el crecimiento de la mandíbula y la alineación dental de su hijo en cada chequeo de rutina",
+    "weDo1": "Recomendamos una evaluación ortodóntica inicial alrededor de los 7 años, según las pautas de la American Association of Orthodontists",
+    "weDo2": "Monitoreamos la salida de los dientes permanentes y detectamos a tiempo problemas de apiñamiento o espaciado",
+    "weDo3": "Lo referimos con un ortodoncista local de confianza para frenos o Invisalign cuando llegue el momento adecuado",
+    "weDontTitle": "Lo Que No Hacemos",
+    "weDont0": "No colocamos frenos ni brackets en nuestra clínica",
+    "weDont1": "No ofrecemos tratamiento con Invisalign nosotros mismos",
+    "weDont2": "No realizamos ajustes de ortodoncia ni manejamos el tratamiento ortodóntico activo",
+    "faqKicker": "Preguntas Comunes",
+    "faqHeading": "Frenos, Invisalign y Su Hijo",
+    "faq0q": "¿Necesita mi hijo frenos o Invisalign?",
+    "faq0a": "Evaluamos la mordida y el desarrollo de la mandíbula de su hijo en cada chequeo de rutina. Si notamos problemas de alineación o espaciado, hablaremos con usted sobre el momento ideal para una evaluación ortodóntica completa.",
+    "faq1q": "¿Cuándo debe mi hijo visitar a un ortodoncista?",
+    "faq1a": "Recomendamos una evaluación ortodóntica inicial alrededor de los 7 años. En esta etapa podemos detectar problemas sutiles en el crecimiento de la mandíbula y en los dientes que están saliendo, mientras algunos dientes de leche todavía están presentes.",
+    "faq2q": "Los dientes están saliendo torcidos, ¿qué debo hacer?",
+    "faq2a": "No se preocupe de inmediato — es común que los dientes nuevos salgan un poco torcidos. Sin embargo, monitorearemos de cerca el crecimiento. Si bien no ofrecemos frenos ni Invisalign directamente en nuestra clínica, colaboramos con los mejores especialistas locales y lo referiremos en el momento exacto en que se necesite intervención.",
+    "ctaText": "¿Se pregunta si su hijo necesita una evaluación de ortodoncia? Lo revisaremos en su próximo chequeo.",
+    "ctaAppointment": "Programar un Chequeo",
+    "ctaCall": "Texto/Llamada: (847) 223-1400"
   }
 }
