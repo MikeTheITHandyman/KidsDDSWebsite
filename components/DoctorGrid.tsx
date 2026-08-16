@@ -230,7 +230,7 @@ export default function DoctorGrid() {
         }}
       >
         <DoctorCard
-          headshotSrc="/brand_assets/headshot-sonia.jpg"
+          headshotSrc="/brand_assets/index-dr-sonia.jpg"
           name={t('soniaName')}
           role={t('soniaRole')}
           bio={t('soniaBio')}
@@ -239,7 +239,7 @@ export default function DoctorGrid() {
           gradient={HEADSHOT_GRADIENTS[0]}
         />
         <DoctorCard
-          headshotSrc="/brand_assets/headshot-dave.jpg"
+          headshotSrc="/brand_assets/index-dr-dave.jpg"
           name={t('daveName')}
           role={t('daveRole')}
           bio={t('daveBio')}
@@ -248,7 +248,7 @@ export default function DoctorGrid() {
           gradient={HEADSHOT_GRADIENTS[1]}
         />
         <DoctorCard
-          headshotSrc="/brand_assets/headshot-sahar.jpg"
+          headshotSrc="/brand_assets/index-dr-alrayyes.jpg"
           name={t('saharName')}
           role={t('saharRole')}
           bio={t('saharBio')}
@@ -257,7 +257,7 @@ export default function DoctorGrid() {
           gradient={HEADSHOT_GRADIENTS[2]}
         />
         <DoctorCard
-          headshotSrc="/brand_assets/headshot-anne-ashley.jpg"
+          headshotSrc="/brand_assets/index-dr-ashley.jpg"
           name={t('anneAshleyName')}
           role={t('anneAshleyRole')}
           bio={t('anneAshleyBio')}
