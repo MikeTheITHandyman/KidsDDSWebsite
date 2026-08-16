@@ -25,6 +25,8 @@ const GROUP_META: { icon: string; accentColor: string; itemCount: number }[] = [
   { icon: '🛡️', accentColor: '#6BA899', itemCount: 3 },
   { icon: '🦷', accentColor: '#6B4BC8', itemCount: 2 },
   { icon: '🚨', accentColor: '#E97D63', itemCount: 2 },
+  { icon: '😁', accentColor: '#4FA88A', itemCount: 4 },
+  { icon: '💛', accentColor: '#E8934F', itemCount: 4 },
 ]
 
 export default async function FaqPage({ params }: { params: Promise<{ locale: string }> }) {
