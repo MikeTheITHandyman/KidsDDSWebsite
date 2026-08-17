@@ -1,27 +1,27 @@
 import SubPageLayout from '@/components/SubPageLayout'
 import AnimatedSection from '@/components/AnimatedSection'
-import AskDoctorForm from './AskDoctorForm'
+import AskQuestionForm from './AskQuestionForm'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 
 export const metadata: Metadata = {
-  title: 'Ask the Doctor | Kids Dentist Grayslake, IL',
+  title: 'Ask Us a Question | Kids Dentist Grayslake, IL',
   description:
     'Send a direct question to our pediatric dentists at Kids Dentist Grayslake. General dental health questions answered by Dr. Gutierrez, Dr. Rutcosky, Dr. Alrayyes, and Dr. Compton.',
-  alternates: { canonical: 'https://www.kidsdds.com/ask-the-doctor' },
+  alternates: { canonical: 'https://www.kidsdds.com/ask-us-a-question' },
   openGraph: {
-    title: 'Ask the Doctor | Kids Dentist Grayslake, IL',
+    title: 'Ask Us a Question | Kids Dentist Grayslake, IL',
     description:
       'Have a question about your child\'s dental health? Send it directly to our team of pediatric specialists in Grayslake, IL.',
-    url: 'https://www.kidsdds.com/ask-the-doctor',
+    url: 'https://www.kidsdds.com/ask-us-a-question',
     siteName: 'Kids Dentist',
     locale: 'en_US',
     type: 'website',
   },
 }
 
-export default async function AskTheDoctorPage() {
+export default async function AskQuestionPage() {
   const t = await getTranslations('askDoctorPage')
   return (
     <SubPageLayout
@@ -178,7 +178,7 @@ export default async function AskTheDoctorPage() {
               marginBottom: '2rem',
             }}
           >
-            <AskDoctorForm />
+            <AskQuestionForm />
           </div>
         </AnimatedSection>
 

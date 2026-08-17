@@ -267,8 +267,11 @@ export default async function InsuranceInfoPage({ params }: { params: Promise<{ 
                   {t('financingHeading')}
                 </h3>
               </div>
-              <p style={{ fontSize: '0.9rem', lineHeight: 1.72, color: '#6b7280', marginBottom: '1.5rem' }}>
+              <p style={{ fontSize: '0.9rem', lineHeight: 1.72, color: '#6b7280', marginBottom: '0.75rem' }}>
                 {t('financingBody')}
+              </p>
+              <p style={{ fontSize: '0.9rem', lineHeight: 1.72, color: '#6b7280', fontWeight: 700, marginBottom: '1.5rem' }}>
+                {t('financingInterestNote')}
               </p>
               <div
                 style={{

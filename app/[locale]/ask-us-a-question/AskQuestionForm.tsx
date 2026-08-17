@@ -64,7 +64,20 @@ const EMPTY: FormState = {
   question: '',
 }
 
-export default function AskDoctorForm() {
+function calculateAge(dob: string): string {
+  if (!dob) return ''
+  const birthDate = new Date(dob)
+  if (Number.isNaN(birthDate.getTime())) return ''
+  const today = new Date()
+  let age = today.getFullYear() - birthDate.getFullYear()
+  const monthDiff = today.getMonth() - birthDate.getMonth()
+  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+    age--
+  }
+  return age >= 0 ? String(age) : ''
+}
+
+export default function AskQuestionForm() {
   const t = useTranslations('askDoctorForm')
   const [form, setForm] = useState<FormState>(EMPTY)
   const [focused, setFocused] = useState<string | null>(null)
@@ -77,6 +90,11 @@ export default function AskDoctorForm() {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) {
     const { name, value } = e.target
+    if (name === 'childDob') {
+      setForm((f) => ({ ...f, childDob: value, childAge: calculateAge(value) }))
+      setFieldErrors((fe) => ({ ...fe, childDob: undefined, childAge: undefined }))
+      return
+    }
     setForm((f) => ({ ...f, [name]: value }))
     if (fieldErrors[name as keyof FormState]) {
       setFieldErrors((fe) => ({ ...fe, [name]: undefined }))
@@ -238,12 +256,11 @@ export default function AskDoctorForm() {
                 name="childAge"
                 type="text"
                 required
+                readOnly
                 placeholder={t('placeholderChildAge')}
                 value={form.childAge}
                 onChange={handleChange}
-                onFocus={() => setFocused('childAge')}
-                onBlur={() => setFocused(null)}
-                style={focusStyle('childAge')}
+                style={{ ...focusStyle('childAge'), background: 'rgba(107,168,153,0.08)', cursor: 'not-allowed' }}
               />
               {fieldErrors.childAge && (
                 <p style={{ fontSize: '0.78rem', color: '#E97D63', margin: '0.3rem 0 0', fontWeight: 600 }}>{fieldErrors.childAge}</p>

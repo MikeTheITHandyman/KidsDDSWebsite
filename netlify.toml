@@ -56,3 +56,15 @@
   to     = "/contact"
   status = 301
   force  = true
+
+[[redirects]]
+  from   = "/ask-the-doctor"
+  to     = "/ask-us-a-question"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from   = "/es/ask-the-doctor"
+  to     = "/es/ask-us-a-question"
+  status = 301
+  force  = true

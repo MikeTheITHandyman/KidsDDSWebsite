@@ -7,6 +7,7 @@ import { useTranslations } from 'next-intl'
 const DOCTORS = [
   {
     nameKey: 'soniaName',
+    tooltipKey: 'soniaTooltip',
     firstName: 'Sonia',
     bioHref: '/about/meet-the-dentists/dr-sonia-gutierrez',
     blobRadius: '60% 40% 30% 70% / 60% 30% 70% 40%',
@@ -17,6 +18,7 @@ const DOCTORS = [
   },
   {
     nameKey: 'daveName',
+    tooltipKey: 'daveTooltip',
     firstName: 'Dave',
     bioHref: '/about/meet-the-dentists/dr-dave-rutcosky',
     blobRadius: '40% 60% 70% 30% / 40% 70% 30% 60%',
@@ -27,6 +29,7 @@ const DOCTORS = [
   },
   {
     nameKey: 'saharName',
+    tooltipKey: 'saharTooltip',
     firstName: 'Sahar',
     bioHref: '/about/meet-the-dentists/dr-sahar-alrayyes',
     blobRadius: '50% 50% 30% 70% / 60% 40% 70% 30%',
@@ -37,6 +40,7 @@ const DOCTORS = [
   },
   {
     nameKey: 'anneAshleyName',
+    tooltipKey: 'anneAshleyTooltip',
     firstName: 'Ashley',
     bioHref: '/about/meet-the-dentists/dr-anne-ashley-compton',
     blobRadius: '70% 30% 50% 50% / 40% 60% 40% 60%',
@@ -101,6 +105,7 @@ export default function MeetOurDoctors() {
             >
               {/* Blob photo container */}
               <div
+                title={tAbout(doc.tooltipKey)}
                 style={{ width: '80%', aspectRatio: '1', margin: '0 auto 1.4rem', borderRadius: doc.blobRadius, background: `linear-gradient(135deg, ${doc.gradientFrom}, ${doc.gradientTo})`, position: 'relative', overflow: 'hidden' }}
               >
                 <Image

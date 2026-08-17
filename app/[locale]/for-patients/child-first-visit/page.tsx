@@ -1,5 +1,6 @@
 import SubPageLayout from '@/components/SubPageLayout'
 import AnimatedSection from '@/components/AnimatedSection'
+import Image from 'next/image'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
@@ -101,6 +102,68 @@ export default async function ChildFirstVisitPage({ params }: { params: Promise<
                 </strong>{' '}
                 {t('ageRuleBodySuffix')}
               </p>
+              <a
+                href="https://www.instagram.com/p/DbGngM-Bvu0/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '1rem',
+                  marginTop: '1.5rem',
+                  background: '#fff',
+                  border: '1.5px solid rgba(74,144,164,0.18)',
+                  borderRadius: '1.25rem',
+                  padding: '0.85rem 1.1rem',
+                  textDecoration: 'none',
+                  boxShadow: '0 4px 16px rgba(74,144,164,0.08)',
+                }}
+              >
+                <div style={{ position: 'relative', width: '84px', height: '84px', borderRadius: '1rem', overflow: 'hidden', flexShrink: 0 }}>
+                  <Image
+                    src="/brand_assets/index-dr-sonia.jpg"
+                    alt={t('instagramVideoAlt')}
+                    fill
+                    sizes="84px"
+                    style={{ objectFit: 'cover', objectPosition: 'top center' }}
+                  />
+                  <div
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      background: 'rgba(0,0,0,0.28)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                    aria-hidden="true"
+                  >
+                    <div
+                      style={{
+                        width: '30px',
+                        height: '30px',
+                        borderRadius: '50%',
+                        background: 'rgba(255,255,255,0.92)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      <svg width="12" height="12" fill="#4A90A4" viewBox="0 0 24 24" style={{ marginLeft: '2px' }}>
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <p style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: '0.92rem', color: '#4A90A4', margin: '0 0 0.2rem' }}>
+                    {t('instagramVideoTitle')}
+                  </p>
+                  <p style={{ fontSize: '0.82rem', color: '#6b7280', fontWeight: 600, margin: 0 }}>
+                    {t('instagramVideoSubtitle')}
+                  </p>
+                </div>
+              </a>
             </div>
           </div>
         </AnimatedSection>

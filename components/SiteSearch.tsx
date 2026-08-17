@@ -58,7 +58,7 @@ const RAW_SEARCH_INDEX: Omit<SearchItem, 'idx'>[] = [
   { title: 'Request an Appointment', description: 'Schedule your appointment online — new and returning patients welcome.', href: '/request-appointment', category: 'Appointments', keywords: 'appointment schedule book new patient request online' },
   { title: 'Contact Us', description: 'Reach our front desk by phone, text, or message. Grayslake, IL.', href: '/contact', category: 'Contact', keywords: 'contact phone call text message office hours location address directions' },
   { title: 'Blog & Dental Tips', description: 'Expert pediatric dental tips, news, and parent guides from our doctors.', href: '/blog', category: 'Blog', keywords: 'blog articles tips news dental advice parents guide health' },
-  { title: 'Ask the Doctor', description: 'Send dental questions directly to our doctors — answered within one business day.', href: '/ask-the-doctor', category: 'Contact', keywords: 'ask question doctor dentist answer advice concern inquiry message' },
+  { title: 'Ask Us a Question', description: 'Send dental questions directly to our doctors.', href: '/ask-us-a-question', category: 'Contact', keywords: 'ask question doctor dentist answer advice concern inquiry message' },
   { title: 'Patient Reviews', description: "Read what Grayslake families say about Kids Dentist's care.", href: '/reviews', category: 'About', keywords: 'reviews testimonials google patients experience rating 5 star feedback' },
   { title: 'Same-Day Emergency Care', description: 'Dental emergencies seen same day. Call (847) 223-1400 immediately.', href: '/emergency-dentistry', category: 'Services', keywords: 'emergency dental urgent toothache trauma knocked tooth 847 call same day' },
 ]

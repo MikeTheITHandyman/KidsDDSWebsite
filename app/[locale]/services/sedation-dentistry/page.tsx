@@ -24,8 +24,8 @@ export const metadata: Metadata = {
 const WHO_ITS_FOR_META = ['😰', '🧠', '🏥', '🦷', '👶', '🩺']
 
 const SEDATION_OPTION_META = [
-  { number: '01', accentColor: '#4A90A4', gradientFrom: '#DBEAFE', gradientTo: '#BAE6FD', icon: '😌' },
-  { number: '02', accentColor: '#7C3AED', gradientFrom: '#EDE9FE', gradientTo: '#DDD6FE', icon: '🏥' },
+  { number: '01', accentColor: '#4A90A4', icon: '😌' },
+  { number: '02', accentColor: '#7C3AED', icon: '🏥' },
 ]
 
 export default async function SedationDentistryPage({ params }: { params: Promise<{ locale: string }> }) {
@@ -144,69 +144,40 @@ export default async function SedationDentistryPage({ params }: { params: Promis
           </div>
         </AnimatedSection>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', marginBottom: '5rem' }}>
-          {SEDATION_OPTIONS.map((opt) => (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem', marginBottom: '5rem' }}>
+          {SEDATION_OPTIONS.map((opt, i) => (
             <AnimatedSection key={opt.title} delay={0.05}>
               <div
                 style={{
-                  background: `linear-gradient(135deg, ${opt.gradientFrom}44, ${opt.gradientTo}22)`,
-                  border: `1.5px solid ${opt.accentColor}20`,
-                  borderRadius: '1.75rem',
-                  overflow: 'hidden',
+                  paddingBottom: i < SEDATION_OPTIONS.length - 1 ? '2.5rem' : 0,
+                  borderBottom: i < SEDATION_OPTIONS.length - 1 ? '1.5px solid rgba(217,119,6,0.14)' : 'none',
                 }}
               >
-                {/* Header bar */}
-                <div
-                  style={{
-                    background: `linear-gradient(135deg, ${opt.gradientFrom}, ${opt.gradientTo})`,
-                    padding: '1.25rem 1.75rem',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '1rem',
-                  }}
-                >
-                  <span style={{ fontSize: '1.75rem', lineHeight: 1 }} aria-hidden="true">{opt.icon}</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', marginBottom: '0.75rem' }}>
+                  <span style={{ fontSize: '1.6rem', lineHeight: 1 }} aria-hidden="true">{opt.icon}</span>
                   <div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                      <span style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: '0.7rem', color: opt.accentColor, letterSpacing: '0.06em' }}>
-                        {t('optionLabel')} {opt.number}
-                      </span>
-                    </div>
-                    <h3 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: '1.2rem', color: opt.accentColor, margin: '0.1rem 0 0.1rem', lineHeight: 1.2 }}>
+                    <span style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '0.68rem', color: opt.accentColor, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                      {t('optionLabel')} {opt.number}
+                    </span>
+                    <h3 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: '1.2rem', color: opt.accentColor, margin: '0.1rem 0 0', lineHeight: 1.2 }}>
                       {opt.title}
                     </h3>
-                    <p style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 700, fontSize: '0.8rem', color: opt.accentColor, margin: 0, opacity: 0.75 }}>
-                      {opt.subtitle}
-                    </p>
                   </div>
                 </div>
-
-                {/* Body */}
-                <div style={{ padding: '1.5rem 1.75rem 1.75rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                  <p style={{ fontSize: '0.93rem', lineHeight: 1.75, color: '#6b7280', margin: 0 }}>
-                    {opt.description}
-                  </p>
-                  <div style={{ display: 'grid', gap: '0.75rem' }}>
-                    <div style={{ background: 'rgba(255,255,255,0.8)', borderRadius: '0.85rem', padding: '0.85rem 1rem', display: 'flex', gap: '0.65rem', alignItems: 'flex-start' }}>
-                      <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke={opt.accentColor} strokeWidth="2.5" style={{ flexShrink: 0, marginTop: '2px' }} aria-hidden="true">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      <p style={{ fontSize: '0.855rem', lineHeight: 1.6, color: '#6b7280', margin: 0 }}>
-                        <strong style={{ color: opt.accentColor }}>{t('howItWorksLabel')} </strong>
-                        {opt.howItWorks}
-                      </p>
-                    </div>
-                    <div style={{ background: 'rgba(255,255,255,0.8)', borderRadius: '0.85rem', padding: '0.85rem 1rem', display: 'flex', gap: '0.65rem', alignItems: 'flex-start' }}>
-                      <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke={opt.accentColor} strokeWidth="2.5" style={{ flexShrink: 0, marginTop: '2px' }} aria-hidden="true">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      <p style={{ fontSize: '0.855rem', lineHeight: 1.6, color: '#6b7280', margin: 0 }}>
-                        <strong style={{ color: opt.accentColor }}>{t('idealLabel')} </strong>
-                        {opt.ideal}
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                <p style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 700, fontSize: '0.85rem', color: opt.accentColor, margin: '0 0 0.75rem', opacity: 0.8 }}>
+                  {opt.subtitle}
+                </p>
+                <p style={{ fontSize: '0.93rem', lineHeight: 1.75, color: '#6b7280', margin: '0 0 0.85rem' }}>
+                  {opt.description}
+                </p>
+                <p style={{ fontSize: '0.9rem', lineHeight: 1.7, color: '#6b7280', margin: '0 0 0.6rem' }}>
+                  <strong style={{ color: opt.accentColor }}>{t('howItWorksLabel')} </strong>
+                  {opt.howItWorks}
+                </p>
+                <p style={{ fontSize: '0.9rem', lineHeight: 1.7, color: '#6b7280', margin: 0 }}>
+                  <strong style={{ color: opt.accentColor }}>{t('idealLabel')} </strong>
+                  {opt.ideal}
+                </p>
               </div>
             </AnimatedSection>
           ))}

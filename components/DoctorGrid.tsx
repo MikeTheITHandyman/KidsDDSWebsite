@@ -50,11 +50,12 @@ interface DoctorCardProps {
   role: string
   bio: string
   alt: string
+  tooltip: string
   blobRadius: string
   gradient: string
 }
 
-function DoctorCard({ headshotSrc, name, role, bio, alt, blobRadius, gradient }: DoctorCardProps) {
+function DoctorCard({ headshotSrc, name, role, bio, alt, tooltip, blobRadius, gradient }: DoctorCardProps) {
   const [imgFailed, setImgFailed] = useState(false)
 
   return (
@@ -78,6 +79,7 @@ function DoctorCard({ headshotSrc, name, role, bio, alt, blobRadius, gradient }:
     >
       {/* Headshot — organic blob border, gradient fallback until Sara's photos arrive */}
       <div
+        title={tooltip}
         style={{
           width: 148,
           height: 148,
@@ -235,6 +237,7 @@ export default function DoctorGrid() {
           role={t('soniaRole')}
           bio={t('soniaBio')}
           alt={t('soniaAlt')}
+          tooltip={t('soniaTooltip')}
           blobRadius={BLOB_RADII[0]}
           gradient={HEADSHOT_GRADIENTS[0]}
         />
@@ -244,6 +247,7 @@ export default function DoctorGrid() {
           role={t('daveRole')}
           bio={t('daveBio')}
           alt={t('daveAlt')}
+          tooltip={t('daveTooltip')}
           blobRadius={BLOB_RADII[1]}
           gradient={HEADSHOT_GRADIENTS[1]}
         />
@@ -253,6 +257,7 @@ export default function DoctorGrid() {
           role={t('saharRole')}
           bio={t('saharBio')}
           alt={t('saharAlt')}
+          tooltip={t('saharTooltip')}
           blobRadius={BLOB_RADII[2]}
           gradient={HEADSHOT_GRADIENTS[2]}
         />
@@ -262,6 +267,7 @@ export default function DoctorGrid() {
           role={t('anneAshleyRole')}
           bio={t('anneAshleyBio')}
           alt={t('anneAshleyAlt')}
+          tooltip={t('anneAshleyTooltip')}
           blobRadius={BLOB_RADII[3]}
           gradient={HEADSHOT_GRADIENTS[3]}
         />

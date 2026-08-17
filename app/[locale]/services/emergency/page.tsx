@@ -56,14 +56,14 @@ export const metadata: Metadata = {
 }
 
 const EMERGENCY_META = [
-  { icon: '🦷', urgent: true },
-  { icon: '😣', urgent: true },
-  { icon: '💥', urgent: false },
-  { icon: '🩸', urgent: true },
-  { icon: '🦠', urgent: true },
-  { icon: '🧵', urgent: false },
-  { icon: '😬', urgent: false },
-  { icon: '🤕', urgent: true },
+  { icon: '🦷' },
+  { icon: '😣' },
+  { icon: '💥' },
+  { icon: '🩸' },
+  { icon: '🦠' },
+  { icon: '🧵' },
+  { icon: '😬' },
+  { icon: '🤕' },
 ]
 
 const STEP_META = [
@@ -78,6 +78,7 @@ export default async function EmergencyDentalCarePage({ params }: { params: Prom
   const t = await getTranslations('emergencyPage')
 
   const EMERGENCIES = EMERGENCY_META.map((meta, i) => ({ ...meta, label: t(`emergency${i}`) }))
+  const [KNOCKED_OUT, ...OTHER_EMERGENCIES] = EMERGENCIES
 
   const STEPS = STEP_META.map((meta, i) => ({
     ...meta,
@@ -163,32 +164,71 @@ export default async function EmergencyDentalCarePage({ params }: { params: Prom
                 {t('isEmergencyBody')}
               </p>
             </div>
+            {/* Knocked-Out Tooth — elevated above the rest, most time-critical emergency */}
             <div
               style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(4, 1fr)',
-                gap: '0.85rem',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '0.75rem',
+                flexWrap: 'wrap',
+                textAlign: 'center',
+                marginBottom: '2rem',
               }}
-              className="emergency-chips-grid"
             >
-              {EMERGENCIES.map((item) => (
-                <div
+              <span style={{ fontSize: '1.75rem', lineHeight: 1 }} aria-hidden="true">{KNOCKED_OUT.icon}</span>
+              <span style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: '1.1rem', color: '#4b5563' }}>
+                {KNOCKED_OUT.label}
+              </span>
+              <span
+                style={{
+                  fontFamily: 'Nunito, sans-serif',
+                  fontWeight: 900,
+                  fontSize: '0.72rem',
+                  letterSpacing: '0.06em',
+                  textTransform: 'uppercase',
+                  color: '#fff',
+                  background: '#E97D63',
+                  borderRadius: '100px',
+                  padding: '0.3rem 0.85rem',
+                }}
+              >
+                {t('knockedOutUrgentLabel')}
+              </span>
+            </div>
+
+            {/* Remaining emergency categories — plain informational list, not clickable-looking */}
+            <ul
+              className="emergency-list"
+              style={{
+                listStyle: 'none',
+                margin: 0,
+                padding: 0,
+                display: 'grid',
+                gridTemplateColumns: 'repeat(2, 1fr)',
+                gap: '0.75rem 1.5rem',
+                maxWidth: '640px',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+              }}
+            >
+              {OTHER_EMERGENCIES.map((item) => (
+                <li
                   key={item.label}
                   style={{
-                    background: item.urgent
-                      ? 'linear-gradient(135deg, rgba(233,125,99,0.08), rgba(232,147,79,0.08))'
-                      : 'linear-gradient(135deg, rgba(74,144,164,0.06), rgba(107,168,153,0.06))',
-                    border: `1.5px solid ${item.urgent ? 'rgba(233,125,99,0.2)' : 'rgba(74,144,164,0.15)'}`,
-                    borderRadius: '1rem',
-                    padding: '1.1rem 1rem',
-                    textAlign: 'center',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.6rem',
+                    fontSize: '0.9rem',
+                    color: '#4b5563',
+                    fontWeight: 500,
                   }}
                 >
-                  <div style={{ fontSize: '1.6rem', marginBottom: '0.5rem' }} aria-hidden="true">{item.icon}</div>
-                  <span style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 700, fontSize: '0.82rem', color: '#4b5563', lineHeight: 1.35 }}>{item.label}</span>
-                </div>
+                  <span style={{ fontSize: '1.15rem', lineHeight: 1, flexShrink: 0 }} aria-hidden="true">{item.icon}</span>
+                  <span>{item.label}</span>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </AnimatedSection>
 
@@ -327,14 +367,13 @@ export default async function EmergencyDentalCarePage({ params }: { params: Prom
         .emergency-step-item { padding: 0 1.5rem; }
         .emergency-step-item:not(:first-child) { border-left: 1.5px solid rgba(217,119,6,0.25); }
         @media (max-width: 768px) {
-          .emergency-chips-grid { grid-template-columns: repeat(2, 1fr) !important; }
           .tip-grid { grid-template-columns: 1fr !important; }
           .emergency-steps-grid { grid-template-columns: 1fr !important; gap: 1.75rem; }
           .emergency-step-item { padding: 0; }
           .emergency-step-item:not(:first-child) { border-left: none; border-top: 1.5px solid rgba(217,119,6,0.25); padding-top: 1.75rem; }
         }
         @media (max-width: 480px) {
-          .emergency-chips-grid { grid-template-columns: repeat(2, 1fr) !important; }
+          .emergency-list { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </SubPageLayout>

@@ -76,9 +76,9 @@ export default function QuickActionsBar() {
           {t('emergency')}
         </Link>
 
-        {/* Ask the Doctor */}
+        {/* Ask Us a Question */}
         <Link
-          href="/ask-the-doctor"
+          href="/ask-us-a-question"
           className="qa-btn qa-doctor"
           style={{
             display: 'inline-flex',

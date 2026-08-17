@@ -11,6 +11,8 @@ const LEGACY_REDIRECTS = [
   { source: '/sedation.html',            destination: '/services/sedation-dentistry' },
   { source: '/meet-the-doctors.html',    destination: '/about/meet-the-dentists' },
   { source: '/contact-us.html',          destination: '/contact' },
+  { source: '/ask-the-doctor',           destination: '/ask-us-a-question' },
+  { source: '/es/ask-the-doctor',        destination: '/es/ask-us-a-question' },
 ]
 
 const nextConfig: NextConfig = {

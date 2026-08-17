@@ -63,7 +63,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     // ── Utility ───────────────────────────────────────────────────────────
     { url: `${BASE}/faq`, lastModified: now, changeFrequency: 'monthly', priority: 0.65 },
-    { url: `${BASE}/ask-the-doctor`, lastModified: now, changeFrequency: 'monthly', priority: 0.6 },
+    { url: `${BASE}/ask-us-a-question`, lastModified: now, changeFrequency: 'monthly', priority: 0.6 },
     { url: `${BASE}/contact/office-info`, lastModified: now, changeFrequency: 'monthly', priority: 0.6 },
     { url: `${BASE}/pay`, lastModified: now, changeFrequency: 'yearly', priority: 0.4 },
   ]

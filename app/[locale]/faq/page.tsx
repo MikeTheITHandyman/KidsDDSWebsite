@@ -87,7 +87,7 @@ export default async function FaqPage({ params }: { params: Promise<{ locale: st
               </p>
             </div>
             <Link
-              href="/ask-the-doctor"
+              href="/ask-us-a-question"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -217,7 +217,7 @@ export default async function FaqPage({ params }: { params: Promise<{ locale: st
                 {t('ctaCall')}
               </Link>
               <Link
-                href="/ask-the-doctor"
+                href="/ask-us-a-question"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',

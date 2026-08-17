@@ -4,12 +4,14 @@ import { useRef } from 'react'
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import LanguageSwitcher from '@/components/LanguageSwitcher'
+import { getPracticeAge } from '@/lib/practiceAge'
 
 const springBtn = { type: 'spring', stiffness: 400, damping: 20 } as const
 
 export default function Hero() {
   const t = useTranslations('hero')
   const videoRef = useRef<HTMLVideoElement>(null)
+  const { years, months, days } = getPracticeAge()
 
   return (
     <section className="hero relative isolate overflow-hidden">
@@ -137,7 +139,7 @@ export default function Hero() {
             <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
           </svg>
           <span style={{ fontSize: '0.92rem', fontWeight: 800, color: 'var(--cta-yellow)' }}>
-            {t('trustBanner')}
+            {t('trustBanner', { years, months, days })}
           </span>
         </motion.div>
 

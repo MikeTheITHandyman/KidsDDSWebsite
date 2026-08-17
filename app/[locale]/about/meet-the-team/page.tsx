@@ -31,8 +31,8 @@ const ACCENTS = [
 // Alphabetical by first name.
 const TEAM_MEMBERS_META = [
   { firstName: 'Cassie', roleKey: 'roleHygienist', photoSrc: '/brand_assets/team/headshot-cassie.jpeg' },
-  { firstName: 'Don', roleKey: 'roleOfficeManager', photoSrc: '/brand_assets/team/headshot-don.jpg' },
-  { firstName: 'Eva', roleKey: 'roleAssistantManager', photoSrc: '/brand_assets/team/headshot-eva.jpg' },
+  { firstName: 'Don', roleKey: 'roleBusinessManager', photoSrc: '/brand_assets/team/headshot-don.jpg' },
+  { firstName: 'Eva', roleKey: 'roleOfficeManager', photoSrc: '/brand_assets/team/headshot-eva.jpg' },
   { firstName: 'Gabbie', roleKey: 'roleTreatmentCoordinator', photoSrc: '/brand_assets/team/headshot-gabbie.jpeg' },
   { firstName: 'Jannet', roleKey: 'roleSchedulingCoordinator', photoSrc: '/brand_assets/team/headshot-jannet.jpg' },
   { firstName: 'Maggie', roleKey: 'roleLeadDentalAssistant', photoSrc: '/brand_assets/team/headshot-maggie.jpeg' },

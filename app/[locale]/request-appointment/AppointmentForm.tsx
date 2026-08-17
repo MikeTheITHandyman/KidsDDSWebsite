@@ -65,6 +65,19 @@ const labelStyle: React.CSSProperties = {
   letterSpacing: '0.02em',
 }
 
+function calculateAge(dob: string): string {
+  if (!dob) return ''
+  const birthDate = new Date(dob)
+  if (Number.isNaN(birthDate.getTime())) return ''
+  const today = new Date()
+  let age = today.getFullYear() - birthDate.getFullYear()
+  const monthDiff = today.getMonth() - birthDate.getMonth()
+  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+    age--
+  }
+  return age >= 0 ? String(age) : ''
+}
+
 export default function AppointmentForm() {
   const t = useTranslations('appointmentForm')
   const tAbout = useTranslations('about')
@@ -79,6 +92,7 @@ export default function AppointmentForm() {
     phone: '',
     childName: '',
     childAge: '',
+    childDob: '',
     reason: '',
     preferredDentist: searchParams.get('dentist') ?? '',
     preferredDay: '',
@@ -87,7 +101,12 @@ export default function AppointmentForm() {
   })
 
   function change(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) {
-    setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
+    const { name, value } = e.target
+    if (name === 'childDob') {
+      setForm((f) => ({ ...f, childDob: value, childAge: calculateAge(value) }))
+      return
+    }
+    setForm((f) => ({ ...f, [name]: value }))
   }
 
   function getStyle(field: string) {
@@ -322,22 +341,38 @@ export default function AppointmentForm() {
 
                     {/* Section 2 - Child info */}
                     {sectionHead('2', t('section2Title'), t('section2Sub'))}
+                    <div style={{ marginBottom: '1rem' }}>
+                      <label htmlFor="childName" style={labelStyle}>
+                        {t('childName')} <span style={{ color: '#E97D63' }}>*</span>
+                      </label>
+                      <input
+                        id="childName"
+                        name="childName"
+                        type="text"
+                        required
+                        placeholder={t('placeholderChildName')}
+                        value={form.childName}
+                        onChange={change}
+                        onFocus={() => setFocused('childName')}
+                        onBlur={() => setFocused(null)}
+                        style={getStyle('childName')}
+                      />
+                    </div>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem' }}>
                       <div>
-                        <label htmlFor="childName" style={labelStyle}>
-                          {t('childName')} <span style={{ color: '#E97D63' }}>*</span>
+                        <label htmlFor="childDob" style={labelStyle}>
+                          {t('dob')} <span style={{ color: '#E97D63' }}>*</span>
                         </label>
                         <input
-                          id="childName"
-                          name="childName"
-                          type="text"
+                          id="childDob"
+                          name="childDob"
+                          type="date"
                           required
-                          placeholder={t('placeholderChildName')}
-                          value={form.childName}
+                          value={form.childDob}
                           onChange={change}
-                          onFocus={() => setFocused('childName')}
+                          onFocus={() => setFocused('childDob')}
                           onBlur={() => setFocused(null)}
-                          style={getStyle('childName')}
+                          style={getStyle('childDob')}
                         />
                       </div>
                       <div>
@@ -347,16 +382,13 @@ export default function AppointmentForm() {
                         <input
                           id="childAge"
                           name="childAge"
-                          type="number"
+                          type="text"
                           required
-                          min="0"
-                          max="18"
+                          readOnly
                           placeholder={t('placeholderChildAge')}
                           value={form.childAge}
                           onChange={change}
-                          onFocus={() => setFocused('childAge')}
-                          onBlur={() => setFocused(null)}
-                          style={getStyle('childAge')}
+                          style={{ ...getStyle('childAge'), background: 'rgba(107,168,153,0.08)', cursor: 'not-allowed' }}
                         />
                       </div>
                     </div>
