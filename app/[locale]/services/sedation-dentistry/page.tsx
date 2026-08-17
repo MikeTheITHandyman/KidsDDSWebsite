@@ -58,6 +58,21 @@ export default async function SedationDentistryPage({ params }: { params: Promis
     >
       <div className="mx-auto max-w-6xl px-4">
 
+        {/* Options offered — sits right under the page subtitle */}
+        <p
+          style={{
+            textAlign: 'center',
+            fontFamily: 'Nunito, sans-serif',
+            fontWeight: 700,
+            fontSize: '0.95rem',
+            color: '#D97706',
+            marginTop: 0,
+            marginBottom: '1.75rem',
+          }}
+        >
+          {t('optionsOfferedNote')}
+        </p>
+
         {/* Answer-First summary — optimized for AI Answer Engines */}
         <div
           role="note"

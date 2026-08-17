@@ -10,7 +10,6 @@ import { sendGAEvent } from '@/lib/gtag'
 const TRUST_SIGNALS = [
   { icon: '🏆', labelKey: 'trust0Label', detailKey: 'trust0Detail' },
   { icon: '⭐', labelKey: 'trust1Label', detailKey: 'trust1Detail' },
-  { icon: '📅', labelKey: 'trust2Label', detailKey: 'trust2Detail' },
   { icon: '🚨', labelKey: 'trust3Label', detailKey: 'trust3Detail' },
   { icon: '🦷', labelKey: 'trust4Label', detailKey: 'trust4Detail' },
   { icon: '💜', labelKey: 'trust5Label', detailKey: 'trust5Detail' },

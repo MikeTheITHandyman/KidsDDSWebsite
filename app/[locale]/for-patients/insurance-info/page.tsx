@@ -50,6 +50,27 @@ export default async function InsuranceInfoPage({ params }: { params: Promise<{ 
     >
       <div className="mx-auto max-w-5xl px-4">
 
+        {/* Don't see your plan? — sits right under the page subtitle */}
+        <AnimatedSection>
+          <p
+            style={{
+              textAlign: 'center',
+              fontSize: '0.9rem',
+              color: '#6b7280',
+              fontWeight: 600,
+              marginBottom: '3rem',
+            }}
+          >
+            {t('dontSeePrefix')}{' '}
+            <Link
+              href="tel:+18472231400"
+              style={{ color: '#4A90A4', fontWeight: 700, textDecoration: 'none' }}
+            >
+              (847) 223-1400
+            </Link>
+          </p>
+        </AnimatedSection>
+
         {/* In-network provider cards */}
         <AnimatedSection>
           <h2
@@ -64,109 +85,41 @@ export default async function InsuranceInfoPage({ params }: { params: Promise<{ 
           >
             {t('inNetworkHeading')}
           </h2>
-          <div
+          <ul
             className="insurance-grid"
             style={{
+              listStyle: 'none',
+              margin: 0,
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
-              gap: '1.25rem',
-              marginBottom: '1.25rem',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+              gap: '0.75rem 1.5rem',
+              maxWidth: '640px',
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              marginBottom: '4rem',
+              padding: 0,
             }}
           >
             {IN_NETWORK_PROVIDERS.map((provider) => (
-              <div
+              <li
                 key={provider.name}
-                className="insurance-card"
                 style={{
-                  background: '#fff',
-                  border: '1.5px solid rgba(74,144,164,0.18)',
-                  borderRadius: '1.75rem',
-                  padding: '1.75rem 1.25rem',
-                  textAlign: 'center',
-                  boxShadow: '0 4px 18px rgba(74,144,164,0.07)',
-                  transition: 'box-shadow 0.22s ease, transform 0.22s ease',
+                  fontSize: '0.9rem',
+                  color: '#4b5563',
+                  fontWeight: 500,
                 }}
               >
-                <div
-                  style={{
-                    width: '48px',
-                    height: '48px',
-                    borderRadius: '1rem',
-                    background: 'linear-gradient(135deg, #dcf0ee, #b8e0da)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    margin: '0 auto 1rem',
-                  }}
-                  aria-hidden="true"
-                >
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4A90A4" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" opacity="0"/>
-                    <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                  </svg>
-                </div>
-                <p
-                  style={{
-                    fontFamily: 'Nunito, sans-serif',
-                    fontWeight: 900,
-                    fontSize: '0.95rem',
-                    color: '#1f2937',
-                    margin: '0 0 0.4rem',
-                    lineHeight: 1.3,
-                  }}
-                >
+                <span style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 700, color: '#1f2937' }}>
                   {provider.name}
-                </p>
-                <span
-                  style={{
-                    display: 'inline-block',
-                    background: 'rgba(74,144,164,0.10)',
-                    borderRadius: '100px',
-                    padding: '0.15rem 0.7rem',
-                    fontSize: '0.7rem',
-                    fontWeight: 800,
-                    letterSpacing: '0.06em',
-                    textTransform: 'uppercase',
-                    color: '#4A90A4',
-                    fontFamily: 'Nunito, sans-serif',
-                  }}
-                >
-                  {t('inNetworkBadge')}
                 </span>
                 {provider.noteKey && (
-                  <p
-                    style={{
-                      fontFamily: 'Nunito, sans-serif',
-                      fontSize: '0.68rem',
-                      fontWeight: 600,
-                      color: '#9ca3af',
-                      margin: '0.45rem 0 0',
-                      lineHeight: 1.4,
-                    }}
-                  >
-                    {t(provider.noteKey)}
-                  </p>
+                  <span style={{ fontSize: '0.78rem', color: '#9ca3af', marginLeft: '0.4rem' }}>
+                    ({t(provider.noteKey)})
+                  </span>
                 )}
-              </div>
+              </li>
             ))}
-          </div>
-          <p
-            style={{
-              textAlign: 'center',
-              fontSize: '0.85rem',
-              color: '#9ca3af',
-              marginBottom: '4rem',
-              fontWeight: 500,
-            }}
-          >
-            {t('dontSeePrefix')}{' '}
-            <Link
-              href="tel:+18472231400"
-              style={{ color: '#4A90A4', fontWeight: 700, textDecoration: 'none' }}
-            >
-              (847) 223-1400
-            </Link>
-          </p>
+          </ul>
         </AnimatedSection>
 
         {/* Out-of-network */}
@@ -389,12 +342,6 @@ export default async function InsuranceInfoPage({ params }: { params: Promise<{ 
 
       </div>
 
-      <style>{`
-        .insurance-card:hover {
-          box-shadow: 0 8px 28px rgba(74,144,164,0.16) !important;
-          transform: translateY(-4px) !important;
-        }
-      `}</style>
     </SubPageLayout>
   )
 }

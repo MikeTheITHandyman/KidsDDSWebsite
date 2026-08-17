@@ -19,6 +19,9 @@ export default function FloatingWidget() {
 
   if (pathname?.startsWith('/studio')) return null
 
+  // Don't show the "Request Appointment" CTA on the page that already is the appointment form.
+  const hideAppointmentCta = pathname?.includes('/request-appointment') ?? false
+
   return (
     <AnimatePresence>
       {mounted && (
@@ -40,9 +43,9 @@ export default function FloatingWidget() {
           onMouseEnter={() => setExpanded(true)}
           onMouseLeave={() => setExpanded(false)}
         >
-          {/* Expandable phone option */}
+          {/* Expandable phone option — always shown (not just on hover) when the appointment CTA is hidden */}
           <AnimatePresence>
-            {expanded && (
+            {(expanded || hideAppointmentCta) && (
               <motion.a
                 href="tel:8472231400"
                 onClick={() => sendGAEvent('call_click', { location: 'floating_widget' })}
@@ -75,40 +78,42 @@ export default function FloatingWidget() {
             )}
           </AnimatePresence>
 
-          {/* Primary CTA pill */}
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '6px' }}>
-            <motion.a
-              href="/request-appointment"
-              onClick={() => sendGAEvent('appointment_click', { location: 'floating_widget' })}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.96 }}
-              transition={{ type: 'spring', stiffness: 380, damping: 22 }}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                background: 'linear-gradient(135deg, var(--accent-500) 0%, var(--cta-coral) 100%)',
-                color: 'white',
-                borderRadius: '100px',
-                padding: '0.85rem 1.6rem',
-                fontFamily: 'Nunito, sans-serif',
-                fontWeight: 800,
-                fontSize: '0.95rem',
-                textDecoration: 'none',
-                boxShadow: '0 8px 28px rgba(239,108,26,0.52)',
-                whiteSpace: 'nowrap',
-              }}
-              aria-label={t('ariaAppointment')}
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                <line x1="16" y1="2" x2="16" y2="6"/>
-                <line x1="8" y1="2" x2="8" y2="6"/>
-                <line x1="3" y1="10" x2="21" y2="10"/>
-              </svg>
-              {t('ctaAppointment')}
-            </motion.a>
-          </div>
+          {/* Primary CTA pill — omitted on the appointment-request page itself, that button would be redundant there */}
+          {!hideAppointmentCta && (
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '6px' }}>
+              <motion.a
+                href="/request-appointment"
+                onClick={() => sendGAEvent('appointment_click', { location: 'floating_widget' })}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.96 }}
+                transition={{ type: 'spring', stiffness: 380, damping: 22 }}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  background: 'linear-gradient(135deg, var(--accent-500) 0%, var(--cta-coral) 100%)',
+                  color: 'white',
+                  borderRadius: '100px',
+                  padding: '0.85rem 1.6rem',
+                  fontFamily: 'Nunito, sans-serif',
+                  fontWeight: 800,
+                  fontSize: '0.95rem',
+                  textDecoration: 'none',
+                  boxShadow: '0 8px 28px rgba(239,108,26,0.52)',
+                  whiteSpace: 'nowrap',
+                }}
+                aria-label={t('ariaAppointment')}
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                  <line x1="16" y1="2" x2="16" y2="6"/>
+                  <line x1="8" y1="2" x2="8" y2="6"/>
+                  <line x1="3" y1="10" x2="21" y2="10"/>
+                </svg>
+                {t('ctaAppointment')}
+              </motion.a>
+            </div>
+          )}
         </motion.div>
       )}
     </AnimatePresence>
