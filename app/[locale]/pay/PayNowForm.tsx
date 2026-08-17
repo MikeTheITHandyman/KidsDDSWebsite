@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
+import { sendGAEvent } from '@/lib/gtag'
 
 const HOSTEDPAYNOW_URL = 'https://hostedpaynow.com/v2/paynowapp/processpayment'
 const TOKEN = '9ec06785636346c290a5a30375d1d3af@=1328f97b14f431bdea8caaaf4f1da76f8a2bb1fe691be4d69503d020bd502c3e'
@@ -20,6 +21,7 @@ export default function PayNowForm() {
       <motion.button
         name="submit"
         type="submit"
+        onClick={() => sendGAEvent('payment_portal_clicked', { location: 'pay_page' })}
         whileHover={{ scale: 1.04, y: -3 }}
         whileTap={{ scale: 0.96 }}
         transition={{ type: 'spring', stiffness: 400, damping: 20 }}

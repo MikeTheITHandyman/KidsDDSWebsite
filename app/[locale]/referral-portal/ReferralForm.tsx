@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { sendGAEvent } from '@next/third-parties/google'
+import { sendGAEvent } from '@/lib/gtag'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 
@@ -197,7 +197,7 @@ export default function ReferralForm() {
         body: JSON.stringify(form),
       })
       if (!res.ok) throw new Error()
-      sendGAEvent('event', 'partner_referral_submitted', { referral_reason: form.reason })
+      sendGAEvent('partner_referral_submitted', { referral_reason: form.reason })
       setStatus('success')
     } catch {
       setStatus('error')

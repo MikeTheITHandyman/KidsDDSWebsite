@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslations } from 'next-intl'
+import { sendGAEvent } from '@/lib/gtag'
 
 type FormState = {
   parentName: string
@@ -107,6 +108,7 @@ export default function AskDoctorForm() {
         body: JSON.stringify(form),
       })
       if (!res.ok) throw new Error()
+      sendGAEvent('ask_doctor_submitted', { preferred_dentist: form.preferredDentist })
       setSubmitted(true)
     } catch {
       setError(true)

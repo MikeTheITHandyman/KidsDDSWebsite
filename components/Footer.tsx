@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
+import { sendGAEvent } from '@/lib/gtag'
 
 const QUICK_LINKS = [
   { key: 'linkServices', href: '/services' },
@@ -315,6 +316,7 @@ export default function Footer() {
               <motion.button
                 name="submit"
                 type="submit"
+                onClick={() => sendGAEvent('payment_portal_clicked', { location: 'footer' })}
                 whileHover={{ scale: 1.04, y: -2 }}
                 whileTap={{ scale: 0.97 }}
                 style={{

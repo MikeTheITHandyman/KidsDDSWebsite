@@ -3,6 +3,7 @@ import AnimatedSection from '@/components/AnimatedSection'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
+import FormDownloadLink from './FormDownloadLink'
 
 export const metadata: Metadata = {
   title: 'Patient Forms & Pre-Visit Portals | Kids Dentist Grayslake, IL',
@@ -536,10 +537,10 @@ export default async function PatientFormsPage() {
 
                 {/* Action button */}
                 {form.action === 'download' ? (
-                  <a
+                  <FormDownloadLink
                     href={form.href}
-                    download
-                    aria-label={form.ariaLabel}
+                    fileName={form.href.split('/').pop() ?? form.id}
+                    ariaLabel={form.ariaLabel}
                     style={{
                       display: 'inline-flex',
                       alignItems: 'center',
@@ -564,7 +565,7 @@ export default async function PatientFormsPage() {
                       <line x1="12" y1="15" x2="12" y2="3"/>
                     </svg>
                     {t('downloadForm')}
-                  </a>
+                  </FormDownloadLink>
                 ) : (
                   <Link
                     href={form.href}

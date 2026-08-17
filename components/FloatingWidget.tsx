@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { sendGAEvent } from '@next/third-parties/google'
+import { sendGAEvent } from '@/lib/gtag'
 import { useTranslations } from 'next-intl'
 
 export default function FloatingWidget() {
@@ -45,7 +45,7 @@ export default function FloatingWidget() {
             {expanded && (
               <motion.a
                 href="tel:8472231400"
-                onClick={() => sendGAEvent('event', 'call_click', { location: 'floating_widget' })}
+                onClick={() => sendGAEvent('call_click', { location: 'floating_widget' })}
                 initial={{ opacity: 0, y: 12, scale: 0.88 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 12, scale: 0.88 }}
@@ -79,7 +79,7 @@ export default function FloatingWidget() {
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '6px' }}>
             <motion.a
               href="/request-appointment"
-              onClick={() => sendGAEvent('event', 'appointment_click', { location: 'floating_widget' })}
+              onClick={() => sendGAEvent('appointment_click', { location: 'floating_widget' })}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.96 }}
               transition={{ type: 'spring', stiffness: 380, damping: 22 }}

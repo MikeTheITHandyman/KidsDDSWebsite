@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
+import { sendGAEvent } from '@/lib/gtag'
 
 const TRUST_SIGNALS = [
   { icon: '🏆', labelKey: 'trust0Label', detailKey: 'trust0Detail' },
@@ -104,6 +105,7 @@ export default function AppointmentForm() {
         body: JSON.stringify(form),
       })
       if (!res.ok) throw new Error()
+      sendGAEvent('appointment_submitted', { reason: form.reason, preferred_dentist: form.preferredDentist })
       setSubmitted(true)
     } catch {
       setError(true)
