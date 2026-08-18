@@ -160,6 +160,7 @@ export default function Header({ latestPostTitle, latestPostSlug }: HeaderProps)
       href: '/for-patients',
       children: [
         { label: t('firstVisit'), href: '/for-patients/child-first-visit' },
+        { label: t('patientForms'), href: '/for-patients/patient-forms' },
         { label: t('insurance'), href: '/for-patients/insurance-info' },
       ],
     },
