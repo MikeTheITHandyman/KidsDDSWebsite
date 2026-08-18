@@ -11,6 +11,7 @@
   "dependencies": {
     "@next/third-parties": "^16.2.6",
     "@portabletext/react": "^6.0.3",
+    "@react-email/components": "^1.0.12",
     "framer-motion": "^12.38.0",
     "next": "latest",
     "next-intl": "^4.13.0",
@@ -28,6 +29,7 @@
     "@types/react": "latest",
     "heic-convert": "^2.1.0",
     "postcss": "^8.5.23",
+    "react-email": "^6.9.2",
     "tailwindcss": "^4.3.3",
     "typescript": "5.9.3"
   }

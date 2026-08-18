@@ -20,4 +20,12 @@ export const EMAIL_CONFIG = {
 
   /** Sender address — must be a Resend-verified domain in production */
   from: process.env.CONTACT_EMAIL_FROM ?? 'Kids Dentist Website <onboarding@resend.dev>',
+
+  /**
+   * Fixed sender for the dual-email system (office alert + parent
+   * auto-responder) — both legs always send from noreply@kidsdds.com,
+   * independent of CONTACT_EMAIL_FROM. Requires kidsdds.com to be a
+   * Resend-verified sending domain.
+   */
+  noreplyFrom: 'Kids Dentist <noreply@kidsdds.com>',
 }
