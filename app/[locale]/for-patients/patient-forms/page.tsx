@@ -8,7 +8,7 @@ import FormDownloadLink from './FormDownloadLink'
 export const metadata: Metadata = {
   title: 'Patient Forms & Pre-Visit Portals | Kids Dentist Grayslake, IL',
   description:
-    'Complete Kids Dentist patient forms online or download PDFs before your visit — new patient registration, HIPAA consent, dental history questionnaire, and more.',
+    'Complete Kids Dentist patient forms online or download PDFs before your visit — new patient registration and dental history questionnaire.',
   openGraph: {
     title: 'Patient Forms & Pre-Visit Portals | Kids Dentist Grayslake, IL',
     description:
@@ -33,19 +33,6 @@ const DOWNLOAD_FORMS_META = [
     accentColor: '#4A90A4',
     iconBg: 'rgba(74,144,164,0.10)',
     borderColor: 'rgba(74,144,164,0.16)',
-    action: 'download' as const,
-  },
-  {
-    id: 'hipaa',
-    titleKey: 'form1Title',
-    descKey: 'form1Desc',
-    href: '/forms/hipaa-consent-disclosures.pdf',
-    fileLabelKey: 'form1FileLabel',
-    ariaKey: 'form1Aria',
-    accentColor: '#6BA899',
-    iconBg: 'rgba(107,168,153,0.10)',
-    borderColor: 'rgba(107,168,153,0.18)',
-    action: 'download' as const,
   },
   {
     id: 'dental-history',
@@ -57,19 +44,6 @@ const DOWNLOAD_FORMS_META = [
     accentColor: '#4A90A4',
     iconBg: 'rgba(74,144,164,0.10)',
     borderColor: 'rgba(74,144,164,0.16)',
-    action: 'download' as const,
-  },
-  {
-    id: 'school-form',
-    titleKey: 'form3Title',
-    descKey: 'form3Desc',
-    href: '/contact?subject=School+Form+Request',
-    fileLabelKey: null,
-    ariaKey: 'form3Aria',
-    accentColor: '#78509b',
-    iconBg: 'rgba(120,80,155,0.10)',
-    borderColor: 'rgba(120,80,155,0.16)',
-    action: 'request' as const,
   },
 ]
 
@@ -118,25 +92,13 @@ function FormIcon({ id, color }: { id: string; color: string }) {
       <line x1="9" y1="16" x2="13" y2="16"/>
     </svg>
   )
-  if (id === 'hipaa') return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-      <polyline points="9 12 11 14 15 10"/>
-    </svg>
-  )
-  if (id === 'dental-history') return (
+  // dental-history
+  return (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
       <polyline points="14 2 14 8 20 8"/>
       <line x1="16" y1="13" x2="8" y2="13"/>
       <line x1="16" y1="17" x2="8" y2="17"/>
-    </svg>
-  )
-  // school-form
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-      <polyline points="22,6 12,13 2,6"/>
     </svg>
   )
 }
@@ -445,7 +407,7 @@ export default async function PatientFormsPage() {
                   height: '100%',
                   transition: 'transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease',
                 }}
-                aria-label={`${form.title} — ${form.action === 'download' ? form.fileLabel : t('requestFormWord')}`}
+                aria-label={`${form.title} — ${form.fileLabel}`}
               >
                 {/* Icon + file-type badge row */}
                 <div
@@ -472,41 +434,22 @@ export default async function PatientFormsPage() {
                   </span>
 
                   {/* File-type micro-label */}
-                  {form.fileLabel ? (
-                    <span
-                      style={{
-                        background: form.iconBg,
-                        color: form.accentColor,
-                        fontFamily: 'Nunito, sans-serif',
-                        fontWeight: 800,
-                        fontSize: '0.7rem',
-                        letterSpacing: '0.06em',
-                        textTransform: 'uppercase',
-                        borderRadius: '100px',
-                        padding: '0.28rem 0.7rem',
-                        border: `1px solid ${form.borderColor}`,
-                      }}
-                    >
-                      {form.fileLabel}
-                    </span>
-                  ) : (
-                    <span
-                      style={{
-                        background: 'rgba(120,80,155,0.08)',
-                        color: '#78509b',
-                        fontFamily: 'Nunito, sans-serif',
-                        fontWeight: 800,
-                        fontSize: '0.7rem',
-                        letterSpacing: '0.06em',
-                        textTransform: 'uppercase',
-                        borderRadius: '100px',
-                        padding: '0.28rem 0.7rem',
-                        border: '1px solid rgba(120,80,155,0.16)',
-                      }}
-                    >
-                      {t('requestBadge')}
-                    </span>
-                  )}
+                  <span
+                    style={{
+                      background: form.iconBg,
+                      color: form.accentColor,
+                      fontFamily: 'Nunito, sans-serif',
+                      fontWeight: 800,
+                      fontSize: '0.7rem',
+                      letterSpacing: '0.06em',
+                      textTransform: 'uppercase',
+                      borderRadius: '100px',
+                      padding: '0.28rem 0.7rem',
+                      border: `1px solid ${form.borderColor}`,
+                    }}
+                  >
+                    {form.fileLabel}
+                  </span>
                 </div>
 
                 {/* Title */}
@@ -538,65 +481,35 @@ export default async function PatientFormsPage() {
                 </p>
 
                 {/* Action button */}
-                {form.action === 'download' ? (
-                  <FormDownloadLink
-                    href={form.href}
-                    fileName={form.href.split('/').pop() ?? form.id}
-                    ariaLabel={form.ariaLabel}
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: '0.45rem',
-                      background: form.iconBg,
-                      color: form.accentColor,
-                      fontFamily: 'Nunito, sans-serif',
-                      fontWeight: 800,
-                      fontSize: '0.875rem',
-                      padding: '0.7rem 1.25rem',
-                      borderRadius: '100px',
-                      textDecoration: 'none',
-                      border: `1.5px solid ${form.borderColor}`,
-                      transition: 'background 0.18s, border-color 0.18s',
-                    }}
-                    className="form-dl-btn"
-                  >
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1"/>
-                      <polyline points="7 10 12 15 17 10"/>
-                      <line x1="12" y1="15" x2="12" y2="3"/>
-                    </svg>
-                    {t('downloadForm')}
-                  </FormDownloadLink>
-                ) : (
-                  <Link
-                    href={form.href}
-                    aria-label={form.ariaLabel}
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: '0.45rem',
-                      background: 'rgba(120,80,155,0.08)',
-                      color: '#78509b',
-                      fontFamily: 'Nunito, sans-serif',
-                      fontWeight: 800,
-                      fontSize: '0.875rem',
-                      padding: '0.7rem 1.25rem',
-                      borderRadius: '100px',
-                      textDecoration: 'none',
-                      border: '1.5px solid rgba(120,80,155,0.20)',
-                      transition: 'background 0.18s, border-color 0.18s',
-                    }}
-                    className="form-req-btn"
-                  >
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <line x1="22" y1="2" x2="11" y2="13"/>
-                      <polygon points="22 2 15 22 11 13 2 9 22 2"/>
-                    </svg>
-                    {t('requestThisForm')}
-                  </Link>
-                )}
+                <FormDownloadLink
+                  href={form.href}
+                  fileName={form.href.split('/').pop() ?? form.id}
+                  ariaLabel={form.ariaLabel}
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '0.45rem',
+                    background: form.iconBg,
+                    color: form.accentColor,
+                    fontFamily: 'Nunito, sans-serif',
+                    fontWeight: 800,
+                    fontSize: '0.875rem',
+                    padding: '0.7rem 1.25rem',
+                    borderRadius: '100px',
+                    textDecoration: 'none',
+                    border: `1.5px solid ${form.borderColor}`,
+                    transition: 'background 0.18s, border-color 0.18s',
+                  }}
+                  className="form-dl-btn"
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                  </svg>
+                  {t('downloadForm')}
+                </FormDownloadLink>
               </article>
             </AnimatedSection>
           ))}
@@ -739,10 +652,6 @@ export default async function PatientFormsPage() {
         .form-dl-btn:hover {
           background: rgba(74,144,164,0.14) !important;
           border-color: rgba(74,144,164,0.32) !important;
-        }
-        .form-req-btn:hover {
-          background: rgba(120,80,155,0.14) !important;
-          border-color: rgba(120,80,155,0.32) !important;
         }
         @media (max-width: 640px) {
           .forms-grid { grid-template-columns: 1fr !important; }

@@ -20,8 +20,8 @@ export const metadata: Metadata = {
 }
 
 const IN_NETWORK_PROVIDERS: { name: string; noteKey?: string }[] = [
-  { name: 'Aetna Dental', noteKey: 'aetnaNote' },
-  { name: 'Cigna Dental' },
+  { name: 'Aetna Dental' },
+  { name: 'Cigna Dental', noteKey: 'cignaNote' },
   { name: 'Delta Dental Premier' },
   { name: 'Guardian Dental' },
   { name: 'Lincoln Financial' },
@@ -91,9 +91,9 @@ export default async function InsuranceInfoPage({ params }: { params: Promise<{ 
               listStyle: 'none',
               margin: 0,
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-              gap: '0.75rem 1.5rem',
-              maxWidth: '640px',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+              gap: '1rem',
+              maxWidth: '720px',
               marginLeft: 'auto',
               marginRight: 'auto',
               marginBottom: '4rem',
@@ -104,6 +104,10 @@ export default async function InsuranceInfoPage({ params }: { params: Promise<{ 
               <li
                 key={provider.name}
                 style={{
+                  background: '#fff',
+                  borderRadius: '1.1rem',
+                  padding: '1rem 1.1rem',
+                  boxShadow: '0 2px 10px rgba(74,144,164,0.07)',
                   fontSize: '0.9rem',
                   color: '#4b5563',
                   fontWeight: 500,

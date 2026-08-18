@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { sendGAEvent } from '@/lib/gtag'
+import SaveContactQR from '@/components/SaveContactQR'
 
 const TRUST_SIGNALS = [
   { icon: '🏆', labelKey: 'trust0Label', detailKey: 'trust0Detail' },
@@ -784,6 +785,15 @@ export default function AppointmentForm() {
               >
                 {t('officeHoursShort')}
               </p>
+              <div
+                style={{
+                  marginTop: '1.25rem',
+                  paddingTop: '1.25rem',
+                  borderTop: '1px solid rgba(74,144,164,0.12)',
+                }}
+              >
+                <SaveContactQR size={92} />
+              </div>
             </div>
           </div>
         </div>

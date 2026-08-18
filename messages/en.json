@@ -157,7 +157,9 @@
     "readMore": "Read More",
     "backToTop": "Back to top",
     "loading": "Loading...",
-    "error": "Something went wrong. Please try again."
+    "error": "Something went wrong. Please try again.",
+    "saveContactLabel": "Save Our Contact Info",
+    "saveContactAlt": "QR code to save Kids Dentist's contact info to your phone"
   },
   "siteSearch": {
     "placeholderMobile": "Search services, FAQs, pages…",
@@ -394,7 +396,7 @@
     "ctaText": "Questions about your coverage? We love talking about this stuff.",
     "ctaCall": "Call Us with Insurance Questions",
     "ctaForms": "View Patient Forms",
-    "aetnaNote": "DMO under age 7 only"
+    "cignaNote": "Total DPPO only"
   },
   "faqPage": {
     "kicker": "Got Questions?",
@@ -1042,6 +1044,24 @@
     "roleDentalAssistant": "Dental Assistant",
     "roleHygieneAssistant": "Hygiene Assistant"
   },
+  "forPatientsPage": {
+    "kicker": "Everything You Need",
+    "title": "For Patients",
+    "subtitle": "Resources to help your family feel prepared, informed, and at ease — before, during, and after every visit.",
+    "card0Tagline": "New Patients",
+    "card0Title": "My First Visit",
+    "card0Desc": "What to expect at your child's first appointment, and how we make it something kids actually look forward to.",
+    "card1Tagline": "Pre-Visit Prep",
+    "card1Title": "Patient Forms",
+    "card1Desc": "Complete your forms online in about five minutes, or download and print PDFs before your visit.",
+    "card2Tagline": "Financial Peace of Mind",
+    "card2Title": "Insurance & Financing",
+    "card2Desc": "We're in-network with most major PPO plans and handle the paperwork, so you can focus on your child.",
+    "learnMore": "Learn More",
+    "bottomCtaText": "Ready to get started?",
+    "ctaAppointment": "Request Appointment",
+    "ctaCall": "Text/Call us: (847) 223-1400"
+  },
   "patientFormsPage": {
     "kicker": "Pre-Visit Prep",
     "title": "Patient Forms & Pre-Visit Portals",
@@ -1064,21 +1084,11 @@
     "form0Desc": "Patient demographics, emergency contacts, guardian information, and insurance details for first-time patients.",
     "form0FileLabel": "PDF · 3 pages",
     "form0Aria": "Download New Patient Registration form — PDF, 3 pages",
-    "form1Title": "HIPAA Consent & Disclosures",
-    "form1Desc": "Required authorization for us to use and share your child's protected health information, as mandated by federal law.",
-    "form1FileLabel": "PDF · 1 page",
-    "form1Aria": "Download HIPAA Consent and Disclosures form — PDF, 1 page",
     "form2Title": "Dental History Questionnaire",
     "form2Desc": "Medical conditions, current medications, known allergies, and your child's complete past dental treatment history.",
     "form2FileLabel": "PDF · 2 pages",
     "form2Aria": "Download Dental History Questionnaire form — PDF, 2 pages",
-    "form3Title": "School / Daycare Dental Form",
-    "form3Desc": "We complete school enrollment, camp, and daycare health forms for our patients. Contact us and our team handles the rest.",
-    "form3Aria": "Request a school or daycare dental form — opens contact page",
-    "requestBadge": "Request",
-    "requestFormWord": "request form",
     "downloadForm": "Download Form",
-    "requestThisForm": "Request This Form",
     "tipsHeading": "Tips for a smooth check-in",
     "tip0": "Complete forms at home so you can reference your child's medical records",
     "tip1": "Bring your insurance card to every appointment",

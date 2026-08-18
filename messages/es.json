@@ -157,7 +157,9 @@
     "readMore": "Leer Más",
     "backToTop": "Volver arriba",
     "loading": "Cargando...",
-    "error": "Algo salió mal. Por favor, inténtelo de nuevo."
+    "error": "Algo salió mal. Por favor, inténtelo de nuevo.",
+    "saveContactLabel": "Guarde Nuestra Información de Contacto",
+    "saveContactAlt": "Código QR para guardar la información de contacto de Kids Dentist en su teléfono"
   },
   "siteSearch": {
     "placeholderMobile": "Buscar servicios, preguntas frecuentes, páginas…",
@@ -394,7 +396,7 @@
     "ctaText": "¿Preguntas sobre su cobertura? Nos encanta hablar de estos temas.",
     "ctaCall": "Llámenos con Preguntas sobre el Seguro",
     "ctaForms": "Ver Formularios del Paciente",
-    "aetnaNote": "DMO solo para menores de 7 años"
+    "cignaNote": "Solo Total DPPO"
   },
   "faqPage": {
     "kicker": "¿Tiene Preguntas?",
@@ -1042,6 +1044,24 @@
     "roleDentalAssistant": "Asistente Dental",
     "roleHygieneAssistant": "Asistente de Higiene"
   },
+  "forPatientsPage": {
+    "kicker": "Todo Lo Que Necesita",
+    "title": "Para Pacientes",
+    "subtitle": "Recursos para ayudar a su familia a sentirse preparada, informada y tranquila — antes, durante y después de cada visita.",
+    "card0Tagline": "Pacientes Nuevos",
+    "card0Title": "Primera Visita de Su Hijo",
+    "card0Desc": "Qué esperar en la primera cita de su hijo, y cómo logramos que sea algo que los niños esperan con gusto.",
+    "card1Tagline": "Preparación Antes de la Visita",
+    "card1Title": "Formularios del Paciente",
+    "card1Desc": "Complete sus formularios en línea en unos cinco minutos, o descargue e imprima los PDF antes de su visita.",
+    "card2Tagline": "Tranquilidad Financiera",
+    "card2Title": "Seguro y Financiamiento",
+    "card2Desc": "Estamos dentro de la red de la mayoría de los planes PPO principales y manejamos el papeleo, para que usted se enfoque en su hijo.",
+    "learnMore": "Saber Más",
+    "bottomCtaText": "¿Listo para comenzar?",
+    "ctaAppointment": "Solicitar una Cita",
+    "ctaCall": "Llame o envíe un mensaje de texto: (847) 223-1400"
+  },
   "patientFormsPage": {
     "kicker": "Preparación Antes de la Visita",
     "title": "Formularios del Paciente y Portales Antes de la Visita",
@@ -1064,21 +1084,11 @@
     "form0Desc": "Datos demográficos del paciente, contactos de emergencia, información del tutor y detalles del seguro para pacientes nuevos.",
     "form0FileLabel": "PDF · 3 páginas",
     "form0Aria": "Descargar el formulario de Registro de Paciente Nuevo — PDF, 3 páginas",
-    "form1Title": "Consentimiento y Divulgaciones de HIPAA",
-    "form1Desc": "Autorización requerida para que usemos y compartamos la información de salud protegida de su hijo, según lo exige la ley federal.",
-    "form1FileLabel": "PDF · 1 página",
-    "form1Aria": "Descargar el formulario de Consentimiento y Divulgaciones de HIPAA — PDF, 1 página",
     "form2Title": "Cuestionario de Historial Dental",
     "form2Desc": "Condiciones médicas, medicamentos actuales, alergias conocidas e historial completo de tratamiento dental anterior de su hijo.",
     "form2FileLabel": "PDF · 2 páginas",
     "form2Aria": "Descargar el Cuestionario de Historial Dental — PDF, 2 páginas",
-    "form3Title": "Formulario Dental para la Escuela / Guardería",
-    "form3Desc": "Completamos los formularios de salud de inscripción escolar, campamento y guardería para nuestros pacientes. Contáctenos y nuestro equipo se encarga del resto.",
-    "form3Aria": "Solicitar un formulario dental para la escuela o guardería — abre la página de contacto",
-    "requestBadge": "Solicitar",
-    "requestFormWord": "solicitar formulario",
     "downloadForm": "Descargar Formulario",
-    "requestThisForm": "Solicitar Este Formulario",
     "tipsHeading": "Consejos para un registro sin contratiempos",
     "tip0": "Complete los formularios en casa para poder consultar los registros médicos de su hijo",
     "tip1": "Traiga su tarjeta de seguro a cada cita",

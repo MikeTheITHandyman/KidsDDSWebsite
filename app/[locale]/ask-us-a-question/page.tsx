@@ -1,6 +1,7 @@
 import SubPageLayout from '@/components/SubPageLayout'
 import AnimatedSection from '@/components/AnimatedSection'
 import AskQuestionForm from './AskQuestionForm'
+import SaveContactQR from '@/components/SaveContactQR'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
@@ -170,16 +171,45 @@ export default async function AskQuestionPage() {
         <AnimatedSection delay={0.08}>
           <div
             style={{
-              background: 'rgba(253,252,248,0.85)',
-              border: '1.5px solid rgba(74,144,164,0.12)',
-              borderRadius: '2rem',
-              padding: '2.5rem 2rem',
-              boxShadow: '0 6px 28px rgba(74,144,164,0.08)',
+              display: 'grid',
+              gridTemplateColumns: 'minmax(0, 1fr) 260px',
+              gap: '2rem',
+              alignItems: 'start',
               marginBottom: '2rem',
             }}
+            className="ask-form-grid"
           >
-            <AskQuestionForm />
+            <div
+              style={{
+                background: 'rgba(253,252,248,0.85)',
+                border: '1.5px solid rgba(74,144,164,0.12)',
+                borderRadius: '2rem',
+                padding: '2.5rem 2rem',
+                boxShadow: '0 6px 28px rgba(74,144,164,0.08)',
+              }}
+            >
+              <AskQuestionForm />
+            </div>
+
+            <div
+              style={{
+                background: '#fff',
+                border: '1.5px solid rgba(120,80,155,0.15)',
+                borderRadius: '1.5rem',
+                padding: '1.75rem',
+                boxShadow: '0 4px 16px rgba(74,144,164,0.06)',
+              }}
+            >
+              <SaveContactQR size={120} />
+            </div>
           </div>
+          <style>{`
+            @media (max-width: 780px) {
+              .ask-form-grid {
+                grid-template-columns: 1fr !important;
+              }
+            }
+          `}</style>
         </AnimatedSection>
 
       </div>

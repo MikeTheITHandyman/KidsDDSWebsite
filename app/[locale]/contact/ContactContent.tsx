@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import AnimatedSection from '@/components/AnimatedSection'
+import SaveContactQR from '@/components/SaveContactQR'
 
 
 const HOURS_META = [
@@ -354,36 +355,39 @@ export default function ContactContent() {
               </h2>
 
               {/* Address */}
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.85rem', marginBottom: '1.25rem' }}>
-                <div
-                  style={{
-                    width: '36px',
-                    height: '36px',
-                    borderRadius: '0.7rem',
-                    background: 'rgba(74,144,164,0.10)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexShrink: 0,
-                    fontSize: '1rem',
-                  }}
-                  aria-hidden="true"
-                >
-                  📍
-                </div>
-                <div>
-                  <p style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '0.82rem', color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '0.06em', margin: '0 0 0.2rem' }}>
-                    {t('addressLabel')}
-                  </p>
-                  <a
-                    href="https://maps.google.com/?q=160+Commerce+Dr+%23100+Grayslake+IL+60030"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ color: '#3D3D3D', fontWeight: 600, fontSize: '0.9rem', textDecoration: 'none', lineHeight: 1.55 }}
+              <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '1rem', marginBottom: '1.25rem', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.85rem' }}>
+                  <div
+                    style={{
+                      width: '36px',
+                      height: '36px',
+                      borderRadius: '0.7rem',
+                      background: 'rgba(74,144,164,0.10)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0,
+                      fontSize: '1rem',
+                    }}
+                    aria-hidden="true"
                   >
-                    160 Commerce Dr #100<br />Grayslake, IL 60030
-                  </a>
+                    📍
+                  </div>
+                  <div>
+                    <p style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '0.82rem', color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '0.06em', margin: '0 0 0.2rem' }}>
+                      {t('addressLabel')}
+                    </p>
+                    <a
+                      href="https://maps.google.com/?q=160+Commerce+Dr+%23100+Grayslake+IL+60030"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ color: '#3D3D3D', fontWeight: 600, fontSize: '0.9rem', textDecoration: 'none', lineHeight: 1.55 }}
+                    >
+                      160 Commerce Dr #100<br />Grayslake, IL 60030
+                    </a>
+                  </div>
                 </div>
+                <SaveContactQR size={72} />
               </div>
 
               {/* Phone */}
