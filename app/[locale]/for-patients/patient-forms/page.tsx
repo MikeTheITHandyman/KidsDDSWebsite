@@ -328,7 +328,9 @@ export default async function PatientFormsPage() {
             {/* CTA */}
             <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '1.25rem' }}>
               <a
-                href="#patient-portal"
+                href="https://csintake.patientengagepro.com/new/e6gqsw/clqaik"
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label={t('openPortalAria')}
                 style={{
                   display: 'inline-flex',
