@@ -1,6 +1,7 @@
 import SubPageLayout from '@/components/SubPageLayout'
 import AnimatedSection from '@/components/AnimatedSection'
 import Link from 'next/link'
+import Image from 'next/image'
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 
@@ -19,15 +20,17 @@ export const metadata: Metadata = {
   },
 }
 
-const IN_NETWORK_PROVIDERS: { name: string; noteKey?: string }[] = [
-  { name: 'Aetna Dental' },
+const IN_NETWORK_PROVIDERS: { name: string; noteKey?: string; logo?: { src: string; width: number; height: number } }[] = [
+  { name: 'Aetna Dental', logo: { src: '/brand_assets/insurance-logos/aetna.png', width: 968, height: 240 } },
   { name: 'Cigna Dental', noteKey: 'cignaNote' },
-  { name: 'Delta Dental Premier' },
-  { name: 'Guardian Dental' },
+  { name: 'Delta Dental Premier', logo: { src: '/brand_assets/insurance-logos/delta-dental.png', width: 961, height: 240 } },
+  { name: 'Guardian Dental', logo: { src: '/brand_assets/insurance-logos/guardian.png', width: 1247, height: 240 } },
   { name: 'Lincoln Financial' },
-  { name: 'Principal Dental' },
-  { name: 'United Healthcare Dental' },
+  { name: 'Principal Dental', logo: { src: '/brand_assets/insurance-logos/principal.png', width: 826, height: 240 } },
+  { name: 'United Healthcare Dental', logo: { src: '/brand_assets/insurance-logos/united-healthcare.png', width: 763, height: 240 } },
 ]
+
+const LOGO_DISPLAY_HEIGHT = 28
 
 export default async function InsuranceInfoPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
@@ -111,13 +114,26 @@ export default async function InsuranceInfoPage({ params }: { params: Promise<{ 
                   fontSize: '0.9rem',
                   color: '#4b5563',
                   fontWeight: 500,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0.4rem',
                 }}
               >
-                <span style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 700, color: '#1f2937' }}>
-                  {provider.name}
-                </span>
+                {provider.logo ? (
+                  <Image
+                    src={provider.logo.src}
+                    alt={provider.name}
+                    width={Math.round((provider.logo.width / provider.logo.height) * LOGO_DISPLAY_HEIGHT)}
+                    height={LOGO_DISPLAY_HEIGHT}
+                    style={{ height: `${LOGO_DISPLAY_HEIGHT}px`, width: 'auto' }}
+                  />
+                ) : (
+                  <span style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 700, color: '#1f2937' }}>
+                    {provider.name}
+                  </span>
+                )}
                 {provider.noteKey && (
-                  <span style={{ fontSize: '0.78rem', color: '#9ca3af', marginLeft: '0.4rem' }}>
+                  <span style={{ fontSize: '0.78rem', color: '#9ca3af' }}>
                     ({t(provider.noteKey)})
                   </span>
                 )}
