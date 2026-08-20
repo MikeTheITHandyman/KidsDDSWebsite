@@ -19,7 +19,9 @@
     "firstVisit": "Child's First Visit",
     "patientForms": "Patient Forms",
     "insurance": "Insurance & Financing",
-    "faq": "FAQ",
+    "qa": "Q&A",
+    "generalFaq": "General FAQ",
+    "parentsAfraidToAsk": "Questions Parents Are Afraid to Ask",
     "blog": "Blog",
     "contact": "Contact",
     "directions": "Directions",
@@ -1125,7 +1127,13 @@
     "firstPostComingSoon": "First post coming soon!",
     "emptyBodyPrefix": "Our doctors are writing expert tips and guides for Grayslake families. Check back soon - or visit the Studio at",
     "emptyBodySuffix": "to publish the first post.",
-    "scheduleInstead": "Schedule an Appointment Instead"
+    "scheduleInstead": "Schedule an Appointment Instead",
+    "searchPlaceholder": "Search articles…",
+    "searchAriaLabel": "Search blog posts",
+    "searchSubmitAria": "Search",
+    "searchResultsFor": "Showing results for “{query}”",
+    "noSearchResults": "No posts found for “{query}”",
+    "clearSearch": "Clear search"
   },
   "blogPostPage": {
     "backToBlog": "Back to Blog",
@@ -1242,5 +1250,17 @@
     "ctaText": "Wondering if your child needs an orthodontic evaluation? We'll take a look at their next checkup.",
     "ctaAppointment": "Schedule a Checkup",
     "ctaCall": "Text/Call us: (847) 223-1400"
+  },
+  "qaPage": {
+    "title": "Questions Parents Are Afraid to Ask",
+    "subtitle": "The questions parents whisper, Google at 2 a.m., or never quite work up the nerve to say out loud — answered honestly, without judgment.",
+    "category0": "Parent Guilt",
+    "category1": "Fear of Being Judged",
+    "category2": "The 3 a.m. Questions",
+    "category3": "Money",
+    "kicker": "A Judgment-Free Zone",
+    "tabsAriaLabel": "Filter questions by category",
+    "emptyState": "We’re building out real, honest answers for this category. In the meantime, send us your question directly — no judgment, promise.",
+    "emptyStateCta": "Ask Us a Question"
   }
 }

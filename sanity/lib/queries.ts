@@ -27,6 +27,37 @@ export const postBySlugQuery = groq`
   }
 `
 
+// $searchTerm must include GROQ wildcards (e.g. "*puppy*") — match() does not
+// wildcard-expand automatically. Title is a localizedString ({en, es}); body
+// content lives in separate `body` (EN) / `bodyEs` (ES) portable-text arrays,
+// so each side of the OR checks both locales independently.
+export const searchPostsQuery = groq`
+  *[_type == "post" && defined(slug.current) && (
+    title.en match $searchTerm ||
+    title.es match $searchTerm ||
+    pt::text(body) match $searchTerm ||
+    pt::text(bodyEs) match $searchTerm
+  )] | order(publishedAt desc) {
+    _id,
+    title,
+    "slug": slug.current,
+    author,
+    category,
+    mainImage,
+    publishedAt,
+    excerpt,
+  }
+`
+
+export const allParentQuestionsQuery = groq`
+  *[_type == "parentQuestion"] | order(category asc, _createdAt asc) {
+    _id,
+    question,
+    category,
+    answer,
+  }
+`
+
 export const featuredReviewsQuery = groq`
   *[_type == "review" && featured == true] | order(date desc) [0..5] {
     _id,

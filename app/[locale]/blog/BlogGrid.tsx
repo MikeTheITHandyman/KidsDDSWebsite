@@ -1,10 +1,12 @@
 'use client'
 
+import { useState, type FormEvent } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, type Variants } from 'framer-motion'
 import { urlFor } from '@/sanity/lib/image'
 import { useTranslations, useLocale } from 'next-intl'
+import { useRouter, usePathname } from '@/navigation'
 
 interface SanityPost {
   _id: string
@@ -51,6 +53,116 @@ function CategoryChip({ label }: { label?: string }) {
 
 interface BlogGridProps {
   posts: SanityPost[]
+  searchQuery?: string
+}
+
+function BlogSearchBox({ initialQuery }: { initialQuery: string }) {
+  const t = useTranslations('blogGrid')
+  const router = useRouter()
+  const pathname = usePathname()
+  const [value, setValue] = useState(initialQuery)
+
+  function handleSubmit(e: FormEvent) {
+    e.preventDefault()
+    const trimmed = value.trim()
+    router.push(trimmed ? `${pathname}?q=${encodeURIComponent(trimmed)}` : pathname)
+  }
+
+  return (
+    <form role="search" onSubmit={handleSubmit} className="blog-search-form">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4A90A4" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="8"/>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input
+        type="search"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        placeholder={t('searchPlaceholder')}
+        aria-label={t('searchAriaLabel')}
+        className="blog-search-input"
+      />
+      <button type="submit" className="blog-search-submit">
+        {t('searchSubmitAria')}
+      </button>
+    </form>
+  )
+}
+
+function PostCard({ post, locale, featured = false }: { post: SanityPost; locale: string; featured?: boolean }) {
+  if (featured) {
+    return (
+      <Link href={`/blog/${post.slug}`} className="blog-featured-card">
+        <div className="blog-featured-image-wrap">
+          {post.mainImage ? (
+            <Image
+              src={urlFor(post.mainImage).width(1200).height(560).url()}
+              alt={post.mainImage.alt ?? post.title}
+              fill
+              style={{ objectFit: 'cover' }}
+              className="blog-featured-img"
+              priority
+            />
+          ) : (
+            <div className="blog-image-placeholder blog-featured-placeholder" aria-hidden="true">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(107,168,153,0.4)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            </div>
+          )}
+          <div className="blog-featured-overlay" aria-hidden="true"/>
+          <div className="blog-featured-meta">
+            <CategoryChip label={post.category} />
+            <h2 className="blog-featured-title">{post.title}</h2>
+            {post.excerpt && (
+              <p className="blog-featured-excerpt">{post.excerpt}</p>
+            )}
+            <div className="blog-card-author-row">
+              <span className="blog-card-author">{post.author}</span>
+              {post.publishedAt && (
+                <span className="blog-card-date">{formatDate(post.publishedAt, locale)}</span>
+              )}
+            </div>
+          </div>
+        </div>
+      </Link>
+    )
+  }
+
+  return (
+    <motion.article className="blog-card" variants={cardVariants}>
+      <Link href={`/blog/${post.slug}`} className="blog-card-link">
+        <div className="blog-card-image-wrap">
+          {post.mainImage ? (
+            <Image
+              src={urlFor(post.mainImage).width(600).height(340).url()}
+              alt={post.mainImage.alt ?? post.title}
+              fill
+              style={{ objectFit: 'cover' }}
+              className="blog-card-img"
+            />
+          ) : (
+            <div className="blog-image-placeholder" aria-hidden="true">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(107,168,153,0.35)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            </div>
+          )}
+          <div className="blog-card-chip-wrap">
+            <CategoryChip label={post.category} />
+          </div>
+        </div>
+        <div className="blog-card-body">
+          <h3 className="blog-card-title">{post.title}</h3>
+          {post.excerpt && (
+            <p className="blog-card-excerpt">{post.excerpt}</p>
+          )}
+          <div className="blog-card-author-row">
+            <span className="blog-card-author">{post.author}</span>
+            {post.publishedAt && (
+              <span className="blog-card-date">{formatDate(post.publishedAt, locale)}</span>
+            )}
+          </div>
+        </div>
+      </Link>
+    </motion.article>
+  )
 }
 
 function EmptyState() {
@@ -79,9 +191,12 @@ function EmptyState() {
   )
 }
 
-export default function BlogGrid({ posts }: BlogGridProps) {
+export default function BlogGrid({ posts, searchQuery = '' }: BlogGridProps) {
   const locale = useLocale()
-  if (posts.length === 0) return <EmptyState />
+  const t = useTranslations('blogGrid')
+  const isSearching = searchQuery.trim().length > 0
+
+  if (posts.length === 0 && !isSearching) return <EmptyState />
 
   const [featured, ...rest] = posts
 
@@ -89,92 +204,55 @@ export default function BlogGrid({ posts }: BlogGridProps) {
     <section className="blog-section">
       <div className="blog-content">
 
-        {/* ── Featured Post (first/latest) ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 32 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ type: 'spring', stiffness: 55, damping: 14 }}
-        >
-          <Link href={`/blog/${featured.slug}`} className="blog-featured-card">
-            <div className="blog-featured-image-wrap">
-              {featured.mainImage ? (
-                <Image
-                  src={urlFor(featured.mainImage).width(1200).height(560).url()}
-                  alt={featured.mainImage.alt ?? featured.title}
-                  fill
-                  style={{ objectFit: 'cover' }}
-                  className="blog-featured-img"
-                  priority
-                />
-              ) : (
-                <div className="blog-image-placeholder blog-featured-placeholder" aria-hidden="true">
-                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(107,168,153,0.4)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-                </div>
-              )}
-              <div className="blog-featured-overlay" aria-hidden="true"/>
-              <div className="blog-featured-meta">
-                <CategoryChip label={featured.category} />
-                <h2 className="blog-featured-title">{featured.title}</h2>
-                {featured.excerpt && (
-                  <p className="blog-featured-excerpt">{featured.excerpt}</p>
-                )}
-                <div className="blog-card-author-row">
-                  <span className="blog-card-author">{featured.author}</span>
-                  {featured.publishedAt && (
-                    <span className="blog-card-date">{formatDate(featured.publishedAt, locale)}</span>
-                  )}
-                </div>
-              </div>
-            </div>
-          </Link>
-        </motion.div>
+        <BlogSearchBox initialQuery={searchQuery} />
 
-        {/* ── Card Grid ── */}
-        {rest.length > 0 && (
+        {isSearching && (
+          <div className="blog-search-status">
+            <span>
+              {posts.length > 0 ? t('searchResultsFor', { query: searchQuery }) : t('noSearchResults', { query: searchQuery })}
+            </span>
+            <Link href="/blog" className="blog-search-clear">{t('clearSearch')}</Link>
+          </div>
+        )}
+
+        {posts.length === 0 ? null : isSearching ? (
+          /* ── Uniform grid for search results (no featured-post treatment) ── */
           <motion.div
             className="blog-grid"
             variants={containerVariants}
             initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: '-60px' }}
+            animate="show"
           >
-            {rest.map((post) => (
-              <motion.article key={post._id} className="blog-card" variants={cardVariants}>
-                <Link href={`/blog/${post.slug}`} className="blog-card-link">
-                  <div className="blog-card-image-wrap">
-                    {post.mainImage ? (
-                      <Image
-                        src={urlFor(post.mainImage).width(600).height(340).url()}
-                        alt={post.mainImage.alt ?? post.title}
-                        fill
-                        style={{ objectFit: 'cover' }}
-                        className="blog-card-img"
-                      />
-                    ) : (
-                      <div className="blog-image-placeholder" aria-hidden="true">
-                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(107,168,153,0.35)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-                      </div>
-                    )}
-                    <div className="blog-card-chip-wrap">
-                      <CategoryChip label={post.category} />
-                    </div>
-                  </div>
-                  <div className="blog-card-body">
-                    <h3 className="blog-card-title">{post.title}</h3>
-                    {post.excerpt && (
-                      <p className="blog-card-excerpt">{post.excerpt}</p>
-                    )}
-                    <div className="blog-card-author-row">
-                      <span className="blog-card-author">{post.author}</span>
-                      {post.publishedAt && (
-                        <span className="blog-card-date">{formatDate(post.publishedAt, locale)}</span>
-                      )}
-                    </div>
-                  </div>
-                </Link>
-              </motion.article>
+            {posts.map((post) => (
+              <PostCard key={post._id} post={post} locale={locale} />
             ))}
           </motion.div>
+        ) : (
+          <>
+            {/* ── Featured Post (first/latest) ── */}
+            <motion.div
+              initial={{ opacity: 0, y: 32 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ type: 'spring', stiffness: 55, damping: 14 }}
+            >
+              <PostCard post={featured} locale={locale} featured />
+            </motion.div>
+
+            {/* ── Card Grid ── */}
+            {rest.length > 0 && (
+              <motion.div
+                className="blog-grid"
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, margin: '-60px' }}
+              >
+                {rest.map((post) => (
+                  <PostCard key={post._id} post={post} locale={locale} />
+                ))}
+              </motion.div>
+            )}
+          </>
         )}
 
       </div>

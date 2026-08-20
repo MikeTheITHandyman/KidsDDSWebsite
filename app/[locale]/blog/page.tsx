@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import SubPageLayout from '@/components/SubPageLayout'
 import { client } from '@/sanity/lib/client'
-import { allPostsQuery } from '@/sanity/lib/queries'
+import { allPostsQuery, searchPostsQuery } from '@/sanity/lib/queries'
 import BlogGrid from './BlogGrid'
 import { getTranslations } from 'next-intl/server'
 
@@ -20,9 +20,22 @@ export const metadata: Metadata = {
   },
 }
 
-export default async function BlogPage() {
+export default async function BlogPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ q?: string }>
+}) {
   const t = await getTranslations('blogPage')
-  const posts = await client.fetch(allPostsQuery, {}, { next: { revalidate: 60 } })
+  const { q } = await searchParams
+  const searchQuery = q?.trim() ?? ''
+
+  const posts = searchQuery
+    ? await client.fetch(
+        searchPostsQuery,
+        { searchTerm: `*${searchQuery}*` },
+        { next: { revalidate: 60 } }
+      )
+    : await client.fetch(allPostsQuery, {}, { next: { revalidate: 60 } })
 
   return (
     <SubPageLayout
@@ -31,7 +44,7 @@ export default async function BlogPage() {
       subtitle={t('subtitle')}
       gradient="green"
     >
-      <BlogGrid posts={posts} />
+      <BlogGrid posts={posts} searchQuery={searchQuery} />
     </SubPageLayout>
   )
 }

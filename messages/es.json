@@ -19,7 +19,9 @@
     "firstVisit": "Primera Visita del Niño",
     "patientForms": "Formularios del Paciente",
     "insurance": "Seguro y Financiamiento",
-    "faq": "Preguntas Frecuentes",
+    "qa": "Preguntas y Respuestas",
+    "generalFaq": "Preguntas Frecuentes",
+    "parentsAfraidToAsk": "Preguntas que los Padres Temen Hacer",
     "blog": "Blog",
     "contact": "Contacto",
     "directions": "Cómo Llegar",
@@ -1125,7 +1127,13 @@
     "firstPostComingSoon": "¡Primera publicación próximamente!",
     "emptyBodyPrefix": "Nuestros doctores están escribiendo consejos y guías expertas para las familias de Grayslake. Vuelva pronto - o visite el Studio en",
     "emptyBodySuffix": "para publicar la primera publicación.",
-    "scheduleInstead": "Programar una Cita en su Lugar"
+    "scheduleInstead": "Programar una Cita en su Lugar",
+    "searchPlaceholder": "Buscar artículos…",
+    "searchAriaLabel": "Buscar publicaciones del blog",
+    "searchSubmitAria": "Buscar",
+    "searchResultsFor": "Mostrando resultados para “{query}”",
+    "noSearchResults": "No se encontraron publicaciones para “{query}”",
+    "clearSearch": "Borrar búsqueda"
   },
   "blogPostPage": {
     "backToBlog": "Volver al Blog",
@@ -1242,5 +1250,17 @@
     "ctaText": "¿Se pregunta si su hijo necesita una evaluación de ortodoncia? Lo revisaremos en su próximo chequeo.",
     "ctaAppointment": "Programar un Chequeo",
     "ctaCall": "Texto/Llamada: (847) 223-1400"
+  },
+  "qaPage": {
+    "title": "Preguntas que los Padres Temen Hacer",
+    "subtitle": "Las preguntas que los padres susurran, buscan en Google a las 2 de la madrugada o nunca se atreven a decir en voz alta — respondidas con honestidad y sin juicios.",
+    "category0": "Culpa de Padres",
+    "category1": "Miedo a Ser Juzgado",
+    "category2": "Las Preguntas de las 3 de la Madrugada",
+    "category3": "Dinero",
+    "kicker": "Un Espacio Sin Juicios",
+    "tabsAriaLabel": "Filtrar preguntas por categoría",
+    "emptyState": "Estamos preparando respuestas reales y honestas para esta categoría. Mientras tanto, envíenos su pregunta directamente — sin juicios, se lo prometemos.",
+    "emptyStateCta": "Haga una Pregunta"
   }
 }

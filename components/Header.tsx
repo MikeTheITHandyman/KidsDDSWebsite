@@ -164,7 +164,14 @@ export default function Header({ latestPostTitle, latestPostSlug }: HeaderProps)
         { label: t('insurance'), href: '/for-patients/insurance-info' },
       ],
     },
-    { label: t('faq'), href: '/faq' },
+    {
+      label: t('qa'),
+      href: '/faq',
+      children: [
+        { label: t('generalFaq'), href: '/faq' },
+        { label: t('parentsAfraidToAsk'), href: '/qa/parents-afraid-to-ask' },
+      ],
+    },
     { label: t('blog'), href: '/blog' },
     { label: t('contact'), href: '/contact' },
   ]
