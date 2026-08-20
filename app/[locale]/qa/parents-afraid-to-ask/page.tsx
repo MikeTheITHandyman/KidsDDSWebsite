@@ -7,9 +7,11 @@ import QAContent from './QAContent'
 
 interface SanityParentQuestion {
   _id: string
-  question: string
+  question_en: string
+  question_es?: string
   category: string
-  answer: unknown[]
+  answer_en: unknown[]
+  answer_es?: unknown[]
 }
 
 export const metadata: Metadata = {

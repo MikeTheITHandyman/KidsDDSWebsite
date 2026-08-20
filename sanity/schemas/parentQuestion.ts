@@ -6,10 +6,15 @@ export const parentQuestion = defineType({
   type: 'document',
   fields: [
     defineField({
-      name: 'question',
-      title: 'Question',
+      name: 'question_en',
+      title: 'Question (English)',
       type: 'string',
       validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'question_es',
+      title: 'Question (Spanish)',
+      type: 'string',
     }),
     defineField({
       name: 'category',
@@ -26,14 +31,20 @@ export const parentQuestion = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'answer',
-      title: 'Answer',
+      name: 'answer_en',
+      title: 'Answer (English)',
       type: 'array',
       of: [{ type: 'block' }],
       validation: (rule) => rule.required(),
     }),
+    defineField({
+      name: 'answer_es',
+      title: 'Answer (Spanish)',
+      type: 'array',
+      of: [{ type: 'block' }],
+    }),
   ],
   preview: {
-    select: { title: 'question', subtitle: 'category' },
+    select: { title: 'question_en', subtitle: 'category' },
   },
 })

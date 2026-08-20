@@ -52,9 +52,11 @@ export const searchPostsQuery = groq`
 export const allParentQuestionsQuery = groq`
   *[_type == "parentQuestion"] | order(category asc, _createdAt asc) {
     _id,
-    question,
+    question_en,
+    question_es,
     category,
-    answer,
+    answer_en,
+    answer_es,
   }
 `
 

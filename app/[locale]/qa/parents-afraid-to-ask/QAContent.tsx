@@ -4,13 +4,23 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { PortableText, type PortableTextComponents } from '@portabletext/react'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 
 interface SanityParentQuestion {
   _id: string
-  question: string
+  question_en: string
+  question_es?: string
   category: string
-  answer: unknown[]
+  answer_en: unknown[]
+  answer_es?: unknown[]
+}
+
+function localizedQuestion(q: SanityParentQuestion, locale: string): string {
+  return locale === 'es' && q.question_es ? q.question_es : q.question_en
+}
+
+function localizedAnswer(q: SanityParentQuestion, locale: string): unknown[] {
+  return locale === 'es' && q.answer_es && q.answer_es.length > 0 ? q.answer_es : q.answer_en
 }
 
 interface QAContentProps {
@@ -97,6 +107,7 @@ const qaPortableTextComponents: PortableTextComponents = {
 
 export default function QAContent({ questions }: QAContentProps) {
   const t = useTranslations('qaPage')
+  const locale = useLocale()
   const [activeCategory, setActiveCategory] = useState(CATEGORY_META[0].value)
   const [openId, setOpenId] = useState<string | null>(null)
 
@@ -191,7 +202,7 @@ export default function QAContent({ questions }: QAContentProps) {
                     onClick={() => setOpenId(isOpen ? null : q._id)}
                     aria-expanded={isOpen}
                   >
-                    <span style={{ color: isOpen ? activeMeta.accent : '#2D3748' }}>{q.question}</span>
+                    <span style={{ color: isOpen ? activeMeta.accent : '#2D3748' }}>{localizedQuestion(q, locale)}</span>
                     <motion.span
                       animate={{ rotate: isOpen ? 45 : 0 }}
                       transition={{ duration: 0.22, ease: 'easeInOut' }}
@@ -217,7 +228,7 @@ export default function QAContent({ questions }: QAContentProps) {
                         style={{ overflow: 'hidden' }}
                       >
                         <div className="qa-card-answer">
-                          <PortableText value={q.answer as any} components={qaPortableTextComponents} />
+                          <PortableText value={localizedAnswer(q, locale) as any} components={qaPortableTextComponents} />
                         </div>
                       </motion.div>
                     )}
