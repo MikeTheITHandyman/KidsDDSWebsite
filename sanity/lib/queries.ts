@@ -60,6 +60,21 @@ export const allParentQuestionsQuery = groq`
   }
 `
 
+// Lean projection for the header search index — plain text only (no block
+// content), since search just needs matchable strings, not renderable
+// Portable Text. answerText_* is used as extra keyword fodder so a query can
+// match words that only appear in the answer body, not the question itself.
+export const allParentQuestionsSearchQuery = groq`
+  *[_type == "parentQuestion"] | order(category asc, _createdAt asc) {
+    _id,
+    category,
+    question_en,
+    question_es,
+    "answerText_en": pt::text(answer_en),
+    "answerText_es": pt::text(answer_es),
+  }
+`
+
 export const featuredReviewsQuery = groq`
   *[_type == "review" && featured == true] | order(date desc) [0..5] {
     _id,

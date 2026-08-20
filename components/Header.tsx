@@ -8,7 +8,7 @@ import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-
 import { sendGAEvent } from '@/lib/gtag'
 import { useTranslations } from 'next-intl'
 import LanguageSwitcher from '@/components/LanguageSwitcher'
-import SiteSearch from '@/components/SiteSearch'
+import SiteSearch, { type SearchItem } from '@/components/SiteSearch'
 
 interface NavChild {
   label: string
@@ -111,9 +111,10 @@ function NavItem({ item }: { item: NavEntry }) {
 interface HeaderProps {
   latestPostTitle?: string
   latestPostSlug?: string
+  qaSearchItems?: SearchItem[]
 }
 
-export default function Header({ latestPostTitle, latestPostSlug }: HeaderProps) {
+export default function Header({ latestPostTitle, latestPostSlug, qaSearchItems }: HeaderProps) {
   const pathname = usePathname()
   const isStudio = pathname?.startsWith('/studio')
   const [scrolled, setScrolled] = useState(false)
@@ -268,7 +269,7 @@ export default function Header({ latestPostTitle, latestPostSlug }: HeaderProps)
 
           {/* Desktop actions — search only; CTAs live in utility bar above */}
           <div className="header-actions">
-            <SiteSearch variant="desktop" />
+            <SiteSearch variant="desktop" extraItems={qaSearchItems} />
           </div>
 
           {/* Mobile action buttons — search + hamburger */}
@@ -341,7 +342,7 @@ export default function Header({ latestPostTitle, latestPostSlug }: HeaderProps)
               }}
             >
               <div style={{ padding: '0.75rem 1.25rem 1rem' }}>
-                <SiteSearch variant="mobile" onNavigate={() => setSearchOpen(false)} />
+                <SiteSearch variant="mobile" onNavigate={() => setSearchOpen(false)} extraItems={qaSearchItems} />
               </div>
             </motion.div>
           )}

@@ -1,17 +1,26 @@
 'use client'
 
-import React, { useState, useRef, useEffect, useCallback } from 'react'
+import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 
-interface SearchItem {
+export interface SearchItem {
   title: string
   description: string
   href: string
   category: string
   keywords: string
   idx: number
+  /**
+   * True for items sourced from Sanity (e.g. parentQuestion) at request time.
+   * Their title/description are already the correctly-localized literal text,
+   * unlike the static SEARCH_INDEX entries below, which are English-only and
+   * displayed via t(`item${idx}Title`) — a static i18n key lookup that has
+   * no equivalent for dynamic CMS content that grows independently of a
+   * messages/*.json deploy.
+   */
+  dynamic?: boolean
 }
 
 const CATEGORY_KEYS: Record<string, string> = {
@@ -19,6 +28,7 @@ const CATEGORY_KEYS: Record<string, string> = {
   'For Patients': 'catForPatients',
   About: 'catAbout',
   FAQ: 'catFAQ',
+  'Q&A': 'catQA',
   Appointments: 'catAppointments',
   Contact: 'catContact',
   Blog: 'catBlog',
@@ -80,11 +90,11 @@ function scoreItem(item: SearchItem, terms: string[]): number {
   return score
 }
 
-function search(query: string): SearchItem[] {
+function search(query: string, items: SearchItem[]): SearchItem[] {
   const q = query.toLowerCase().trim()
   if (!q) return []
   const terms = q.split(/\s+/).filter(Boolean)
-  return SEARCH_INDEX
+  return items
     .map((item) => ({ item, score: scoreItem(item, terms) }))
     .filter(({ score }) => score > 0)
     .sort((a, b) => b.score - a.score)
@@ -121,6 +131,11 @@ const ICONS: Record<string, React.ReactNode> = {
       <line x1="12" y1="17" x2="12.01" y2="17"/>
     </svg>
   ),
+  'Q&A': (
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6B4BC8" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>
+    </svg>
+  ),
   Appointments: (
     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#E97D63" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
       <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
@@ -153,18 +168,24 @@ const FALLBACK_ICON = (
 interface SiteSearchProps {
   variant?: 'desktop' | 'mobile'
   onNavigate?: () => void
+  /** Sanity-sourced items (e.g. parentQuestion) merged into the static index. */
+  extraItems?: SearchItem[]
 }
 
-export default function SiteSearch({ variant = 'desktop', onNavigate }: SiteSearchProps) {
+export default function SiteSearch({ variant = 'desktop', onNavigate, extraItems }: SiteSearchProps) {
   const t = useTranslations('siteSearch')
   const [query, setQuery] = useState('')
   const [isOpen, setIsOpen] = useState(false)
   const [focusedIndex, setFocusedIndex] = useState(-1)
+  const allItems = useMemo(
+    () => (extraItems && extraItems.length > 0 ? [...SEARCH_INDEX, ...extraItems] : SEARCH_INDEX),
+    [extraItems]
+  )
   const inputRef = useRef<HTMLInputElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const router = useRouter()
 
-  const results = search(query)
+  const results = search(query, allItems)
   const isMobile = variant === 'mobile'
 
   useEffect(() => {
@@ -340,14 +361,14 @@ export default function SiteSearch({ variant = 'desktop', onNavigate }: SiteSear
                     marginBottom: '0.15rem', lineHeight: 1.3,
                     whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
                   }}>
-                    {t(`item${result.idx}Title`)}
+                    {result.dynamic ? result.title : t(`item${result.idx}Title`)}
                   </div>
                   <div style={{
                     fontSize: '0.77rem', color: '#6b7280',
                     fontWeight: 500, lineHeight: 1.4,
                     overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
                   }}>
-                    {t(`item${result.idx}Desc`)}
+                    {result.dynamic ? result.description : t(`item${result.idx}Desc`)}
                   </div>
                 </div>
                 <span style={{

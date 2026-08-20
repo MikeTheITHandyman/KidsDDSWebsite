@@ -10,10 +10,27 @@ import Footer from '../../components/Footer'
 import FloatingWidget from '../../components/FloatingWidget'
 import AnnouncementBanner from '../../components/AnnouncementBanner'
 import BannerWrapper from '../../components/BannerWrapper'
+import type { SearchItem } from '../../components/SiteSearch'
 import { locales } from '../../i18n.config'
 import { client } from '../../sanity/lib/client'
-import { latestPostQuery } from '../../sanity/lib/queries'
+import { latestPostQuery, allParentQuestionsSearchQuery } from '../../sanity/lib/queries'
 import '../../styles/global.css'
+
+interface ParentQuestionSearchDoc {
+  _id: string
+  category: string
+  question_en: string
+  question_es?: string
+  answerText_en?: string
+  answerText_es?: string
+}
+
+function truncate(text: string, maxLen: number): string {
+  if (text.length <= maxLen) return text
+  const cut = text.slice(0, maxLen)
+  const lastSpace = cut.lastIndexOf(' ')
+  return (lastSpace > 40 ? cut.slice(0, lastSpace) : cut).trim() + '…'
+}
 
 const lilitaOne = Lilita_One({
   subsets: ['latin'],
@@ -102,6 +119,26 @@ export default async function LocaleLayout({
     { next: { revalidate: 300 } }
   )
 
+  const qaDocs = await client.fetch<ParentQuestionSearchDoc[]>(
+    allParentQuestionsSearchQuery,
+    {},
+    { next: { revalidate: 60 } }
+  )
+
+  const qaSearchItems: SearchItem[] = qaDocs.map((doc) => {
+    const question = locale === 'es' && doc.question_es ? doc.question_es : doc.question_en
+    const answerText = (locale === 'es' && doc.answerText_es ? doc.answerText_es : doc.answerText_en) ?? ''
+    return {
+      title: question,
+      description: truncate(answerText, 90),
+      href: '/qa/parents-afraid-to-ask',
+      category: 'Q&A',
+      keywords: `${question} ${answerText}`,
+      idx: -1,
+      dynamic: true,
+    }
+  })
+
   return (
     <html lang={locale} className={lilitaOne.variable}>
       <head>
@@ -115,7 +152,7 @@ export default async function LocaleLayout({
           <BannerWrapper>
             <AnnouncementBanner />
           </BannerWrapper>
-          <Header latestPostTitle={latestPost?.title} latestPostSlug={latestPost?.slug} />
+          <Header latestPostTitle={latestPost?.title} latestPostSlug={latestPost?.slug} qaSearchItems={qaSearchItems} />
           <main className="container main-content">{children}</main>
           <Footer />
           <FloatingWidget />
