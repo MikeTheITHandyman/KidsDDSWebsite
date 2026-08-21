@@ -139,7 +139,7 @@ export default function Hero() {
             <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
           </svg>
           <span style={{ fontSize: '0.92rem', fontWeight: 800, color: 'var(--cta-yellow)' }}>
-            {t('trustBanner', { years, months, days })}
+            {t('trustBannerPrefix')}<br />{t('trustBannerSuffix', { years, months, days })}
           </span>
         </motion.div>
 
@@ -166,6 +166,14 @@ export default function Hero() {
           position: relative;
           isolation: isolate;
           overflow: hidden;
+          /* Break out of the page's centered, max-width, padded .container
+             (styles/global.css) to span the full viewport width edge-to-edge,
+             regardless of screen size. */
+          width: 100vw;
+          left: 50%;
+          right: 50%;
+          margin-left: -50vw;
+          margin-right: -50vw;
         }
         @media (min-width: 768px) {
           .hero { min-height: 90vh; }

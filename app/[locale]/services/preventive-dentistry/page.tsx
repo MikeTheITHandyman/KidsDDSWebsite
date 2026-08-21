@@ -8,7 +8,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 export const metadata: Metadata = {
   title: 'Preventive Dentistry for Kids | Pediatric Dentist Grayslake, IL',
   description:
-    "Children's preventive dental care near Libertyville, Mundelein, Vernon Hills, and Waukegan — cleanings, fluoride, sealants, digital X-rays, and early orthodontic screening starting at age one. Kids Dentist Grayslake, IL.",
+    "Children's preventive dental care near Libertyville, Mundelein, Vernon Hills, and Waukegan: cleanings, fluoride, sealants, digital X-rays, and early orthodontic screening starting at age one. Kids Dentist Grayslake, IL.",
   alternates: { canonical: 'https://www.kidsdds.com/services/preventive-dentistry' },
   openGraph: {
     title: 'Preventive Dentistry for Kids | Pediatric Dentist Grayslake, IL',

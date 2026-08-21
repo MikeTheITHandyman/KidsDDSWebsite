@@ -6,7 +6,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 export const metadata: Metadata = {
   title: 'Meet Our Dentists | Kids Dentist Grayslake, IL',
   description:
-    'Meet Dr. Sonia Gutierrez, Dr. Dave Rutcosky, Dr. Sahar Alrayyes, and Dr. Anne-Ashley Compton — four board-certified pediatric dentists serving Grayslake and Lake County, IL.',
+    'Meet Dr. Sonia Gutierrez, Dr. Dave Rutcosky, Dr. Sahar Alrayyes, and Dr. Anne-Ashley Compton, four board-certified pediatric dentists serving Grayslake and Lake County, IL.',
   alternates: { canonical: 'https://www.kidsdds.com/about/meet-the-dentists' },
   openGraph: {
     title: 'Meet Our Dentists | Kids Dentist Grayslake, IL',

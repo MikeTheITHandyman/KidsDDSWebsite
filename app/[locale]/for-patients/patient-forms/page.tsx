@@ -8,7 +8,7 @@ import FormDownloadLink from './FormDownloadLink'
 export const metadata: Metadata = {
   title: 'Patient Forms & Pre-Visit Portals | Kids Dentist Grayslake, IL',
   description:
-    'Complete Kids Dentist patient forms online or download PDFs before your visit — new patient registration and dental history questionnaire.',
+    'Complete Kids Dentist patient forms online or download PDFs before your visit: new patient registration and dental history questionnaire.',
   openGraph: {
     title: 'Patient Forms & Pre-Visit Portals | Kids Dentist Grayslake, IL',
     description:
@@ -127,7 +127,7 @@ export default async function PatientFormsPage() {
   return (
     <SubPageLayout
       kicker={t('kicker')}
-      title={t('title')}
+      title={<>{t('titleLine1')}<br />{t('titleLine2')}</>}
       subtitle={t('subtitle')}
       gradient="blue"
     >
@@ -407,7 +407,7 @@ export default async function PatientFormsPage() {
                   height: '100%',
                   transition: 'transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease',
                 }}
-                aria-label={`${form.title} — ${form.fileLabel}`}
+                aria-label={`${form.title}, ${form.fileLabel}`}
               >
                 {/* Icon + file-type badge row */}
                 <div

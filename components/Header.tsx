@@ -179,7 +179,32 @@ export default function Header({ latestPostTitle, latestPostSlug, qaSearchItems 
 
   return (
     <>
-      {/* Announcement banner */}
+      {/* Q&A announcement banner */}
+      {!isStudio && (
+        <div
+          style={{
+            background: 'var(--brand-purple)',
+            color: 'white', textAlign: 'center', padding: '0.48rem 1rem',
+            fontSize: '0.8rem', fontFamily: 'Nunito, sans-serif',
+            fontWeight: 700, letterSpacing: '0.015em',
+            zIndex: 1100, position: 'relative',
+          }}
+        >
+          <a
+            href="/qa/parents-afraid-to-ask"
+            className="announcement-link"
+            style={{ color: 'white', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.4rem', opacity: 0.97 }}
+          >
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style={{ flexShrink: 0 }}>
+              <path d="M21 4H3a1 1 0 00-1 1v11a1 1 0 001 1h5v4.5a.5.5 0 00.83.37L14.2 17H21a1 1 0 001-1V5a1 1 0 00-1-1z"/>
+            </svg>
+            {t('qaAnnouncement')}
+            {' '}&rsaquo;
+          </a>
+        </div>
+      )}
+
+      {/* Blog announcement banner */}
       {!isStudio && (
         <div
           style={{
@@ -204,7 +229,7 @@ export default function Header({ latestPostTitle, latestPostSlug, qaSearchItems 
             </span>
             {latestPostTitle && (
               <span className="announcement-line2" style={{ opacity: 0.9 }}>
-                {' — '}&ldquo;{latestPostTitle}&rdquo;{' '}&rsaquo;
+                {': '}&ldquo;{latestPostTitle}&rdquo;{' '}&rsaquo;
               </span>
             )}
           </a>

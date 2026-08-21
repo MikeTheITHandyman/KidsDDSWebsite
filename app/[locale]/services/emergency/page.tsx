@@ -42,7 +42,7 @@ const serviceSchema = {
 export const metadata: Metadata = {
   title: 'Emergency Pediatric Dentist Grayslake, IL | Same-Day Kids Dentist',
   description:
-    'Same-day emergency dental care for children near Waukegan, Libertyville, Vernon Hills, Mundelein, and Lake Forest. Knocked-out teeth, toothaches, broken teeth — call (847) 223-1400 now. Kids Dentist Grayslake, IL.',
+    'Same-day emergency dental care for children near Waukegan, Libertyville, Vernon Hills, Mundelein, and Lake Forest. Knocked-out teeth, toothaches, broken teeth, call (847) 223-1400 now. Kids Dentist Grayslake, IL.',
   alternates: { canonical: 'https://www.kidsdds.com/services/emergency' },
   openGraph: {
     title: 'Emergency Pediatric Dentist Grayslake, IL | Same-Day Kids Dentist',

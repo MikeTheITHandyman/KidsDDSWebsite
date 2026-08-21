@@ -9,7 +9,7 @@ const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
   name: 'Pediatric Orthodontic Evaluations',
-  description: "Orthodontic evaluations and referrals for children in Grayslake, IL. We monitor bite and jaw growth and refer to a trusted local orthodontist for braces or Invisalign — we do not provide orthodontic treatment in-house.",
+  description: "Orthodontic evaluations and referrals for children in Grayslake, IL. We monitor bite and jaw growth and refer to a trusted local orthodontist for braces or Invisalign. We do not provide orthodontic treatment in-house.",
   provider: {
     '@type': 'Dentist',
     name: 'Kids Dentist',
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Orthodontic Evaluations for Kids | Pediatric Dentist Grayslake, IL',
     description:
-      "We catch alignment and jaw-growth issues early and refer Lake County families to a trusted local orthodontist for braces or Invisalign — right at the moment it's needed.",
+      "We catch alignment and jaw-growth issues early and refer Lake County families to a trusted local orthodontist for braces or Invisalign, right at the moment it's needed.",
     url: 'https://www.kidsdds.com/services/orthodontics',
     siteName: 'Kids Dentist',
     locale: 'en_US',

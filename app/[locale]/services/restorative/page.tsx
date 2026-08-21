@@ -42,7 +42,7 @@ const serviceSchema = {
 export const metadata: Metadata = {
   title: "Restorative Dentistry for Kids | Children's Dentist Grayslake, IL",
   description:
-    'Gentle restorative dental care for children near Libertyville, Mundelein, Waukegan, and Lake Forest — tooth-colored fillings, pediatric crowns, pulp therapy, and extractions. Early treatment at Kids Dentist Grayslake, IL.',
+    'Gentle restorative dental care for children near Libertyville, Mundelein, Waukegan, and Lake Forest: tooth-colored fillings, pediatric crowns, pulp therapy, and extractions. Early treatment at Kids Dentist Grayslake, IL.',
   alternates: { canonical: 'https://www.kidsdds.com/services/restorative' },
   openGraph: {
     title: "Restorative Dentistry for Kids | Children's Dentist Grayslake, IL",

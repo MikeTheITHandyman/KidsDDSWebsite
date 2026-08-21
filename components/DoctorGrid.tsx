@@ -97,7 +97,7 @@ function DoctorCard({ headshotSrc, name, role, bio, alt, tooltip, blobRadius, gr
             alt={alt}
             fill
             sizes="148px"
-            style={{ objectFit: 'cover' }}
+            style={{ objectFit: 'cover', objectPosition: 'top center' }}
             onError={() => setImgFailed(true)}
           />
         )}

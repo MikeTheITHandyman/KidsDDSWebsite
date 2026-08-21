@@ -17,12 +17,12 @@ interface SanityParentQuestion {
 export const metadata: Metadata = {
   title: 'Questions Parents Are Afraid to Ask | Kids Dentist Grayslake, IL',
   description:
-    'Honest, judgment-free answers to the dental questions parents in Grayslake, IL are afraid to say out loud — from mom guilt to money to the 3 a.m. worries.',
+    'Honest, judgment-free answers to the dental questions parents in Grayslake, IL are afraid to say out loud, from mom guilt to money to the 3 a.m. worries.',
   alternates: { canonical: 'https://www.kidsdds.com/qa/parents-afraid-to-ask' },
   openGraph: {
     title: 'Questions Parents Are Afraid to Ask | Kids Dentist Grayslake, IL',
     description:
-      'The questions parents whisper or Google at 2 a.m. — answered honestly, without judgment, by our pediatric dental team.',
+      'The questions parents whisper or Google at 2 a.m., answered honestly, without judgment, by our pediatric dental team.',
     url: 'https://www.kidsdds.com/qa/parents-afraid-to-ask',
     siteName: 'Kids Dentist',
     locale: 'en_US',

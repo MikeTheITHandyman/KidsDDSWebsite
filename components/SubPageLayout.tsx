@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import React from 'react'
 
 interface SubPageLayoutProps {
-  title: string
+  title: React.ReactNode
   subtitle?: string
   kicker?: string
   children: React.ReactNode

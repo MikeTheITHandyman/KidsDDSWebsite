@@ -6,7 +6,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 export const metadata: Metadata = {
   title: 'Contact a Pediatric Dentist in Grayslake, IL | Kids Dentist',
   description:
-    'Contact Kids Dentist Grayslake — serving Libertyville, Mundelein, Waukegan, Vernon Hills, and Lake Forest. Call (847) 223-1400. 160 Commerce Dr #100, Grayslake, IL. Emergency visits available.',
+    'Contact Kids Dentist Grayslake, serving Libertyville, Mundelein, Waukegan, Vernon Hills, and Lake Forest. Call (847) 223-1400. 160 Commerce Dr #100, Grayslake, IL. Emergency visits available.',
   alternates: { canonical: 'https://www.kidsdds.com/contact' },
   openGraph: {
     title: 'Contact a Pediatric Dentist in Grayslake, IL | Kids Dentist',

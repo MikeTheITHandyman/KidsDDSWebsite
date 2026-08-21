@@ -92,7 +92,7 @@ export default function MeetOurDoctors() {
         </motion.div>
 
         {/* Doctor cards */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.75rem' }} className="doctors-grid">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.75rem', alignItems: 'start' }} className="doctors-grid">
           {DOCTORS.map((doc) => (
             <motion.div
               key={doc.nameKey}

@@ -96,7 +96,7 @@ export default function ServicesGrid() {
         <p>{t('body')}</p>
       </div>
 
-      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1.25rem' }}>
+      <div style={{ maxWidth: '1440px', margin: '0 auto', padding: '0 1.25rem' }}>
         <div className="services-all-grid">
           {SERVICE_CONFIG.map((svc) => (
             <motion.div

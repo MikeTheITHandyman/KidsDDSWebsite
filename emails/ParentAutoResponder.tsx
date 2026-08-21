@@ -26,7 +26,7 @@ const PHONE_TEL = '+18472231400'
 
 const COPY = {
   en: {
-    preview: "We've received your request — Kids Dentist Grayslake",
+    preview: "We've received your request, Kids Dentist Grayslake",
     greeting: (name?: string) => (name ? `Hi ${name},` : 'Hi there,'),
     body: 'Thank you for reaching out to Kids Dentist! We have received your request and our team will text or call you shortly at the number provided to follow up.',
     officeHoursHeading: 'Office Hours',
@@ -41,7 +41,7 @@ const COPY = {
     footerNote: "If you need to reach us sooner, call or text us directly.",
   },
   es: {
-    preview: 'Hemos recibido su solicitud — Kids Dentist Grayslake',
+    preview: 'Hemos recibido su solicitud, Kids Dentist Grayslake',
     greeting: (name?: string) => (name ? `Hola ${name},` : 'Hola,'),
     body: '¡Gracias por comunicarse con Kids Dentist! Hemos recibido su solicitud y nuestro equipo le enviará un mensaje de texto o le llamará en breve al número proporcionado para darle seguimiento.',
     officeHoursHeading: 'Horario de Oficina',

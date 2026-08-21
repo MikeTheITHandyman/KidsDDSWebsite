@@ -7,12 +7,12 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 export const metadata: Metadata = {
   title: 'For Patients | Kids Dentist Grayslake, IL',
   description:
-    'Resources for Kids Dentist patients and families in Grayslake, IL — first visit prep, patient forms, and insurance & financing information.',
+    'Resources for Kids Dentist patients and families in Grayslake, IL: first visit prep, patient forms, and insurance & financing information.',
   alternates: { canonical: 'https://www.kidsdds.com/for-patients' },
   openGraph: {
     title: 'For Patients | Kids Dentist Grayslake, IL',
     description:
-      'Everything your family needs before, during, and after every visit — first visit prep, patient forms, and insurance information.',
+      'Everything your family needs before, during, and after every visit: first visit prep, patient forms, and insurance information.',
     url: 'https://www.kidsdds.com/for-patients',
     siteName: 'Kids Dentist',
     locale: 'en_US',

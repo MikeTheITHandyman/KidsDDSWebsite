@@ -79,7 +79,7 @@ const STATIC_REVIEWS: ReviewItem[] = [
   },
   {
     stars: 5,
-    text: "My son has severe dental anxiety — we had been turned away by two other offices. Kids Dentist took the time to do a no-treatment 'meet and greet' visit first. By the third appointment he was getting a cleaning without a single tear. I genuinely don't know what we'd do without them.",
+    text: "My son has severe dental anxiety, and we had been turned away by two other offices. Kids Dentist took the time to do a no-treatment 'meet and greet' visit first. By the third appointment he was getting a cleaning without a single tear. I genuinely don't know what we'd do without them.",
     author: 'Christine B.',
     role: 'Mom',
     initial: 'C',

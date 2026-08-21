@@ -8,7 +8,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 export const metadata: Metadata = {
   title: 'Dr. Sonia Gutierrez, DDS, MS | Kids Dentist Grayslake, IL',
   description:
-    'Meet Dr. Sonia Gutierrez — bilingual, board-certified pediatric dentist at Kids Dentist Grayslake. Specializing in gentle care and sedation dentistry for children.',
+    'Meet Dr. Sonia Gutierrez, bilingual, board-certified pediatric dentist at Kids Dentist Grayslake. Specializing in gentle care and sedation dentistry for children.',
   openGraph: {
     title: 'Dr. Sonia Gutierrez, DDS, MS | Kids Dentist Grayslake, IL',
     description: 'Board-certified pediatric dentist specializing in gentle care and sedation dentistry. Serving Grayslake, IL.',
@@ -122,7 +122,7 @@ export default async function DrSoniaPage({
                 &ldquo;{t('sonia_quote')}&rdquo;
               </p>
               <cite style={{ fontSize: '0.82rem', fontWeight: 800, color: '#9ca3af', fontStyle: 'normal', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
-                — {tAbout('soniaName')}
+                · {tAbout('soniaName')}
               </cite>
             </blockquote>
 

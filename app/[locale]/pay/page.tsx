@@ -7,7 +7,7 @@ import { getTranslations } from 'next-intl/server'
 export const metadata: Metadata = {
   title: 'Pay Online | Kids Dentist Grayslake, IL',
   description:
-    'Securely pay your Kids Dentist Grayslake balance online. Encrypted payment processing — fast, private, and HIPAA-compliant.',
+    'Securely pay your Kids Dentist Grayslake balance online. Encrypted payment processing, fast, private, and HIPAA-compliant.',
   openGraph: {
     title: 'Pay Online | Kids Dentist Grayslake, IL',
     description:

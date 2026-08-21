@@ -47,13 +47,13 @@ export default function InternalOfficeAlert({
     <Html>
       <Head />
       <Preview>
-        {heading} — {name}
+        {heading}: {name}
       </Preview>
       <Body style={main}>
         <Container style={container}>
           <Section style={headerBar}>
             <Heading style={headerTitle}>{heading}</Heading>
-            <Text style={headerSub}>Kids Dentist Grayslake — kidsdds.com</Text>
+            <Text style={headerSub}>Kids Dentist Grayslake · kidsdds.com</Text>
           </Section>
 
           <Section style={body}>

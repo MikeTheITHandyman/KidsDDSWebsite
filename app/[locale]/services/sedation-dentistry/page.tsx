@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Sedation Dentistry for Kids | Pediatric Dentist Grayslake, IL',
     description:
-      "No child should avoid dental care because of fear. Kids Dentist Grayslake offers sedation options — including nitrous oxide and general anesthesia — for Lake County children.",
+      "No child should avoid dental care because of fear. Kids Dentist Grayslake offers sedation options, including nitrous oxide and general anesthesia, for Lake County children.",
     url: 'https://www.kidsdds.com/services/sedation-dentistry',
     siteName: 'Kids Dentist',
     locale: 'en_US',
