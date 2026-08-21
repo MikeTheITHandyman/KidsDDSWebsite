@@ -39,7 +39,6 @@ const SPACE_META = [
     gradientFrom: '#DBEAFE',
     gradientTo: '#BAE6FD',
     accentColor: '#4A90A4',
-    icon: '🛋️',
     flip: false,
   },
   {
@@ -52,7 +51,6 @@ const SPACE_META = [
     gradientFrom: '#D1FAE5',
     gradientTo: '#A7F3D0',
     accentColor: '#6BA899',
-    icon: '🦷',
     flip: true,
   },
   {
@@ -65,7 +63,6 @@ const SPACE_META = [
     gradientFrom: '#FEF3C7',
     gradientTo: '#FDE68A',
     accentColor: '#D97706',
-    icon: '🎈',
     flip: false,
   },
   {
@@ -78,7 +75,6 @@ const SPACE_META = [
     gradientFrom: '#EDE9FE',
     gradientTo: '#DDD6FE',
     accentColor: '#7C3AED',
-    icon: '📡',
     flip: true,
   },
 ]
@@ -111,99 +107,6 @@ export default async function TourOurOfficePage() {
           </p>
         </AnimatedSection>
 
-        {/* Photo carousel */}
-        <AnimatedSection>
-          <div
-            className="office-carousel"
-            style={{
-              display: 'flex',
-              gap: '1.25rem',
-              overflowX: 'auto',
-              scrollSnapType: 'x mandatory',
-              scrollbarWidth: 'none',
-              paddingBottom: '0.5rem',
-              marginBottom: '4rem',
-            }}
-          >
-            {SPACES.map((space) => (
-              <div
-                key={space.number}
-                style={{
-                  flexShrink: 0,
-                  width: 'clamp(260px, 38vw, 420px)',
-                  scrollSnapAlign: 'start',
-                  borderRadius: '1.5rem',
-                  overflow: 'hidden',
-                  background: `linear-gradient(135deg, ${space.gradientFrom}, ${space.gradientTo})`,
-                  boxShadow: '0 6px 28px rgba(0,0,0,0.09)',
-                  position: 'relative',
-                }}
-              >
-                <div style={{ position: 'relative', width: '100%', aspectRatio: '4 / 3', overflow: 'hidden' }}>
-                  <Image
-                    src={space.imagePath}
-                    alt={space.imageAlt}
-                    fill
-                    sizes="(max-width: 640px) 90vw, 420px"
-                    style={{ objectFit: 'cover' }}
-                  />
-                  {/* Fallback icon overlay */}
-                  <div
-                    style={{
-                      position: 'absolute',
-                      inset: 0,
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: '0.5rem',
-                      opacity: 0.5,
-                      pointerEvents: 'none',
-                    }}
-                  >
-                    <span style={{ fontSize: '2.5rem', lineHeight: 1 }} aria-hidden="true">{space.icon}</span>
-                  </div>
-                  {/* Room number badge */}
-                  <div
-                    style={{
-                      position: 'absolute',
-                      top: '12px',
-                      left: '12px',
-                      width: '36px',
-                      height: '36px',
-                      borderRadius: '50%',
-                      background: 'rgba(255,255,255,0.9)',
-                      backdropFilter: 'blur(6px)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontFamily: 'Nunito, sans-serif',
-                      fontWeight: 900,
-                      fontSize: '0.75rem',
-                      color: space.accentColor,
-                    }}
-                  >
-                    {space.number}
-                  </div>
-                </div>
-                <div style={{ padding: '1rem 1.25rem 1.25rem' }}>
-                  <p
-                    style={{
-                      fontFamily: 'Nunito, sans-serif',
-                      fontWeight: 900,
-                      fontSize: '0.95rem',
-                      color: space.accentColor,
-                      margin: 0,
-                    }}
-                  >
-                    {space.name}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </AnimatedSection>
-
         {/* Room sections - alternating layout */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '5rem', marginBottom: '5rem' }}>
           {SPACES.map((space) => (
@@ -231,25 +134,6 @@ export default async function TourOurOfficePage() {
                     sizes="(max-width: 768px) 100vw, 50vw"
                     style={{ objectFit: 'cover' }}
                   />
-                  {/* Fallback overlay - shows when image is missing */}
-                  <div
-                    style={{
-                      position: 'absolute',
-                      inset: 0,
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: '0.6rem',
-                      opacity: 0.55,
-                      pointerEvents: 'none',
-                    }}
-                  >
-                    <span style={{ fontSize: '2.75rem', lineHeight: 1 }} aria-hidden="true">{space.icon}</span>
-                    <span style={{ fontFamily: 'Nunito, sans-serif', fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#6b7280' }}>
-                      {t('photoComingSoon')}
-                    </span>
-                  </div>
                   {/* Room number badge */}
                   <div
                     style={{
@@ -370,7 +254,6 @@ export default async function TourOurOfficePage() {
           .office-flip { direction: rtl; }
           .office-flip > * { direction: ltr; }
         }
-        .office-carousel::-webkit-scrollbar { display: none; }
       `}</style>
     </SubPageLayout>
   )

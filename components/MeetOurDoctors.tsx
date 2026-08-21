@@ -69,7 +69,7 @@ export default function MeetOurDoctors() {
       <div aria-hidden="true" style={{ position: 'absolute', top: '-80px', right: '-80px', width: '340px', height: '340px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(74,144,164,0.08) 0%, transparent 70%)', pointerEvents: 'none' }} />
       <div aria-hidden="true" style={{ position: 'absolute', bottom: '-60px', left: '-60px', width: '280px', height: '280px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(244,199,127,0.12) 0%, transparent 70%)', pointerEvents: 'none' }} />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
+      <div className="max-w-[1560px] mx-auto px-4 sm:px-6 w-full">
 
         {/* Header */}
         <motion.div
@@ -92,7 +92,7 @@ export default function MeetOurDoctors() {
         </motion.div>
 
         {/* Doctor cards */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.75rem', alignItems: 'start' }} className="doctors-grid">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.75rem', alignItems: 'start' }} className="doctors-grid">
           {DOCTORS.map((doc) => (
             <motion.div
               key={doc.nameKey}
@@ -101,7 +101,7 @@ export default function MeetOurDoctors() {
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.6, delay: doc.delay, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
               whileHover={{ y: -8, transition: { type: 'spring', stiffness: 300, damping: 20 } }}
-              style={{ background: 'white', borderRadius: '2rem', padding: '2rem 1.5rem', textAlign: 'center', boxShadow: '0 4px 24px rgba(74,144,164,0.09)', border: '1.5px solid rgba(74,144,164,0.10)', cursor: 'default', transition: 'box-shadow 0.3s' }}
+              style={{ background: 'white', borderRadius: '2rem', padding: '2rem 0.55rem', textAlign: 'center', boxShadow: '0 4px 24px rgba(74,144,164,0.09)', border: '1.5px solid rgba(74,144,164,0.10)', cursor: 'default', transition: 'box-shadow 0.3s' }}
             >
               {/* Blob photo container */}
               <div
