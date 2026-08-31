@@ -21,10 +21,13 @@ export const metadata: Metadata = {
 }
 
 export default async function BlogPage({
+  params,
   searchParams,
 }: {
+  params: Promise<{ locale: string }>
   searchParams: Promise<{ q?: string }>
 }) {
+  const { locale } = await params
   const t = await getTranslations('blogPage')
   const { q } = await searchParams
   const searchQuery = q?.trim() ?? ''
@@ -32,10 +35,10 @@ export default async function BlogPage({
   const posts = searchQuery
     ? await client.fetch(
         searchPostsQuery,
-        { searchTerm: `*${searchQuery}*` },
+        { searchTerm: `*${searchQuery}*`, locale },
         { next: { revalidate: 60 } }
       )
-    : await client.fetch(allPostsQuery, {}, { next: { revalidate: 60 } })
+    : await client.fetch(allPostsQuery, { locale }, { next: { revalidate: 60 } })
 
   return (
     <SubPageLayout

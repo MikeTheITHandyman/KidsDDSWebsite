@@ -34,8 +34,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params
-  const post: Post | null = await client.fetch(postBySlugQuery, { slug: slug[0] })
+  const { slug, locale } = await params
+  const post: Post | null = await client.fetch(postBySlugQuery, { slug: slug[0], locale })
   if (!post) return { title: 'Post Not Found' }
 
   const ogImage = post.mainImage
@@ -125,7 +125,7 @@ export default async function BlogPost({ params }: Props) {
   const t = await getTranslations('blogPostPage')
   const post: Post | null = await client.fetch(
     postBySlugQuery,
-    { slug: slug[0] },
+    { slug: slug[0], locale },
     { next: { revalidate: 60 } },
   )
 

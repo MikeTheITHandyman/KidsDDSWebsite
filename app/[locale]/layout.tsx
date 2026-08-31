@@ -115,7 +115,7 @@ export default async function LocaleLayout({
 
   const latestPost = await client.fetch<{ title: string; slug: string } | null>(
     latestPostQuery,
-    {},
+    { locale },
     { next: { revalidate: 300 } }
   )
 

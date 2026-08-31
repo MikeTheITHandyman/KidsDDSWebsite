@@ -1,28 +1,32 @@
 import { groq } from 'next-sanity'
 
+// title/excerpt are localizedString/localizedText objects ({en, es}) in the
+// schema — coalesce resolves to the requested $locale, falling back to en,
+// then to the raw field itself (covers legacy posts saved before the
+// bilingual schema migration, whose title/excerpt are still plain strings).
 export const allPostsQuery = groq`
   *[_type == "post"] | order(publishedAt desc) {
     _id,
-    title,
+    "title": coalesce(title[$locale], title.en, title),
     "slug": slug.current,
     author,
     category,
     mainImage,
     publishedAt,
-    excerpt,
+    "excerpt": coalesce(excerpt[$locale], excerpt.en, excerpt),
   }
 `
 
 export const postBySlugQuery = groq`
   *[_type == "post" && slug.current == $slug][0] {
     _id,
-    title,
+    "title": coalesce(title[$locale], title.en, title),
     slug,
     author,
     category,
     mainImage,
     publishedAt,
-    excerpt,
+    "excerpt": coalesce(excerpt[$locale], excerpt.en, excerpt),
     body,
   }
 `
@@ -39,13 +43,13 @@ export const searchPostsQuery = groq`
     pt::text(bodyEs) match $searchTerm
   )] | order(publishedAt desc) {
     _id,
-    title,
+    "title": coalesce(title[$locale], title.en, title),
     "slug": slug.current,
     author,
     category,
     mainImage,
     publishedAt,
-    excerpt,
+    "excerpt": coalesce(excerpt[$locale], excerpt.en, excerpt),
   }
 `
 
@@ -126,7 +130,7 @@ export const upcomingEventsQuery = groq`
 
 export const latestPostQuery = groq`
   *[_type == "post" && defined(slug.current)] | order(publishedAt desc)[0] {
-    title,
+    "title": coalesce(title[$locale], title.en, title),
     "slug": slug.current,
   }
 `
