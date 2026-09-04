@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
+import { Link } from '@/navigation'
 import { usePathname } from 'next/navigation'
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion'
 import { sendGAEvent } from '@/lib/gtag'
@@ -44,9 +44,9 @@ function NavItem({ item }: { item: NavEntry }) {
 
   if (!item.children) {
     return (
-      <a href={item.href} style={linkStyle} className="nav-link-hover">
+      <Link href={item.href} style={linkStyle} className="nav-link-hover">
         {item.label}
-      </a>
+      </Link>
     )
   }
 
@@ -56,7 +56,7 @@ function NavItem({ item }: { item: NavEntry }) {
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
     >
-      <a
+      <Link
         href={item.href}
         style={{ ...linkStyle, display: 'flex', alignItems: 'center', gap: '3px' }}
         className="nav-link-hover"
@@ -71,7 +71,7 @@ function NavItem({ item }: { item: NavEntry }) {
         >
           <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
         </svg>
-      </a>
+      </Link>
 
       <AnimatePresence>
         {open && (
@@ -91,7 +91,7 @@ function NavItem({ item }: { item: NavEntry }) {
             className="overflow-hidden"
           >
             {item.children.map((child) => (
-              <a
+              <Link
                 key={child.href}
                 href={child.href}
                 style={{ display: 'block', padding: '11px 18px', fontSize: '0.875rem', fontWeight: 600, color: '#4b5563', textDecoration: 'none', fontFamily: 'Nunito, sans-serif', transition: 'background 0.15s, color 0.15s', whiteSpace: 'nowrap' }}
@@ -99,7 +99,7 @@ function NavItem({ item }: { item: NavEntry }) {
                 onMouseLeave={(e) => { e.currentTarget.style.background = ''; e.currentTarget.style.color = '#4b5563' }}
               >
                 {child.label}
-              </a>
+              </Link>
             ))}
           </motion.div>
         )}
@@ -190,7 +190,7 @@ export default function Header({ latestPostTitle, latestPostSlug, qaSearchItems 
             zIndex: 1100, position: 'relative',
           }}
         >
-          <a
+          <Link
             href="/qa/parents-afraid-to-ask"
             className="announcement-link"
             style={{ color: 'white', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.4rem', opacity: 0.97 }}
@@ -200,7 +200,7 @@ export default function Header({ latestPostTitle, latestPostSlug, qaSearchItems 
             </svg>
             {t('qaAnnouncement')}
             {' '}&rsaquo;
-          </a>
+          </Link>
         </div>
       )}
 
@@ -215,7 +215,7 @@ export default function Header({ latestPostTitle, latestPostSlug, qaSearchItems 
             zIndex: 1100, position: 'relative',
           }}
         >
-          <a
+          <Link
             href={latestPostSlug ? `/blog/${latestPostSlug}` : '/blog'}
             className="announcement-link"
             style={{ color: 'white', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.4rem', opacity: 0.97 }}
@@ -232,7 +232,7 @@ export default function Header({ latestPostTitle, latestPostSlug, qaSearchItems 
                 {': '}&ldquo;{latestPostTitle}&rdquo;{' '}&rsaquo;
               </span>
             )}
-          </a>
+          </Link>
         </div>
       )}
 
@@ -388,15 +388,15 @@ export default function Header({ latestPostTitle, latestPostSlug, qaSearchItems 
               <div className="mobile-nav-inner">
                 {NAV.map((item) => (
                   <div key={item.href} className="mobile-nav-group">
-                    <a href={item.href} className="mobile-nav-parent" onClick={() => setMenuOpen(false)}>
+                    <Link href={item.href} className="mobile-nav-parent" onClick={() => setMenuOpen(false)}>
                       {item.label}
-                    </a>
+                    </Link>
                     {item.children && (
                       <div className="mobile-nav-children">
                         {item.children.map((child) => (
-                          <a key={child.href} href={child.href} className="mobile-nav-child" onClick={() => setMenuOpen(false)}>
+                          <Link key={child.href} href={child.href} className="mobile-nav-child" onClick={() => setMenuOpen(false)}>
                             {child.label}
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     )}
