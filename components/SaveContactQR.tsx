@@ -4,8 +4,6 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { sendGAEvent } from '@/lib/gtag'
 
-const LINKTREE_URL = 'https://linktr.ee/Kidsdentistgrayslake?utm_source=linktree_profile_share'
-
 export default function SaveContactQR({ size = 96 }: { size?: number }) {
   const t = useTranslations('common')
 
@@ -19,9 +17,8 @@ export default function SaveContactQR({ size = 96 }: { size?: number }) {
         style={{ margin: '0 auto', display: 'block', borderRadius: '0.5rem' }}
       />
       <a
-        href={LINKTREE_URL}
-        target="_blank"
-        rel="noopener noreferrer"
+        href="/brand_assets/kids-dentist-contact.vcf"
+        download="Kids-Dentist-Contact.vcf"
         onClick={() => sendGAEvent('save_contact_clicked')}
         style={{
           display: 'inline-block',

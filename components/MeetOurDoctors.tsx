@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
+import { Link } from '@/navigation'
 
 const DOCTORS = [
   {
@@ -101,36 +102,41 @@ export default function MeetOurDoctors() {
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.6, delay: doc.delay, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
               whileHover={{ y: -8, transition: { type: 'spring', stiffness: 300, damping: 20 } }}
-              style={{ background: 'white', borderRadius: '2rem', padding: '2rem 0.55rem', textAlign: 'center', boxShadow: '0 4px 24px rgba(74,144,164,0.09)', border: '1.5px solid rgba(74,144,164,0.10)', cursor: 'default', transition: 'box-shadow 0.3s' }}
+              style={{ background: 'white', borderRadius: '2rem', boxShadow: '0 4px 24px rgba(74,144,164,0.09)', border: '1.5px solid rgba(74,144,164,0.10)', transition: 'box-shadow 0.3s', overflow: 'hidden' }}
             >
-              {/* Blob photo container */}
-              <div
-                title={tAbout(doc.tooltipKey)}
-                style={{ width: '80%', aspectRatio: '1', margin: '0 auto 1.4rem', borderRadius: doc.blobRadius, background: `linear-gradient(135deg, ${doc.gradientFrom}, ${doc.gradientTo})`, position: 'relative', overflow: 'hidden' }}
-              >
-                <Image
-                  src={doc.photo}
-                  alt={t('headshotAlt', { name: tAbout(doc.nameKey) })}
-                  fill
-                  sizes="(max-width: 540px) 80vw, (max-width: 900px) 35vw, 18vw"
-                  style={{ objectFit: 'cover', objectPosition: 'top center' }}
-                />
-              </div>
-
-              {/* Name & role */}
-              <h3 style={{ fontFamily: 'Nunito, sans-serif', fontSize: '1rem', fontWeight: 800, color: 'var(--brand-600)', margin: '0 0 0.35rem', lineHeight: 1.3 }}>
-                {tAbout(doc.nameKey)}
-              </h3>
-              <p style={{ fontSize: '0.8rem', fontWeight: 600, color: '#9ca3af', margin: 0, letterSpacing: '0.03em' }}>
-                {t('role')}
-              </p>
-              <a
+              <Link
                 href={doc.bioHref}
-                className="doctor-bio-link"
-                style={{ display: 'inline-flex', alignItems: 'center', gap: '0.15rem', marginTop: '0.9rem', color: 'var(--brand-600)', fontSize: '0.85rem', fontFamily: 'Nunito, sans-serif', fontWeight: 800, textDecoration: 'none', transition: 'color 0.2s, gap 0.2s' }}
+                className="doctor-card-link"
+                style={{ display: 'block', padding: '2rem 0.55rem', textAlign: 'center', textDecoration: 'none', color: 'inherit' }}
               >
-                {t('meetPrefix')} {doc.firstName} &rsaquo;
-              </a>
+                {/* Blob photo container */}
+                <div
+                  title={tAbout(doc.tooltipKey)}
+                  style={{ width: '80%', aspectRatio: '1', margin: '0 auto 1.4rem', borderRadius: doc.blobRadius, background: `linear-gradient(135deg, ${doc.gradientFrom}, ${doc.gradientTo})`, position: 'relative', overflow: 'hidden' }}
+                >
+                  <Image
+                    src={doc.photo}
+                    alt={t('headshotAlt', { name: tAbout(doc.nameKey) })}
+                    fill
+                    sizes="(max-width: 540px) 80vw, (max-width: 900px) 35vw, 18vw"
+                    style={{ objectFit: 'cover', objectPosition: 'top center' }}
+                  />
+                </div>
+
+                {/* Name & role */}
+                <h3 style={{ fontFamily: 'Nunito, sans-serif', fontSize: '1rem', fontWeight: 800, color: 'var(--brand-600)', margin: '0 0 0.35rem', lineHeight: 1.3 }}>
+                  {tAbout(doc.nameKey)}
+                </h3>
+                <p style={{ fontSize: '0.8rem', fontWeight: 600, color: '#9ca3af', margin: 0, letterSpacing: '0.03em' }}>
+                  {t('role')}
+                </p>
+                <span
+                  className="doctor-bio-link"
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.15rem', marginTop: '0.9rem', color: 'var(--brand-600)', fontSize: '0.85rem', fontFamily: 'Nunito, sans-serif', fontWeight: 800, transition: 'color 0.2s, gap 0.2s' }}
+                >
+                  {t('meetPrefix')} {doc.firstName} &rsaquo;
+                </span>
+              </Link>
             </motion.div>
           ))}
         </div>
@@ -172,7 +178,7 @@ export default function MeetOurDoctors() {
       </div>
 
       <style>{`
-        .doctor-bio-link:hover { color: var(--accent-500) !important; gap: 0.35rem !important; }
+        .doctor-card-link:hover .doctor-bio-link { color: var(--accent-500) !important; gap: 0.35rem !important; }
         @media (max-width: 900px) { .doctors-grid { grid-template-columns: repeat(2, 1fr) !important; } }
         @media (max-width: 540px) { .doctors-grid { grid-template-columns: 1fr !important; max-width: 320px; margin: 0 auto; } }
       `}</style>

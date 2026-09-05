@@ -1,0 +1,10 @@
+BEGIN:VCARD
+VERSION:3.0
+N:;Kids Dentist;;;
+FN:Kids Dentist
+ORG:Kids Dentist
+TEL;TYPE=WORK,VOICE:+18472231400
+ADR;TYPE=WORK:;;160 Commerce Dr #100;Grayslake;IL;60030;USA
+EMAIL;TYPE=WORK:info@kidsdds.com
+URL:https://www.kidsdds.com
+END:VCARD

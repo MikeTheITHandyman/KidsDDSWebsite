@@ -686,59 +686,6 @@ export default function AppointmentForm() {
 
           {/* ── SIDEBAR ── */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-            {/* Why choose us */}
-            <div
-              style={{
-                background: 'linear-gradient(145deg, #4A90A4, #6BA899)',
-                borderRadius: '1.75rem',
-                padding: '2rem',
-                color: '#fff',
-                boxShadow: '0 8px 28px rgba(74,144,164,0.24)',
-              }}
-            >
-              <h2
-                style={{
-                  fontFamily: 'Nunito, sans-serif',
-                  fontWeight: 900,
-                  fontSize: '1.05rem',
-                  margin: '0 0 0.3rem',
-                  lineHeight: 1.3,
-                }}
-              >
-                {t('whyChooseHeading')}
-              </h2>
-              <p style={{ fontSize: '0.8rem', opacity: 0.8, margin: '0 0 1.5rem', fontWeight: 500, lineHeight: 1.55 }}>
-                {t('whyChooseSub')}
-              </p>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
-                {TRUST_SIGNALS.map((signal) => (
-                  <div
-                    key={signal.labelKey}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'flex-start',
-                      gap: '0.85rem',
-                      background: 'rgba(255,255,255,0.12)',
-                      borderRadius: '1rem',
-                      padding: '0.85rem 1rem',
-                    }}
-                  >
-                    <span style={{ fontSize: '1.25rem', lineHeight: 1, flexShrink: 0 }} aria-hidden="true">
-                      {signal.icon}
-                    </span>
-                    <div>
-                      <p style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: '0.88rem', margin: '0 0 0.15rem', lineHeight: 1.2 }}>
-                        {t(signal.labelKey)}
-                      </p>
-                      <p style={{ fontSize: '0.78rem', opacity: 0.82, margin: 0, fontWeight: 500, lineHeight: 1.4 }}>
-                        {t(signal.detailKey)}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
             {/* Quick call card */}
             <div
               style={{
@@ -793,6 +740,59 @@ export default function AppointmentForm() {
                 }}
               >
                 <SaveContactQR size={92} />
+              </div>
+            </div>
+
+            {/* Why choose us */}
+            <div
+              style={{
+                background: 'linear-gradient(145deg, #4A90A4, #6BA899)',
+                borderRadius: '1.75rem',
+                padding: '2rem',
+                color: '#fff',
+                boxShadow: '0 8px 28px rgba(74,144,164,0.24)',
+              }}
+            >
+              <h2
+                style={{
+                  fontFamily: 'Nunito, sans-serif',
+                  fontWeight: 900,
+                  fontSize: '1.05rem',
+                  margin: '0 0 0.3rem',
+                  lineHeight: 1.3,
+                }}
+              >
+                {t('whyChooseHeading')}
+              </h2>
+              <p style={{ fontSize: '0.8rem', opacity: 0.8, margin: '0 0 1.5rem', fontWeight: 500, lineHeight: 1.55 }}>
+                {t('whyChooseSub')}
+              </p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+                {TRUST_SIGNALS.map((signal) => (
+                  <div
+                    key={signal.labelKey}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      gap: '0.85rem',
+                      background: 'rgba(255,255,255,0.12)',
+                      borderRadius: '1rem',
+                      padding: '0.85rem 1rem',
+                    }}
+                  >
+                    <span style={{ fontSize: '1.25rem', lineHeight: 1, flexShrink: 0 }} aria-hidden="true">
+                      {signal.icon}
+                    </span>
+                    <div>
+                      <p style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: '0.88rem', margin: '0 0 0.15rem', lineHeight: 1.2 }}>
+                        {t(signal.labelKey)}
+                      </p>
+                      <p style={{ fontSize: '0.78rem', opacity: 0.82, margin: 0, fontWeight: 500, lineHeight: 1.4 }}>
+                        {t(signal.detailKey)}
+                      </p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
