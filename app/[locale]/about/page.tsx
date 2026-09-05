@@ -3,6 +3,7 @@ import AnimatedSection from '@/components/AnimatedSection'
 import ReviewBubbles from '@/components/ReviewBubbles'
 import DoctorGrid from '@/components/DoctorGrid'
 import OfficeTourPreview from '@/components/OfficeTourPreview'
+import Image from 'next/image'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
@@ -28,9 +29,17 @@ export const metadata: Metadata = {
 
 const STAT_VALUES = ['30+', '4', '650+']
 
+const EVENT_PHOTOS = [
+  '/brand_assets/events/event-photo-1.jpg',
+  '/brand_assets/events/event-photo-2.jpg',
+  '/brand_assets/events/event-photo-3.jpg',
+  '/brand_assets/events/event-photo-4.jpg',
+]
+
 const OFFICE_SLIDE_META = [
   {
     gradient: 'linear-gradient(135deg, rgba(234,229,247,0.85) 0%, rgba(107,75,200,0.18) 100%)',
+    imagePath: '/brand_assets/office-tour-lobby.jpg',
     icon: (
       <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="var(--brand-purple)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
@@ -40,6 +49,7 @@ const OFFICE_SLIDE_META = [
   },
   {
     gradient: 'linear-gradient(135deg, rgba(230,246,246,0.85) 0%, rgba(61,189,189,0.28) 100%)',
+    imagePath: '/brand_assets/office-tour-treatment.jpg',
     icon: (
       <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="var(--brand-teal)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <rect x="2" y="3" width="20" height="14" rx="2"/>
@@ -50,6 +60,7 @@ const OFFICE_SLIDE_META = [
   },
   {
     gradient: 'linear-gradient(135deg, rgba(245,200,66,0.15) 0%, rgba(239,108,26,0.18) 100%)',
+    imagePath: '/brand_assets/office-tour-play.jpg',
     icon: (
       <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="var(--accent-500)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <circle cx="12" cy="12" r="10"/>
@@ -490,70 +501,106 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
               <div
                 key={slide.label}
                 style={{
+                  position: 'relative',
                   flex: '0 0 clamp(260px, 75%, 400px)',
                   scrollSnapAlign: 'start',
-                  background: slide.gradient,
                   borderRadius: '1.5rem',
                   aspectRatio: '4 / 3',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '0.85rem',
-                  padding: '2rem',
+                  overflow: 'hidden',
                   flexShrink: 0,
+                  ...(slide.imagePath
+                    ? {}
+                    : {
+                        background: slide.gradient,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '0.85rem',
+                        padding: '2rem',
+                      }),
                 }}
               >
-                <div
-                  style={{
-                    width: '72px',
-                    height: '72px',
-                    borderRadius: '50%',
-                    background: 'rgba(255,255,255,0.55)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    backdropFilter: 'blur(6px)',
-                  }}
-                >
-                  {slide.icon}
-                </div>
-                <div style={{ textAlign: 'center' }}>
-                  <div
-                    style={{
-                      fontFamily: 'Nunito, sans-serif',
-                      fontWeight: 900,
-                      fontSize: '1.05rem',
-                      color: '#1e3a5f',
-                      marginBottom: '0.3rem',
-                    }}
-                  >
-                    {slide.label}
-                  </div>
-                  <div
-                    style={{
-                      fontFamily: 'Nunito, sans-serif',
-                      fontSize: '0.82rem',
-                      fontWeight: 600,
-                      color: '#4b5563',
-                      lineHeight: 1.55,
-                    }}
-                  >
-                    {slide.caption}
-                  </div>
-                </div>
-                <div
-                  style={{
-                    fontSize: '0.7rem',
-                    fontWeight: 700,
-                    letterSpacing: '0.1em',
-                    textTransform: 'uppercase',
-                    color: '#9ca3af',
-                    marginTop: '0.25rem',
-                  }}
-                >
-                  {tPage('photoComingSoon')}
-                </div>
+                {slide.imagePath ? (
+                  <>
+                    <Image
+                      src={slide.imagePath}
+                      alt={slide.label}
+                      fill
+                      sizes="(max-width: 768px) 80vw, 400px"
+                      style={{ objectFit: 'cover' }}
+                    />
+                    <div
+                      aria-hidden="true"
+                      style={{
+                        position: 'absolute',
+                        inset: 0,
+                        background: 'linear-gradient(to top, rgba(0,0,0,0.60), rgba(0,0,0,0) 55%)',
+                      }}
+                    />
+                    <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, padding: '1.1rem 1.25rem' }}>
+                      <div style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: '1.05rem', color: '#fff', marginBottom: '0.25rem' }}>
+                        {slide.label}
+                      </div>
+                      <div style={{ fontFamily: 'Nunito, sans-serif', fontSize: '0.82rem', fontWeight: 600, color: 'rgba(255,255,255,0.92)', lineHeight: 1.5 }}>
+                        {slide.caption}
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div
+                      style={{
+                        width: '72px',
+                        height: '72px',
+                        borderRadius: '50%',
+                        background: 'rgba(255,255,255,0.55)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        backdropFilter: 'blur(6px)',
+                      }}
+                    >
+                      {slide.icon}
+                    </div>
+                    <div style={{ textAlign: 'center' }}>
+                      <div
+                        style={{
+                          fontFamily: 'Nunito, sans-serif',
+                          fontWeight: 900,
+                          fontSize: '1.05rem',
+                          color: '#1e3a5f',
+                          marginBottom: '0.3rem',
+                        }}
+                      >
+                        {slide.label}
+                      </div>
+                      <div
+                        style={{
+                          fontFamily: 'Nunito, sans-serif',
+                          fontSize: '0.82rem',
+                          fontWeight: 600,
+                          color: '#4b5563',
+                          lineHeight: 1.55,
+                        }}
+                      >
+                        {slide.caption}
+                      </div>
+                    </div>
+                    <div
+                      style={{
+                        fontSize: '0.7rem',
+                        fontWeight: 700,
+                        letterSpacing: '0.1em',
+                        textTransform: 'uppercase',
+                        color: '#9ca3af',
+                        marginTop: '0.25rem',
+                      }}
+                    >
+                      {tPage('photoComingSoon')}
+                    </div>
+                  </>
+                )}
               </div>
             ))}
           </div>
@@ -631,43 +678,24 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
             </p>
 
             <div className="events-placeholder-grid">
-              {[1, 2, 3].map((n) => (
+              {EVENT_PHOTOS.map((src) => (
                 <div
-                  key={n}
+                  key={src}
                   style={{
-                    background: 'var(--bg)',
-                    border: '1.5px dashed rgba(107,75,200,0.20)',
+                    position: 'relative',
                     borderRadius: '1.5rem',
-                    padding: '2.5rem 1.5rem',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '0.85rem',
+                    overflow: 'hidden',
                     aspectRatio: '4 / 3',
-                    textAlign: 'center',
+                    boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
                   }}
                 >
-                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(107,75,200,0.30)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <rect x="3" y="4" width="18" height="18" rx="2"/>
-                    <line x1="16" y1="2" x2="16" y2="6"/>
-                    <line x1="8" y1="2" x2="8" y2="6"/>
-                    <line x1="3" y1="10" x2="21" y2="10"/>
-                    <line x1="8" y1="14" x2="16" y2="14"/>
-                    <line x1="8" y1="18" x2="12" y2="18"/>
-                  </svg>
-                  <span
-                    style={{
-                      fontFamily: 'Nunito, sans-serif',
-                      fontSize: '0.75rem',
-                      fontWeight: 700,
-                      color: 'rgba(107,75,200,0.38)',
-                      letterSpacing: '0.08em',
-                      textTransform: 'uppercase',
-                    }}
-                  >
-                    {tPage('eventPhotoComingSoon')}
-                  </span>
+                  <Image
+                    src={src}
+                    alt={tPage('eventPhotoAlt')}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 900px) 50vw, 25vw"
+                    style={{ objectFit: 'cover' }}
+                  />
                 </div>
               ))}
             </div>
@@ -804,10 +832,13 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         .office-carousel::-webkit-scrollbar { display: none; }
         .events-placeholder-grid {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
+          grid-template-columns: repeat(4, 1fr);
           gap: 1.25rem;
         }
-        @media (max-width: 640px) {
+        @media (max-width: 900px) {
+          .events-placeholder-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
           .events-placeholder-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 540px) {

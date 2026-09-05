@@ -9,12 +9,12 @@ import { useTranslations } from 'next-intl'
 const FEATURES = [
   {
     key: 0 as const,
-    imgSrc: '/brand_assets/office-waiting-room.jpg',
+    imgSrc: '/brand_assets/office-tour-lobby.jpg',
     gradient: 'linear-gradient(135deg, rgba(61,189,189,0.18) 0%, rgba(107,75,200,0.12) 100%)',
   },
   {
     key: 1 as const,
-    imgSrc: '/brand_assets/office-treatment-bay.jpg',
+    imgSrc: '/brand_assets/office-tour-treatment.jpg',
     gradient: 'linear-gradient(135deg, rgba(107,75,200,0.12) 0%, rgba(61,189,189,0.22) 100%)',
   },
 ]
