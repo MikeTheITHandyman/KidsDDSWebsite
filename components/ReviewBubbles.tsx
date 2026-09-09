@@ -5,7 +5,8 @@ import { motion, AnimatePresence, type Variants } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 
 const INTERVAL_MS = 5000
-const GOOGLE_REVIEWS_URL = 'https://www.google.com/maps/place/Kids+Dentist/@42.3467,-88.0041,17z'
+// Same destination as the "Save Our Contact" QR code (components/SaveContactQR.tsx)
+const SHARE_EXPERIENCE_URL = 'https://linktr.ee/Kidsdentistgrayslake?utm_source=linktree_profile_share'
 
 const AVATAR_GRADIENTS = [
   'linear-gradient(135deg, #EF6C1A, #E05210)',
@@ -436,7 +437,7 @@ export default function ReviewBubbles({ sanityReviews }: ReviewBubblesProps) {
           style={{ textAlign: 'center', marginTop: '1.5rem' }}
         >
           <motion.a
-            href={GOOGLE_REVIEWS_URL}
+            href={SHARE_EXPERIENCE_URL}
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05, y: -2 }}

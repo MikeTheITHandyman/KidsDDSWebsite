@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
+import { Link, useRouter } from '@/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 
@@ -12,6 +12,7 @@ export default function DoctorGrid() {
   const tAbout = useTranslations('about')
   const tMeet = useTranslations('meetDentists')
   const [expanded, setExpanded] = useState<string | null>(null)
+  const router = useRouter()
 
   const doctors = [
     {
@@ -100,6 +101,10 @@ export default function DoctorGrid() {
                 flexDirection: 'column',
               }}
             >
+              <Link
+                href={doc.href}
+                style={{ display: 'flex', flexDirection: 'column', flex: 1, color: 'inherit', textDecoration: 'none' }}
+              >
               {/* Square headshot */}
               <div
                 style={{
@@ -203,13 +208,15 @@ export default function DoctorGrid() {
                         ))}
                       </ul>
 
-                      <Link
-                        href="/request-appointment"
+                      <button
+                        type="button"
+                        onClick={(e) => { e.preventDefault(); e.stopPropagation(); router.push('/request-appointment') }}
                         style={{
                           display: 'inline-flex',
                           alignItems: 'center',
                           gap: '0.4rem',
                           background: 'linear-gradient(135deg, #E8934F, #E97D63)',
+                          border: 'none',
                           color: '#fff',
                           fontFamily: 'Nunito, sans-serif',
                           fontWeight: 800,
@@ -219,10 +226,11 @@ export default function DoctorGrid() {
                           textDecoration: 'none',
                           marginBottom: '1.1rem',
                           boxShadow: '0 4px 14px rgba(232,147,79,0.32)',
+                          cursor: 'pointer',
                         }}
                       >
                         {tMeet('requestAppt')}
-                      </Link>
+                      </button>
 
                       <div
                         style={{
@@ -238,7 +246,7 @@ export default function DoctorGrid() {
                 {/* Toggle button */}
                 <button
                   type="button"
-                  onClick={() => toggle(doc.name)}
+                  onClick={(e) => { e.stopPropagation(); toggle(doc.name) }}
                   aria-expanded={isOpen}
                   style={{
                     display: 'inline-flex',
@@ -272,6 +280,7 @@ export default function DoctorGrid() {
                   </motion.svg>
                 </button>
               </div>
+              </Link>
             </motion.article>
           )
         })}

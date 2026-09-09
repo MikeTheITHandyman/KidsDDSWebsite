@@ -1,7 +1,7 @@
 import SubPageLayout from '@/components/SubPageLayout'
 import AnimatedSection from '@/components/AnimatedSection'
 import Image from 'next/image'
-import Link from 'next/link'
+import { Link } from '@/navigation'
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 
@@ -237,12 +237,14 @@ export default async function TourOurOfficePage() {
               >
                 {t('scheduleVisit')}
               </Link>
-              <Link
-                href="/contact"
+              <a
+                href="https://www.google.com/maps/place/Kids+Dentist+-+Sonia+Gutierrez+%26+Associates/@42.3419457,-88.0259721,17z/data=!3m1!5s0x880f9a88cfcc67a9:0x23f796d9c9c7f91b!4m15!1m8!3m7!1s0x880f9a88cfc9ba3f:0xd8a23f74d95d12b9!2s160+Commerce+Dr+Ste+100,+Grayslake,+IL+60030!3b1!8m2!3d42.3419457!4d-88.0233972!16s%2Fg%2F11ftmhv5g6!3m5!1s0x880f9a88ce354f15:0x91e0950a0a5955cb!8m2!3d42.3419328!4d-88.0233294!16s%2Fg%2F1td619xy?entry=ttu&g_ep=EgoyMDI2MDUwMi4wIKXMDSoASAFQAw%3D%3D"
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem', color: '#4A90A4', fontFamily: 'Nunito, sans-serif', fontWeight: 700, fontSize: '0.95rem', padding: '0.85rem 2rem', borderRadius: '100px', textDecoration: 'none', border: '2px solid rgba(74,144,164,0.3)' }}
               >
                 {t('getDirections')}
-              </Link>
+              </a>
             </div>
           </div>
         </AnimatedSection>
