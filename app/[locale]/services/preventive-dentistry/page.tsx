@@ -1,7 +1,7 @@
 import SubPageLayout from '@/components/SubPageLayout'
 import AnimatedSection from '@/components/AnimatedSection'
 import FaqAccordion, { type FaqItem } from '@/components/FaqAccordion'
-import Link from 'next/link'
+import { Link } from '@/navigation'
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 
@@ -65,12 +65,26 @@ export default async function PreventiveDentistryPage({ params }: { params: Prom
     { question: t('moreFaq2q'), answer: t('moreFaq2a') },
   ]
 
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [...FAQ_ITEMS, ...MORE_FAQ_ITEMS].map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    })),
+  }
+
   return (
     <SubPageLayout
       title={t('title')}
       subtitle={t('subtitle')}
       gradient="blue"
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/</g, '\\u003c') }}
+      />
       <div className="mx-auto max-w-6xl px-4">
 
         {/* Back link */}

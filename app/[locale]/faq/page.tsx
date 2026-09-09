@@ -1,7 +1,7 @@
 import SubPageLayout from '@/components/SubPageLayout'
 import AnimatedSection from '@/components/AnimatedSection'
 import FaqAccordion, { type FaqItem } from '@/components/FaqAccordion'
-import Link from 'next/link'
+import { Link } from '@/navigation'
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 
@@ -45,6 +45,18 @@ export default async function FaqPage({ params }: { params: Promise<{ locale: st
       })),
     }))
 
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: GROUPS.flatMap((group) =>
+      group.items.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: { '@type': 'Answer', text: item.answer },
+      }))
+    ),
+  }
+
   return (
     <SubPageLayout
       kicker={t('kicker')}
@@ -52,6 +64,10 @@ export default async function FaqPage({ params }: { params: Promise<{ locale: st
       subtitle={t('subtitle')}
       gradient="blue"
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/</g, '\\u003c') }}
+      />
       <div className="mx-auto max-w-3xl px-4">
 
         {/* Ask the Doctor prompt — top of FAQ */}

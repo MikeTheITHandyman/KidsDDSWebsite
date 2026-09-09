@@ -295,6 +295,7 @@
     "photoComingSoon": "Photo coming soon",
     "swipeToExplore": "Swipe to explore ›",
     "tourLink": "Take a full office tour",
+    "whyChooseUsLink": "Why families choose Kids Dentist",
     "eventsKicker": "In the Community",
     "eventsHeading": "Recent Events & Community Involvement",
     "eventsBody": "We're proud to support Lake County families beyond the dental chair, through school visits, sports sponsorships, and community events.",
@@ -1265,5 +1266,30 @@
     "tabsAriaLabel": "Filter questions by category",
     "emptyState": "We’re building out real, honest answers for this category. In the meantime, send us your question directly, no judgment, promise.",
     "emptyStateCta": "Ask Us a Question"
+  },
+  "whyChooseUsPage": {
+    "kicker": "Est. 1994",
+    "title": "Why Families Choose Kids Dentist",
+    "subtitle": "Lake County's longest-serving pediatric-only dental practice — trusted by generations of local families.",
+    "tenurePrefix": "Kids Dentist has been Grayslake's dedicated pediatric dental home for",
+    "tenureYears": "{years, plural, one {# year} other {# years}}, {months, plural, one {# month} other {# months}}",
+    "tenureSuffix": "and counting — since 1994.",
+    "diff0Title": "Pediatric-Only, Since Day One",
+    "diff0Desc": "We've never treated adults. Every doctor, every treatment room, and every appointment is designed exclusively around children, not adapted from a general family practice.",
+    "diff1Title": "Four Board-Certified Specialists",
+    "diff1Desc": "All four of our doctors are Diplomates of the American Board of Pediatric Dentistry with a Master of Science in Oral Sciences from the University of Illinois at Chicago — training a general dentist doesn't have.",
+    "diff2Title": "Generations of Lake County Families",
+    "diff2Desc": "Parents who grew up as our patients now bring in their own children. That kind of trust is earned over decades, not built overnight.",
+    "diff3Title": "Bilingual, Every Visit",
+    "diff3Desc": "Hablamos Español — care and communication in the language your family is most comfortable in, at every step.",
+    "faqKicker": "Common Questions",
+    "faqHeading": "What Parents Ask Us",
+    "faq0q": "How long has Kids Dentist been serving Grayslake and Lake County?",
+    "faq0a": "Kids Dentist opened in Grayslake, IL in 1994 and has been a dedicated, pediatric-only dental practice ever since, making it one of the longest-established children's dental practices in Lake County.",
+    "faq1q": "What makes Kids Dentist different from a general family dentist who also sees kids?",
+    "faq1a": "All four of our doctors completed additional, specialized pediatric dental residencies beyond dental school and are board-certified Diplomates of the American Board of Pediatric Dentistry. Our entire practice, from the waiting room to the equipment, is built exclusively for children, not adapted from an adult practice.",
+    "ctaText": "Ready to see the difference?",
+    "ctaAppointment": "Request Appointment",
+    "ctaCall": "Text/Call us: (847) 223-1400"
   }
 }

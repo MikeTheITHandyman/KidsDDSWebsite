@@ -4,7 +4,7 @@ import ReviewBubbles from '@/components/ReviewBubbles'
 import DoctorGrid from '@/components/DoctorGrid'
 import OfficeTourPreview from '@/components/OfficeTourPreview'
 import Image from 'next/image'
-import Link from 'next/link'
+import { Link } from '@/navigation'
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { client } from '@/sanity/lib/client'
@@ -105,12 +105,31 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
     { next: { revalidate: 60 } },
   )
 
+  // Individual Review schema only, sourced from real published reviews —
+  // deliberately no aggregateRating (not derived from this dataset).
+  const reviewSchemas = reviews.map((r) => ({
+    '@context': 'https://schema.org',
+    '@type': 'Review',
+    reviewRating: { '@type': 'Rating', ratingValue: r.rating, bestRating: 5 },
+    author: { '@type': 'Person', name: r.parentName },
+    reviewBody: r.reviewText,
+    ...(r.date ? { datePublished: r.date } : {}),
+    itemReviewed: { '@type': 'Dentist', name: 'Kids Dentist' },
+  }))
+
   return (
     <SubPageLayout
       kicker={t('kicker')}
       title={t('title')}
       gradient="blue"
     >
+      {reviewSchemas.map((schema, i) => (
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\\u003c') }}
+        />
+      ))}
 
       {/* ── Inner container ─────────────────────────────────────── */}
       <div className="mx-auto max-w-5xl px-4">
@@ -145,6 +164,27 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
             >
               {t('philosophyBody')}
             </p>
+            <Link
+              href="/about/why-choose-us"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.35rem',
+                marginTop: '1.25rem',
+                color: 'var(--brand-purple)',
+                fontFamily: 'Nunito, sans-serif',
+                fontWeight: 800,
+                fontSize: '0.9rem',
+                textDecoration: 'none',
+                borderBottom: '2px solid rgba(107,75,200,0.28)',
+                paddingBottom: '2px',
+              }}
+            >
+              {tPage('whyChooseUsLink')}
+              <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/>
+              </svg>
+            </Link>
           </div>
         </AnimatedSection>
 

@@ -1,11 +1,15 @@
 # Kids Dentist Grayslake
-Kids Dentist is a specialized pediatric dental practice located in Grayslake, Illinois. We provide comprehensive, compassionate dental care designed specifically for children, from infants through teens, as well as patients with special needs.
+Kids Dentist is Grayslake, Illinois's longest-serving dedicated pediatric dental practice, open since 1994. We provide comprehensive, compassionate dental care designed specifically for children, from infants through teens, as well as patients with special needs. All four doctors are board-certified pediatric specialists (DDS, MS, Diplomates of the American Board of Pediatric Dentistry) who completed their pediatric residencies at the University of Illinois at Chicago.
+
+## Service Area
+Grayslake, IL and the surrounding Lake County communities: Waukegan, Libertyville, Mundelein, Vernon Hills, Lake Forest, Round Lake, Lindenhurst, Antioch, Gurnee, and Zion.
 
 ## Contact & Location
 * Address: 160 Commerce Dr #100, Grayslake, IL 60030
 * Phone: (847) 223-1400 (Text or Call)
 * Email: info@kidsdds.com
 * Website: https://www.kidsdds.com
+* Languages: English and Spanish (Hablamos Español)
 
 ## Core Pediatric Services
 * Preventive Dentistry: Regular check-ups, cleanings, and safe fluoride varnish to prevent decay.
@@ -18,10 +22,17 @@ Kids Dentist is a specialized pediatric dental practice located in Grayslake, Il
 ## Insurance & Payment
 We are in-network with most major PPO dental providers, including:
 * Aetna Dental
-* Cigna Dental
-* Delta Dental
+* Cigna Dental (Total DPPO)
+* Delta Dental Premier
 * Guardian Dental
+* Lincoln Financial
+* Principal Dental
 * UnitedHealthcare Dental
 
 ## About Our Doctors
-Our practice features board-certified pediatric specialists who hold DDS and MS degrees. They completed specialized pediatric residencies and are dedicated to making the dental experience better for every child.
+Our practice features four board-certified pediatric dental specialists (DDS, MS, Diplomates of the American Board of Pediatric Dentistry): Dr. Sonia Gutierrez, Dr. Dave Rutcosky, Dr. Sahar Alrayyes, and Dr. Anne-Ashley Compton. All completed specialized pediatric dental residencies and are dedicated to making the dental experience better for every child. Full bios: https://www.kidsdds.com/about/meet-the-dentists
+
+## Frequently Asked Questions
+Structured, extractable Q&A content (marked up with schema.org FAQPage data) is available at:
+* https://www.kidsdds.com/faq — general pediatric dental questions
+* https://www.kidsdds.com/qa/parents-afraid-to-ask — sensitive/hesitant-to-ask parent questions

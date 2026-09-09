@@ -1,7 +1,7 @@
 import SubPageLayout from '@/components/SubPageLayout'
 import AnimatedSection from '@/components/AnimatedSection'
 import Image from 'next/image'
-import Link from 'next/link'
+import { Link } from '@/navigation'
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 
@@ -34,11 +34,31 @@ export default async function DrSaharPage({
     t(`sahar_cred${i}` as Parameters<typeof t>[0])
   )
 
+  const physicianSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Physician',
+    name: tAbout('saharName'),
+    medicalSpecialty: 'Pediatric Dentistry',
+    description: t('sahar_bio0'),
+    image: 'https://www.kidsdds.com/brand_assets/index-dr-alrayyes.jpg',
+    url: 'https://www.kidsdds.com/about/meet-the-dentists/dr-sahar-alrayyes',
+    hasCredential: credentials,
+    worksFor: {
+      '@type': 'Dentist',
+      name: 'Kids Dentist',
+      url: 'https://www.kidsdds.com',
+    },
+  }
+
   return (
     <SubPageLayout
       title={tAbout('saharName')}
       gradient="amber"
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(physicianSchema).replace(/</g, '\\u003c') }}
+      />
       <div className="mx-auto max-w-5xl px-4">
 
         <AnimatedSection>

@@ -31,8 +31,28 @@ export default async function HomePage() {
     { next: { revalidate: 60 } },
   )
 
+  // Individual Review schema only, sourced from real published reviews —
+  // deliberately no aggregateRating here, since that figure isn't derived
+  // from this dataset and shouldn't be asserted as schema-verified fact.
+  const reviewSchemas = reviews.map((r) => ({
+    '@context': 'https://schema.org',
+    '@type': 'Review',
+    reviewRating: { '@type': 'Rating', ratingValue: r.rating, bestRating: 5 },
+    author: { '@type': 'Person', name: r.parentName },
+    reviewBody: r.reviewText,
+    ...(r.date ? { datePublished: r.date } : {}),
+    itemReviewed: { '@type': 'Dentist', name: 'Kids Dentist' },
+  }))
+
   return (
     <>
+      {reviewSchemas.map((schema, i) => (
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\\u003c') }}
+        />
+      ))}
       <QuickActionsBar />
       <Hero />
       <ServicesGrid />

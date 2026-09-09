@@ -295,6 +295,7 @@
     "photoComingSoon": "Foto próximamente",
     "swipeToExplore": "Desliza para explorar ›",
     "tourLink": "Haz un recorrido completo por la oficina",
+    "whyChooseUsLink": "Por qué las familias eligen a Kids Dentist",
     "eventsKicker": "En la Comunidad",
     "eventsHeading": "Eventos Recientes y Participación Comunitaria",
     "eventsBody": "Estamos orgullosos de apoyar a las familias del Condado de Lake más allá del sillón dental, a través de visitas escolares, patrocinios deportivos y eventos comunitarios.",
@@ -1265,5 +1266,30 @@
     "tabsAriaLabel": "Filtrar preguntas por categoría",
     "emptyState": "Estamos preparando respuestas reales y honestas para esta categoría. Mientras tanto, envíenos su pregunta directamente, sin juicios, se lo prometemos.",
     "emptyStateCta": "Haga una Pregunta"
+  },
+  "whyChooseUsPage": {
+    "kicker": "Desde 1994",
+    "title": "Por Qué las Familias Eligen a Kids Dentist",
+    "subtitle": "La práctica odontológica pediátrica más establecida del condado de Lake, con la confianza de generaciones de familias locales.",
+    "tenurePrefix": "Kids Dentist ha sido el hogar odontológico pediátrico de Grayslake durante",
+    "tenureYears": "{years, plural, one {# año} other {# años}}, {months, plural, one {# mes} other {# meses}}",
+    "tenureSuffix": "y contando — desde 1994.",
+    "diff0Title": "Exclusivamente Pediátrica, Desde el Primer Día",
+    "diff0Desc": "Nunca hemos atendido a adultos. Cada odontólogo, cada sala de tratamiento y cada cita están diseñados exclusivamente para niños, no adaptados de una práctica familiar general.",
+    "diff1Title": "Cuatro Especialistas Certificados por la Junta",
+    "diff1Desc": "Nuestros cuatro odontólogos son Diplomados de la Junta Americana de Odontología Pediátrica y tienen una Maestría en Ciencias Orales de la Universidad de Illinois en Chicago, una formación que un dentista general no tiene.",
+    "diff2Title": "Generaciones de Familias del Condado de Lake",
+    "diff2Desc": "Padres que crecieron como nuestros pacientes ahora traen a sus propios hijos. Ese tipo de confianza se gana con décadas, no se construye de la noche a la mañana.",
+    "diff3Title": "Servicio Bilingüe, en Cada Visita",
+    "diff3Desc": "Hablamos Español: atención y comunicación en el idioma con el que su familia se sienta más cómoda, en cada paso.",
+    "faqKicker": "Preguntas Frecuentes",
+    "faqHeading": "Lo Que Preguntan los Padres",
+    "faq0q": "¿Cuánto tiempo lleva Kids Dentist atendiendo a Grayslake y el condado de Lake?",
+    "faq0a": "Kids Dentist abrió sus puertas en Grayslake, IL en 1994 y ha sido una práctica odontológica exclusivamente pediátrica desde entonces, lo que la convierte en una de las prácticas dentales infantiles más establecidas del condado de Lake.",
+    "faq1q": "¿Qué hace diferente a Kids Dentist de un dentista familiar general que también atiende niños?",
+    "faq1a": "Los cuatro odontólogos de nuestra práctica completaron residencias especializadas adicionales en odontología pediátrica más allá de la escuela dental y son Diplomados certificados por la Junta Americana de Odontología Pediátrica. Toda nuestra práctica, desde la sala de espera hasta el equipo, está construida exclusivamente para niños, no adaptada de una práctica para adultos.",
+    "ctaText": "¿Listo para ver la diferencia?",
+    "ctaAppointment": "Solicitar una Cita",
+    "ctaCall": "Texto/Llamada: (847) 223-1400"
   }
 }

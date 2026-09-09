@@ -94,7 +94,11 @@ const dentistSchema = {
       closes: '14:00',
     },
   ],
-  sameAs: ['https://www.google.com/maps/place/Kids+Dentist'],
+  sameAs: [
+    'https://www.google.com/maps/place/Kids+Dentist',
+    'https://www.facebook.com/kidsddsgrayslake',
+    'https://www.instagram.com/kidsddsgrayslake/',
+  ],
   priceRange: '$$',
 }
 

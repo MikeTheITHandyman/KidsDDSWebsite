@@ -1,7 +1,7 @@
 import SubPageLayout from '@/components/SubPageLayout'
 import AnimatedSection from '@/components/AnimatedSection'
 import FaqAccordion, { type FaqItem } from '@/components/FaqAccordion'
-import Link from 'next/link'
+import { Link } from '@/navigation'
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 
@@ -50,12 +50,26 @@ export default async function SedationDentistryPage({ params }: { params: Promis
     { question: t('faq2q'), answer: t('faq2a') },
   ]
 
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    })),
+  }
+
   return (
     <SubPageLayout
       title={t('title')}
       subtitle={t('subtitle')}
       gradient="amber"
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/</g, '\\u003c') }}
+      />
       <div className="mx-auto max-w-6xl px-4">
 
         {/* Options offered — sits right under the page subtitle */}

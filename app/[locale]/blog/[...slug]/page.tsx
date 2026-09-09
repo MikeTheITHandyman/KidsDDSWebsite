@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
-import Link from 'next/link'
+import { Link } from '@/navigation'
 import type { Metadata } from 'next'
 import { PortableText, type PortableTextComponents } from '@portabletext/react'
 import { client } from '@/sanity/lib/client'
@@ -131,8 +131,27 @@ export default async function BlogPost({ params }: Props) {
 
   if (!post) notFound()
 
+  const postUrl = `https://www.kidsdds.com${locale === 'es' ? '/es' : ''}/blog/${slug[0]}`
+  const blogPostingSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.excerpt,
+    author: { '@type': 'Person', name: post.author },
+    publisher: { '@type': 'Dentist', name: 'Kids Dentist', url: 'https://www.kidsdds.com' },
+    ...(post.publishedAt ? { datePublished: post.publishedAt } : {}),
+    ...(post.mainImage ? { image: urlFor(post.mainImage).width(1200).height(630).url() } : {}),
+    mainEntityOfPage: postUrl,
+    url: postUrl,
+  }
+
   return (
     <article className="blog-post-article">
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema).replace(/</g, '\\u003c') }}
+      />
 
       {/* ── Back link ── */}
       <div className="blog-post-back-wrap">
