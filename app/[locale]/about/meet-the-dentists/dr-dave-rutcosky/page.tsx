@@ -4,19 +4,24 @@ import Image from 'next/image'
 import { Link } from '@/navigation'
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
+import { ogLocale, localizedUrl, localeAlternates } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'Dr. Dave Rutcosky, DDS, MS | Kids Dentist Grayslake, IL',
-  description:
-    'Meet Dr. Dave Rutcosky, board-certified pediatric dentist specializing in special needs dentistry at Kids Dentist Grayslake, IL.',
-  openGraph: {
-    title: 'Dr. Dave Rutcosky, DDS, MS | Kids Dentist Grayslake, IL',
-    description: 'Specialist in special needs dentistry for children. Serving Grayslake, IL.',
-    url: 'https://kidsdds.com/about/meet-the-dentists/dr-dave-rutcosky',
-    siteName: 'Kids Dentist',
-    locale: 'en_US',
-    type: 'profile',
-  },
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'drProfiles' })
+  return {
+    title: t('dave_metaTitle'),
+    description: t('dave_metaDescription'),
+    alternates: { canonical: localizedUrl('/about/meet-the-dentists/dr-dave-rutcosky', locale), languages: localeAlternates('/about/meet-the-dentists/dr-dave-rutcosky') },
+    openGraph: {
+      title: t('dave_metaTitle'),
+      description: t('dave_metaDescription'),
+      url: localizedUrl('/about/meet-the-dentists/dr-dave-rutcosky', locale),
+      siteName: 'Kids Dentist',
+      locale: ogLocale(locale),
+      type: 'profile',
+    },
+  }
 }
 
 export default async function DrDavePage({

@@ -4,6 +4,7 @@ import FaqAccordion, { type FaqItem } from '@/components/FaqAccordion'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
+import { ogLocale, localizedUrl, localeAlternates } from '@/lib/seo'
 
 const serviceSchema = {
   '@context': 'https://schema.org',
@@ -39,20 +40,22 @@ const serviceSchema = {
   },
 }
 
-export const metadata: Metadata = {
-  title: "Restorative Dentistry for Kids | Children's Dentist Grayslake, IL",
-  description:
-    'Gentle restorative dental care for children near Libertyville, Mundelein, Waukegan, and Lake Forest: tooth-colored fillings, pediatric crowns, pulp therapy, and extractions. Early treatment at Kids Dentist Grayslake, IL.',
-  alternates: { canonical: 'https://www.kidsdds.com/services/restorative' },
-  openGraph: {
-    title: "Restorative Dentistry for Kids | Children's Dentist Grayslake, IL",
-    description:
-      'A small cavity treated today is a filling. Left untreated, it becomes a crown or worse. Serving Lake County families at Kids Dentist Grayslake, IL.',
-    url: 'https://www.kidsdds.com/services/restorative',
-    siteName: 'Kids Dentist',
-    locale: 'en_US',
-    type: 'website',
-  },
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'restorativePage' })
+  return {
+    title: t('metaTitle'),
+    description: t('metaDescription'),
+    alternates: { canonical: localizedUrl('/services/restorative', locale), languages: localeAlternates('/services/restorative') },
+    openGraph: {
+      title: t('metaTitle'),
+      description: t('metaDescription'),
+      url: localizedUrl('/services/restorative', locale),
+      siteName: 'Kids Dentist',
+      locale: ogLocale(locale),
+      type: 'website',
+    },
+  }
 }
 
 const TREATMENT_META = [

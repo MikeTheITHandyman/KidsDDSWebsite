@@ -4,6 +4,7 @@ import EmergencyTriage from '@/components/EmergencyTriage'
 import FaqAccordion, { type FaqItem } from '@/components/FaqAccordion'
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
+import { ogLocale, localizedUrl, localeAlternates } from '@/lib/seo'
 
 const serviceSchema = {
   '@context': 'https://schema.org',
@@ -39,20 +40,22 @@ const serviceSchema = {
   },
 }
 
-export const metadata: Metadata = {
-  title: 'Emergency Pediatric Dentist Grayslake, IL | Same-Day Kids Dentist',
-  description:
-    'Same-day emergency dental care for children near Waukegan, Libertyville, Vernon Hills, Mundelein, and Lake Forest. Knocked-out teeth, toothaches, broken teeth, call (847) 223-1400 now. Kids Dentist Grayslake, IL.',
-  alternates: { canonical: 'https://www.kidsdds.com/services/emergency' },
-  openGraph: {
-    title: 'Emergency Pediatric Dentist Grayslake, IL | Same-Day Kids Dentist',
-    description:
-      "Dental emergencies don't wait. Kids Dentist Grayslake holds urgent slots every day for Lake County children in pain or after dental trauma.",
-    url: 'https://www.kidsdds.com/services/emergency',
-    siteName: 'Kids Dentist',
-    locale: 'en_US',
-    type: 'website',
-  },
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'emergencyPage' })
+  return {
+    title: t('metaTitle'),
+    description: t('metaDescription'),
+    alternates: { canonical: localizedUrl('/services/emergency', locale), languages: localeAlternates('/services/emergency') },
+    openGraph: {
+      title: t('metaTitle'),
+      description: t('metaDescription'),
+      url: localizedUrl('/services/emergency', locale),
+      siteName: 'Kids Dentist',
+      locale: ogLocale(locale),
+      type: 'website',
+    },
+  }
 }
 
 const EMERGENCY_META = [

@@ -1,23 +1,26 @@
 import SubPageLayout from '@/components/SubPageLayout'
 import AnimatedSection from '@/components/AnimatedSection'
-import Link from 'next/link'
+import { Link } from '@/navigation'
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
+import { ogLocale, localizedUrl, localeAlternates } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: "Children's Dental Services | Pediatric Dentist Grayslake, IL",
-  description:
-    'Complete pediatric dental services in Grayslake, IL: preventive care, restorative dentistry, sedation, special needs, and same-day emergency visits. Serving Libertyville, Mundelein, Vernon Hills, Waukegan, and all of Lake County.',
-  alternates: { canonical: 'https://www.kidsdds.com/services' },
-  openGraph: {
-    title: "Children's Dental Services | Pediatric Dentist Grayslake, IL",
-    description:
-      'Every service exclusively designed for children, from first-tooth cleanings to complex restorative work and special needs care. Serving all of Lake County, IL.',
-    url: 'https://www.kidsdds.com/services',
-    siteName: 'Kids Dentist',
-    locale: 'en_US',
-    type: 'website',
-  },
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'servicesPage' })
+  return {
+    title: t('metaTitle'),
+    description: t('metaDescription'),
+    alternates: { canonical: localizedUrl('/services', locale), languages: localeAlternates('/services') },
+    openGraph: {
+      title: t('metaTitle'),
+      description: t('metaDescription'),
+      url: localizedUrl('/services', locale),
+      siteName: 'Kids Dentist',
+      locale: ogLocale(locale),
+      type: 'website',
+    },
+  }
 }
 
 const SERVICE_META = [

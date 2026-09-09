@@ -5,21 +5,24 @@ import { Link } from '@/navigation'
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { getPracticeAge } from '@/lib/practiceAge'
+import { ogLocale, localizedUrl, localeAlternates } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: "Why Choose Kids Dentist? | Lake County's Longest-Serving Pediatric Practice",
-  description:
-    "Kids Dentist has been Grayslake's dedicated pediatric-only dental practice since 1994 — four board-certified specialists, generations of Lake County families, bilingual care.",
-  alternates: { canonical: 'https://www.kidsdds.com/about/why-choose-us' },
-  openGraph: {
-    title: "Why Choose Kids Dentist? | Lake County's Longest-Serving Pediatric Practice",
-    description:
-      "Open since 1994 and pediatric-only from day one — four board-certified specialists serving generations of Lake County families.",
-    url: 'https://www.kidsdds.com/about/why-choose-us',
-    siteName: 'Kids Dentist',
-    locale: 'en_US',
-    type: 'website',
-  },
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'whyChooseUsPage' })
+  return {
+    title: t('metaTitle'),
+    description: t('metaDescription'),
+    alternates: { canonical: localizedUrl('/about/why-choose-us', locale), languages: localeAlternates('/about/why-choose-us') },
+    openGraph: {
+      title: t('metaTitle'),
+      description: t('metaDescription'),
+      url: localizedUrl('/about/why-choose-us', locale),
+      siteName: 'Kids Dentist',
+      locale: ogLocale(locale),
+      type: 'website',
+    },
+  }
 }
 
 const DIFFERENTIATOR_META = [

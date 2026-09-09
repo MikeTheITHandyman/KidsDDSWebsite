@@ -9,19 +9,25 @@ import QuickActionsBar from '@/components/QuickActionsBar'
 import { client } from '@/sanity/lib/client'
 import { featuredReviewsQuery } from '@/sanity/lib/queries'
 import type { SanityReview } from '@/components/ReviewBubbles'
+import { getTranslations } from 'next-intl/server'
+import { ogLocale, localizedUrl, localeAlternates } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'Pediatric Dentist Grayslake, IL | Kids Dentist',
-  description: "Grayslake's trusted pediatric dentist serving families from Waukegan, Libertyville, Mundelein, Vernon Hills, and Lake Forest. Emergency visits available. In-Network with Delta Dental. Call (847) 223-1400.",
-  alternates: { canonical: 'https://www.kidsdds.com/' },
-  openGraph: {
-    title: 'Pediatric Dentist Grayslake, IL | Kids Dentist',
-    description: "Grayslake's top-rated children's dentist. Expert pediatric care for every child from their first tooth through the teen years. Emergency visits available same day.",
-    url: 'https://www.kidsdds.com',
-    siteName: 'Kids Dentist',
-    locale: 'en_US',
-    type: 'website',
-  },
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'homePage' })
+  return {
+    title: t('metaTitle'),
+    description: t('metaDescription'),
+    alternates: { canonical: localizedUrl('/', locale), languages: localeAlternates('/') },
+    openGraph: {
+      title: t('metaTitle'),
+      description: t('metaDescription'),
+      url: localizedUrl('/', locale),
+      siteName: 'Kids Dentist',
+      locale: ogLocale(locale),
+      type: 'website',
+    },
+  }
 }
 
 export default async function HomePage() {

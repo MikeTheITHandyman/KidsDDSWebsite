@@ -4,20 +4,24 @@ import FaqAccordion, { type FaqItem } from '@/components/FaqAccordion'
 import { Link } from '@/navigation'
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
+import { ogLocale, localizedUrl, localeAlternates } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'Frequently Asked Questions | Kids Dentist Grayslake, IL',
-  description:
-    'Answers to the questions parents ask most about pediatric dental care at Kids Dentist Grayslake - first visits, X-ray safety, emergencies, and more.',
-  openGraph: {
-    title: 'Frequently Asked Questions | Kids Dentist Grayslake, IL',
-    description:
-      'Everything parents ask about pediatric dentistry - answered clearly and honestly by the Kids Dentist Grayslake team.',
-    url: 'https://kidsdds.com/faq',
-    siteName: 'Kids Dentist',
-    locale: 'en_US',
-    type: 'website',
-  },
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'faqPage' })
+  return {
+    title: t('metaTitle'),
+    description: t('metaDescription'),
+    alternates: { canonical: localizedUrl('/faq', locale), languages: localeAlternates('/faq') },
+    openGraph: {
+      title: t('metaTitle'),
+      description: t('metaDescription'),
+      url: localizedUrl('/faq', locale),
+      siteName: 'Kids Dentist',
+      locale: ogLocale(locale),
+      type: 'website',
+    },
+  }
 }
 
 const GROUP_META: { icon: string; accentColor: string; itemCount: number }[] = [

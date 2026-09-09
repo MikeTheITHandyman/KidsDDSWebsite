@@ -4,19 +4,24 @@ import Image from 'next/image'
 import { Link } from '@/navigation'
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
+import { ogLocale, localizedUrl, localeAlternates } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'Dr. Anne-Ashley Compton, DDS, MS | Kids Dentist Grayslake, IL',
-  description:
-    'Meet Dr. Anne-Ashley Compton, board-certified pediatric dentist specializing in restorative dentistry for children at Kids Dentist Grayslake, IL.',
-  openGraph: {
-    title: 'Dr. Anne-Ashley Compton, DDS, MS | Kids Dentist Grayslake, IL',
-    description: 'Restorative dentistry specialist with an exceptional bedside manner for children. Serving Grayslake, IL.',
-    url: 'https://kidsdds.com/about/meet-the-dentists/dr-anne-ashley-compton',
-    siteName: 'Kids Dentist',
-    locale: 'en_US',
-    type: 'profile',
-  },
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'drProfiles' })
+  return {
+    title: t('anneAshley_metaTitle'),
+    description: t('anneAshley_metaDescription'),
+    alternates: { canonical: localizedUrl('/about/meet-the-dentists/dr-anne-ashley-compton', locale), languages: localeAlternates('/about/meet-the-dentists/dr-anne-ashley-compton') },
+    openGraph: {
+      title: t('anneAshley_metaTitle'),
+      description: t('anneAshley_metaDescription'),
+      url: localizedUrl('/about/meet-the-dentists/dr-anne-ashley-compton', locale),
+      siteName: 'Kids Dentist',
+      locale: ogLocale(locale),
+      type: 'profile',
+    },
+  }
 }
 
 export default async function DrAnneAshleyPage({

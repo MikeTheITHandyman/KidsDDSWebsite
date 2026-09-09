@@ -4,21 +4,24 @@ import FaqAccordion, { type FaqItem } from '@/components/FaqAccordion'
 import { Link } from '@/navigation'
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
+import { ogLocale, localizedUrl, localeAlternates } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'Sedation Dentistry for Kids | Pediatric Dentist Grayslake, IL',
-  description:
-    "We offer nitrous oxide and general anesthesia for anxious children and special needs patients. Serving Grayslake, Libertyville, Waukegan, Mundelein, Vernon Hills, and Lake Forest, IL.",
-  alternates: { canonical: 'https://www.kidsdds.com/services/sedation-dentistry' },
-  openGraph: {
-    title: 'Sedation Dentistry for Kids | Pediatric Dentist Grayslake, IL',
-    description:
-      "No child should avoid dental care because of fear. Kids Dentist Grayslake offers sedation options, including nitrous oxide and general anesthesia, for Lake County children.",
-    url: 'https://www.kidsdds.com/services/sedation-dentistry',
-    siteName: 'Kids Dentist',
-    locale: 'en_US',
-    type: 'website',
-  },
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'sedationPage' })
+  return {
+    title: t('metaTitle'),
+    description: t('metaDescription'),
+    alternates: { canonical: localizedUrl('/services/sedation-dentistry', locale), languages: localeAlternates('/services/sedation-dentistry') },
+    openGraph: {
+      title: t('metaTitle'),
+      description: t('metaDescription'),
+      url: localizedUrl('/services/sedation-dentistry', locale),
+      siteName: 'Kids Dentist',
+      locale: ogLocale(locale),
+      type: 'website',
+    },
+  }
 }
 
 const WHO_ITS_FOR_META = ['😰', '🧠', '🏥', '🦷', '👶', '🩺']

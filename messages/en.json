@@ -258,6 +258,8 @@
     "goToReview": "Go to review {number}"
   },
   "aboutPage": {
+    "metaTitle": "About Our Pediatric Dental Practice | Kids Dentist Grayslake, IL",
+    "metaDescription": "Kids Dentist has served Grayslake and Lake County families since 1994. Four board-certified pediatric specialists and a practice built entirely around children.",
     "kicker": "Since 1994 · Grayslake, IL",
     "title": "Thirty Years of Taking Care of Lake County Kids",
     "stat0Label": "Years in Grayslake",
@@ -307,6 +309,8 @@
     "ctaAppointment": "Request Appointment"
   },
   "servicesPage": {
+    "metaTitle": "Children's Dental Services | Pediatric Dentist Grayslake, IL",
+    "metaDescription": "Complete pediatric dental services in Grayslake, IL: preventive care, restorative dentistry, sedation, special needs, and same-day emergency visits. Serving Libertyville, Mundelein, Vernon Hills, Waukegan, and all of Lake County.",
     "title": "Our Services",
     "subtitle": "100% pediatric dentistry - because children aren't just small adults.",
     "service0Title": "Preventive Dentistry",
@@ -405,6 +409,8 @@
     "cignaNote": "Total DPPO only"
   },
   "faqPage": {
+    "metaTitle": "Frequently Asked Questions | Kids Dentist Grayslake, IL",
+    "metaDescription": "Answers to the questions parents ask most about pediatric dental care at Kids Dentist Grayslake - first visits, X-ray safety, emergencies, and more.",
     "kicker": "Got Questions?",
     "title": "Frequently Asked Questions",
     "subtitle": "Everything parents ask, answered clearly and honestly.",
@@ -496,6 +502,8 @@
     "mapTitle": "Kids Dentist Grayslake location map"
   },
   "preventivePage": {
+    "metaTitle": "Preventive Dentistry for Kids | Pediatric Dentist Grayslake, IL",
+    "metaDescription": "Children's preventive dental care near Libertyville, Mundelein, Vernon Hills, and Waukegan: cleanings, fluoride, sealants, digital X-rays, and early orthodontic screening starting at age one. Kids Dentist Grayslake, IL.",
     "title": "Preventive Dentistry",
     "subtitle": "The best dental treatment is the kind that never needs to happen.",
     "backToServices": "Back to All Services",
@@ -542,6 +550,8 @@
     "moreFaq2a": "We recommend the first visit when their first tooth appears, or no later than their first birthday. The earlier we start, the easier it is to ensure healthy development."
   },
   "restorativePage": {
+    "metaTitle": "Restorative Dentistry for Kids | Children's Dentist Grayslake, IL",
+    "metaDescription": "Gentle restorative dental care for children near Libertyville, Mundelein, Waukegan, and Lake Forest: tooth-colored fillings, pediatric crowns, pulp therapy, and extractions. Early treatment at Kids Dentist Grayslake, IL.",
     "title": "Restorative Dentistry",
     "subtitle": "Gentle, precise treatment that repairs damage, relieves pain, and protects your child's smile for years to come.",
     "kicker": "Fix It Early",
@@ -572,6 +582,8 @@
     "faq2a": "Left untreated, decay can spread to the nerve of the tooth, causing severe pain, abscesses (infections), and potentially damaging the developing permanent tooth underneath the gums."
   },
   "sedationPage": {
+    "metaTitle": "Sedation Dentistry for Kids | Pediatric Dentist Grayslake, IL",
+    "metaDescription": "We offer nitrous oxide and general anesthesia for anxious children and special needs patients. Serving Grayslake, Libertyville, Waukegan, Mundelein, Vernon Hills, and Lake Forest, IL.",
     "title": "Sedation Dentistry",
     "subtitle": "Because every child deserves dental care that is calm, safe, and completely manageable.",
     "optionsOfferedNote": "We offer both Nitrous Oxide and General Anesthesia.",
@@ -614,6 +626,8 @@
     "faq2a": "It is completely normal! Keep a positive attitude when talking about the visit at home. Avoid using scary words (like \"needle\" or \"pain\") and trust our pediatric experts to guide your child through a fun, gentle visit."
   },
   "specialNeedsPage": {
+    "metaTitle": "Special Needs Pediatric Dentist | Kids Dentist Grayslake, IL",
+    "metaDescription": "Lake County's leading special needs children's dentist. Compassionate care for kids with autism, Down syndrome, cerebral palsy, ADHD, and sensory differences. Serving Grayslake, Libertyville, Waukegan, and Vernon Hills, IL.",
     "title": "Special Needs Dentistry",
     "subtitle": "Every child deserves excellent dental care - regardless of their needs, challenges, or history.",
     "kicker": "Specialized Care",
@@ -643,6 +657,8 @@
     "ctaCall": "Text/Call us: (847) 223-1400"
   },
   "emergencyPage": {
+    "metaTitle": "Emergency Pediatric Dentist Grayslake, IL | Same-Day Kids Dentist",
+    "metaDescription": "Same-day emergency dental care for children near Waukegan, Libertyville, Vernon Hills, Mundelein, and Lake Forest. Knocked-out teeth, toothaches, broken teeth, call (847) 223-1400 now. Kids Dentist Grayslake, IL.",
     "title": "Emergency Dental Care",
     "subtitle": "When your child is in pain or has had a dental injury, call us right away, we're here to help.",
     "kicker": "Call Us Right Away",
@@ -957,6 +973,8 @@
     "errQuestion": "Please enter your question."
   },
   "restorativeDentistryPage": {
+    "metaTitle": "Restorative Dentistry for Kids | Kids Dentist Grayslake, IL",
+    "metaDescription": "Gentle restorative dental care for children in Grayslake, IL - tooth-colored fillings, pediatric crowns, pulp therapy, and extractions. Treating cavities early protects your child's smile.",
     "title": "Restorative Dentistry",
     "subtitle": "Gentle, precise care that repairs damage and protects your child's long-term dental health.",
     "backToServices": "Back to All Services",
@@ -1173,6 +1191,14 @@
     "backLink": "Back to All Dentists",
     "roleLabel": "Pediatric Dentist, DDS, MS",
     "credentialsHeading": "Credentials & Training",
+    "sonia_metaTitle": "Dr. Sonia Gutierrez, DDS, MS | Kids Dentist Grayslake, IL",
+    "sonia_metaDescription": "Meet Dr. Sonia Gutierrez, bilingual, board-certified pediatric dentist at Kids Dentist Grayslake. Specializing in gentle care and sedation dentistry for children.",
+    "dave_metaTitle": "Dr. Dave Rutcosky, DDS, MS | Kids Dentist Grayslake, IL",
+    "dave_metaDescription": "Meet Dr. Dave Rutcosky, board-certified pediatric dentist specializing in special needs dentistry at Kids Dentist Grayslake, IL.",
+    "sahar_metaTitle": "Dr. Sahar Alrayyes, DDS, MS | Kids Dentist Grayslake, IL",
+    "sahar_metaDescription": "Meet Dr. Sahar Alrayyes, board-certified pediatric dentist specializing in preventive care and infant oral health at Kids Dentist Grayslake, IL.",
+    "anneAshley_metaTitle": "Dr. Anne-Ashley Compton, DDS, MS | Kids Dentist Grayslake, IL",
+    "anneAshley_metaDescription": "Meet Dr. Anne-Ashley Compton, board-certified pediatric dentist specializing in restorative dentistry for children at Kids Dentist Grayslake, IL.",
     "sonia_bookBtn": "Book with Dr. Sonia",
     "sonia_heroHeading": "Warmth, Expertise, and a Smile That Puts Kids at Ease",
     "sonia_bio0": "Dr. Sonia Gutierrez has been caring for young smiles in Lake County for over 30 years. When you want a pediatric dentist who will be sure to take her time with your son or daughter, Dr. Sonia is absolutely the right choice. She loves caring for younger patients because they're always genuine, loving, honest, and fun! By going slow, she's able to show them that visiting the dentist's office doesn't have to be scary or hard.",
@@ -1227,6 +1253,8 @@
     "anneAshley_cred6": "Member, American Academy of Pediatric Dentistry (AAPD) & American Dental Association (ADA)"
   },
   "orthodonticsPage": {
+    "metaTitle": "Orthodontic Evaluations for Kids | Pediatric Dentist Grayslake, IL",
+    "metaDescription": "Orthodontic evaluations and referrals for braces and Invisalign in Grayslake, IL. We monitor your child's bite and jaw growth starting around age 7 and refer to a trusted local orthodontist when treatment is needed. Kids Dentist Grayslake, IL.",
     "kicker": "Growth & Alignment",
     "title": "Orthodontic Evaluations",
     "subtitle": "We monitor your child's bite and jaw growth at every visit, and refer to a trusted specialist the moment treatment is needed.",
@@ -1256,6 +1284,8 @@
     "ctaCall": "Text/Call us: (847) 223-1400"
   },
   "qaPage": {
+    "metaTitle": "Questions Parents Are Afraid to Ask | Kids Dentist Grayslake, IL",
+    "metaDescription": "Honest, judgment-free answers to the dental questions parents in Grayslake, IL are afraid to say out loud, from mom guilt to money to the 3 a.m. worries.",
     "title": "Questions Parents Are Afraid to Ask",
     "subtitle": "The questions parents whisper, Google at 2 a.m., or never quite work up the nerve to say out loud, answered honestly, without judgment.",
     "category0": "Parent Guilt",
@@ -1268,6 +1298,8 @@
     "emptyStateCta": "Ask Us a Question"
   },
   "whyChooseUsPage": {
+    "metaTitle": "Why Choose Kids Dentist? | Lake County's Longest-Serving Pediatric Practice",
+    "metaDescription": "Kids Dentist has been Grayslake's dedicated pediatric-only dental practice since 1994 - four board-certified specialists, generations of Lake County families, bilingual care.",
     "kicker": "Est. 1994",
     "title": "Why Families Choose Kids Dentist",
     "subtitle": "Lake County's longest-serving pediatric-only dental practice — trusted by generations of local families.",
@@ -1291,5 +1323,9 @@
     "ctaText": "Ready to see the difference?",
     "ctaAppointment": "Request Appointment",
     "ctaCall": "Text/Call us: (847) 223-1400"
+  },
+  "homePage": {
+    "metaTitle": "Pediatric Dentist Grayslake, IL | Kids Dentist",
+    "metaDescription": "Grayslake's trusted pediatric dentist serving families from Waukegan, Libertyville, Mundelein, Vernon Hills, and Lake Forest. Emergency visits available. In-Network with Delta Dental. Call (847) 223-1400."
   }
 }

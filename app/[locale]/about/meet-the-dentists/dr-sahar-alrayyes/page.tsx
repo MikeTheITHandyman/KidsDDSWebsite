@@ -4,19 +4,24 @@ import Image from 'next/image'
 import { Link } from '@/navigation'
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
+import { ogLocale, localizedUrl, localeAlternates } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'Dr. Sahar Alrayyes, DDS, MS | Kids Dentist Grayslake, IL',
-  description:
-    'Meet Dr. Sahar Alrayyes, board-certified pediatric dentist specializing in preventive care and infant oral health at Kids Dentist Grayslake, IL.',
-  openGraph: {
-    title: 'Dr. Sahar Alrayyes, DDS, MS | Kids Dentist Grayslake, IL',
-    description: 'Preventive care and infant oral health specialist at Kids Dentist Grayslake, IL.',
-    url: 'https://kidsdds.com/about/meet-the-dentists/dr-sahar-alrayyes',
-    siteName: 'Kids Dentist',
-    locale: 'en_US',
-    type: 'profile',
-  },
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'drProfiles' })
+  return {
+    title: t('sahar_metaTitle'),
+    description: t('sahar_metaDescription'),
+    alternates: { canonical: localizedUrl('/about/meet-the-dentists/dr-sahar-alrayyes', locale), languages: localeAlternates('/about/meet-the-dentists/dr-sahar-alrayyes') },
+    openGraph: {
+      title: t('sahar_metaTitle'),
+      description: t('sahar_metaDescription'),
+      url: localizedUrl('/about/meet-the-dentists/dr-sahar-alrayyes', locale),
+      siteName: 'Kids Dentist',
+      locale: ogLocale(locale),
+      type: 'profile',
+    },
+  }
 }
 
 export default async function DrSaharPage({

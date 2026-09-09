@@ -4,19 +4,24 @@ import Image from 'next/image'
 import { Link } from '@/navigation'
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
+import { ogLocale, localizedUrl, localeAlternates } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'Dr. Sonia Gutierrez, DDS, MS | Kids Dentist Grayslake, IL',
-  description:
-    'Meet Dr. Sonia Gutierrez, bilingual, board-certified pediatric dentist at Kids Dentist Grayslake. Specializing in gentle care and sedation dentistry for children.',
-  openGraph: {
-    title: 'Dr. Sonia Gutierrez, DDS, MS | Kids Dentist Grayslake, IL',
-    description: 'Board-certified pediatric dentist specializing in gentle care and sedation dentistry. Serving Grayslake, IL.',
-    url: 'https://kidsdds.com/about/meet-the-dentists/dr-sonia-gutierrez',
-    siteName: 'Kids Dentist',
-    locale: 'en_US',
-    type: 'profile',
-  },
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'drProfiles' })
+  return {
+    title: t('sonia_metaTitle'),
+    description: t('sonia_metaDescription'),
+    alternates: { canonical: localizedUrl('/about/meet-the-dentists/dr-sonia-gutierrez', locale), languages: localeAlternates('/about/meet-the-dentists/dr-sonia-gutierrez') },
+    openGraph: {
+      title: t('sonia_metaTitle'),
+      description: t('sonia_metaDescription'),
+      url: localizedUrl('/about/meet-the-dentists/dr-sonia-gutierrez', locale),
+      siteName: 'Kids Dentist',
+      locale: ogLocale(locale),
+      type: 'profile',
+    },
+  }
 }
 
 export default async function DrSoniaPage({

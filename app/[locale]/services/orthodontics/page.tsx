@@ -4,6 +4,7 @@ import FaqAccordion, { type FaqItem } from '@/components/FaqAccordion'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
+import { ogLocale, localizedUrl, localeAlternates } from '@/lib/seo'
 
 const serviceSchema = {
   '@context': 'https://schema.org',
@@ -29,20 +30,22 @@ const serviceSchema = {
   url: 'https://kidsdds.com/services/orthodontics',
 }
 
-export const metadata: Metadata = {
-  title: 'Orthodontic Evaluations for Kids | Pediatric Dentist Grayslake, IL',
-  description:
-    "Orthodontic evaluations and referrals for braces and Invisalign in Grayslake, IL. We monitor your child's bite and jaw growth starting around age 7 and refer to a trusted local orthodontist when treatment is needed. Kids Dentist Grayslake, IL.",
-  alternates: { canonical: 'https://www.kidsdds.com/services/orthodontics' },
-  openGraph: {
-    title: 'Orthodontic Evaluations for Kids | Pediatric Dentist Grayslake, IL',
-    description:
-      "We catch alignment and jaw-growth issues early and refer Lake County families to a trusted local orthodontist for braces or Invisalign, right at the moment it's needed.",
-    url: 'https://www.kidsdds.com/services/orthodontics',
-    siteName: 'Kids Dentist',
-    locale: 'en_US',
-    type: 'website',
-  },
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'orthodonticsPage' })
+  return {
+    title: t('metaTitle'),
+    description: t('metaDescription'),
+    alternates: { canonical: localizedUrl('/services/orthodontics', locale), languages: localeAlternates('/services/orthodontics') },
+    openGraph: {
+      title: t('metaTitle'),
+      description: t('metaDescription'),
+      url: localizedUrl('/services/orthodontics', locale),
+      siteName: 'Kids Dentist',
+      locale: ogLocale(locale),
+      type: 'website',
+    },
+  }
 }
 
 const WE_DO_META = [

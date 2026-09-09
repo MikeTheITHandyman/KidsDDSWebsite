@@ -4,21 +4,24 @@ import FaqAccordion, { type FaqItem } from '@/components/FaqAccordion'
 import { Link } from '@/navigation'
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
+import { ogLocale, localizedUrl, localeAlternates } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'Preventive Dentistry for Kids | Pediatric Dentist Grayslake, IL',
-  description:
-    "Children's preventive dental care near Libertyville, Mundelein, Vernon Hills, and Waukegan: cleanings, fluoride, sealants, digital X-rays, and early orthodontic screening starting at age one. Kids Dentist Grayslake, IL.",
-  alternates: { canonical: 'https://www.kidsdds.com/services/preventive-dentistry' },
-  openGraph: {
-    title: 'Preventive Dentistry for Kids | Pediatric Dentist Grayslake, IL',
-    description:
-      'Keeping Lake County kids cavity-free since 1990. Cleanings, fluoride, sealants, and age-one first visits at Kids Dentist in Grayslake, IL.',
-    url: 'https://www.kidsdds.com/services/preventive-dentistry',
-    siteName: 'Kids Dentist',
-    locale: 'en_US',
-    type: 'website',
-  },
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'preventivePage' })
+  return {
+    title: t('metaTitle'),
+    description: t('metaDescription'),
+    alternates: { canonical: localizedUrl('/services/preventive-dentistry', locale), languages: localeAlternates('/services/preventive-dentistry') },
+    openGraph: {
+      title: t('metaTitle'),
+      description: t('metaDescription'),
+      url: localizedUrl('/services/preventive-dentistry', locale),
+      siteName: 'Kids Dentist',
+      locale: ogLocale(locale),
+      type: 'website',
+    },
+  }
 }
 
 const SERVICES_COVERED_META = [

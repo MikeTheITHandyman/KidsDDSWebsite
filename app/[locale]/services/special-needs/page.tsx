@@ -1,8 +1,9 @@
 import SubPageLayout from '@/components/SubPageLayout'
 import AnimatedSection from '@/components/AnimatedSection'
-import Link from 'next/link'
+import { Link } from '@/navigation'
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
+import { ogLocale, localizedUrl, localeAlternates } from '@/lib/seo'
 
 const serviceSchema = {
   '@context': 'https://schema.org',
@@ -38,20 +39,22 @@ const serviceSchema = {
   },
 }
 
-export const metadata: Metadata = {
-  title: 'Special Needs Pediatric Dentist | Kids Dentist Grayslake, IL',
-  description:
-    "Lake County's leading special needs children's dentist. Compassionate care for kids with autism, Down syndrome, cerebral palsy, ADHD, and sensory differences. Serving Grayslake, Libertyville, Waukegan, and Vernon Hills, IL.",
-  alternates: { canonical: 'https://www.kidsdds.com/services/special-needs' },
-  openGraph: {
-    title: 'Special Needs Pediatric Dentist | Kids Dentist Grayslake, IL',
-    description:
-      'Every child deserves excellent dental care. Kids Dentist provides specialized care for children with autism, Down syndrome, and complex needs across Lake County, IL.',
-    url: 'https://www.kidsdds.com/services/special-needs',
-    siteName: 'Kids Dentist',
-    locale: 'en_US',
-    type: 'website',
-  },
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'specialNeedsPage' })
+  return {
+    title: t('metaTitle'),
+    description: t('metaDescription'),
+    alternates: { canonical: localizedUrl('/services/special-needs', locale), languages: localeAlternates('/services/special-needs') },
+    openGraph: {
+      title: t('metaTitle'),
+      description: t('metaDescription'),
+      url: localizedUrl('/services/special-needs', locale),
+      siteName: 'Kids Dentist',
+      locale: ogLocale(locale),
+      type: 'website',
+    },
+  }
 }
 
 const WHO_WE_SERVE_META = ['🧩', '🧠', '💙', '🏃', '⚡', '🩺']
@@ -79,7 +82,7 @@ export default async function SpecialNeedsDentistryPage({ params }: { params: Pr
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema).replace(/</g, '\\u003c') }}
       />
       <SubPageLayout
       title={t('title')}
