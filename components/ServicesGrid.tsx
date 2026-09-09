@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
+import { Link } from '@/navigation'
 
 const SERVICE_CONFIG = [
   {
@@ -108,22 +109,30 @@ export default function ServicesGrid() {
                 transition: { type: 'spring', stiffness: 300, damping: 18 },
               }}
               whileTap={{ scale: 0.97 }}
-              style={svc.featured ? {
-                border: '2px solid rgba(120,80,155,0.32)',
-                boxShadow: '0 0 0 4px rgba(120,80,155,0.07), 0 4px 18px rgba(120,80,155,0.12)',
-              } : {}}
+              style={{
+                cursor: 'pointer',
+                ...(svc.featured ? {
+                  border: '2px solid rgba(120,80,155,0.32)',
+                  boxShadow: '0 0 0 4px rgba(120,80,155,0.07), 0 4px 18px rgba(120,80,155,0.12)',
+                } : {}),
+              }}
             >
-              <div className="service-icon" style={{ background: svc.iconBg }}>
-                {svc.icon}
-              </div>
-              <h3>{t(`${svc.key}.title`)}</h3>
-              <p>{t(`${svc.key}.description`)}</p>
-              <a href={svc.href} className="service-link">
-                {t(`${svc.key}.button`)}
-                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </a>
+              <Link
+                href={svc.href}
+                style={{ display: 'flex', flexDirection: 'column', flex: 1, textDecoration: 'none', color: 'inherit' }}
+              >
+                <div className="service-icon" style={{ background: svc.iconBg }}>
+                  {svc.icon}
+                </div>
+                <h3>{t(`${svc.key}.title`)}</h3>
+                <p>{t(`${svc.key}.description`)}</p>
+                <span className="service-link">
+                  {t(`${svc.key}.button`)}
+                  <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </span>
+              </Link>
             </motion.div>
           ))}
         </div>
