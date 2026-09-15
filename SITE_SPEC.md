@@ -22,7 +22,21 @@ This file is the **architecture and structure** half of a rebuild prompt. The **
 
 ## Changelog
 
-**Last updated:** 2026-09-09 (SITE_SPEC.md rebuild-grade overhaul) — Rewrote this document from a well-maintained changelog-plus-reference into a document explicitly structured to support single-prompt rebuilds (see new §0 above). Corrected several inaccuracies that had drifted in from recent work not yet reflected here: every app route lives under `app/[locale]/...`, not `app/...` as several older entries stated; the Header's flat "FAQ" nav item became a "Q&A" dropdown (General FAQ + Questions Parents Are Afraid to Ask) back in the 2026-08-20 pass but the nav-structure diagram in old §5 still showed the flat version; `/ask-the-doctor` was fully renamed to `/ask-us-a-question` (component `AskQuestionForm.tsx`) with the old path now a 301 redirect, but the route inventory and i18n table still referenced the old path/component; `/qa/parents-afraid-to-ask` (built 2026-08-20) had no row in the route inventory at all. Also folded in four small fixes made since the last changelog entry that hadn't been logged yet: **1.** `MeetOurDoctors.tsx` and the Meet-the-Dentists `DoctorGrid.tsx` — entire doctor cards are now clickable links to the bio page (previously only a small "Meet Dr. X ›" text link was), using a real `Link` wrapper so the links stay crawlable, with nested interactive elements (the read-bio toggle, the inline "Request Appointment" action) converted to `stopPropagation`-guarded controls so they don't also trigger card navigation. **2.** `ServicesGrid.tsx` — same full-card-click treatment for the homepage services grid. **3.** `SaveContactQR.tsx` — the "Save Our Contact Info" link now downloads a static vCard (`public/brand_assets/kids-dentist-contact.vcf`) instead of opening the Linktree URL; the QR *image* itself is unchanged and still encodes the Linktree URL when scanned by a phone camera, so the two intentionally point to different places now. **4.** `ReviewBubbles.tsx`'s "Share Your Experience" CTA now points at the same Linktree URL as the QR code (previously a hardcoded, imprecise Google Maps place link); `tour-our-office/page.tsx`'s "Get Directions" button now opens the practice's actual Google Maps place link (previously pointed at `/contact`). Added net-new sections that didn't exist before: §2.1 exact dependency table, §11 full Sanity schema field reference (all 6 schema files), §14.1 GA4 event catalog, §15 full `netlify.toml`/`next.config.ts` contents, §16 full file/folder structure. Renumbered sections 4 through 18 to accommodate.
+**Last updated:** 2026-09-15 (privacy policy, crawl/index hygiene, About/first-visit polish) — Several small requests handled in one session, several of which surfaced real site-wide issues worth documenting in full.
+
+**Privacy Policy:** New `/privacy` route (full privacy notice — data collected, sharing, cookies, opt-out, retention, security, international transfers, contact) wired up to the footer link, which previously 404'd since no page existed at that path. Added to `sitemap.ts` as real, indexable content. English-only for now (site-wide `metadata`/legal-text-in-Spanish gap, same known issue noted in §12).
+
+**Crawl/index hygiene — the big one:** Auditing why the on-site search surfaced a "Dental Financing" result that led to a raw "Under Construction" page turned up **21 byte-identical placeholder stub pages** across the site (all `'use client'`, `displayTitle = "Under Construction"`, same copy/markup) — see the new "Stub Pages" callout in §9 for the full list. Critically, **13 of the 21 were listed in `sitemap.ts`** with real priority weights (being actively submitted to Google as if they were finished pages) and **4 were linked from `SiteSearch.tsx`**'s static index. Fixed: added `<meta name="robots" content="noindex, nofollow">` to all 21 stubs (React 19's document-metadata hoisting lets a `'use client'` page do this without a server-component split); removed the 13 sitemap.ts entries; removed/fixed the SiteSearch.tsx entries pointing at stubs, two of which (`Nitrous Oxide Sedation`, `Same-Day Emergency Care`) were flat-out duplicates of already-correct entries pointing at the real `/services/*` routes instead. Net: the static search index dropped from ~31 to 24 entries. Also removed the footer's dead "Sitemap" link (`/sitemap` has no page, only the `/sitemap.xml` route the crawler-facing sitemap already covers) and its now-unused `sitemap` i18n key.
+
+This also corrected real drift in this document's §9 route inventory: the 4 "legacy duplicate doctor bio paths" and 4 "legacy top-level service routes" previously documented here as *"real duplicate pages, redirect candidates"* are actually 8 of the 21 "Under Construction" stubs, not real content — §9 is corrected below. **Not yet fixed, found in the course of this correction and left as a known gap:** a *second*, differently-templated set of 4 bare stub pages at `app/[locale]/about/meet-the-dentists/{sonia-gutierrez,dave-rutcosky,sahar-alrayyes,anne-ashley-compton}-dds/` — plain `<article><h1>{Name}, DDS</h1><p>Biography and credentials.</p></article>`, no noindex, not caught by the "Under Construction" audit because they don't share that template. See §9's Stub Pages callout.
+
+**About page (`/about`) formatting:** The Special Needs, Comfort & Sedation, and Insurance & Payment sections now share one consistent boxed treatment (tinted background, border, radius, padding) instead of Special Needs using a bare purple border-left accent bar and Insurance & Payment using no container at all — each section keeps its own accent color (purple/amber/teal). The office-photo mini-carousel ("An Office Built for Children") had all 4 slides (including the imageless "Our Team" placeholder) unified onto one shared DOM structure with a fixed-height bottom caption overlay, fixing both inconsistent box sizing and captions that didn't line up across slides.
+
+**`/for-patients/child-first-visit`:** Removed the emoji icons from the "Four Steps to a Happy Visit" cards (kept the number badges). Swapped the "Hear From Dr. Sonia" video link from an Instagram post to a YouTube video; updated the en/es copy from "on Instagram" to "on YouTube" to match. Also corrected another doc-drift item found in the process: this page does **not** use the `FirstVisitTimeline` component this document has long listed for it — it builds its 4-step grid inline from a local `STEP_META` array. `FirstVisitTimeline.tsx` exists in `components/` but, as far as a repo-wide search can tell, is not imported anywhere — likely vestigial, same category as the `styled-components` dependency noted in §2.1.
+
+Also removed the "Quick Answer" label (kept the answer box/body copy) from the AI-answer-engine summary block on `/services/sedation-dentistry` and `/services/special-needs`, and scrubbed em-dashes from all real site content — `messages/en.json`, `messages/es.json`, `public/llms.txt`, and the three transactional email subject/heading strings in `app/api/{appointment,contact,ask-doctor}/route.ts`. Em-dashes left alone inside code comments, since those aren't published content.
+
+**Previously (2026-09-09, SITE_SPEC.md rebuild-grade overhaul):** Rewrote this document from a well-maintained changelog-plus-reference into a document explicitly structured to support single-prompt rebuilds (see new §0 above). Corrected several inaccuracies that had drifted in from recent work not yet reflected here: every app route lives under `app/[locale]/...`, not `app/...` as several older entries stated; the Header's flat "FAQ" nav item became a "Q&A" dropdown (General FAQ + Questions Parents Are Afraid to Ask) back in the 2026-08-20 pass but the nav-structure diagram in old §5 still showed the flat version; `/ask-the-doctor` was fully renamed to `/ask-us-a-question` (component `AskQuestionForm.tsx`) with the old path now a 301 redirect, but the route inventory and i18n table still referenced the old path/component; `/qa/parents-afraid-to-ask` (built 2026-08-20) had no row in the route inventory at all. Also folded in four small fixes made since the last changelog entry that hadn't been logged yet: **1.** `MeetOurDoctors.tsx` and the Meet-the-Dentists `DoctorGrid.tsx` — entire doctor cards are now clickable links to the bio page (previously only a small "Meet Dr. X ›" text link was), using a real `Link` wrapper so the links stay crawlable, with nested interactive elements (the read-bio toggle, the inline "Request Appointment" action) converted to `stopPropagation`-guarded controls so they don't also trigger card navigation. **2.** `ServicesGrid.tsx` — same full-card-click treatment for the homepage services grid. **3.** `SaveContactQR.tsx` — the "Save Our Contact Info" link now downloads a static vCard (`public/brand_assets/kids-dentist-contact.vcf`) instead of opening the Linktree URL; the QR *image* itself is unchanged and still encodes the Linktree URL when scanned by a phone camera, so the two intentionally point to different places now. **4.** `ReviewBubbles.tsx`'s "Share Your Experience" CTA now points at the same Linktree URL as the QR code (previously a hardcoded, imprecise Google Maps place link); `tour-our-office/page.tsx`'s "Get Directions" button now opens the practice's actual Google Maps place link (previously pointed at `/contact`). Added net-new sections that didn't exist before: §2.1 exact dependency table, §11 full Sanity schema field reference (all 6 schema files), §14.1 GA4 event catalog, §15 full `netlify.toml`/`next.config.ts` contents, §16 full file/folder structure. Renumbered sections 4 through 18 to accommodate.
 
 **Previously (2026-08-31, blog post crash fix — bilingual title/excerpt rendered as raw objects):** `post.title`/`post.excerpt` are `localizedString`/`localizedText` objects (`{en, es}`) per the Sanity schema, but `BlogGrid.tsx`, `blog/[...slug]/page.tsx`, and the "latest post" announcement banner in the root layout (`app/[locale]/layout.tsx` → `Header.tsx`'s `latestPostTitle` prop) all rendered the field directly as if it were a plain string. This bug had been dormant because the only post in the dataset predated the bilingual schema migration and still stored `title` as a plain string; the first post authored through the current Studio schema crashed SSR rendering wherever its title was touched — including the root layout, which runs on every route — with React's "Objects are not valid as a React child." Because Next's ISR keeps serving the last successfully-built page when a background regeneration throws, the site appeared "stuck" on the old post for a full day rather than erroring outright, until a cache entry finally expired with nothing to fall back to and surfaced a hard 500 on `kidsddswebsite.netlify.app/blog`. Fixed by resolving `title`/`excerpt` to the requested `$locale` inside the GROQ queries themselves (`sanity/lib/queries.ts`: `allPostsQuery`, `searchPostsQuery`, `postBySlugQuery`, `latestPostQuery`), each via `coalesce(field[$locale], field.en, field)` — the trailing raw-field fallback covers legacy posts whose title/excerpt are still plain strings. `$locale` threaded through every call site: `blog/page.tsx` (previously didn't receive `params` at all), `blog/[...slug]/page.tsx` (`generateMetadata` and the page component), and `layout.tsx`'s `latestPostQuery` fetch.
 
@@ -327,7 +341,7 @@ The layout also server-fetches `latestPostQuery` (ISR 300s) and `allParentQuesti
 **Global Site Search** (`components/SiteSearch.tsx`):
 - Desktop: compact pill input, sole item in `.header-actions`
 - Mobile: icon button toggles a spring-animated slide-down search panel
-- Static ~31-item index covering service/FAQ/about/patient/contact routes, **merged at render time** with the Sanity-sourced `parentQuestion` results passed down from the layout (a `dynamic` flag distinguishes the two: static entries resolve display text via a compile-time `t(\`item${idx}Title\`)` i18n key lookup, Sanity-sourced entries already carry literal localized text)
+- Static 24-item index covering service/FAQ/about/patient/contact routes, **merged at render time** with the Sanity-sourced `parentQuestion` results passed down from the layout (a `dynamic` flag distinguishes the two: static entries resolve display text via a compile-time `t(\`item${idx}Title\`)` i18n key lookup, Sanity-sourced entries already carry literal localized text). Entries pointing at "Under Construction" stub pages were removed 2026-09-15 (was ~31 items) — see the §9 Stub Pages callout; only link a stub route here once it has real content.
 - Weighted scoring: title = 4pt, category = 2pt, keywords = 1pt, description = 0.5pt; top 6 results shown
 - Full keyboard navigation: ↑↓ navigate results, Enter navigates, Escape closes; ARIA `role="combobox"`/`role="listbox"`
 - `variant?: 'desktop' | 'mobile'`; `onNavigate?: () => void` callback; `extraItems?: SearchItem[]` for the Sanity-sourced results
@@ -397,7 +411,7 @@ Mon–Fri schedule (see §1 table above)
 
 **SEO service area block:** Inline paragraph naming Lake County cities (Grayslake, Waukegan, Libertyville, Mundelein, Vernon Hills, Lake Forest, Round Lake, Lindenhurst, Antioch, Gurnee, Zion).
 
-**Bottom bar:** Copyright (`{year}` interpolated), Privacy Policy (`/privacy`), Sitemap (`/sitemap`).
+**Bottom bar:** Copyright (`{year}` interpolated), Privacy Policy (`/privacy` — real page as of 2026-09-15, see §9). The bottom bar previously also linked "Sitemap" to `/sitemap`, which had no page (only the crawler-facing `/sitemap.xml` route existed); removed 2026-09-15 rather than building a redundant human-facing sitemap page.
 
 ---
 
@@ -418,7 +432,7 @@ Mon–Fri schedule (see §1 table above)
 | `SubPageLayout` | `components/SubPageLayout.tsx` | Inner-page wrapper with gradient hero band; props: `kicker`, `title` (`ReactNode`, not just `string` — needed for pages that break the title across a `<br/>` or `&`), `subtitle`, `gradient` (`'blue'`\|`'green'`\|`'amber'`) |
 | `AnimatedSection` | `components/AnimatedSection.tsx` | Scroll-triggered Framer Motion fade-in wrapper (props: `delay`, `direction`) |
 | `FaqAccordion` | `components/FaqAccordion.tsx` | Expand/collapse FAQ list; prop `accentColor` lets each page theme it |
-| `FirstVisitTimeline` | `components/FirstVisitTimeline.tsx` | 4-step animated first-visit timeline |
+| `FirstVisitTimeline` | `components/FirstVisitTimeline.tsx` | 4-step animated first-visit timeline. **Exists but, as of 2026-09-15, appears unused** — `/for-patients/child-first-visit` builds its own 4-step grid inline from a local `STEP_META` array instead of importing this component. Likely vestigial (same category as the unused `styled-components` dependency, §2.1) — verify before deleting. |
 | `AnnouncementBanner` | `components/AnnouncementBanner.tsx` | **Purple** Sanity-powered top bar; fetches featured event (`featuredEventQuery`, ISR 300s); links to `/about/recent-events/[slug]`; returns `null` if no event |
 | `BannerWrapper` | `components/BannerWrapper.tsx` | Client wrapper; hides `AnnouncementBanner` on `/studio` paths |
 | `FloatingWidget` | `components/FloatingWidget.tsx` | Persistent bottom-screen CTA widget; call + appointment pills fire GA events; hides the appointment CTA specifically on `/request-appointment` |
@@ -447,7 +461,9 @@ Mon–Fri schedule (see §1 table above)
 3. Cleaning & Fluoride
 4. The Toy Tower & Prize Box
 
-Also includes a 5-item preparation-tips section (`prepHeading` + `prep0`–`prep4`) shown before the CTA, and an embedded Instagram video link from Dr. Sonia under the "Age One Dental Visit" section.
+Rendered as a 4-card grid (`STEP_META` in `child-first-visit/page.tsx`, not the unused `FirstVisitTimeline` component — see §7); each card shows only its number badge as of 2026-09-15 (the per-step emoji icon was removed, number kept in the same top-right position).
+
+Also includes a 5-item preparation-tips section (`prepHeading` + `prep0`–`prep4`) shown before the CTA, and an embedded video link from Dr. Sonia under the "Age One Dental Visit" section — a YouTube video as of 2026-09-15 (previously an Instagram post).
 
 ---
 
@@ -531,6 +547,7 @@ All routes below live under `app/[locale]/` unless noted otherwise (only `/studi
 ### Status key
 - **Built** — complete, production-ready, real content
 - **Exists** — file exists, may still need content/polish
+- **Stub** — literal "Under Construction" placeholder (or equivalent bare filler), not real content; see the Stub Pages callout at the end of this section for the noindex/sitemap/search-index treatment each one needs
 - **Redirect** — legacy route; 301s to the canonical route in both `next.config.ts` and `netlify.toml`
 
 ---
@@ -538,7 +555,7 @@ All routes below live under `app/[locale]/` unless noted otherwise (only `/studi
 ### About Section
 | Route | Status | Notes |
 |---|---|---|
-| `/about` | **Built** | Philosophy block + `DoctorGrid` + office-photo mini-carousel (3 of 4 slides have real photos) + `OfficeTourPreview` + Recent Events teaser (4 real event photos) |
+| `/about` | **Built** | Philosophy block + `DoctorGrid` + office-photo mini-carousel (3 of 4 slides have real photos) + `OfficeTourPreview` + Recent Events teaser (4 real event photos). Special Needs / Comfort & Sedation / Insurance & Payment sections share one consistent boxed treatment as of 2026-09-15 (previously Special Needs used a bare border-left accent, Insurance & Payment had no container). Office-photo carousel slides unified onto one shared DOM structure (fixed-height caption overlay) so all 4 render the same size with captions lined up, including the imageless "Our Team" placeholder. |
 | `/about/meet-the-dentists` | **Built** | 4-card doctor listing; co-located `DoctorGrid.tsx`; entire card links to the bio page |
 | `/about/meet-the-dentists/dr-sonia-gutierrez` | **Built** | Async server component; full i18n via `drProfiles` + `about` |
 | `/about/meet-the-dentists/dr-dave-rutcosky` | **Built** | Async server component; full i18n via `drProfiles` + `about` |
@@ -548,18 +565,15 @@ All routes below live under `app/[locale]/` unless noted otherwise (only `/studi
 | `/about/tour-our-office` | **Built** | 4-space alternating layout, all real photos; "Get Directions" opens the real Google Maps place link |
 | `/about/recent-events` | Exists | `EventsGrid.tsx`, Sanity-powered (`event` documents) — likely an empty state today since no events have been published yet |
 | `/about/recent-events/[slug]` | Exists | Individual event detail |
-| `/about/community-involvement` | Exists | Community page |
+| `/about/community-involvement` | **Stub** | "Under Construction" placeholder — noindexed, removed from `sitemap.ts` 2026-09-15. See Stub Pages callout below. |
 | `/about/why-choose-us` | Exists | Differentiators page |
+| `/privacy` | **Built** | New 2026-09-15. Full privacy notice (data collected, sharing, cookies, opt-out, retention, security, international transfers, contact); wired to the footer's Privacy Policy link, which previously 404'd; in `sitemap.ts`. English-only — same site-wide legal/metadata-copy-not-translated gap noted in §12. |
 
-**Legacy / duplicate doctor bio paths (redirect candidates, not yet redirected):**
-- `app/[locale]/about/sonia-gutierrez-dds/` → should redirect to `/about/meet-the-dentists/dr-sonia-gutierrez`
-- `app/[locale]/about/dave-rutcosky-dds/` → should redirect to `/about/meet-the-dentists/dr-dave-rutcosky`
-- `app/[locale]/about/sahar-alrayyes-dds/` → should redirect to `/about/meet-the-dentists/dr-sahar-alrayyes`
-- `app/[locale]/about/anne-ashley-compton-dds/` → should redirect to `/about/meet-the-dentists/dr-anne-ashley-compton`
-- `app/[locale]/about/meet-the-dentists/sonia-gutierrez-dds/` → same
-- `app/[locale]/about/meet-the-dentists/dave-rutcosky-dds/` → same
-- `app/[locale]/about/meet-the-dentists/sahar-alrayyes-dds/` → same
-- `app/[locale]/about/meet-the-dentists/anne-ashley-compton-dds/` → same
+**Doctor bio duplicate paths — two unrelated sets, both non-canonical, neither redirected:**
+- `app/[locale]/about/{sonia-gutierrez,dave-rutcosky,sahar-alrayyes,anne-ashley-compton}-dds/` (4 routes) — one of the 21 "Under Construction" stub templates (see the Stub Pages callout below); **noindexed 2026-09-15**. Canonical: `/about/meet-the-dentists/dr-{name}`.
+- `app/[locale]/about/meet-the-dentists/{sonia-gutierrez,dave-rutcosky,sahar-alrayyes,anne-ashley-compton}-dds/` (4 routes) — a *different*, even barer stub template found 2026-09-15 while correcting this section: plain `<article><h1>{Name}, DDS</h1><p>Biography and credentials.</p></article>`, no styling, no `noindex`. Not caught by the "Under Construction" audit because it doesn't share that template — **still crawlable and indexable as of this writing; not yet fixed.** Canonical: same `/about/meet-the-dentists/dr-{name}` pages.
+
+Both sets predate this document's tracking of them as real duplicate content; they were not. The eventual fix for all 8 is a 301 redirect to the canonical bio page (matching the pattern already used for the `.html` legacy set in §12.1), not just `noindex` — `noindex` (applied to the first 4) stops indexing but still lets the URL be crawled and linked to.
 
 ---
 
@@ -573,19 +587,19 @@ All routes below live under `app/[locale]/` unless noted otherwise (only `/studi
 | `/services/sedation-dentistry` | Exists | Nitrous, oral sedation, general anesthesia; in-office anesthesiologist mention moved high on the page; `faq0-2` at the bottom |
 | `/services/special-needs` | Exists | Autism, Down syndrome, CP, SPD |
 | `/services/emergency` | **Built** | `EmergencyTriage` widget; no contact forms; emergency-type list (plain, not button-styled); "Knocked-Out Tooth" elevated with a bold "Act Within 30 Minutes" label |
-| `/services/checkups-and-cleanings` | Exists | Preventive detail |
+| `/services/checkups-and-cleanings` | **Stub** | "Under Construction" placeholder — noindexed, removed from `sitemap.ts` 2026-09-15. See Stub Pages callout below. |
 | `/services/orthodontics` | **Built** | Evaluation-and-referral only — no in-house braces/Invisalign; "What We Do"/"What We Don't Do" comparison + 3-question FAQ |
-| `/services/general-anesthesiology` | Exists | General anesthesia detail |
-| `/services/pulp-therapy` | Exists | Pulp therapy detail |
-| `/services/tooth-extractions` | Exists | Extractions detail |
+| `/services/general-anesthesiology` | **Stub** | "Under Construction" placeholder — noindexed, removed from `sitemap.ts` 2026-09-15. See Stub Pages callout below. |
+| `/services/pulp-therapy` | **Stub** | "Under Construction" placeholder — noindexed, removed from `sitemap.ts` 2026-09-15. See Stub Pages callout below. |
+| `/services/tooth-extractions` | **Stub** | "Under Construction" placeholder — noindexed, removed from `sitemap.ts` 2026-09-15. Also removed from the `SiteSearch.tsx` index the same day. See Stub Pages callout below. |
 
-**Legacy top-level service routes (real duplicate pages, redirect candidates, not yet redirected):**
-- `app/[locale]/preventive-dentistry/page.tsx` → should redirect to `/services/preventive-dentistry`
-- `app/[locale]/special-needs-dentistry/page.tsx` → should redirect to `/services/special-needs`
-- `app/[locale]/nitrous-oxide-sedation/page.tsx` → should redirect to `/services/sedation-dentistry`
-- `app/[locale]/emergency-dentistry/page.tsx` → should redirect to `/services/emergency`
+**Legacy top-level service routes — confirmed "Under Construction" stubs 2026-09-15, not real duplicate pages as this document previously (incorrectly) stated. All noindexed the same day; not yet redirected:**
+- `app/[locale]/preventive-dentistry/page.tsx` → canonical: `/services/preventive-dentistry`
+- `app/[locale]/special-needs-dentistry/page.tsx` → canonical: `/services/special-needs`
+- `app/[locale]/nitrous-oxide-sedation/page.tsx` → canonical: `/services/sedation-dentistry`. Also removed from the `SiteSearch.tsx` index 2026-09-15 (was a straight duplicate of the "Sedation Dentistry" entry already pointing at the canonical route).
+- `app/[locale]/emergency-dentistry/page.tsx` → canonical: `/services/emergency`. Also removed from the `SiteSearch.tsx` index 2026-09-15 (was a straight duplicate of the "Emergency Dentistry" entry already pointing at the canonical route).
 
-(These are distinct from the `.html`-suffixed legacy URLs in §12.1, which *are* already redirected — these extension-less duplicates are not.)
+(These are distinct from the `.html`-suffixed legacy URLs in §12.1, which *are* already redirected — these extension-less duplicates are not; `noindex` is a stopgap, not a substitute for the eventual 301.)
 
 ---
 
@@ -593,11 +607,11 @@ All routes below live under `app/[locale]/` unless noted otherwise (only `/studi
 | Route | Status | Notes |
 |---|---|---|
 | `/for-patients` | **Built** | `SubPageLayout` + 3 gradient resource cards (First Visit / Patient Forms / Insurance) + bottom CTA |
-| `/for-patients/child-first-visit` | Exists | Uses `FirstVisitTimeline`; includes a Dr. Sonia Instagram video embed |
-| `/for-patients/patient-info` | Exists | Patient info hub |
+| `/for-patients/child-first-visit` | Exists | Builds its own 4-step grid inline (`STEP_META`), not `FirstVisitTimeline` — see §7. Steps show only a number badge as of 2026-09-15 (emoji icon removed). Embedded video link from Dr. Sonia now points to YouTube (was Instagram, swapped 2026-09-15) under the "Age One Dental Visit" section. |
+| `/for-patients/patient-info` | **Stub** | "Under Construction" placeholder — noindexed, removed from `sitemap.ts` and the `SiteSearch.tsx` index 2026-09-15. See Stub Pages callout below. |
 | `/for-patients/patient-forms` | **Built** | Express Check-In orange callout → real Patient Manager portal URL, opens in new tab; 2 PDF download cards (New Patient Registration, Dental History Questionnaire); PDFs at `public/forms/` |
 | `/for-patients/insurance-info` | **Built** | In-network providers (5 with real wordmark logos, 2 text-only), financing, "Don't see your plan?" callout under the page subtitle |
-| `/for-patients/dental-financing` | Exists | CareCredit / financing detail |
+| `/for-patients/dental-financing` | **Stub** | "Under Construction" placeholder — this is the page a parent hit via `SiteSearch` that prompted the whole 2026-09-15 stub audit (see the Stub Pages callout below). Noindexed, removed from `sitemap.ts` and the `SiteSearch.tsx` index the same day. |
 
 **Insurance page details:**
 - In-network (7 providers): Aetna, Cigna, Delta Dental Premier, Guardian, Lincoln Financial, Principal, United Healthcare — **no Medicaid/CHIP**. Real wordmark logos for Aetna, Delta Dental Premier, Guardian, Principal, United Healthcare (`public/brand_assets/insurance-logos/`); Cigna carries a `cignaNote` ("Total DPPO only"); Lincoln Financial is name-only.
@@ -608,21 +622,21 @@ All routes below live under `app/[locale]/` unless noted otherwise (only `/studi
 ---
 
 ### Who We Treat Section
-| Route | Status |
-|---|---|
-| `/who-we-treat` | Exists |
-| `/who-we-treat/childrens-dentistry` | Exists |
-| `/who-we-treat/dentistry-for-toddlers` | Exists |
-| `/who-we-treat/advanced-dental-technology` | Exists |
+| Route | Status | Notes |
+|---|---|---|
+| `/who-we-treat` | Exists | |
+| `/who-we-treat/childrens-dentistry` | **Stub** | "Under Construction" placeholder — noindexed, removed from `sitemap.ts` 2026-09-15. See Stub Pages callout below. |
+| `/who-we-treat/dentistry-for-toddlers` | **Stub** | "Under Construction" placeholder — noindexed, removed from `sitemap.ts` 2026-09-15. See Stub Pages callout below. |
+| `/who-we-treat/advanced-dental-technology` | **Stub** | "Under Construction" placeholder — noindexed, removed from `sitemap.ts` 2026-09-15. See Stub Pages callout below. |
 
 ---
 
 ### Reviews Section
-| Route | Status |
-|---|---|
-| `/reviews` | Exists |
-| `/reviews/written-reviews` | Exists |
-| `/reviews/video-testimonials` | Exists |
+| Route | Status | Notes |
+|---|---|---|
+| `/reviews` | Exists | |
+| `/reviews/written-reviews` | **Stub** | "Under Construction" placeholder — noindexed, removed from `sitemap.ts` 2026-09-15. See Stub Pages callout below. |
+| `/reviews/video-testimonials` | **Stub** | "Under Construction" placeholder — noindexed, removed from `sitemap.ts` 2026-09-15. See Stub Pages callout below. |
 
 ---
 
@@ -640,12 +654,34 @@ All routes below live under `app/[locale]/` unless noted otherwise (only `/studi
 | Route | Status | Notes |
 |---|---|---|
 | `/contact` | Exists | Uses `ContactContent.tsx`; split contact info + form + `SaveContactQR`; office info card shows the QR to the right of the address |
-| `/contact/office-info` | Exists | Office detail page |
+| `/contact/office-info` | **Stub** | "Under Construction" placeholder — noindexed, removed from `sitemap.ts` 2026-09-15. See Stub Pages callout below. |
 | `/request-appointment` | Exists | Uses `AppointmentForm.tsx`; primary conversion page. Sidebar order: "Prefer to call?"/QR card **first**, "Why Families Choose Us" card second |
 | `/ask-us-a-question` | **Built** | Uses `AskQuestionForm.tsx`. **Renamed from `/ask-the-doctor`** — the old path is a 301 redirect (see §12.1), old component was `AskDoctorForm.tsx`. Medical-emergency disclaimer at top; `SaveContactQR` sidebar box |
 | `/pay` | **Built** | Dedicated online payment page — `SubPageLayout`, `PayNowForm` (HostedPayNow POST), trust badges, phone fallback |
 | `/referral-portal` | **Built** | B2B partner referral portal — `ReferralForm.tsx`, HIPAA live-status indicator, Resend email, GA event `partner_referral_submitted` |
 | `/studio` | Built | Sanity Studio, outside the `[locale]` segment |
+
+---
+
+### Stub Pages — crawl/index hygiene (audited 2026-09-15)
+
+The site accumulated **21 byte-identical "Under Construction" placeholder pages** (all `'use client'`, `PlaceholderPage` component, `displayTitle = "Under Construction"`, same copy/markup/"Return Home" button) at real, linkable routes. Before 2026-09-15 none of them carried `noindex`, 13 were actively listed in `sitemap.ts`, and 4 were linked from the static `SiteSearch.tsx` index — meaning Google was being told to index them and the on-site search was actively surfacing them to visitors as if they were finished pages. (This is how one parent's search for "Dental Financing" landed on a raw placeholder.)
+
+**Fix applied to all 21, 2026-09-15:** added `<meta name="robots" content="noindex, nofollow">` inside each page (React 19's document-metadata hoisting — `<meta>` rendered anywhere in a client component's tree gets hoisted into `<head>`, including on the initial SSR response, so this works without splitting each stub into a server+client pair just to use the `metadata` export). The 13 that were in `sitemap.ts` were removed from it; the 4 linked from `SiteSearch.tsx` were removed from that index too (2 of the 4 — `nitrous-oxide-sedation`, `emergency-dentistry` — were also flat duplicates of already-correct search entries pointing at the real `/services/*` page, so those entries stayed, just repointed at nothing extra).
+
+**The 21 routes** (grouped by section — see each section's table above for individual notes):
+- `/about/community-involvement`
+- `/about/{sonia-gutierrez,dave-rutcosky,sahar-alrayyes,anne-ashley-compton}-dds` (4) — duplicate doctor bio paths, canonical is `/about/meet-the-dentists/dr-{name}`
+- `/services/{checkups-and-cleanings,general-anesthesiology,pulp-therapy,tooth-extractions}` (4)
+- `/preventive-dentistry`, `/special-needs-dentistry`, `/nitrous-oxide-sedation`, `/emergency-dentistry` (4) — legacy top-level duplicates of `/services/*` pages
+- `/for-patients/{patient-info,dental-financing}` (2)
+- `/who-we-treat/{childrens-dentistry,dentistry-for-toddlers,advanced-dental-technology}` (3)
+- `/reviews/{written-reviews,video-testimonials}` (2)
+- `/contact/office-info` (1)
+
+**`noindex` is a stopgap, not the end state.** For the 8 routes that duplicate a canonical page under a different URL (the doctor bios and the 4 legacy top-level service routes), the correct long-term fix is a 301 redirect to the canonical page, matching the pattern already established for the `.html` legacy set in §12.1 — that hasn't been done yet. For the other 13, which have no canonical equivalent, the correct long-term fix is building real content and removing `noindex`/re-adding to `sitemap.ts`.
+
+**Known gap, found but not fixed in this pass:** a *second*, differently-templated set of 4 bare stub pages at `/about/meet-the-dentists/{sonia-gutierrez,dave-rutcosky,sahar-alrayyes,anne-ashley-compton}-dds` (plain `<article><h1>{Name}, DDS</h1><p>Biography and credentials.</p></article>`, no styling, no `noindex`) was not caught by this audit because it doesn't use the "Under Construction" template the audit searched for. Still crawlable and indexable as of this writing. See the About Section notes above.
 
 ---
 
@@ -784,9 +820,11 @@ export const metadata: Metadata = {
 **Global schema:** `Dentist` JSON-LD in `app/[locale]/layout.tsx` — covers name, address, geo, phone, hours, medicalSpecialty, sameAs.
 
 **Known SEO issues to address:**
-- Multiple duplicate doctor bio routes and duplicate service routes (see §9) — not yet redirected, only the `.html`-suffixed legacy set is.
+- 8 duplicate doctor bio routes and duplicate service routes (see §9's Stub Pages callout) — `noindex`ed 2026-09-15 for 4 of the 8 (the top-level doctor bio dupes and the 4 legacy top-level service routes), but none are actually 301-redirected to their canonical page yet; only the `.html`-suffixed legacy set is (§12.1).
+- A second, undiscovered-until-2026-09-15 set of 4 bare doctor-bio stub pages at `/about/meet-the-dentists/*-dds` — not yet `noindex`ed, not yet redirected. See §9's Stub Pages callout.
+- 13 other "Under Construction" placeholder routes with no canonical equivalent — `noindex`ed and removed from `sitemap.ts` 2026-09-15, but still need real content built before that treatment can come off. See §9's Stub Pages callout.
 - Schema.org hours vs. Footer hours discrepancy (§1).
-- Page `metadata`/JSON-LD is English-only sitewide — a known, not-yet-addressed gap (every other piece of UI copy is bilingual).
+- Page `metadata`/JSON-LD is English-only sitewide, including the new `/privacy` page added 2026-09-15 — a known, not-yet-addressed gap (every other piece of UI copy is bilingual).
 
 ### 12.1 Legacy → Modern 301 Redirect Map
 

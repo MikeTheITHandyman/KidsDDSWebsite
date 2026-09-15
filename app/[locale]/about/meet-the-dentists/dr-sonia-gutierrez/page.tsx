@@ -108,7 +108,7 @@ export default async function DrSoniaPage({
               >
                 <Link
                   href="/request-appointment?dentist=dr-sonia-gutierrez"
-                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.45rem', background: 'linear-gradient(135deg, #E8934F, #E97D63)', color: '#fff', fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '0.9rem', padding: '0.8rem 1.5rem', borderRadius: '100px', textDecoration: 'none', boxShadow: '0 4px 16px rgba(232,147,79,0.35)', marginBottom: '0.75rem' }}
+                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.45rem', background: 'linear-gradient(135deg, var(--accent-500) 0%, var(--cta-coral) 100%)', color: '#fff', fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '0.9rem', padding: '0.8rem 1.5rem', borderRadius: '100px', textDecoration: 'none', boxShadow: '0 4px 16px rgba(239,108,26,0.52)', marginBottom: '0.75rem' }}
                 >
                   {t('sonia_bookBtn')}
                 </Link>

@@ -586,7 +586,7 @@ export default async function ChildFirstVisitPage({ params }: { params: Promise<
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '0.45rem',
-                  background: 'linear-gradient(135deg, #E8934F, #E97D63)',
+                  background: 'linear-gradient(135deg, var(--accent-500) 0%, var(--cta-coral) 100%)',
                   color: '#fff',
                   fontFamily: 'Nunito, sans-serif',
                   fontWeight: 800,
@@ -594,7 +594,7 @@ export default async function ChildFirstVisitPage({ params }: { params: Promise<
                   padding: '0.85rem 2rem',
                   borderRadius: '100px',
                   textDecoration: 'none',
-                  boxShadow: '0 6px 22px rgba(232,147,79,0.35)',
+                  boxShadow: '0 6px 22px rgba(239,108,26,0.52)',
                 }}
               >
                 {t('ctaAppointment')}

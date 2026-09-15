@@ -217,7 +217,7 @@ export default async function RestorativeDentistryPage({ params }: { params: Pro
               href="/request-appointment"
               style={{
                 display: 'inline-flex', alignItems: 'center', gap: '0.45rem',
-                background: '#fff', color: '#E8934F', fontFamily: 'Nunito, sans-serif',
+                background: '#fff', color: 'var(--accent-500)', fontFamily: 'Nunito, sans-serif',
                 fontWeight: 800, fontSize: '0.95rem', padding: '0.9rem 2.25rem',
                 borderRadius: '100px', textDecoration: 'none',
                 boxShadow: '0 6px 22px rgba(0,0,0,0.12)',

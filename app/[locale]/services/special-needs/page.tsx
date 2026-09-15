@@ -241,10 +241,10 @@ export default async function SpecialNeedsDentistryPage({ params }: { params: Pr
                 href="/request-appointment"
                 style={{
                   display: 'inline-flex', alignItems: 'center', gap: '0.45rem',
-                  background: '#E8934F', color: '#fff', fontFamily: 'Nunito, sans-serif',
+                  background: 'linear-gradient(135deg, var(--accent-500) 0%, var(--cta-coral) 100%)', color: '#fff', fontFamily: 'Nunito, sans-serif',
                   fontWeight: 800, fontSize: '0.95rem', padding: '0.9rem 2rem',
                   borderRadius: '100px', textDecoration: 'none',
-                  boxShadow: '0 6px 22px rgba(232,147,79,0.45)',
+                  boxShadow: '0 6px 22px rgba(239,108,26,0.52)',
                 }}
               >
                 {t('ctaAppointment')}

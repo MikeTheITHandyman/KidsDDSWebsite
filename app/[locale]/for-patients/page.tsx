@@ -165,7 +165,7 @@ export default async function ForPatientsPage({ params }: { params: Promise<{ lo
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '0.45rem',
-                  background: 'linear-gradient(135deg, #E8934F, #E97D63)',
+                  background: 'linear-gradient(135deg, var(--accent-500) 0%, var(--cta-coral) 100%)',
                   color: '#fff',
                   fontFamily: 'Nunito, sans-serif',
                   fontWeight: 800,

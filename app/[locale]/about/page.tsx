@@ -836,8 +836,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '0.45rem',
-                  background: 'rgba(255,255,255,0.18)',
-                  border: '2px solid rgba(255,255,255,0.5)',
+                  background: 'linear-gradient(135deg, var(--accent-500) 0%, var(--cta-coral) 100%)',
                   color: '#fff',
                   fontFamily: 'Nunito, sans-serif',
                   fontWeight: 800,
@@ -845,7 +844,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                   padding: '0.85rem 2rem',
                   borderRadius: '100px',
                   textDecoration: 'none',
-                  backdropFilter: 'blur(6px)',
+                  boxShadow: '0 6px 22px rgba(239,108,26,0.52)',
                 }}
               >
                 {tPage('ctaAppointment')}

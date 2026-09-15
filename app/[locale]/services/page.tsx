@@ -61,12 +61,10 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
     >
       <div className="mx-auto max-w-6xl px-4">
 
-        {/* Services grid - 5 cards */}
+        {/* Services grid - 5 cards, one row on desktop */}
         <div
+          className="services-page-grid"
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-            gap: '1.5rem',
             marginBottom: '5rem',
           }}
         >
@@ -276,7 +274,7 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '0.45rem',
-                  background: 'linear-gradient(135deg, #E8934F, #E97D63)',
+                  background: 'linear-gradient(135deg, var(--accent-500) 0%, var(--cta-coral) 100%)',
                   color: '#fff',
                   fontFamily: 'Nunito, sans-serif',
                   fontWeight: 800,
@@ -284,7 +282,7 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
                   padding: '0.85rem 2rem',
                   borderRadius: '100px',
                   textDecoration: 'none',
-                  boxShadow: '0 6px 22px rgba(232,147,79,0.35)',
+                  boxShadow: '0 6px 22px rgba(239,108,26,0.52)',
                 }}
               >
                 {t('ctaAppointment')}
@@ -320,6 +318,20 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
         .service-card:hover {
           transform: translateY(-5px);
           box-shadow: 0 16px 40px rgba(0,0,0,0.10);
+        }
+        .services-page-grid {
+          display: grid;
+          grid-template-columns: repeat(5, 1fr);
+          gap: 1.25rem;
+        }
+        @media (max-width: 1024px) {
+          .services-page-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 640px) {
+          .services-page-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 420px) {
+          .services-page-grid { grid-template-columns: 1fr; }
         }
       `}</style>
     </SubPageLayout>

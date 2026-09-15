@@ -329,15 +329,16 @@ export default async function ReferralPortalPage() {
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '0.3rem',
-                  color: '#4A90A4',
+                  background: 'linear-gradient(135deg, var(--accent-500) 0%, var(--cta-coral) 100%)',
+                  color: '#fff',
                   fontFamily: 'Nunito, sans-serif',
                   fontWeight: 800,
                   fontSize: '0.78rem',
                   textDecoration: 'none',
                   whiteSpace: 'nowrap',
-                  border: '1.5px solid rgba(74,144,164,0.28)',
                   padding: '0.45rem 0.9rem',
                   borderRadius: '100px',
+                  boxShadow: '0 4px 14px rgba(239,108,26,0.45)',
                 }}
                 aria-label={t('bookNowAria')}
               >

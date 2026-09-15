@@ -215,7 +215,7 @@ export default function DoctorGrid() {
                           display: 'inline-flex',
                           alignItems: 'center',
                           gap: '0.4rem',
-                          background: 'linear-gradient(135deg, #E8934F, #E97D63)',
+                          background: 'linear-gradient(135deg, var(--accent-500) 0%, var(--cta-coral) 100%)',
                           border: 'none',
                           color: '#fff',
                           fontFamily: 'Nunito, sans-serif',
@@ -225,7 +225,7 @@ export default function DoctorGrid() {
                           borderRadius: '100px',
                           textDecoration: 'none',
                           marginBottom: '1.1rem',
-                          boxShadow: '0 4px 14px rgba(232,147,79,0.32)',
+                          boxShadow: '0 4px 14px rgba(239,108,26,0.45)',
                           cursor: 'pointer',
                         }}
                       >
@@ -344,7 +344,7 @@ export default function DoctorGrid() {
             display: 'inline-flex',
             alignItems: 'center',
             gap: '0.5rem',
-            background: 'var(--accent-500)',
+            background: 'linear-gradient(135deg, var(--accent-500) 0%, var(--cta-coral) 100%)',
             color: '#fff',
             fontFamily: 'Nunito, sans-serif',
             fontWeight: 800,
@@ -352,7 +352,7 @@ export default function DoctorGrid() {
             padding: '0.9rem 2.25rem',
             borderRadius: '100px',
             textDecoration: 'none',
-            boxShadow: '0 6px 22px rgba(239,108,26,0.45)',
+            boxShadow: '0 6px 22px rgba(239,108,26,0.52)',
           }}
         >
           {tMeet('ctaButton')}
