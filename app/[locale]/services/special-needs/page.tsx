@@ -104,9 +104,6 @@ export default async function SpecialNeedsDentistryPage({ params }: { params: Pr
             marginBottom: '2.5rem',
           }}
         >
-          <span style={{ display: 'block', fontFamily: 'Nunito, sans-serif', fontSize: '0.68rem', fontWeight: 900, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#6BA899', marginBottom: '0.4rem' }}>
-            {t('quickAnswerLabel')}
-          </span>
           <p style={{ fontFamily: 'Nunito, sans-serif', fontSize: '0.94rem', fontWeight: 600, color: '#4b5563', lineHeight: 1.68, margin: 0 }}>
             {t('quickAnswerBody')}
           </p>

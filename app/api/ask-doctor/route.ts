@@ -42,7 +42,7 @@ export async function POST(req: NextRequest) {
       replyTo: email,
       subject: `[Ask the Doctor] New Question from ${parentName}`,
       react: React.createElement(InternalOfficeAlert, {
-        heading: 'Ask the Doctor — New Question',
+        heading: 'Ask the Doctor: New Question',
         name: parentName,
         email,
         phone,

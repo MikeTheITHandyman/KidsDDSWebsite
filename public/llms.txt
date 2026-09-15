@@ -34,5 +34,5 @@ Our practice features four board-certified pediatric dental specialists (DDS, MS
 
 ## Frequently Asked Questions
 Structured, extractable Q&A content (marked up with schema.org FAQPage data) is available at:
-* https://www.kidsdds.com/faq — general pediatric dental questions
-* https://www.kidsdds.com/qa/parents-afraid-to-ask — sensitive/hesitant-to-ask parent questions
+* https://www.kidsdds.com/faq: general pediatric dental questions
+* https://www.kidsdds.com/qa/parents-afraid-to-ask: sensitive/hesitant-to-ask parent questions

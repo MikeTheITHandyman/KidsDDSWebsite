@@ -43,16 +43,14 @@ const RAW_SEARCH_INDEX: Omit<SearchItem, 'idx'>[] = [
   { title: 'Emergency Dentistry', description: 'Same-day appointments for knocked-out teeth, sudden pain, or trauma.', href: '/services/emergency', category: 'Services', keywords: 'emergency urgent knocked out tooth pain trauma toothache swelling broken cracked' },
   { title: 'Orthodontics', description: 'Early orthodontic evaluation to guide proper tooth development.', href: '/services/orthodontics', category: 'Services', keywords: 'braces orthodontics alignment crooked teeth bite malocclusion' },
   { title: 'Pulp Therapy', description: "Treatment to save a tooth's infected or injured pulp tissue.", href: '/services/pulp-therapy', category: 'Services', keywords: 'pulp therapy root canal baby tooth nerve infection pulpotomy' },
-  { title: 'Tooth Extractions', description: 'Gentle, compassionate removal when a tooth cannot be saved.', href: '/services/tooth-extractions', category: 'Services', keywords: 'extraction remove tooth pull pulled loose baby tooth' },
-  { title: 'General Anesthesia', description: 'In-office general anesthesia for comprehensive treatment cases.', href: '/services/general-anesthesiology', category: 'Services', keywords: 'general anesthesia sleep dentistry comprehensive treatment IV sedation' },
-  { title: 'Nitrous Oxide Sedation', description: 'Safe, mild laughing gas for a relaxed, comfortable experience.', href: '/nitrous-oxide-sedation', category: 'Services', keywords: 'nitrous oxide laughing gas happy gas sedation mild calm comfortable' },
+  // Tooth Extractions, General Anesthesia, and Nitrous Oxide Sedation are still
+  // "Under Construction" placeholders — omitted from search until real content ships.
   // For Patients
   { title: 'My First Visit', description: "What to expect at your child's first appointment, no surprises.", href: '/for-patients/child-first-visit', category: 'For Patients', keywords: 'first visit new patient what to expect baby first appointment infant toddler preparation' },
   { title: 'Insurance Information', description: 'In-network with Aetna, Cigna, Delta Dental Premier, Guardian, Lincoln Financial, Principal, and United Healthcare.', href: '/for-patients/insurance-info', category: 'For Patients', keywords: 'insurance delta dental aetna cigna guardian lincoln financial principal united healthcare billing coverage ppo accepted plans in-network' },
   { title: 'Patient Forms', description: 'Download registration forms to complete before your appointment.', href: '/for-patients/patient-forms', category: 'For Patients', keywords: 'forms paperwork registration new patient download fill out medical history' },
-  { title: 'Dental Financing', description: 'Flexible payment options to make pediatric dental care accessible.', href: '/for-patients/dental-financing', category: 'For Patients', keywords: 'financing payment plan options cost affordable monthly' },
   { title: 'Pay Your Bill Online', description: 'Securely pay your balance through our patient billing portal.', href: '/pay', category: 'For Patients', keywords: 'pay bill payment online billing balance account invoice statement' },
-  { title: 'Patient Information', description: 'Everything new and returning patients need before their visit.', href: '/for-patients/patient-info', category: 'For Patients', keywords: 'patient info information what to bring policies procedures' },
+  // Patient Information is still an "Under Construction" placeholder — omitted from search.
   // About
   { title: 'About Our Practice', description: "Why Grayslake families choose Kids Dentist for pediatric care.", href: '/about', category: 'About', keywords: 'about practice why choose us grayslake pediatric dental history' },
   { title: 'Meet the Dentists', description: 'Drs. Gutierrez, Rutcosky, Alrayyes, and Compton, our specialists.', href: '/about/meet-the-dentists', category: 'About', keywords: 'doctors dentists gutierrez rutcosky alrayyes compton sonia dave sahar anne-ashley specialists' },
@@ -70,7 +68,8 @@ const RAW_SEARCH_INDEX: Omit<SearchItem, 'idx'>[] = [
   { title: 'Blog & Dental Tips', description: 'Expert pediatric dental tips, news, and parent guides from our doctors.', href: '/blog', category: 'Blog', keywords: 'blog articles tips news dental advice parents guide health' },
   { title: 'Ask Us a Question', description: 'Send dental questions directly to our doctors.', href: '/ask-us-a-question', category: 'Contact', keywords: 'ask question doctor dentist answer advice concern inquiry message' },
   { title: 'Patient Reviews', description: "Read what Grayslake families say about Kids Dentist's care.", href: '/reviews', category: 'About', keywords: 'reviews testimonials google patients experience rating 5 star feedback' },
-  { title: 'Same-Day Emergency Care', description: 'Dental emergencies seen same day. Call (847) 223-1400 immediately.', href: '/emergency-dentistry', category: 'Services', keywords: 'emergency dental urgent toothache trauma knocked tooth 847 call same day' },
+  // "Same-Day Emergency Care" duplicated the Emergency Dentistry entry above but pointed at
+  // the old /emergency-dentistry placeholder route instead of /services/emergency — removed.
 ]
 
 const SEARCH_INDEX: SearchItem[] = RAW_SEARCH_INDEX.map((item, idx) => ({ ...item, idx }))

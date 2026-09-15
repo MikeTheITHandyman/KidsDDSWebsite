@@ -29,24 +29,21 @@ const ROUTES: RouteMeta[] = [
   { path: '/services/sedation-dentistry', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/services/special-needs', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/services/emergency', changeFrequency: 'monthly', priority: 0.8 },
-  { path: '/services/checkups-and-cleanings', changeFrequency: 'monthly', priority: 0.7 },
   { path: '/services/orthodontics', changeFrequency: 'monthly', priority: 0.7 },
-  { path: '/services/general-anesthesiology', changeFrequency: 'monthly', priority: 0.7 },
-  { path: '/services/pulp-therapy', changeFrequency: 'monthly', priority: 0.7 },
-  { path: '/services/tooth-extractions', changeFrequency: 'monthly', priority: 0.7 },
+  // checkups-and-cleanings, general-anesthesiology, pulp-therapy, tooth-extractions are
+  // still "Under Construction" placeholders (noindex) — omitted here until real content ships.
 
   // ── For Patients ──────────────────────────────────────────────────────
   { path: '/for-patients', changeFrequency: 'monthly', priority: 0.75 },
   { path: '/for-patients/insurance-info', changeFrequency: 'monthly', priority: 0.75 },
   { path: '/for-patients/patient-forms', changeFrequency: 'monthly', priority: 0.7 },
-  { path: '/for-patients/patient-info', changeFrequency: 'monthly', priority: 0.65 },
-  { path: '/for-patients/dental-financing', changeFrequency: 'monthly', priority: 0.65 },
+  // patient-info, dental-financing are still "Under Construction" placeholders (noindex)
+  // — omitted here until real content ships.
 
   // ── Who We Treat ──────────────────────────────────────────────────────
   { path: '/who-we-treat', changeFrequency: 'monthly', priority: 0.7 },
-  { path: '/who-we-treat/childrens-dentistry', changeFrequency: 'monthly', priority: 0.65 },
-  { path: '/who-we-treat/dentistry-for-toddlers', changeFrequency: 'monthly', priority: 0.65 },
-  { path: '/who-we-treat/advanced-dental-technology', changeFrequency: 'monthly', priority: 0.65 },
+  // childrens-dentistry, dentistry-for-toddlers, advanced-dental-technology are still
+  // "Under Construction" placeholders (noindex) — omitted here until real content ships.
 
   // ── About ─────────────────────────────────────────────────────────────
   { path: '/about', changeFrequency: 'monthly', priority: 0.7 },
@@ -58,13 +55,14 @@ const ROUTES: RouteMeta[] = [
   { path: '/about/meet-the-team', changeFrequency: 'monthly', priority: 0.6 },
   { path: '/about/tour-our-office', changeFrequency: 'yearly', priority: 0.55 },
   { path: '/about/recent-events', changeFrequency: 'weekly', priority: 0.6 },
-  { path: '/about/community-involvement', changeFrequency: 'monthly', priority: 0.55 },
   { path: '/about/why-choose-us', changeFrequency: 'monthly', priority: 0.6 },
+  // community-involvement is still an "Under Construction" placeholder (noindex)
+  // — omitted here until real content ships.
 
   // ── Reviews ───────────────────────────────────────────────────────────
   { path: '/reviews', changeFrequency: 'weekly', priority: 0.65 },
-  { path: '/reviews/written-reviews', changeFrequency: 'weekly', priority: 0.6 },
-  { path: '/reviews/video-testimonials', changeFrequency: 'monthly', priority: 0.55 },
+  // written-reviews, video-testimonials are still "Under Construction" placeholders (noindex)
+  // — omitted here until real content ships.
 
   // ── Q&A / Blog ────────────────────────────────────────────────────────
   { path: '/blog', changeFrequency: 'weekly', priority: 0.7 },
@@ -73,8 +71,10 @@ const ROUTES: RouteMeta[] = [
 
   // ── Utility ───────────────────────────────────────────────────────────
   { path: '/ask-us-a-question', changeFrequency: 'monthly', priority: 0.6 },
-  { path: '/contact/office-info', changeFrequency: 'monthly', priority: 0.6 },
   { path: '/pay', changeFrequency: 'yearly', priority: 0.4 },
+  { path: '/privacy', changeFrequency: 'yearly', priority: 0.3 },
+  // contact/office-info is still an "Under Construction" placeholder (noindex)
+  // — omitted here until real content ships.
 ]
 
 function urlFor(path: string, locale: string): string {

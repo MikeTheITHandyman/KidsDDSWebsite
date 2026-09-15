@@ -103,7 +103,7 @@ export default async function ChildFirstVisitPage({ params }: { params: Promise<
                 {t('ageRuleBodySuffix')}
               </p>
               <a
-                href="https://www.instagram.com/p/DbGngM-Bvu0/"
+                href="https://youtu.be/3WFJMJcWXvc?si=_SfSb6jaNxwEsgUV"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
@@ -426,12 +426,9 @@ export default async function ChildFirstVisitPage({ params }: { params: Promise<
                   style={{
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'space-between',
+                    justifyContent: 'flex-end',
                   }}
                 >
-                  <span style={{ fontSize: '2rem', lineHeight: 1 }} aria-hidden="true">
-                    {step.icon}
-                  </span>
                   <span
                     style={{
                       fontFamily: 'Nunito, sans-serif',

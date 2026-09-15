@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
       from: EMAIL_CONFIG.noreplyFrom,
       to: EMAIL_CONFIG.to,
       replyTo: email,
-      subject: `Appointment Request — ${childName} (age ${childAge}) — Kids Dentist`,
+      subject: `Appointment Request - ${childName} (age ${childAge}) - Kids Dentist`,
       react: React.createElement(InternalOfficeAlert, {
         heading: 'New Appointment Request',
         name: parentName,

@@ -7,8 +7,10 @@ export default function PlaceholderPage() {
   const displayTitle = "Under Construction"
 
   return (
-    <div className="min-h-screen bg-[#FAFAFA] text-slate-800 pt-32 pb-20 px-6 flex flex-col items-center justify-center">
-      <motion.div 
+    <>
+      <meta name="robots" content="noindex, nofollow" />
+      <div className="min-h-screen bg-[#FAFAFA] text-slate-800 pt-32 pb-20 px-6 flex flex-col items-center justify-center">
+      <motion.div
         className="max-w-3xl w-full bg-white rounded-[2rem] shadow-sm border border-slate-100 p-12 text-center"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -40,6 +42,7 @@ export default function PlaceholderPage() {
           Return Home
         </motion.a>
       </motion.div>
-    </div>
+      </div>
+    </>
   )
 }

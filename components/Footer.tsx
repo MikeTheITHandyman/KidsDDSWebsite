@@ -370,7 +370,6 @@ export default function Footer() {
         </span>
         <div style={{ display: 'flex', gap: '1.25rem', opacity: 0.65 }}>
           <a href="/privacy" style={{ color: 'white', fontSize: '0.82rem', fontWeight: 500, textDecoration: 'none' }}>{t('privacyPolicy')}</a>
-          <a href="/sitemap" style={{ color: 'white', fontSize: '0.82rem', fontWeight: 500, textDecoration: 'none' }}>{t('sitemap')}</a>
         </div>
       </div>
 

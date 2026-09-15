@@ -257,69 +257,77 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
 
         {/* ── Special Needs ─────────────────────────────────────── */}
         <AnimatedSection>
-          <div style={{ marginTop: '5rem', marginBottom: '4.5rem' }}>
-            <div style={{ borderLeft: '4px solid var(--brand-purple)', paddingLeft: '1.75rem' }}>
-              <span
-                style={{
-                  display: 'inline-block',
-                  fontFamily: 'Nunito, sans-serif',
-                  fontSize: '0.72rem',
-                  fontWeight: 900,
-                  letterSpacing: '0.14em',
-                  textTransform: 'uppercase',
-                  color: 'var(--brand-purple)',
-                  marginBottom: '0.75rem',
-                }}
-              >
-                {tPage('specialNeedsKicker')}
-              </span>
-              <h2
-                style={{
-                  fontFamily: 'Nunito, sans-serif',
-                  fontSize: 'clamp(1.4rem, 2.5vw, 1.85rem)',
-                  fontWeight: 900,
-                  color: '#1e3a5f',
-                  lineHeight: 1.3,
-                  margin: '0 0 1rem',
-                  maxWidth: '620px',
-                }}
-              >
-                {tPage('specialNeedsHeading')}
-              </h2>
-              <p
-                style={{
-                  fontSize: '1rem',
-                  fontWeight: 500,
-                  color: '#4b5563',
-                  lineHeight: 1.78,
-                  maxWidth: '660px',
-                  margin: 0,
-                }}
-              >
-                {tPage('specialNeedsBody')}
-              </p>
-              <Link
-                href="/services/special-needs"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.35rem',
-                  color: 'var(--brand-purple)',
-                  fontFamily: 'Nunito, sans-serif',
-                  fontWeight: 800,
-                  fontSize: '0.88rem',
-                  textDecoration: 'none',
-                  marginTop: '1.25rem',
-                  borderBottom: '2px solid rgba(107,75,200,0.25)',
-                  paddingBottom: '2px',
-                }}
-              >
-                {tPage('specialNeedsLink')}
-                <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/>
-                </svg>
-              </Link>
-            </div>
+          <div
+            style={{
+              marginTop: '5rem',
+              background: 'linear-gradient(135deg, #f4f1fb 0%, #efe9fa 100%)',
+              border: '1.5px solid rgba(107,75,200,0.18)',
+              borderRadius: '2rem',
+              padding: 'clamp(2rem, 4vw, 3rem)',
+              marginBottom: '4.5rem',
+            }}
+          >
+            <span
+              style={{
+                display: 'inline-block',
+                fontFamily: 'Nunito, sans-serif',
+                fontSize: '0.72rem',
+                fontWeight: 900,
+                letterSpacing: '0.14em',
+                textTransform: 'uppercase',
+                color: 'var(--brand-purple)',
+                marginBottom: '0.75rem',
+              }}
+            >
+              {tPage('specialNeedsKicker')}
+            </span>
+            <h2
+              style={{
+                fontFamily: 'Nunito, sans-serif',
+                fontSize: 'clamp(1.4rem, 2.5vw, 1.85rem)',
+                fontWeight: 900,
+                color: '#4C3494',
+                lineHeight: 1.3,
+                margin: '0 0 1rem',
+                maxWidth: '620px',
+              }}
+            >
+              {tPage('specialNeedsHeading')}
+            </h2>
+            <p
+              style={{
+                fontSize: '1rem',
+                fontWeight: 500,
+                color: '#4a3a7a',
+                lineHeight: 1.78,
+                maxWidth: '660px',
+                margin: 0,
+                opacity: 0.85,
+              }}
+            >
+              {tPage('specialNeedsBody')}
+            </p>
+            <Link
+              href="/services/special-needs"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.35rem',
+                color: 'var(--brand-purple)',
+                fontFamily: 'Nunito, sans-serif',
+                fontWeight: 800,
+                fontSize: '0.88rem',
+                textDecoration: 'none',
+                marginTop: '1.25rem',
+                borderBottom: '2px solid rgba(107,75,200,0.25)',
+                paddingBottom: '2px',
+              }}
+            >
+              {tPage('specialNeedsLink')}
+              <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/>
+              </svg>
+            </Link>
           </div>
         </AnimatedSection>
 
@@ -400,7 +408,15 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
 
         {/* ── Insurance & Payment ───────────────────────────────── */}
         <AnimatedSection>
-          <div style={{ marginBottom: '5rem' }}>
+          <div
+            style={{
+              background: 'linear-gradient(135deg, #eefbfa 0%, #e7f8f6 100%)',
+              border: '1.5px solid rgba(61,189,189,0.22)',
+              borderRadius: '2rem',
+              padding: 'clamp(2rem, 4vw, 3rem)',
+              marginBottom: '4.5rem',
+            }}
+          >
             <span
               style={{
                 display: 'inline-block',
@@ -420,7 +436,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                 fontFamily: 'Nunito, sans-serif',
                 fontSize: 'clamp(1.4rem, 2.5vw, 1.85rem)',
                 fontWeight: 900,
-                color: '#1e3a5f',
+                color: '#0f6e6e',
                 lineHeight: 1.3,
                 margin: '0 0 1rem',
                 maxWidth: '580px',
@@ -432,10 +448,11 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
               style={{
                 fontSize: '1rem',
                 fontWeight: 500,
-                color: '#4b5563',
+                color: '#1f5c5c',
                 lineHeight: 1.78,
                 maxWidth: '660px',
                 margin: '0 0 1.25rem',
+                opacity: 0.85,
               }}
             >
               {tPage('insuranceBody')}
@@ -446,12 +463,12 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.35rem',
-                color: 'var(--brand-purple)',
+                color: '#0f6e6e',
                 fontFamily: 'Nunito, sans-serif',
                 fontWeight: 800,
                 fontSize: '0.88rem',
                 textDecoration: 'none',
-                borderBottom: '2px solid rgba(107,75,200,0.28)',
+                borderBottom: '2px solid rgba(15,110,110,0.3)',
                 paddingBottom: '2px',
               }}
             >
@@ -551,99 +568,85 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                   aspectRatio: '4 / 3',
                   overflow: 'hidden',
                   flexShrink: 0,
-                  ...(slide.imagePath
-                    ? {}
-                    : {
-                        background: slide.gradient,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        gap: '0.85rem',
-                        padding: '2rem',
-                      }),
+                  background: slide.imagePath ? undefined : slide.gradient,
                 }}
               >
-                {slide.imagePath ? (
-                  <>
-                    <Image
-                      src={slide.imagePath}
-                      alt={slide.label}
-                      fill
-                      sizes="(max-width: 768px) 80vw, 400px"
-                      style={{ objectFit: 'cover' }}
-                    />
-                    <div
-                      aria-hidden="true"
-                      style={{
-                        position: 'absolute',
-                        inset: 0,
-                        background: 'linear-gradient(to top, rgba(0,0,0,0.60), rgba(0,0,0,0) 55%)',
-                      }}
-                    />
-                    <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, padding: '1.1rem 1.25rem' }}>
-                      <div style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: '1.05rem', color: '#fff', marginBottom: '0.25rem' }}>
-                        {slide.label}
-                      </div>
-                      <div style={{ fontFamily: 'Nunito, sans-serif', fontSize: '0.82rem', fontWeight: 600, color: 'rgba(255,255,255,0.92)', lineHeight: 1.5 }}>
-                        {slide.caption}
-                      </div>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <div
-                      style={{
-                        width: '72px',
-                        height: '72px',
-                        borderRadius: '50%',
-                        background: 'rgba(255,255,255,0.55)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        backdropFilter: 'blur(6px)',
-                      }}
-                    >
-                      {slide.icon}
-                    </div>
-                    <div style={{ textAlign: 'center' }}>
-                      <div
-                        style={{
-                          fontFamily: 'Nunito, sans-serif',
-                          fontWeight: 900,
-                          fontSize: '1.05rem',
-                          color: '#1e3a5f',
-                          marginBottom: '0.3rem',
-                        }}
-                      >
-                        {slide.label}
-                      </div>
-                      <div
-                        style={{
-                          fontFamily: 'Nunito, sans-serif',
-                          fontSize: '0.82rem',
-                          fontWeight: 600,
-                          color: '#4b5563',
-                          lineHeight: 1.55,
-                        }}
-                      >
-                        {slide.caption}
-                      </div>
-                    </div>
-                    <div
-                      style={{
-                        fontSize: '0.7rem',
-                        fontWeight: 700,
-                        letterSpacing: '0.1em',
-                        textTransform: 'uppercase',
-                        color: '#9ca3af',
-                        marginTop: '0.25rem',
-                      }}
-                    >
-                      {tPage('photoComingSoon')}
-                    </div>
-                  </>
+                {slide.imagePath && (
+                  <Image
+                    src={slide.imagePath}
+                    alt={slide.label}
+                    fill
+                    sizes="(max-width: 768px) 80vw, 400px"
+                    style={{ objectFit: 'cover' }}
+                  />
                 )}
+                {!slide.imagePath && (
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: '38%',
+                      left: '50%',
+                      transform: 'translate(-50%, -50%)',
+                      width: '72px',
+                      height: '72px',
+                      borderRadius: '50%',
+                      background: 'rgba(255,255,255,0.55)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      backdropFilter: 'blur(6px)',
+                    }}
+                  >
+                    {slide.icon}
+                  </div>
+                )}
+                {!slide.imagePath && (
+                  <div
+                    aria-hidden="true"
+                    style={{
+                      position: 'absolute',
+                      top: '0.85rem',
+                      right: '0.85rem',
+                      fontSize: '0.62rem',
+                      fontWeight: 800,
+                      letterSpacing: '0.08em',
+                      textTransform: 'uppercase',
+                      color: '#6b7280',
+                      background: 'rgba(255,255,255,0.8)',
+                      padding: '0.3rem 0.6rem',
+                      borderRadius: '100px',
+                    }}
+                  >
+                    {tPage('photoComingSoon')}
+                  </div>
+                )}
+                <div
+                  aria-hidden="true"
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    background: 'linear-gradient(to top, rgba(0,0,0,0.60), rgba(0,0,0,0) 55%)',
+                  }}
+                />
+                <div
+                  style={{
+                    position: 'absolute',
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    height: '6.25rem',
+                    padding: '1.1rem 1.25rem',
+                    display: 'flex',
+                    flexDirection: 'column',
+                  }}
+                >
+                  <div style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: '1.05rem', color: '#fff', marginBottom: '0.25rem' }}>
+                    {slide.label}
+                  </div>
+                  <div style={{ fontFamily: 'Nunito, sans-serif', fontSize: '0.82rem', fontWeight: 600, color: 'rgba(255,255,255,0.92)', lineHeight: 1.5 }}>
+                    {slide.caption}
+                  </div>
+                </div>
               </div>
             ))}
           </div>
