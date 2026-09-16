@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Insurance & Financing | Kids Dentist Grayslake, IL',
     description:
-      'We accept most major PPO plans. Our team handles the paperwork - you focus on your child.',
+      'We accept most major PPO plans. Our team handles the paperwork, you focus on your child.',
     url: 'https://kidsdds.com/for-patients/insurance-info',
     siteName: 'Kids Dentist',
     locale: 'en_US',

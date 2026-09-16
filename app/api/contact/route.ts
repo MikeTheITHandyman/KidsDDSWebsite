@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
       from: EMAIL_CONFIG.noreplyFrom,
       to: EMAIL_CONFIG.to,
       replyTo: email,
-      subject: `New Contact Message from ${name} - Kids Dentist Website`,
+      subject: `New Contact Message from ${name} | Kids Dentist Website`,
       react: React.createElement(InternalOfficeAlert, {
         heading: 'New Contact Message',
         name,

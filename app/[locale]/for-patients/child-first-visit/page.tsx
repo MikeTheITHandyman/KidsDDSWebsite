@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Your Child's First Dental Visit | Kids Dentist Grayslake, IL",
     description:
-      "First visits should be fun. Learn what to expect at Kids Dentist Grayslake - welcoming, gentle, and designed for tiny patients from age one.",
+      "First visits should be fun. Learn what to expect at Kids Dentist Grayslake, welcoming, gentle, and designed for tiny patients from age one.",
     url: 'https://kidsdds.com/for-patients/child-first-visit',
     siteName: 'Kids Dentist',
     locale: 'en_US',

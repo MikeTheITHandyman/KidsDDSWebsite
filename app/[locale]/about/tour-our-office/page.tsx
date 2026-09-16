@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     'Take a virtual tour of Kids Dentist Grayslake. See our welcoming lobby, child-friendly treatment rooms, play area, and advanced digital technology suite.',
   openGraph: {
     title: 'Tour Our Office | Kids Dentist Grayslake, IL',
-    description: 'See inside the Kids Dentist office in Grayslake, IL - designed from the ground up to make children and parents feel at home.',
+    description: 'See inside the Kids Dentist office in Grayslake, IL, designed from the ground up to make children and parents feel at home.',
     url: 'https://kidsdds.com/about/tour-our-office',
     siteName: 'Kids Dentist',
     locale: 'en_US',
