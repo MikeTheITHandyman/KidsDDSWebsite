@@ -22,3 +22,6 @@ kids-dds-prototype-netlify.zip
 kids-dds-deploy.zip
 .claude/settings.local.json
 scripts/
+
+# Local Netlify folder
+.netlify
